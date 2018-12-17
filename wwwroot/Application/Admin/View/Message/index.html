@@ -1,0 +1,91 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>用户留言</h2>
+    </div>
+
+    <div>
+                            <!-- <button class="btn ajax-get confirm" url="{:U('clear')}">清 空</button> -->
+        <button class="btn ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>
+
+
+                <!-- 高级搜索 -->
+        <div class="search-form fr cf">
+            <div class="sleft">
+                <input type="text" name="name" class="search-input" value="{:I('name')}" placeholder="请输入用户名称">
+                <a class="sch-btn" href="javascript:;" id="search" url="{:U('index',false)}"><i class="btn-search"></i></a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table">
+    <table class="">
+    <thead>
+        <tr>
+        <th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+        <th class="" style="width:5%">编号</th>
+        <th class="">用户</th>
+        <th class="">用户邮箱</th>
+        <th class="">产品名称</th>
+        <th class="">内容</th>
+        <th class="" style="width:10%">提交时间</th>
+        <th class="" style="width:10%">状态</th>
+        <th class="" style="width:8%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <notempty name="_list">
+        <volist name="_list" id="vo">
+        <tr>
+            <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
+            <td>{$vo.id} </td>
+            <td>{$vo.username}</td>
+                                       <td>{$vo.email}</td>
+                                       <td>{$vo.item}</td>
+            <td>{$vo.content}</td>
+            <td><span>{$vo.create_time}</span></td>
+             <td><?= $vo['status'] == 1 ? '未回复' : '已回复' ?></a></td>
+            <td>
+              <a href="{:U('message/edit?id='.$vo['id'])}">回复</a>
+             <a class="confirm ajax-get" href="{:U('message/remove?ids='.$vo['id'])}">删除</a>
+                                        </td>
+        </tr>
+        </volist>
+        <else/>
+        <td colspan="12" class="text-center"> aOh! 暂时还没有内容! </td>
+        </notempty>
+    </tbody>
+    </table>
+    </div>
+    <!-- 分页 -->
+    <div class="page">{$_page}</div>
+    <!-- /分页 -->
+
+</block>
+<block name="script">
+<script type="text/javascript">
+$(function(){
+    $("#action_add").click(function(){
+        window.location.href = $(this).attr('url');
+    })
+
+            //搜索功能
+    $("#search").click(function(){
+        var url = $(this).attr('url');
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+        window.location.href = url;
+    });
+
+})
+</script>
+</block>

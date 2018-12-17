@@ -1,0 +1,144 @@
+<extend name="Public/base" />
+
+<block name="body">
+	<div class="main-title cf">
+		<h2>回复留言</h2>
+	</div>
+
+	<!-- 标签页导航 -->
+	<div class="tab-wrap">
+		<div class="tab-content">
+			<!-- 表单 -->
+			<form id="form" method="post" class="form-horizontal doc-modal-form" action="{:U('send_message')}">
+				<!-- 基础 -->
+				<div id="tab1" class="tab-pane in tab1">
+					<div class="form-item cf">
+						<label class="item-label">产品名称：<span class="controls"><?= $info['item'] ?></span></label>
+					</div>
+					<div class="form-item cf">
+						<label class="item-label">用户账号：<span class="controls"><?= $info['username'] ?></span></label>
+					</div>
+					<div class="form-item cf">
+						<label class="item-label">用户邮箱：<span class="controls"><?= $info['email'] ?></span></label>
+					</div>
+
+
+				        <div class="form-item cf">
+				            <label class="item-label">回复内容<span class="check-tips"></span></label>
+				            <div class="controls">
+				            <label class="textarea">
+				            <textarea name="content" style="display: none;"><?= $data['content'] ?></textarea>
+				            <input type="hidden" value="0" name="parse">
+				            <link href="/Public/static/kindeditor/default/default.css" rel="stylesheet">
+				            <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
+				            <script src="/Public/static/kindeditor/zh_CN.js" charset="utf-8"></script>
+				            <script type="text/javascript">
+				                var editor_content;
+				                KindEditor.ready(function(K) {
+				                    editor_content = K.create('textarea[name="content"]', {
+				                        allowFileManager : false,
+				                        themesPath: K.basePath,
+				                        width: '100%',
+				                        height: '500px',
+				                        resizeType: 1,
+				                        pasteType : 2,
+				                        urlType : 'absolute',
+				                        fileManagerJson : '{:U('fileManagerJson')}',
+				                        uploadJson : '{:addons_url("EditorForAdmin://Upload/ke_upimg")}',
+				                        extraFileUploadParams: {
+				                             session_id : '{:session_id()}'
+				                        }
+				                    });
+				                });
+
+				                $(function(){
+				                    //传统表单提交同步
+				                    $('textarea[name="content"]').closest('form').submit(function(){
+				                        editor_content.sync();
+				                    });
+				                    //ajax提交之前同步
+				                    $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+				                        editor_content.sync();
+				                    });
+				                })
+				            </script>
+				                    </label>
+				                </div>
+				            </div>
+				</div>
+
+				<!-- 按钮 -->
+				<div class="form-item cf">
+					<label class="item-label"></label>
+					<div class="controls edit_sort_btn">
+					  <input type="hidden" name="id" value="<?= $info['id'] ?>">
+					  <input type="hidden" name="item" value="<?= $info['item'] ?>">
+					  <input type="hidden" name="email" value="<?= $info['email'] ?>">
+					  <input type="hidden" name="item_id" value="<?= $info['item_id'] ?>">
+					  <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">发送邮件</button>
+						<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+
+	</div>
+
+	<div class="form-item cf">
+		<label class="item-label">回复记录：</label><?php if (empty($list)): ?>无回复<?php endif ?>
+		<?php foreach ($list as $key => $value): ?>
+		<div class="controls">
+			<span><?= $value['create_time'] ?></span>
+		</div><span><?= $value['content'] ?></span>
+		<?php endforeach ?>
+	</div>
+</block>
+<block name="script">
+<script type="text/javascript" src="__STATIC__/jquery.dragsort-0.5.1.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+Think.setValue("extend", {$info.extend|default=0});
+//导航高亮
+highlight_subnav('{:U('message/index')}');
+
+
+$(function(){
+	showTab();
+})
+//拖曳插件初始化
+$(function(){
+	$(".dragsort").dragsort({
+	     dragSelector:'li',
+	     placeHolderTemplate: '<li class="draging-place">&nbsp;</li>',
+	     dragBetween:true,	//允许拖动到任意地方
+	     dragEnd:function(){
+	    	 var self = $(this);
+	    	 self.find('input').attr('name', 'field_sort[' + self.closest('ul').data('group') + '][]');
+	     	//updateVal();
+	     }
+	 });
+
+	$('#sortUl li b').click(function(){
+		$(this).parent().remove();
+		updateVal();
+	});
+
+	// 更新排序后的隐藏域的值
+	function updateVal() {
+		var fields = new Array();
+		$('.form_field_sort').each(function(){
+			var i = 1;
+			var self = this;
+			var group = $(self).attr('group');
+			$(self).find('li').each(function(){
+		   		var id = $(this).find('em').attr('data');
+		   		$('#field-' + id).val(id + ':' + group + ':' + i++);
+		   	});
+		});
+
+	}
+})
+</script>
+</block>
+

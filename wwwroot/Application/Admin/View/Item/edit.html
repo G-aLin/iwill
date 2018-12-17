@@ -1,0 +1,395 @@
+<extend name="Public/base" />
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+
+<block name="body">
+    <script src="/Public/static/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+    <div class="main-title cf">
+        <h2>
+            编辑商品
+        </h2>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+    <ul class="tab-nav nav">
+        <li data-tab="tab1" class="current"><a href="javascript:void(0);">基础</a></li>
+        <li data-tab="tab2" ><a href="javascript:void(0);">图片</a></li>
+        <li data-tab="tab3" ><a href="javascript:void(0);">详情</a></li>
+        </ul>
+    <div class="tab-content">
+    <!-- 表单 -->
+    <form class="form-horizontal" method="post" action="{:U('update')}" id="form">
+    <!-- tab-1 start -->
+    <div class="tab-pane tab1 in" id="tab1">
+            <div class="form-item cf">
+                    <label class="item-label">名称</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['name'] ?>" name="name" class="text input-large">
+                    </div>
+            </div>
+
+            <div class="form-item cf">
+                    <label class="item-label">库存<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['stock'] ?>" name="stock" class="text input-large">                    </div>
+                </div>
+
+                              <div class="form-item cf">
+                    <label class="item-label">价格区间<span class="check-tips">单个写0  多个用英文;号分离 例如：1-100;101-300;301以上</span></label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['price_range'] ?>" name="price_range" class="text input-large">                    </div>
+                </div>
+
+                   <div class="form-item cf">
+                    <label class="item-label">价格区间值<span class="check-tips">多个用英文;号分离 </span></label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['price'] ?>" name="price" class="text input-large">                    </div>
+                </div>
+
+            <div class="form-item cf">
+                    <label class="item-label">状态<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <label class="radio">
+                                <input type="radio" name="status" value="1" <?php if ($data['status'] == 1): ?>checked<?php endif ?>>发布
+                        </label>
+                        <label class="radio">
+                                <input type="radio" name="status" value="0" <?php if ($data['status'] == 0): ?>checked<?php endif ?>>下架
+                        </label>
+                    </div>
+            </div>
+     </div>
+       <!-- tab-1 end -->
+            <!-- tab-2 start -->
+            <div class="tab-pane  tab2" id="tab2">
+                <div class="form-item cf">
+                    <label class="item-label">列表图片<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <div class="controls">
+                                    <input type="file" id="upload_picture_1">
+                                    <input type="hidden" name="picture_1" id="picture_1" value="<?= $picData[0]['picture_id'] ?>" />
+                                    <div class="upload-img-box">
+                                    <notempty name="picData[0]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[0]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+                        <script type="text/javascript">
+                            /* 初始化上传插件 */
+                            $("#upload_picture_1").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_1
+                                });
+
+                                function uploadPicture_1(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_1").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_1").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+                        </script>
+                        </div>
+                </div>
+
+            <div class="form-item cf">
+                    <label class="item-label">商品图片<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <div class="controls">
+                                    <input type="file" id="upload_picture_2">
+                                    <input type="hidden" name="picture_2" id="picture_2" value="<?= $picData[1]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                     <notempty name="picData[1]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[1]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                         <div class="controls">
+                                    <input type="file" id="upload_picture_3">
+                                    <input type="hidden" name="picture_3" id="picture_3" value="<?= $picData[2]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                   <notempty name="picData[2]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[2]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                          <div class="controls">
+                                    <input type="file" id="upload_picture_4">
+                                    <input type="hidden" name="picture_4" id="picture_4" value="<?= $picData[3]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                     <notempty name="picData[3]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[3]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                        <div class="controls">
+                                    <input type="file" id="upload_picture_5">
+                                    <input type="hidden" name="picture_5" id="picture_5" value="<?= $picData[4]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                      <notempty name="picData[4]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[4]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                          <div class="controls">
+                                    <input type="file" id="upload_picture_6">
+                                    <input type="hidden" name="picture_6" id="picture_6" value="<?= $picData[5]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="picData[5]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[5]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+
+                        <script type="text/javascript">
+                                          /* 初始化上传插件 */
+                            $("#upload_picture_2").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_2
+                                });
+
+                                function uploadPicture_2(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_2").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_2").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                                /* 初始化上传插件 */
+                            $("#upload_picture_3").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_3
+                                });
+
+                                function uploadPicture_3(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_3").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_3").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                                /* 初始化上传插件 */
+                            $("#upload_picture_4").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_4
+                                });
+
+                                function uploadPicture_4(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_4").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_4").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                                /* 初始化上传插件 */
+                            $("#upload_picture_5").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_5
+                                });
+
+                                function uploadPicture_5(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_5").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_5").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                                /* 初始化上传插件 */
+                            $("#upload_picture_6").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_6
+                                });
+
+                                function uploadPicture_6(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_6").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_6").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+                        </script>
+                        </div>
+                </div>
+
+        </div>
+        <!-- tab-2 end -->
+        <!-- tab-3 start -->
+        <div class="tab-pane  tab3" id="tab3">
+            <div class="form-item cf">
+            <label class="item-label">文章内容<span class="check-tips"></span></label>
+            <div class="controls">
+            <label class="textarea">
+            <textarea name="content" style="display: none;"><?= $data['desc'] ?></textarea>
+            <input type="hidden" value="0" name="parse">
+            <link href="/Public/static/kindeditor/default/default.css" rel="stylesheet">
+            <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
+            <script src="/Public/static/kindeditor/zh_CN.js" charset="utf-8"></script>
+            <script type="text/javascript">
+                var editor_content;
+                KindEditor.ready(function(K) {
+                    editor_content = K.create('textarea[name="content"]', {
+                        allowFileManager : false,
+                        themesPath: K.basePath,
+                        width: '100%',
+                        height: '500px',
+                        resizeType: 1,
+                        pasteType : 2,
+                        urlType : 'absolute',
+                        fileManagerJson : '{:U('fileManagerJson')}',
+                        uploadJson : '{:addons_url("EditorForAdmin://Upload/ke_upimg")}',
+                        extraFileUploadParams: {
+                             session_id : '{:session_id()}'
+                        }
+                    });
+                });
+
+                $(function(){
+                    //传统表单提交同步
+                    $('textarea[name="content"]').closest('form').submit(function(){
+                        editor_content.sync();
+                    });
+                    //ajax提交之前同步
+                    $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+                        editor_content.sync();
+                    });
+                })
+            </script>
+                    </label>
+                </div>
+            </div>
+        </div>
+    <!-- tab-3 end -->
+        <div class="form-item cf">
+            <input type="hidden" name="id" value="<?= $data['id'] ?>">
+            <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
+            <a href="{:U('Item/index')}" class="btn btn-return">返 回</a>
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+$('#submit').click(function(){
+    $('#form').submit();
+});
+
+$(function(){
+    $('.date').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss',
+        language:"zh-CN",
+        autoclose:true,
+        minuteStep:1
+    });
+    showTab();
+});
+</script>
+</block>
