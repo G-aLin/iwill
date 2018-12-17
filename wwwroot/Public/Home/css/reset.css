@@ -71,15 +71,15 @@ li {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  height: 5px;
-  background-color: rgba(125, 125, 125, 0.7);
-  -webkit-border-radius: 6px;
+  height: 10px;
+  background-color: rgba(125, 125, 125);
+  -webkit-border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  width: 5px;
-  background-color: rgba(125, 125, 125, 0.7);
-  -webkit-border-radius: 6px;
+  width: 10px;
+  background-color: rgba(125, 125, 125);
+  -webkit-border-radius: 12px;
 }
 
 html, body {
@@ -89,7 +89,7 @@ html, body {
   position: relative;
   line-height: 1;
   font-weight: 200;
-  font-family: 'Whitney', 'PingFang SC','STHeitiSC-Light','Helvetica-Light',Arial,sans-serif;
+  font-family: 'Whitney Book', 'PingFang SC','STHeitiSC-Light','Helvetica-Light',Arial,sans-serif;
 }
 
 body {
