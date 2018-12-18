@@ -1,4 +1,5 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/index.css">
 
   <!-- header -->
   <div class="header">
@@ -42,20 +43,20 @@
 
   <!-- banner -->
   <div class="banner">
-      <div class="hd">
-        <ul>
-         <?php foreach ($banner_list as $key => $value): ?>
+    <div class="hd">
+      <ul>
+        <?php foreach ($banner_list as $key => $value): ?>
           <li class=""></li>
         <?php endforeach ?>
-        </ul>
-      </div>
-      <div class="bd">
-          <ul>
-                <?php foreach ($banner_list as $key => $value): ?>
-                    <li><a href="<?=$value['url'] ?>"><img src="<?=$value['path'] ?>"></a></li>
-                <?php endforeach ?>
-          </ul>
-      </div>
+      </ul>
+    </div>
+    <div class="bd">
+      <ul>
+        <?php foreach ($banner_list as $key => $value): ?>
+          <li><a href="<?=$value['url'] ?>"><img src="<?=$value['path'] ?>"></a></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
   </div>
   <!-- banner -->
 
@@ -81,9 +82,9 @@
     <!-- 轮播区 -->
     <!-- 分类区 -->
     <div class="category">
-      <h4>Product Categories</h4>
+      <h4 data-aos="zoom-in">Product Categories</h4>
       <div class="list">
-        <div class="big">
+        <div class="big box" data-aos="fade-up-left">
           <a href="#">
             <img src="__IMG__/index/4.png">
             <div class="mask">
@@ -92,7 +93,7 @@
           </a>
         </div>
         <ul class="clearfix">
-          <li>
+          <li class="box" data-aos="fade-up-right">
             <a href="#">
               <img src="__IMG__/index/5.png">
               <div class="mask">
@@ -100,9 +101,9 @@
               </div>
             </a>
           </li>
-          <li><img src="__IMG__/index/6.png"></li>
-          <li><img src="__IMG__/index/7.png"></li>
-          <li><img src="__IMG__/index/8.png"></li>
+          <li class="box" data-aos="fade-up-right"><img src="__IMG__/index/6.png"></li>
+          <li class="box" data-aos="fade-up-right"><img src="__IMG__/index/7.png"></li>
+          <li class="box" data-aos="fade-up-left"><img src="__IMG__/index/8.png"></li>
         </ul>
       </div>
     </div>
@@ -110,56 +111,56 @@
   </div>
 
   <div class="hot-product">
-    <h4>Hot Product</h4>
+    <h4 data-aos="zoom-in">Hot Product</h4>
     <div class="wrapper">
       <div class="list">
         <div class="item">
-          <div class="cell">
+          <div class="cell" data-aos="fade-right">
             <div class="text">
               <h5>Product name</h5>
               <p>Text descriptionThis storage bag is special for the bulky or heavy-duty items organization. So we choose the deep color and thick fabric, and strong handles for carrying. We recommend to store Groceries, festival decorations, camping Tents, cushions etc. Or shopping in supermarket, GO-to-school, or moving house,Cargo Duffel. </p>
             </div>
-            <i class="icon-global bg-7"></i>
           </div>
-          <div class="cell">
+          <div class="cell" data-aos="fade-left">
             <img src="__IMG__/index/9.jpg">
           </div>
+          <i class="icon-global bg-7"></i>
         </div>
         <div class="item even">
-          <div class="cell">
+          <div class="cell" data-aos="fade-right">
             <img src="__IMG__/index/10.jpg">
           </div>
-          <div class="cell">
+          <div class="cell" data-aos="fade-left">
             <div class="text">
               <h5>Product name</h5>
               <p>Text descriptionThis storage bag is special for the bulky or heavy-duty items organization. So we choose the deep color and thick fabric, and strong handles for carrying. We recommend to store Groceries, festival decorations, camping Tents, cushions etc. Or shopping in supermarket, GO-to-school, or moving house,Cargo Duffel. </p>
             </div>
-            <i class="icon-global bg-8"></i>
           </div>
+          <i class="icon-global bg-8"></i>
         </div>
         <div class="item">
-          <div class="cell">
+          <div class="cell" data-aos="fade-right">
             <div class="text">
               <h5>Product name</h5>
               <p>Text descriptionThis storage bag is special for the bulky or heavy-duty items organization. So we choose the deep color and thick fabric, and strong handles for carrying. We recommend to store Groceries, festival decorations, camping Tents, cushions etc. Or shopping in supermarket, GO-to-school, or moving house,Cargo Duffel. </p>
             </div>
-            <i class="icon-global bg-7"></i>
           </div>
-          <div class="cell">
+          <div class="cell" data-aos="fade-left">
             <img src="__IMG__/index/11.jpg">
           </div>
+          <i class="icon-global bg-7"></i>
         </div>
         <div class="item even">
-          <div class="cell">
+          <div class="cell" data-aos="fade-right">
             <img src="__IMG__/index/12.jpg">
           </div>
-          <div class="cell">
+          <div class="cell" data-aos="fade-left">
             <div class="text">
               <h5>Product name</h5>
               <p>Text descriptionThis storage bag is special for the bulky or heavy-duty items organization. So we choose the deep color and thick fabric, and strong handles for carrying. We recommend to store Groceries, festival decorations, camping Tents, cushions etc. Or shopping in supermarket, GO-to-school, or moving house,Cargo Duffel. </p>
             </div>
-            <i class="icon-global bg-8"></i>
           </div>
+          <i class="icon-global bg-8"></i>
         </div>
       </div>
     </div>
@@ -167,8 +168,8 @@
 
   <div class="about-us">
     <div class="wrapper">
-        <h4>About Us</h4>
-        <p>I WILL is committed to high quality storage and organization products Create, production and sales.
+        <h4 data-aos="zoom-in">About Us</h4>
+        <p data-aos="fade-up">I WILL is committed to high quality storage and organization products Create, production and sales.
           <br />with the most competitive price, serving the college students and high-end family in the world through Amazon company.
           <br />Products for bedroom, Office, travel, such as kitchens, bathrooms, dormitories, used in clothing, footwear, cosmetics, travel, Office supplies, supplies, kitchen supplies, <br />toiletries, books and other items of debris storage and sorting.
           <br />Product development and sourcing, distribution, marketing and after-sales service are made by professional teams.
@@ -239,6 +240,16 @@
 
   <script type="text/javascript">
     $(function() {
+      AOS.init({
+        offset: -120,
+        duration: 600,
+        anchorPlacement: 'top-center'
+      });
+
+      // banner图轮播
+      jQuery(".banner").slide({ mainCell: ".bd ul", effect: "leftLoop",autoPlay:true,interTime:4500});
+      jQuery(".swiper").slide({mainCell:".swiper-view ul",effect: "leftLoop",autoPlay:true,autoPage: true,vis:3});
+
       function watchWidth() {
         // swiper左右按钮定位
         var w = document.body.clientWidth
@@ -254,10 +265,6 @@
       $(window).resize(function() {
         watchWidth()
       })
-
-      // banner图轮播
-      jQuery(".banner").slide({ mainCell: ".bd ul", effect: "leftLoop",autoPlay:true,interTime:4500});
-      jQuery(".swiper").slide({mainCell:".swiper-view ul",effect: "leftLoop",autoPlay:true,autoPage: true,vis:3});
     })
     </script>
 </body>
