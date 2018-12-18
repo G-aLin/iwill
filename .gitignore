@@ -2,4 +2,4 @@
 /.project
 /.settings
 /composer.lock
-/vendor
+/wwwroot/Runtime
