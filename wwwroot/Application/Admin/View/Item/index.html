@@ -27,10 +27,21 @@
 
 		<!-- 高级搜索 -->
 		<div class="search-form fr cf">
+        <div class="sleft">
+                    <div class="controls">
+                    <select name="type" id="type">
+                                <option value="0">筛选推荐商品</option>
+                                <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>首页轮播推荐</option>
+                                <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页推荐</option>
+                    </select>
+                    </div>
+</div>
 			<div class="sleft">
 				<input type="text" name="name" class="search-input" value="{:I('name')}" placeholder="请输入标题文档">
 				<a class="sch-btn" href="javascript:;" id="search" url="{:U('item/index',false)}"><i class="btn-search"></i></a>
 			</div>
+
+
             <div class="btn-group-click adv-sch-pannel fl">
                 <!-- <button class="btn">高 级<i class="btn-arrowdown"></i></button> -->
                 <div class="dropdown cf">
@@ -60,7 +71,9 @@
                     <th>编号</th>
                     <th>名称</th>
                     <th>库存</th>
-                    <th>创建时间</th>
+                    <th>首页轮播</th>
+                    <th>首页推荐</th>
+                    <th>排序</th>
                     <th>状态</th>
                     <th>操作</th>
             </tr>
@@ -68,14 +81,21 @@
 
             <!-- 列表 -->
    <tbody>
-                <?php foreach ($list as $key => $value): ?>
+                <?php foreach ($list as $key => $value):
+                        $commendArr = explode(',',$value['commend']);
+                        $commend_1 = in_array(1, $commendArr) ? 1: 0;
+                        $commend_2 = in_array(2, $commendArr) ? 1: 0;
+                ?>
                 <tr>
                         <td><input class="ids" type="checkbox" value="<?= $value['id'] ?>" name="ids[]"></td>
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['name'] ?></td>
                         <td><?= $value['stock'] ?></td>
-                        <td><?= date('Y-m-d H:i:s',$value['create_time']) ?></td>
+                        <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>1,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_1
+                         ? '是' : '否' ?></a></td>
+                         <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>2,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_2 ? '是' : '否' ?></a></td>
                         <td><a class="ajax-get" href="{:U('item/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                         <td><?= $value['sort'] ?></td>
                         <td>
                         <a href="{:U('item/edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('item/spec','id='.$value['id'])}">设置规格</a>
@@ -102,17 +122,26 @@
 $(function(){
 	//搜索功能
 	$("#search").click(function(){
-		var url = $(this).attr('url');
+		var url = $(this).attr('url'),type=$("#type").val();
         var query  = $('.search-form').find('input').serialize();
         query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
         query = query.replace(/^&/g,'');
         if( url.indexOf('?')>0 ){
-            url += '&' + query;
+            url += '&' + query+'&type=' + type;
         }else{
             url += '?' + query;
         }
 		window.location.href = url;
 	});
+
+    $("#type").change(function(){
+        var url = $("#search").attr('url'),type=$("#type").val();
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        url += '&' + query+'&type=' + type;
+        window.location.href = url;
+    });
 
 	/* 状态搜索子菜单 */
 	$(".search-form").find(".drop-down").hover(function(){

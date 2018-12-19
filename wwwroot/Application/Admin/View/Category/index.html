@@ -1,80 +1,168 @@
-<extend name="Public/base"/>
+<extend name="Public/base" />
 
-<block name="body">
-	<div class="main-title">
-		<h2>分类管理</h2>
-	</div>
-
-	<!-- 表格列表 -->
-	<div class="tb-unit posr">
-		<div class="tb-unit-bar">
-			<a class="btn" href="{:U('add')}">新 增</a>
-		</div>
-		<div class="category">
-			<div class="hd cf">
-				<div class="fold">折叠</div>
-				<div class="order">排序</div>
-				<div class="order">发布</div>
-				<div class="name">名称</div>
-			</div>
-			{:R('Category/tree', array($tree))}
-		</div>
-	</div>
-	<!-- /表格列表 -->
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
 </block>
 
+<block name="body">
+	<!-- 标题 -->
+	<div class="main-title">
+		<h2>
+		商品分类列表({$_total})
+		</h2>
+	</div>
+
+	<!-- 按钮工具栏 -->
+	<div class="cf">
+		<div class="fl">
+			<div class="btn-group">
+				<gt name="allow" value="0">
+					<button class="btn document_add" url="{:U('category/add')}">新 增</button>
+			</div>
+		</div>
+
+		<!-- 高级搜索 -->
+		<div class="search-form fr cf">
+			<div class="sleft">
+				<input type="text" name="title" class="search-input" value="{:I('title')}" placeholder="请输入名称">
+				<a class="sch-btn" href="javascript:;" id="search" url="{:U('category/index',false)}"><i class="btn-search"></i></a>
+			</div>
+            <div class="btn-group-click adv-sch-pannel fl">
+
+            </div>
+		</div>
+	</div>
+
+	<!-- 数据表格 -->
+    <div class="data-table">
+		<table>
+            <!-- 表头 -->
+            <thead>
+            <tr>
+                    <th class="row-selected row-selected">
+                        <input class="check-all" type="checkbox">
+                    </th>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>图片</th>
+                    <th>排序</th>
+                    <th>状态</th>
+                    <th>操作</th>
+            </tr>
+            </thead>
+
+            <!-- 列表 -->
+   <tbody>
+                <?php foreach ($list as $key => $value): ?>
+                <tr>
+                        <td><input class="ids" type="checkbox" value="<?= $value['id'] ?>" name="ids[]"></td>
+                        <td><?= $value['id'] ?></td>
+                        <td><?= $value['name'] ?></td>
+                        <td><img src="<?= $value['picture_url'] ?>" width="150" height="150"></td>
+                        <td><?= $value['level']?></td>
+                        <td><a class="ajax-get" href="{:U('category/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td>
+                        <a href="{:U('category/edit','id='.$value['id'])}">编辑</a>
+                        <a href="{:U('category/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>
+                        </td>
+            </tr>
+            <?php endforeach ?>
+        </table>
+	</div>
+	<!-- 分页 -->
+    <div class="page">
+        {$_page}
+    </div>
+</div>
+
+</block>
 <block name="script">
-	<script type="text/javascript">
-		(function($){
-			/* 分类展开收起 */
-			$(".category dd").prev().find(".fold i").addClass("icon-unfold")
-				.click(function(){
-					var self = $(this);
-					if(self.hasClass("icon-unfold")){
-						self.closest("dt").next().slideUp("fast", function(){
-							self.removeClass("icon-unfold").addClass("icon-fold");
-						});
-					} else {
-						self.closest("dt").next().slideDown("fast", function(){
-							self.removeClass("icon-fold").addClass("icon-unfold");
-						});
-					}
-				});
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+		var status = $("#sch-sort-txt").attr("data");
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+		if(status != ''){
+			query = 'status=' + status + "&" + query;
+        }
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
 
-			/* 三级分类删除新增按钮 */
-			$(".category dd dd .add-sub").remove();
+	/* 状态搜索子菜单 */
+	$(".search-form").find(".drop-down").hover(function(){
+		$("#sub-sch-menu").removeClass("hidden");
+	},function(){
+		$("#sub-sch-menu").addClass("hidden");
+	});
+	$("#sub-sch-menu li").find("a").each(function(){
+		$(this).click(function(){
+			var text = $(this).text();
+			$("#sch-sort-txt").text(text).attr("data",$(this).attr("value"));
+			$("#sub-sch-menu").addClass("hidden");
+		})
+	});
 
-			/* 实时更新分类信息 */
-			$(".category")
-				.on("submit", "form", function(){
-					var self = $(this);
-					$.post(
-						self.attr("action"),
-						self.serialize(),
-						function(data){
-							/* 提示信息 */
-							var name = data.status ? "success" : "error", msg;
-							msg = self.find(".msg").addClass(name).text(data.info)
-									  .css("display", "inline-block");
-							setTimeout(function(){
-								msg.fadeOut(function(){
-									msg.text("").removeClass(name);
-								});
-							}, 1000);
-						},
-						"json"
-					);
-					return false;
-				})
-                .on("focus","input",function(){
-                    $(this).data('param',$(this).closest("form").serialize());
+	//只有一个模型时，点击新增
+	$('.document_add').click(function(){
+		var url = $(this).attr('url');
+		if(url != undefined && url != ''){
+			window.location.href = url;
+		}
+	});
 
-                })
-                .on("blur", "input", function(){
-                    if($(this).data('param')!=$(this).closest("form").serialize()){
-                        $(this).closest("form").submit();
-                    }
-                });
-		})(jQuery);
-	</script>
+	//点击排序
+	$('.list_sort').click(function(){
+		var url = $(this).attr('url');
+		var ids = $('.ids:checked');
+		var param = '';
+		if(ids.length > 0){
+			var str = new Array();
+			ids.each(function(){
+				str.push($(this).val());
+			});
+			param = str.join(',');
+		}
+
+		if(url != undefined && url != ''){
+			window.location.href = url + '/ids/' + param;
+		}
+	});
+
+    //回车自动提交
+    $('.search-form').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+
+    $('#time-start').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+	    minView:2,
+	    autoclose:true
+    });
+
+    $('#time-end').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+	    minView:2,
+	    autoclose:true
+    });
+})
+</script>
 </block>

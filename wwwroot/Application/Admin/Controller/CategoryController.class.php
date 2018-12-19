@@ -4,225 +4,212 @@
 // +----------------------------------------------------------------------
 // | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
+// | Author: huajie <banhuajie@163.com>
 // +----------------------------------------------------------------------
-
 namespace Admin\Controller;
+use Admin\Model\AuthGroupModel;
+use Think\Page;
 
 /**
- * 后台分类管理控制器
- * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ * 后台IBanner列表控制器
+ * @author huajie <banhuajie@163.com>
  */
 class CategoryController extends AdminController {
 
+    /* 保存允许访问的公共方法 */
+    static protected $allow = array( 'draftbox','mydocument');
+
+       private $cate_id        =   null; //文档分类id
     /**
-     * 分类管理列表
-     * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+     * 显示左边菜单，进行权限控制
+     * @author huajie <banhuajie@163.com>
+     */
+    protected function getMenu(){
+        //获取动态分类
+        $cate_auth  =   AuthGroupModel::getAuthCategories(UID); //获取当前用户所有的内容权限节点
+        $cate_auth  =   $cate_auth == null ? array() : $cate_auth;
+        $cate       =   M('Category')->where(array('status'=>1))->field('id,title,pid,allow_publish')->order('pid,sort')->select();
+
+        //没有权限的分类则不显示
+        if(!IS_ROOT){
+            foreach ($cate as $key=>$value){
+                if(!in_array($value['id'], $cate_auth)){
+                    unset($cate[$key]);
+                }
+            }
+        }
+
+        $cate           =   list_to_tree($cate);    //生成分类树
+
+        //获取分类id
+        $cate_id        =   I('param.cate_id');
+        $this->cate_id  =   $cate_id;
+
+        //是否展开分类
+        $hide_cate = false;
+        if(ACTION_NAME != 'recycle' && ACTION_NAME != 'draftbox' && ACTION_NAME != 'mydocument'){
+            $hide_cate  =   true;
+        }
+
+        //生成每个分类的url
+        foreach ($cate as $key=>&$value){
+            $value['url']   =   'Article/index?cate_id='.$value['id'];
+            if($cate_id == $value['id'] && $hide_cate){
+                $value['current'] = true;
+            }else{
+                $value['current'] = false;
+            }
+            if(!empty($value['_child'])){
+                $is_child = false;
+                foreach ($value['_child'] as $ka=>&$va){
+                    $va['url']      =   'Article/index?cate_id='.$va['id'];
+                    if(!empty($va['_child'])){
+                        foreach ($va['_child'] as $k=>&$v){
+                            $v['url']   =   'Article/index?cate_id='.$v['id'];
+                            $v['pid']   =   $va['id'];
+                            $is_child = $v['id'] == $cate_id ? true : false;
+                        }
+                    }
+                    //展开子分类的父分类
+                    if($va['id'] == $cate_id || $is_child){
+                        $is_child = false;
+                        if($hide_cate){
+                            $value['current']   =   true;
+                            $va['current']      =   true;
+                        }else{
+                            $value['current']   =   false;
+                            $va['current']      =   false;
+                        }
+                    }else{
+                        $va['current']      =   false;
+                    }
+                }
+            }
+        }
+        $this->assign('nodes',      $cate);
+        $this->assign('cate_id',    $this->cate_id);
+        //获取面包屑信息
+        $nav = get_parent_category($cate_id);
+        $this->assign('rightNav',   $nav);
+
+        //获取回收站权限
+        $this->assign('show_recycle', IS_ROOT || $this->checkRule('Admin/article/recycle'));
+        //获取草稿箱权限
+        $this->assign('show_draftbox', C('OPEN_DRAFTBOX'));
+        //获取审核列表权限
+        $this->assign('show_examine', IS_ROOT || $this->checkRule('Admin/article/examine'));
+    }
+
+    /**
+     * 列表页
      */
     public function index(){
-        $tree = D('Category')->getTree(0,'id,name,title,sort,pid,allow_publish,status');
-        $this->assign('tree', $tree);
-        C('_SYS_GET_CATEGORY_TREE_', true); //标记系统获取分类树模板
-        $this->meta_title = '分类管理';
-        $this->display();
-    }
-
-    /**
-     * 显示分类树，仅支持内部调
-     * @param  array $tree 分类树
-     * @author 麦当苗儿 <zuojiazi@vip.qq.com>
-     */
-    public function tree($tree = null){
-        C('_SYS_GET_CATEGORY_TREE_') || $this->_empty();
-        $this->assign('tree', $tree);
-        $this->display('tree');
-    }
-
-    /* 编辑分类 */
-    public function edit($id = null, $pid = 0){
-        $Category = D('Category');
-
-        if(IS_POST){ //提交表单
-            if(false !== $Category->update()){
-                $this->success('编辑成功！', U('index'));
-            } else {
-                $error = $Category->getError();
-                $this->error(empty($error) ? '未知错误！' : $error);
-            }
-        } else {
-            $cate = '';
-            if($pid){
-                /* 获取上级分类信息 */
-                $cate = $Category->info($pid, 'id,name,title,status');
-                if(!($cate && 1 == $cate['status'])){
-                    $this->error('指定的上级分类不存在或被禁用！');
-                }
-            }
-
-            /* 获取分类信息 */
-            $info = $id ? $Category->info($id) : '';
-
-            $this->assign('info',       $info);
-            $this->assign('category',   $cate);
-            $this->meta_title = '编辑分类';
-            $this->display();
+         $this->getMenu();
+        /* 查询条件初始化 */
+        $map = array();
+        if(isset($_GET['title'])){
+            $map['name']    =   array('like', '%'.(string)I('title').'%');
         }
-    }
-
-    /* 新增分类 */
-    public function add($pid = 0){
-        $Category = D('Category');
-
-        if(IS_POST){ //提交表单
-            if(false !== $Category->update()){
-                $this->success('新增成功！', U('index'));
-            } else {
-                $error = $Category->getError();
-                $this->error(empty($error) ? '未知错误！' : $error);
-            }
-        } else {
-            $cate = array();
-            if($pid){
-                /* 获取上级分类信息 */
-                $cate = $Category->info($pid, 'id,name,title,status');
-                if(!($cate && 1 == $cate['status'])){
-                    $this->error('指定的上级分类不存在或被禁用！');
-                }
-            }
-
-            /* 获取分类信息 */
-            $this->assign('info',       null);
-            $this->assign('category', $cate);
-            $this->meta_title = '新增分类';
-            $this->display('edit');
+        $list = $this->lists('item_category', $map,'id desc');
+        $pictureM = M('picture') ;
+        foreach ($list as $key => $value) {
+            $list[$key]['picture_url'] = $pictureM->where(['id'=>$value['picture_id']])->getField('path');
         }
-    }
-
-    /**
-     * 删除一个分类
-     * @author huajie <banhuajie@163.com>
-     */
-    public function remove(){
-        $cate_id = I('id');
-        if(empty($cate_id)){
-            $this->error('参数错误!');
-        }
-
-        //判断该分类下有没有子分类，有则不允许删除
-        $child = M('Category')->where(array('pid'=>$cate_id))->field('id')->select();
-        if(!empty($child)){
-            $this->error('请先删除该分类下的子分类');
-        }
-
-        //判断该分类下有没有内容
-        $document_list = M('Document')->where(array('category_id'=>$cate_id))->field('id')->select();
-        if(!empty($document_list)){
-            $this->error('请先删除该分类下的文章（包含回收站）');
-        }
-
-        //删除该分类信息
-        $res = M('Category')->delete($cate_id);
-        if($res !== false){
-            //记录行为
-            action_log('update_category', 'category', $cate_id, UID);
-            $this->success('删除分类成功！');
-        }else{
-            $this->error('删除分类失败！');
-        }
-    }
-
-    /**
-     * 操作分类初始化
-     * @param string $type
-     * @author huajie <banhuajie@163.com>
-     */
-    public function operate($type = 'move'){
-        //检查操作参数
-        if(strcmp($type, 'move') == 0){
-            $operate = '移动';
-        }elseif(strcmp($type, 'merge') == 0){
-            $operate = '合并';
-        }else{
-            $this->error('参数错误！');
-        }
-        $from = intval(I('get.from'));
-        empty($from) && $this->error('参数错误！');
-
-        //获取分类
-        $map = array('status'=>1, 'id'=>array('neq', $from));
-        $list = M('Category')->where($map)->field('id,pid,title')->select();
-
-
-        //移动分类时增加移至根分类
-        if(strcmp($type, 'move') == 0){
-        	//不允许移动至其子孙分类
-        	$list = tree_to_list(list_to_tree($list));
-
-        	$pid = M('Category')->getFieldById($from, 'pid');
-        	$pid && array_unshift($list, array('id'=>0,'title'=>'根分类'));
-        }
-
-        $this->assign('type', $type);
-        $this->assign('operate', $operate);
-        $this->assign('from', $from);
         $this->assign('list', $list);
-        $this->meta_title = $operate.'分类';
+        // 记录当前列表页的cookie
+        Cookie('__forward__',$_SERVER['REQUEST_URI']);
         $this->display();
     }
 
-    /**
-     * 移动分类
-     * @author huajie <banhuajie@163.com>
-     */
-    public function move(){
-        $to = I('post.to');
-        $from = I('post.from');
-        $res = M('Category')->where(array('id'=>$from))->setField('pid', $to);
-        if($res !== false){
-            $this->success('分类移动成功！', U('index'));
-        }else{
-            $this->error('分类移动失败！');
-        }
-    }
+
+
 
     /**
-     * 合并分类
+     * 设置一条或者多条数据的状态
      * @author huajie <banhuajie@163.com>
      */
-    public function merge(){
-        $to = I('post.to');
-        $from = I('post.from');
-        $Model = M('Category');
-
-        //检查分类绑定的模型
-        $from_models = explode(',', $Model->getFieldById($from, 'model'));
-        $to_models = explode(',', $Model->getFieldById($to, 'model'));
-        foreach ($from_models as $value){
-            if(!in_array($value, $to_models)){
-                $this->error('请给目标分类绑定' . get_document_model($value, 'title') . '模型');
-            }
-        }
-
-        //检查分类选择的文档类型
-        $from_types = explode(',', $Model->getFieldById($from, 'type'));
-        $to_types = explode(',', $Model->getFieldById($to, 'type'));
-        foreach ($from_types as $value){
-            if(!in_array($value, $to_types)){
-                $types = C('DOCUMENT_MODEL_TYPE');
-                $this->error('请给目标分类绑定文档类型：' . $types[$value]);
-            }
-        }
-
-        //合并文档
-        $res = M('Document')->where(array('category_id'=>$from))->setField('category_id', $to);
-
-        if($res !== false){
-            //删除被合并的分类
-            $Model->delete($from);
-            $this->success('合并分类成功！', U('index'));
-        }else{
-            $this->error('合并分类失败！');
-        }
-
+    public function setStatus($model=''){
+      $status = I('get.status');
+      $status = $status == 1 ? 0 : 1;
+      $this->editRow('item_category', array('status'=>$status), array('id'=>I('get.id')));
     }
+
+
+
+     /**
+     * 删除一条或者多条数据的状态
+     * @author huajie <banhuajie@163.com>
+     */
+    public function delete(){
+      $item_category = M('item_category');
+      $item_category->delete(I('get.id'));
+      $this->success('删除成功', Cookie('__forward__'),ture);
+    }
+
+
+
+    /**
+     * 文档新增页面初始化
+     * @author huajie <banhuajie@163.com>
+     */
+    public function add(){
+        //获取左边菜单
+        $this->getMenu();
+        $this->display();
+    }
+
+
+    /**
+     * 文档编辑页面初始化
+     * @author huajie <banhuajie@163.com>
+     */
+    public function edit(){
+        //获取左边菜单
+        $this->getMenu();
+        $id     =   I('get.id','');
+        if(empty($id)){
+            $this->error('参数不能为空！');
+        }
+        // 获取详细数据
+        $data  =M('item_category')->where(['id'=>$id])->find();
+        $data['picture_path']  =M('picture')->where(['id'=>$data['picture_id'] ])->getField('path');
+        //获取当前分类的文档类型
+        $this->assign('data', $data);
+        $this->display();
+    }
+
+
+
+    /**
+     * 更新一条数据
+     * @author huajie <banhuajie@163.com>
+     */
+    public function update(){
+        $data = I('post.');
+        if(empty($data['picture_id'])){
+             $this->error('请上传图片');
+        }
+        $item_category = M("item_category");
+        $Sqldata =[
+                'name'=>$data['name'],
+                'status'=>$data['status'],
+                'picture_id'=>$data['picture_id'],
+                'level'=>$data['level'],
+                'create_time'=>time()
+            ];
+        if($data['id']){
+            $Sqldata['id'] = $data['id'];
+            $item_category->data($Sqldata)->save();
+            $item_category_id = $data['id'] ;
+        }else{
+            $item_category_id = $item_category->data($Sqldata)->add();
+        }
+       if(empty($item_category_id)) {
+            $this->error('网络异常，提交失败');
+       }
+        $this->success('提交成功', Cookie('__forward__'));
+    }
+
+
+
 }

@@ -12,10 +12,17 @@
  * 所有系统级别的配置
  */
 return array(
+
+    'DEFAULT_GROUP'      =>'Home',
+     'APP_SUB_DOMAIN_DEPLOY'=>1,
+     'APP_SUB_DOMAIN_RULES'=>array(
+        'm'=>array('Mobile/'),  // m域名指向Mobile分组
+      ),
+
     /* 模块相关配置 */
     'AUTOLOAD_NAMESPACE' => array('Addons' => ONETHINK_ADDON_PATH), //扩展模块列表
     'DEFAULT_MODULE'     => 'Home',
-    'MODULE_DENY_LIST'   => array('Common','User','Admin','Install'),
+    'MODULE_DENY_LIST'   => array('Common','User','Admin','Mobile'),
     'MODULE_ALLOW_LIST'  => array('Home','Admin'),
 
     /* 系统数据加密设置 */
@@ -34,6 +41,12 @@ return array(
 
     /* 全局过滤配置 */
     'DEFAULT_FILTER' => '', //全局过滤函数
+
+    'LANG_SWITCH_ON' => true,   // 开启语言包功能
+    'LANG_AUTO_DETECT' => fasel, // 自动侦测语言 开启多语言功能后有效
+    'LANG_LIST'        => 'zh-cn,en-us', // 允许切换的语言列表 用逗号分隔
+    'VAR_LANGUAGE'     => 'lang', // 默认语言切换变量
+    'DEFAULT_LANG' => 'en-us', // 默认语言
 
     /* 数据库配置 */
     'DB_TYPE'   => 'mysql', // 数据库类型
@@ -55,5 +68,6 @@ return array(
         'MAIL_CHARSET'=>'UTF-8',//编码
         'MAIL_AUTH'=>true,//邮箱认证
         'MAIL_HTML'=>true,//true HTML格式 false TXT格式
+
 
 );

@@ -60,6 +60,20 @@
                         </label>
                     </div>
             </div>
+
+            <div class="form-item cf">
+                <label class="item-label">推荐商品<span class="check-tips"></span></label>
+                <div class="controls">
+                    <label class="checkbox"><input type="checkbox" name="position[]" value="1" <?php if (in_array(1, $data['commendArr'])   ): ?>checked<?php endif ?>>首页轮播推荐 </label>
+                    <label class="checkbox"><input type="checkbox" name="position[]" value="2" <?php if (in_array(2, $data['commendArr'])   ): ?>checked<?php endif ?>>首页推荐 </label>
+                </div>
+            </div>
+
+                       <div class="form-item cf">
+                    <label class="item-label">推荐商品排序<span class="check-tips">数字越大越前，默认按id倒序</span></label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['sort'] ?>" name="sort" class="text input-large">                    </div>
+                </div>
      </div>
        <!-- tab-1 end -->
             <!-- tab-2 start -->

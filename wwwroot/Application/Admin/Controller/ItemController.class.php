@@ -110,6 +110,10 @@ class ItemController extends AdminController {
         if(isset($_GET['name'])){
             $map['name']    =   array('like', '%'.(string)I('name').'%');
         }
+        if(!empty($_GET['type'])){
+            $type = $_GET['type'] ;
+            $map['_string']    =   "FIND_IN_SET($type, commend)";
+        }
         $list = $this->lists('Item', $map,'id desc');
         $this->assign('list', $list);
         // 记录当前列表页的cookie
@@ -211,6 +215,26 @@ class ItemController extends AdminController {
         return $list;
     }
 
+    public function show($model=''){
+      switch (I('get.location')) {
+        case '1':
+          $data['a'] = I('get.a')  == 0  ? 1 : '';
+          $data['b'] = I('get.b')  == 1  ? 2 : '';
+          break;
+         case '2':
+          $data['a'] = I('get.a') == 1  ? 1 : '';
+          $data['b'] = I('get.b') == 0  ? 1 : '';
+          break;
+        default:
+          exit;
+          break;
+      }
+      $commend = join(",",$data);
+      $commend = trim($commend,",");
+      $this->editRow('item', array('commend'=>$commend), array('id'=>I('get.id')));
+    }
+
+
     /**
      * 设置一条或者多条数据的状态
      * @author huajie <banhuajie@163.com>
@@ -277,6 +301,7 @@ class ItemController extends AdminController {
         }
         // 获取详细数据
         $data  =M('item')->where(['id'=>$id])->find();
+        $data['commendArr'] = explode(',',$data['commend']);
         $Model = M('item_pic i');
         $picData = $Model->join('onethink_picture p ON p.id = i.picture_id')->where(['i.item_id'=>$id])->select();
         //获取当前分类的文档类型
@@ -312,6 +337,7 @@ class ItemController extends AdminController {
         }
         $Item = M("item");
         $ItemPic = M("item_pic");
+        $commend = join(",",$data['position']);
         $Sqldata =[
                 'name'=>$data['name'],
                 'stock'=>$data['stock'],
@@ -319,6 +345,8 @@ class ItemController extends AdminController {
                 'desc'=>$data['content'],
                 'price_range'=>$data['price_range'],
                 'price'=>$data['price'],
+                'sort'=>$data['sort'],
+                'commend'=>$commend,
                 'create_time'=>time()
             ];
         if($data['id']){

@@ -18,23 +18,18 @@ class SendController extends HomeController {
 
 
     public function send_message(){
-        echo 11;exit;
         $data = I('post.');
-        empty($data['content']) && $this->error('请输入回复内容！');
+        empty($data['email']) && $this->error(L('tips_2'));
         $mail = new \Think\Mail();
-        $res =  $mail->SendMail($data['email'],$data['item'],$data['content'],'我是发件人');
+        $res =  $mail->SendMail($data['email'],$data['name'],$data['inquiry'],'我是发件人');
         if($res){
-            $Sqldata =[
-                'uid'=>session('user_auth.uid'),
-                'order_id'=>$data['order_id'],
-                'content'=>$data['content'],
-                'create_time'=>date('Y-m-d H:s:',time())
-            ];
-            M('order_message')->data($Sqldata)->add();
-            $this->success('提交成功', Cookie('__forward__'));
+             $redata['status']  = 1;
+             $redata['msg']  = 'send ok';
         }else {
-             $this->error('网络异常，提交失败');
+               $redata['status']  = 0;
+               $redata['msg']  = 'send error';
         }
+         $this->ajaxReturn($redata);
     }
 
 }
