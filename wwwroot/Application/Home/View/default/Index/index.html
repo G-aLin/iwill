@@ -218,13 +218,26 @@
             <li><i class="icon-global bg-13"></i><a href="#">News Center</a></li>
             <li><i class="icon-global bg-13"></i><a href="#">Contact Us</a></li>
           </ul>
-          <div class="friendlink clearfix">
-            <a href="#"><img src="__IMG__/friendlink/1.png"></a>
-            <a href="#"><img src="__IMG__/friendlink/2.png"></a>
-            <a href="#"><img src="__IMG__/friendlink/3.png"></a>
-            <a href="#"><img src="__IMG__/friendlink/4.png"></a>
+
+          <div class="friendlink clearfix social-share" data-initialized="true">
+            <a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/friendlink/1.png"></a>
+            <a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/friendlink/2.png"></a>
+            <a href="javascript:;" class="social-share-icon icon-google"><img src="__IMG__/friendlink/3.png"></a>
+            <a href="javascript:;"><img src="__IMG__/friendlink/4.png"></a>
             <a href="#"><img src="__IMG__/friendlink/5.png"></a>
           </div>
+          <script src="__STATIC__/social-share.min.js"></script>
+          <script>
+          var $config = {
+              title               : '我是分享标题',
+              description         : '我是分享描述',
+              url   : "http://www.baidu.com",
+              image  : 'http://static2.pinhui001.com/web/image/home/new-index/logo_d.png',
+              sites:['google', 'facebook', 'twitter','weibo']
+          };
+          socialShare('.social-share', $config);
+          </script>
+
         </div>
       </div>
 
