@@ -101,22 +101,22 @@ body {
 }
 
 input, textarea{
-  -webkit-appearance: none;
+  /* -webkit-appearance: none;  默认样式 */
   outline: none;
 }
 
 /* placeholder颜色 */
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #ddd;
+  color: #999;
 }
 input:-moz-placeholder, textarea:-moz-placeholder {
-  color: #ddd;
+  color: #999;
 }
 input::-moz-placeholder, textarea::-moz-placeholder {
-  color: #ddd;
+  color: #999;
 }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  color: #ddd;
+  color: #999;
 }
 
 input:-webkit-autofill {

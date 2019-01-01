@@ -18,6 +18,24 @@
 .positionR
   position relative
 
+input[type='text'], input[type='password']
+  padding: 0 10px
+  width 238px
+  height 38px
+  font-size: 14px
+  background-color #fff
+  border: 1px solid #eee
+
+input[type='submit']
+  padding: 0
+  width 260px
+  height 40px
+  cursor pointer
+  border: 0
+  font-size: 18px
+  color: #fff
+  background-color #489e87
+
 .banner
   position relative
   height 816px
@@ -57,19 +75,30 @@
         background-color: #6dddbf
 
 // 头部
-.header 
-  position absolute
+.header-box
+  height 81px
+.header
+  position: relative
   top: 0
   left 0
   right 0
   z-index: 999;
   font-size: 13px
   font-family 'Arial'
+  height 81px
+  &.header-abs
+    background-color transparent
+    position absolute
+    .logo
+      top: 35px
+    ul
+      top: 56px
+    .sign
+      top: 56px
   &.fixed
     position fixed
-    background-color #fff
-    height 81px
     top: -81px
+    background-color #fff
     .logo
       top: 10px
     ul
@@ -80,11 +109,11 @@
     top: 0
   .logo
     position absolute
-    top: 35px
+    top: 10px
     left 12px
   ul
     position absolute
-    top: 56px
+    top: 28px
     left 270px
     li
       position relative
@@ -147,7 +176,7 @@
           color #fff
   .sign
     position absolute
-    top: 56px
+    top: 32px
     right 0
     a
       float left

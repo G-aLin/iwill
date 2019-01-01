@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>signIn</title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/passport.css">
+  <script src="js/jquery-1.10.1.min.js"></script>
+  <script src="js/global.js"></script>
+
+  <link href="https://cdn.bootcss.com/aos/2.3.4/aos.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/aos/2.3.4/aos.js"></script>
+
+</head>
+<body>
+  <!-- header -->
+  <div class="header fixed finish">
+    <div class="wrap positionR">
+      <div class="sign clearfix">
+          <a href=""><i class="icon-global bg-1"></i>Sign In</a>
+          <a href=""><i class="icon-global bg-2"></i>Sign up</a>
+        </div>
+        <a href="#"><img class="logo" src="images/logo.png"></a>
+        <ul class="nav clearfix">
+          <li><a class="main-menu" href="#">Home</a></li>
+          <li class="cur">
+            <a class="main-menu" href="">Shop Products</a>
+            <div class="nav-list">
+              <div class="nav-item">
+                <a class="sub-menu" href="javascript:;" onclick="ShowSubMenu($(this))">Closet storage & Organization<i class="icon-global bg-4"></i></a>
+                <div class="subnav">
+                  <a class="third-menu" href="#">storage box</a>
+                  <a class="third-menu" href="#">storage bag</a>
+                  <a class="third-menu" href="#">hanging storage shelf</a>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a class="sub-menu" href="#">Closet storage & Organization</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Organizing Tips</a>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Promotion&Deals</a>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Contact Us</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="header-box"></div>
+  <!-- header -->
+  
+  <div class="sign-page">
+    <div class="sign-contain signIn" data-aos="flip-left">
+      <h2>Log in to I WILL </h2>
+      <div class="form-list">
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="text" placeholder="Emial or username"><i class="icon-global bg-15"></i></dd>
+          </dl>
+        </div>
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="password" placeholder="Password"><i class="icon-global bg-14"></i></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><a class="forgot" href="changePassword.html">Forgot password?</a></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><input type="submit" value="Log in"></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
+              
+              <label><input type="checkbox" name="remember">Remember me</label>
+            </dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
+              <p>
+                Don't have a I WILL account yet? <br />
+                <a class="toRegister" href="javascript:;">Create your account now</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="sign-contain register" data-aos="flip-right">
+        <h2>Create Account</h2>
+        <div class="form-list">
+          <div class="item p-top-15">
+            <dl>
+              <dd><input type="text" placeholder="Emial or username"><i class="icon-global bg-15"></i></dd>
+            </dl>
+          </div>
+          <div class="item p-top-15">
+            <dl>
+              <dd><input type="password" placeholder="Password"><i class="icon-global bg-14"></i></dd>
+            </dl>
+          </div>
+          <div class="item">
+            <dl>
+              <dd><input type="submit" value="REGISTER"></dd>
+            </dl>
+          </div>
+          <div class="item">
+            <dl>
+              <dd><label><input type="checkbox" name="agree">you agree to the Terms of Use and Privacy Policy.</label></dd>
+            </dl>
+          </div>
+          <div class="item">
+            <dl>
+              <dd>
+                <a class="toSignIn" href="javascript:;">Sign in &gt;</a>
+              </dd>
+            </dl>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <div class="siteinfo">
+      <div class="wrap clearfix">
+        <div class="suggest">
+          <h4>How something to say?</h4>
+          <form class="form" action="#">
+            <div class="item">
+                <label>Your name:</label><input type="text" name="name">
+              </div>
+              <div class="item">
+                <label>Your Email:</label><input type="text" name="email">
+              </div>
+              <div class="item">
+                <label>Captcha:</label><input type="text" name="captcha">
+              </div>
+              <div class="item">
+                <label>Your Inquiry:</label><textarea name="inquiry"></textarea>
+              </div>
+              <div class="item">
+                <input type="submit" value="Submit">
+              </div>
+          </form>
+        </div>
+        <div class="contact-us">
+          <h4>Contact Us</h4>
+          <p><i class="icon-global bg-10"></i>C320, 4F, NIULANQIAN BUILDING, MINZHI AVENUE, LONGHUA DISTRICT, SHENZHEN, GUANGDONG, 518131, CN</p>
+          <p><i class="icon-global bg-11"></i>(+86)13632771766</p>
+          <p><i class="icon-global bg-12"></i>iwill@iwillcreatepro.com</p>
+          <div class="time">
+            <h4>Opening Times</h4>
+            <p>09:30 AM – 11:00 PM<br />Every Day</p>
+          </div>
+        </div>
+        <div class="our-company">
+          <h4>Our Company</h4>
+          <ul>
+            <li><i class="icon-global bg-13"></i><a href="#">HOME</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Aout Us</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Product Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">News Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Contact Us</a></li>
+          </ul>
+          <div class="friendlink clearfix">
+            <a href="#"><img src="images/friendlink/1.png"></a>
+            <a href="#"><img src="images/friendlink/2.png"></a>
+            <a href="#"><img src="images/friendlink/3.png"></a>
+            <a href="#"><img src="images/friendlink/4.png"></a>
+            <a href="#"><img src="images/friendlink/5.png"></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="copyright">
+        © 2005-2018 SHENZHEN I WILL MARKETING CO., LTD. Copyright, All Rights Reserved.<br />
+        C320, 4F, NIULANQIAN BUILDING MINZHI AVENUE, LONGHUA DISTRICT SHENZHEN GUANGDONG 518131 CN E-mail: iwill@iwillcreatepro.com
+    </div>
+  </div>
+
+
+  <script>
+    $(function () {
+      AOS.init({
+        offset: -120,
+        duration: 600,
+        anchorPlacement: 'top-center'
+      });
+
+      $('.toRegister').click(function () {
+        $('.signIn').removeClass('aos-animate')
+        $('.register').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.signIn').hide()
+          $('.register').show()
+          setTimeout(function () {
+            $('.register').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
+
+      $('.toSignIn').click(function () {
+        $('.register').removeClass('aos-animate')
+        $('.signIn').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.register').hide()
+          $('.signIn').show()
+          setTimeout(function () {
+            $('.signIn').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
+    })
+  </script>
+</body>
+</html>

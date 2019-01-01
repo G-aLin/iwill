@@ -1,0 +1,95 @@
+.form-list
+  font-size: 14px
+  .item
+    text-align: center
+    dl
+      width 260px
+      display: inline-block
+      *display: inline
+      *zoom: 1
+      vertical-align: top 
+      text-align: left
+      dt
+        font-size: 14px
+        color #999
+        line-height: 28px
+      dd
+        position relative
+        i
+          position: absolute
+          top: 50%
+          left 10px
+          &.bg-14
+            margin-top -7px
+          &.bg-15
+            margin-top -7px
+        input[type='text'], input[type='password']
+          width 218px
+          padding-left 30px
+
+
+.change-password-page
+  background-color: #f3f3f3
+  padding: 84px 0 140px
+  h2
+    font-size: 30px
+    color #333
+    text-align: center
+    line-height: 88px
+  .form-list
+    dt
+      height 28px
+      padding-top 12px
+    input[type='submit']
+      margin-top 30px
+
+.sign-page
+  position relative
+  height 756px
+  background url('../images/bg-passport.png') no-repeat top center
+  .sign-contain
+    position: absolute
+    top: 50%
+    left 50%
+    width 485px
+    height 470px
+    margin: -235px 0 0 -242px
+    background-color #fff
+    border-radius: 3px
+    &.signIn
+      display: block
+    &.register
+      display: none
+      margin-top -207px
+      height: 414px
+      input[type='submit']
+        margin-top 30px
+    h2
+      font-size: 30px
+      color: #333
+      line-height: 118px
+      text-align: center
+    .form-list
+      .item.p-top-15
+        padding-top 15px
+      label
+        white-space: nowrap
+        height 42px
+        line-height: 42px
+        input[type='checkbox']
+          vertical-align: middle
+          margin-right 8px
+      .toSignIn
+        line-height: 20px
+        text-decoration: underline
+        color: #489e87
+      p
+        margin-top 10px
+        line-height 20px
+        a
+          color: #489e87
+
+    .forgot
+      line-height: 44px
+      &:hover
+        color: #489e87
