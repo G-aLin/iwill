@@ -26,3 +26,9 @@
 	```
 - 验证错误
   - 在外层加类名`shake err`
+
+### 模块头部
+-	`top-header`
+	- `logo.png`换成`logo.png`
+	- `bg-1`改成`bg-16`
+	- `bg-2`改成`bg-17`
