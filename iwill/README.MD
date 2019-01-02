@@ -32,3 +32,6 @@
 	- `logo.png`换成`logo.png`
 	- `bg-1`改成`bg-16`
 	- `bg-2`改成`bg-17`
+
+###	首页
+-	首页头部header需加类名index,logo的图片才能显示正常
