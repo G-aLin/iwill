@@ -91,11 +91,20 @@ input[type='submit']
   font-size: 13px
   font-family 'Arial'
   height 81px
+  &.index.header-abs
+    .logo
+      display: block
+    .logo-white
+      display none
   &.header-abs
     background-color transparent
     position absolute
-    .logo
+    .logo, .logo-white
       top: 35px
+    .logo
+      display none
+    .logo-white
+      display: block
     ul
       top: 56px
     .sign
@@ -104,8 +113,12 @@ input[type='submit']
     position fixed
     top: -81px
     background-color #fff
-    .logo
+    .logo, .logo-white
       top: 10px
+    .logo
+      display: block
+    .logo-white
+      display: none
     ul
       top: 28px
       li
@@ -117,10 +130,14 @@ input[type='submit']
         color: #86b3a7
   &.finish
     top: 0
-  .logo
+  .logo, .logo-white
     position absolute
     top: 10px
     left 12px
+  .logo
+    display: block
+  .logo-white
+    display: none
   ul
     position absolute
     top: 28px

@@ -22,7 +22,12 @@
           <a href="passport.html?signIn"><i class="icon-global bg-16"></i>Sign In</a>
           <a href="passport.html?register"><i class="icon-global bg-17"></i>Sign up</a>
         </div>
-        <a href="#"><img class="logo" src="images/logo-white.png"></a>
+        <a class="logo" href="#">
+          <img src="images/logo.png">
+        </a>
+        <a class="logo-white" href="#">
+          <img src="images/logo-white.png">
+        </a>
         <ul class="nav clearfix">
           <li><a class="main-menu" href="#">Home</a></li>
           <li class="cur">
@@ -214,14 +219,6 @@
         duration: 600,
         anchorPlacement: 'top-center'
       });
-
-      $(document).scroll(function () {
-        if ($('.header').hasClass('fixed')) {
-          $('.header .logo').attr('src','../images/logo.png')
-        } else {
-          $('.header .logo').attr('src','../images/logo-white.png')
-        }
-      })
     })
     </script>
 </body>
