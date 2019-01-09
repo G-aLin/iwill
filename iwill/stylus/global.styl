@@ -41,6 +41,26 @@ select
   border: 1px solid #eee
   outline: none
 
+.check-box
+  cursor pointer
+  display: inline-block
+  *display inline
+  *zoom: 1
+  vertical-align: top
+  .icon-global
+    display: inline-block
+    *display inline
+    *zoom: 1
+    vertical-align: sub
+  .bg-27
+    display: none
+  &.on
+    .bg-26
+      display: none
+    .bg-27
+      display: inline-block
+      *display inline
+      
 input[type='submit']
   padding: 0
   width 260px
@@ -375,3 +395,18 @@ textarea
       background-color #fff
       border-color: #e2e2e2
       cursor not-allowed
+
+.star-list
+  width 105px
+  .star
+    margin-left 2px
+    float left
+    vertical-align: top 
+    width 19px
+    height 17px
+    background-image url('../images/icon-star.png')
+    background-position -21px 0
+    &:first-child
+      margin-left 0
+    &.on
+      background-position 0 0

@@ -31,6 +31,10 @@
       })
     }
   })
+
+  $('body').on('click', '.check-box', function () {
+    $(this).toggleClass('on')
+  })
 })
 
 function ShowSubMenu(_this) {

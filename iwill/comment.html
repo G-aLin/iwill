@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/global.js"></script>
+
+  <link href="https://cdn.bootcss.com/aos/2.3.4/aos.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/aos/2.3.4/aos.js"></script>
+</head>
+<body>
+  
+  <!-- header -->
+  <div class="header fixed finish">
+    <div class="wrap positionR">
+      <div class="sign clearfix">
+          <a href="passport.html?signIn"><i class="icon-global bg-1"></i>Sign In</a>
+          <a href="passport.html?register"><i class="icon-global bg-2"></i>Sign up</a>
+        </div>
+        <a class="logo" href="#">
+          <img src="images/logo.png">
+        </a>
+        <a class="logo-white" href="#">
+          <img src="images/logo-white.png">
+        </a>
+        <ul class="nav clearfix">
+          <li><a class="main-menu" href="#">Home</a></li>
+          <li class="cur">
+            <a class="main-menu" href="">Shop Products</a>
+            <div class="nav-list">
+              <div class="nav-item">
+                <a class="sub-menu" href="javascript:;" onclick="ShowSubMenu($(this))">Closet storage & Organization<i class="icon-global bg-4"></i></a>
+                <div class="subnav">
+                  <a class="third-menu" href="#">storage box</a>
+                  <a class="third-menu" href="#">storage bag</a>
+                  <a class="third-menu" href="#">hanging storage shelf</a>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a class="sub-menu" href="#">Closet storage & Organization</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Organizing Tips</a>
+            <div class="nav-list">
+              <div class="nav-item">
+                <a class="sub-menu" href="javascript:;" onclick="ShowSubMenu($(this))">Closet storage & Organization<i class="icon-global bg-4"></i></a>
+                <div class="subnav">
+                  <a class="third-menu" href="#">storage box</a>
+                  <a class="third-menu" href="#">storage bag</a>
+                  <a class="third-menu" href="#">storage bag</a>
+                  <a class="third-menu" href="#">hanging storage shelf</a>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a class="sub-menu" href="#">Closet storage & Organization</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Promotion&Deals</a>
+          </li>
+          <li>
+            <a class="main-menu" href="#">Contact Us</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="header-box"></div>
+  <!-- header -->
+
+  <div class="layout-two-col">
+    <div class="wrapper clearfix">
+      <div class="sideNav">
+        <ul>
+          <li><a href="javascript:;"><i class="icon-global bg-4"></i>Personal information</a></li>
+          <li><a href="javascript:;"><i class="icon-global bg-4"></i>My inquiry</a></li>
+          <li><a href="javascript:;"><i class="icon-global bg-4"></i>My collection</a></li>
+          <li><a class="active" href="javascript:;"><i class="icon-global bg-4"></i>My comment</a></li>
+          <li><a href="javascript:;"><i class="icon-global bg-4"></i>Change Password</a></li>
+        </ul>
+      </div>
+      <div class="contain">
+        <div class="comment-page">
+          <h4>My comment</h4>
+          <div class="list">
+            <table>
+                <thead>
+                  <tr>
+                    <th>Commodity</th>
+                    <th>DARWIN</th>
+                    <th>Score</th>
+                    <th>Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                      <div class="name">Beige storage box with zipper lid,2PCSBeige storage box with zipperlid,2PCS</div>
+                    </td>
+                    <td class="time">2018-01-10 15:45:55</td>
+                    <td>
+                      <div class="star-list clearfix">
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star on"></i>
+                        <i class="star"></i>
+                        <i class="star"></i>
+                      </div>
+                    </td>
+                    <td class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="paging">
+            <a data-aos="fade-up" data-aos-delay="100" href="javascript:;" class="disabled">Prev page</a>
+            <a data-aos="fade-up" data-aos-delay="200" href="javascript:;" class="cur">1</a>
+            <a data-aos="fade-up" data-aos-delay="300" href="javascript:;">2</a>
+            <a data-aos="fade-up" data-aos-delay="400" href="javascript:;">3</a>
+            <a data-aos="fade-up" data-aos-delay="500" href="javascript:;">4</a>
+            <a data-aos="fade-up" data-aos-delay="600" href="javascript:;">5</a>
+            <a data-aos="fade-up" data-aos-delay="700" href="javascript:;">...</a>
+            <a data-aos="fade-up" data-aos-delay="800" href="javascript:;">Next page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="siteinfo">
+      <div class="wrap clearfix">
+        <div class="suggest">
+          <h4>How something to say?</h4>
+          <form class="form" action="#">
+            <div class="item">
+                <label>Your name:</label><input type="text" name="name">
+              </div>
+              <div class="item">
+                <label>Your Email:</label><input type="text" name="email">
+              </div>
+              <div class="item">
+                <label>Captcha:</label><input type="text" name="captcha">
+              </div>
+              <div class="item">
+                <label>Your Inquiry:</label><textarea name="inquiry"></textarea>
+              </div>
+              <div class="item">
+                <input type="submit" value="Submit">
+              </div>
+          </form>
+        </div>
+        <div class="contact-us">
+          <h4>Contact Us</h4>
+          <p><i class="icon-global bg-10"></i>C320, 4F, NIULANQIAN BUILDING, MINZHI AVENUE, LONGHUA DISTRICT, SHENZHEN, GUANGDONG, 518131, CN</p>
+          <p><i class="icon-global bg-11"></i>(+86)13632771766</p>
+          <p><i class="icon-global bg-12"></i>iwill@iwillcreatepro.com</p>
+          <div class="time">
+            <h4>Opening Times</h4>
+            <p>09:30 AM – 11:00 PM<br />Every Day</p>
+          </div>
+        </div>
+        <div class="our-company">
+          <h4>Our Company</h4>
+          <ul>
+            <li><i class="icon-global bg-13"></i><a href="#">HOME</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Aout Us</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Product Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">News Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="#">Contact Us</a></li>
+          </ul>
+          <div class="friendlink clearfix">
+            <a href="#"><img src="images/friendlink/1.png"></a>
+            <a href="#"><img src="images/friendlink/2.png"></a>
+            <a href="#"><img src="images/friendlink/3.png"></a>
+            <a href="#"><img src="images/friendlink/4.png"></a>
+            <a href="#"><img src="images/friendlink/5.png"></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="copyright">
+        © 2005-2018 SHENZHEN I WILL MARKETING CO., LTD. Copyright, All Rights Reserved.<br />
+        C320, 4F, NIULANQIAN BUILDING MINZHI AVENUE, LONGHUA DISTRICT SHENZHEN GUANGDONG 518131 CN E-mail: iwill@iwillcreatepro.com
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(function() {
+      AOS.init({
+        offset: -120,
+        duration: 600,
+        anchorPlacement: 'top-center'
+      });
+    })
+  </script>
+</body>
+</html>
