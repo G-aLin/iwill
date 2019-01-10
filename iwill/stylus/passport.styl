@@ -195,11 +195,16 @@
           float left
 
 .pro-detail-page
-  .pro-detail
+  .pro-content
     padding: 45px 0
     background-color #f3f3f3
+    font-size: 0
+    line-height: 0
     .pro-pic
-      float left
+      display: inline-block
+      *display inline
+      *zoom 1
+      vertical-align: middle
       margin-right 30px
       .big-pic
         position relative
@@ -228,9 +233,11 @@
               width: 80px
               height 80px
     .pro-info
-      float left
+      display: inline-block
+      *display inline
+      *zoom 1
+      vertical-align: middle
       width 640px
-      padding-top 15px
       .pro-name
         font-size: 18px
         color: #333
@@ -283,6 +290,55 @@
                 img
                   width 46px
                   height 46px
+          .type-list
+            padding: 3px 0
+          .btn
+            display: block
+            width 115px
+            height 42px
+            text-align: center
+            line-height: 42px
+            font-size: 24px
+            color: #fff
+            &.green
+              background-color #489e87
+            &.yellow
+              background-color #ffb80e
+          &.quantity
+            font-size: 12px
+            .stock
+              margin-left 20px
+            .edit
+              margin: 0 10px
+              position relative
+              display: inline-block
+              *display inline
+              *zoom 1
+              vertical-align: top
+              padding-right 22px
+              input
+                width 40px
+                height 28px
+                text-align: center
+                border-color: #a7a7ab
+              span
+                position: absolute
+                right 0
+                width 16px
+                height 12px
+                border: 1px solid #a7a7ab
+                background-color #fff
+                cursor pointer
+                i
+                  position: absolute
+                  top: 50%
+                  left 50%
+                  margin-top: -1px
+                  margin-left -3px
+                &.add
+                  top: 0
+                &.sub
+                  bottom: 0
           &.price
             span
               margin: 0 15px 0 7px
@@ -292,14 +348,241 @@
             .link
               color: #489e87
               text-decoration: underline
+          &.price-list
+            margin-left -15px
+            margin-top 5px
+            ul
+              display: inline-block
+              *display inline
+              *zoom 1
+              vertical-align: top 
+              padding 0 15px
+              height: 90px
+              overflow hidden
+              background-color #fff
+              li
+                padding: 0 15px
+                font-size: 14px
+                line-height: 40px
+                & > div
+                  margin-top 10px
+                  &:first-child
+                    margin-top 0
+                &:first-child
+                  padding: 0
+                .district
+                  font-size: 16px
+                .num
+                  font-size: 22px
+                  color #489e87
           &.desc
             p
               color: #999
               line-height: 20px
           &:first-child
             margin-top 0
-          .type-list
-            padding: 3px 0
+          &.sell
+            position relative
+            .sell-pop
+              display: none
+              position: absolute
+              top: 77px
+              left 0
+              z-index 1
+              width: 253px
+              border: 1px solid #ffb80e
+              background-color #fff
+              ul
+                padding: 20px 30px 20px 10px
+                li
+                  position: relative
+                  margin-top 20px
+                  padding: 0 15px
+                  height 36px
+                  line-height: 36px
+                  font-size: 16px
+                  color #555
+                  background-color #e1e1e1
+                  border-radius: 18px
+                  a
+                    position: absolute
+                    top: 0
+                    right 0
+                    width: 36px
+                    height 36px
+                    text-align: center
+                    line-height: 36px
+                    border-radius: 50%
+                    font-size: 16px
+                    color #fff
+                    background-color #489e87
+                  &:first-child
+                    margin-top 0
+  .pro-detail
+    padding-top 40px
+    padding-bottom 40px
+    .nav-bar
+      padding: 17px 0
+      background-color #fff
+      &.fixed
+        position fixed
+        top: 0
+        left 0
+        right 0
+        z-index 10
+        box-shadow: 0 0 8px rgba(197,197,197,0.35);
+        ul
+          width: 1176px
+          margin: 0 auto
+      li
+        padding: 0 45px
+        border-left 1px solid #e1e1e1
+        line-height: 14px
+        font-size: 16px
+        a
+          color #555
+          &.cur, &:hover
+            color: #489e87
+        &:first-child
+          padding-left 0
+          border-left 0
+    .contain
+      padding: 0 40px 40px
+      border 2px solid #f3f3f3
+      font-size: 14px
+      color #555
+      img
+        margin: 10px auto
+      .table-list
+        border: 1px solid #e8e8e8
+        text-align: left
+        table
+          table-layout: fixed;
+          tr
+            border-top 1px solid #e8e8e8
+            &:first-child
+              border-top 0
+            th
+              width 210px
+              padding: 7px 20px
+              line-height: 21px
+              background-color #f3f3f3
+            td
+              padding: 7px 20px
+              line-height: 21px
+              &.border-left
+                border-left 1px solid #e8e8e8
+      .description
+        .text
+          margin-top 10px
+          line-height: 34px
+      .faq
+        padding-bottom 40px
+        .paging
+          margin-top 40px
+        .faq-list
+          line-height: 20px
+          .item
+            margin-top 30px
+            &:first-child
+              margin-top 0
+            dl
+              position relative
+              margin-top 10px
+              padding-left 86px
+              &:first-child
+                margin-top 0
+                dd
+                  color #489e87
+              dt
+                position: absolute
+                top: 0
+                left 0
+                font-weight: bold
+              dd
+                .text
+                  color #666
+                .time
+                  margin-top 10px
+                  color #999
+      .comment
+        .form
+          padding: 20px 15px
+          line-height: 30px
+          font-size: 14px
+          color #555
+          background-color #f9f9f9
+          border 1px solid #f3f3f3
+          img
+            display: inline
+            vertical-align: top
+            margin: 0 0 0 10px
+          input
+            height 28px
+            line-height: 28px
+            &.e-mail
+              width 142px
+            &.code
+              width 76px
+          input[type='submit']
+            display: block
+            margin-top 20px
+            width 100px
+            height 30px
+            line-height: 30px
+            font-size: 16px
+          textarea
+            width: 700px
+            height 95px
+          .star-list
+            padding: 9px 0
+            .star
+              cursor pointer
+          dl
+            position relative
+            padding-left 70px
+            dt
+              position absolute
+              top: 0
+              left 0
+      .review
+        .review-list
+          font-size: 14px
+          color: #555
+          .item
+            margin-top 35px
+            &:first-child
+              margin-top 0
+            .star-total
+              .star-list
+                display: inline-block
+                *display inline
+                *zoom 1
+                vertical-align: top 
+            .customer
+              margin-top 15px
+            .content
+              margin-top 22px
+              color: #666
+        .paging
+          margin-top 50px
+      .tab-column
+        &.fixed
+          padding-top 48px
+        .title
+          font-size: 20px
+          color #333
+          line-height: 78px
+          text-align: center
+    .history
+      padding-top 20px
+      h5
+        line-height: 40px
+        font-size: 16px
+        color #333
+      .list
+        border 2px solid #f3f3f3
+
 
 .pro-list-page
   background-color #f3f3f3

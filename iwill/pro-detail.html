@@ -14,10 +14,12 @@
   <link href="https://cdn.bootcss.com/aos/2.3.4/aos.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/aos/2.3.4/aos.js"></script>
 
+  <script src="js/smoothScroll.js"></script>
+
 </head>
 <body>
   <!-- header -->
-  <div class="header fixed finish">
+  <div class="header">
     <div class="wrap positionR">
       <div class="sign clearfix">
           <a href=""><i class="icon-global bg-1"></i>Sign In</a>
@@ -59,12 +61,11 @@
         </ul>
     </div>
   </div>
-  <div class="header-box"></div>
   <!-- header -->
   
   <div class="pro-detail-page">
-    <div class="pro-detail">
-      <div class="wrapper clearfix">
+    <div class="pro-content">
+      <div class="wrapper">
         <div class="pro-pic">
           <div class="big-pic">
             <img src="images/pro-detail/pro.jpg">
@@ -84,8 +85,36 @@
           <div class="pro-name">Waterproof Thick Over-sized Organizer Storage Bag with Strong Handles, Travelling Bag, College Carrying Bag, Camping Bag for Christmas, Festival Decorations, Wash-able (27.516.513.8", Black Dot)</div>
           <div class="details">
             <div>SKU:   LLX-BE-2</div>
-            <div class="price">
+            <!-- <div class="price">
               Bulky Price: <span class="c-green">$100</span> <a class="link" href="">Login</a>  to view wholesale prices
+            </div> -->
+            <div class="price-list">
+              <ul class="clearfix">
+                <li>
+                  <div>Quantity:</div>
+                  <div>Interval price:</div>
+                </li>
+                <li>
+                  <div class="district">1-100</div>
+                  <div class="num">$100</div>
+                </li>
+                <li>
+                  <div class="district">100-299</div>
+                  <div class="num">$299</div>
+                </li>
+                <li>
+                  <div class="district">299-500</div>
+                  <div class="num">$500</div>
+                </li>
+                <li>
+                  <div class="district">500-599</div>
+                  <div class="num">$599</div>
+                </li>
+                <li>
+                  <div class="district">599-666</div>
+                  <div class="num">$666</div>
+                </li>
+              </ul>
             </div>
             <div>
               Rank:
@@ -115,20 +144,378 @@
               Description:
               <p>Lightweight,portable pop-up hamper with carrying straps. Foldable for easy storage. High capacity holds up to 10kg. Material:Fabric Size：15.75inch * 19.69inch. Scope - housing and clean clothing, towels, bedding,underwear,socks,sweaters,Toys, books, food and other daily necessities.</p>
             </div>
-            <div>
+            <div class="quantity">
               Quantity: 
-              PieceIn
-              <span>stock 306 Piece</span>
+              <div class="edit">
+                <input type="text" value="1">
+                <span class="add"><i class="icon-global bg-28"></i></span>
+                <span class="sub"><i class="icon-global bg-29"></i></span>
+              </div>
+              Piece
+              <span class="stock">In stock 306 Piece</span>
             </div>
-            <div>Sample purchase please click:</div>
-            <a href="javascript:;">Inquiry</a>
-            <div>Click to buy in bulk:</div>
-            <a href="javascript:;">Buy</a>
+            <div>
+              Sample purchase please click:
+              <a class="btn green" href="javascript:;">Inquiry</a>
+            </div>
+            <div class="sell">
+              Click to buy in bulk:
+              <a class="btn yellow switchPop" href="javascript:;">Buy</a>
+              <div class="sell-pop">
+                <ul>
+                  <li>BUY ON AMAZON <a href="javascript:;">GO</a></li>
+                  <li>BUY ON JD <a href="javascript:;">GO</a></li>
+                  <li>BUY ON TAOBAO <a href="javascript:;">GO</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
+    <div class="pro-detail">
+      <div class="wrapper">
+        <div class="nav-bar">
+          <ul class="clearfix">
+            <li><a class="cur" href="#Description">Product description</a></li>
+            <li><a href="#Packaging">Packaging & Shipping</a></li>
+            <li><a href="#Review">Review(765)</a></li>
+            <li><a href="javascript:;">Write a Review</a></li>
+            <li><a href="#FAQ">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="contain">
+          <div class="tab-column description" id="Description">
+            <div class="title">Product description</div>
+            <div class="table-list">
+              <table>
+                <tr>
+                  <th>Package Dimensions</th>
+                  <td>11 x 9 x 1.4 inches</td>
+                  <th>Color</th>
+                  <td>Gray Stars</td>
+                </tr>
+                <tr>
+                  <th>Item Weight</th>
+                  <td>1.2 pounds</td>
+                  <th>Material</th>
+                  <td>Fabric</td>
+                </tr>
+                <tr>
+                  <th>Shipping Weight</th>
+                  <td>1.2 pounds</td>
+                  <th>Type</th>
+                  <td>Laundry Storage </td>
+                </tr>
+              </table>
+            </div>
+            <div class="text">
+              <p>Material--Natural Linen outside layer and non-woven Fabric inside layer, there is removable cardboard , walls are built-in PP plastic board. it is more stiff and durable. </p>
+              <p>Size--17*13.5*9",Ideal for storing seasonal clothes, beddings, books, magazines, toys etc.</p>
+              <p>Breathable fabric, good dust proof and Moisture-proof, saving storage space and make your closet more neat and clean.</p>
+              <p>Three-side zippered lid design, it is very convenient to put in and get out the items freely, and the zipper lid will protect your clothes from dust.</p>
+              <p>Collapsible design, folding it if not in use.</p>
+              <img src="images/pro-detail/pro.jpg">
+            </div>
+          </div>
+          
+          <div class="tab-column packaging" id="Packaging">
+            <div class="title">Packaging & Shipping</div>
+            <div class="table-list">
+              <table>
+                <tr>
+                  <th>Material</th>
+                  <td colspan="3">PA+PE(Nylon+PE) or PET+PE</td>
+                </tr>
+                <tr>
+                  <th>Thickness:</th>
+                  <td colspan="3">60micron-130micron(can be customized)</td>
+                </tr>
+                <tr>
+                  <th>Color</th>
+                  <td colspan="3">Transparent/customize print</td>
+                </tr>
+                <tr>
+                  <th>Package</th>
+                  <td class="border-left">Color box</td>
+                  <td class="border-left">Transparent bag+color card</td>
+                  <td class="border-left">Color polybag</td>
+                </tr>
+                <tr>
+                  <th>MOQ</th>
+                  <td class="border-left">3000pcs</td>
+                  <td class="border-left">3000pcs</td>
+                  <td class="border-left">10000pcs</td>
+                </tr>
+                <tr>
+                  <th>Delivert Date</th>
+                  <td colspan="3">within 30 days after receiving the deposit</td>
+                </tr>
+                <tr>
+                  <th>Shipment port</th>
+                  <td colspan="3">Nigbo or Shanghai</td>
+                </tr>
+                <tr>
+                  <th>Payment terms</th>
+                  <td colspan="3">30% TT in advance, 70% TTageinst the copy od BL</td>
+                </tr>
+              </table>
+            </div>
+            <img src="images/pro-detail/6.jpg">
+          </div>
+
+          <div class="tab-column faq" id="FAQ">
+            <div class="title">Customer questions & answers</div>
+            <div class="faq-list">
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="item">
+                <dl>
+                  <dt>Question:</dt>
+                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
+                </dl>
+                <dl>
+                  <dt>Answer:</dt>
+                  <dd>
+                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
+                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            <div class="paging">
+              <a data-aos="fade-up" data-aos-delay="100" href="javascript:;" class="disabled">Prev page</a>
+              <a data-aos="fade-up" data-aos-delay="200" href="javascript:;" class="cur">1</a>
+              <a data-aos="fade-up" data-aos-delay="300" href="javascript:;">2</a>
+              <a data-aos="fade-up" data-aos-delay="400" href="javascript:;">3</a>
+              <a data-aos="fade-up" data-aos-delay="500" href="javascript:;">4</a>
+              <a data-aos="fade-up" data-aos-delay="600" href="javascript:;">5</a>
+              <a data-aos="fade-up" data-aos-delay="700" href="javascript:;">...</a>
+              <a data-aos="fade-up" data-aos-delay="800" href="javascript:;">Next page</a>
+            </div>
+          </div>
+
+          <div class="tab-column comment" id="Comment">
+            <div class="title">User Comment</div>
+            <div class="form">
+              <dl>
+                <dt>Username:</dt>
+                <dd>Anonymous user</dd>
+              </dl>
+              <dl>
+                <dt>E-mail:</dt>
+                <dd><input class="e-mail" type="text"></dd>
+              </dl>
+              <dl>
+                <dt>Rank:</dt>
+                <dd>
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                    <i class="star"></i>
+                  </div>
+                </dd>
+              </dl>
+              <dl>
+                <dt>Content:</dt>
+                <dd>
+                  <textarea></textarea>
+                </dd>
+              </dl>
+              <dl>
+                <dt>Verification code:</dt>
+                <dd>
+                  <br />
+                  <input class="code" type="text"><img src="images/pro-detail/code.jpg">
+                  <input type="submit" value="Submit">
+                </dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="tab-column review" id="Review">
+            <div class="title">Write a Review</div>
+            <div class="review-list">
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+              <div class="item">
+                <div class="star-total">
+                  <div class="star-list clearfix">
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star on"></i>
+                    <i class="star"></i>
+                  </div>
+                  4.0
+                </div>
+                <div class="customer">DARWIN <span class="time">12-01-2018</span></div>
+                <div class="content">Nice quality but doesn’t charge fast at all even with different USB-c Cables.</div>
+              </div>
+            </div>
+            <div class="paging">
+                <a data-aos="fade-up" data-aos-delay="100" href="javascript:;" class="disabled">Prev page</a>
+                <a data-aos="fade-up" data-aos-delay="200" href="javascript:;" class="cur">1</a>
+                <a data-aos="fade-up" data-aos-delay="300" href="javascript:;">2</a>
+                <a data-aos="fade-up" data-aos-delay="400" href="javascript:;">3</a>
+                <a data-aos="fade-up" data-aos-delay="500" href="javascript:;">4</a>
+                <a data-aos="fade-up" data-aos-delay="600" href="javascript:;">5</a>
+                <a data-aos="fade-up" data-aos-delay="700" href="javascript:;">...</a>
+                <a data-aos="fade-up" data-aos-delay="800" href="javascript:;">Next page</a>
+              </div>
+          </div>
+        </div>
+
+        <div class="history">
+          <h5>View History</h5>
+          <div class="list">
+            <ul>
+              <li>
+                <div class="pic"><img src="images/pro-detail/pro.jpg"></div>
+                <div class="name">Waterproof Thick Over-sized Organizer Storage Bag with Strong Handles, Travelling Bag, College Carrying Bag, Camping Bag for Christmas, Festival Decorations, Washable (27.516.513.8", Black Dot)</div>
+                <div class="price"><span>$12-100</span> /Piece</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <div class="footer">
@@ -202,6 +589,9 @@
         $(this).addClass('active').siblings().removeClass('active')
         let Src = $(this).children('img').attr('data-bigImg')
         $('.pro-pic .big-pic img').attr('src', Src)
+      })
+      $('.sell').on('click', '.switchPop', function () {
+        $('.sell-pop').stop(true).fadeToggle()
       })
     })
   </script>
