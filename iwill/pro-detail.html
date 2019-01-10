@@ -71,17 +71,61 @@
           </div>
           <div class="pic-list">
             <ul class="clearfix">
-              <li><img src="images/pro-detail/1.jpg"></li>
-              <li class="active"><img src="images/pro-detail/2.jpg"></li>
-              <li><img src="images/pro-detail/3.jpg"></li>
-              <li><img src="images/pro-detail/4.jpg"></li>
-              <li><img src="images/pro-detail/5.jpg"></li>
-              <li><img src="images/pro-detail/1.jpg"></li>
+              <li><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
+              <li class="active"><img src="images/pro-detail/2.jpg" data-bigImg="images/pro-detail/2.jpg"></li>
+              <li><img src="images/pro-detail/3.jpg" data-bigImg="images/pro-detail/3.jpg"></li>
+              <li><img src="images/pro-detail/4.jpg" data-bigImg="images/pro-detail/4.jpg"></li>
+              <li><img src="images/pro-detail/5.jpg" data-bigImg="images/pro-detail/5.jpg"></li>
+              <li><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
             </ul>
           </div>
         </div>
         <div class="pro-info">
-          
+          <div class="pro-name">Waterproof Thick Over-sized Organizer Storage Bag with Strong Handles, Travelling Bag, College Carrying Bag, Camping Bag for Christmas, Festival Decorations, Wash-able (27.516.513.8", Black Dot)</div>
+          <div class="details">
+            <div>SKU:   LLX-BE-2</div>
+            <div class="price">
+              Bulky Price: <span class="c-green">$100</span> <a class="link" href="">Login</a>  to view wholesale prices
+            </div>
+            <div>
+              Rank:
+              <div class="star-list big clearfix">
+                <i class="star on"></i>
+                <i class="star on"></i>
+                <i class="star on"></i>
+                <i class="star on"></i>
+                <i class="star"></i>
+              </div>
+              <span class="c-green">754</span> Reviews
+              <div class="img-list clearfix">
+                <img src="images/icon-collect.png">
+                <img src="images/organizing/9.png">
+                <img src="images/organizing/10.png">
+                <img src="images/organizing/11.png">
+              </div>
+            </div>
+            <div>
+              Color :  Gray Stars
+              <div class="type-choose-list clearfix">
+                <div class="pic on"><img src="images/pro-detail/1.jpg"></div>
+                <div class="pic"><img src="images/pro-detail/2.jpg"></div>
+              </div>
+            </div>
+            <div class="desc">
+              Description:
+              <p>Lightweight,portable pop-up hamper with carrying straps. Foldable for easy storage. High capacity holds up to 10kg. Material:Fabric Size：15.75inch * 19.69inch. Scope - housing and clean clothing, towels, bedding,underwear,socks,sweaters,Toys, books, food and other daily necessities.</p>
+            </div>
+            <div>
+              Quantity: 
+              PieceIn
+              <span>stock 306 Piece</span>
+            </div>
+            <div>Sample purchase please click:</div>
+            <a href="javascript:;">Inquiry</a>
+            <div>Click to buy in bulk:</div>
+            <a href="javascript:;">Buy</a>
+          </div>
+
         </div>
       </div>
     </div>
@@ -154,6 +198,11 @@
         duration: 600,
         anchorPlacement: 'top-center'
       });
+      $('.pic-list').on('click', 'li', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        let Src = $(this).children('img').attr('data-bigImg')
+        $('.pro-pic .big-pic img').attr('src', Src)
+      })
     })
   </script>
 </body>

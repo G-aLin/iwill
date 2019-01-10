@@ -199,11 +199,14 @@
     padding: 45px 0
     background-color #f3f3f3
     .pro-pic
+      float left
       margin-right 30px
       .big-pic
+        position relative
+        z-index: 1
+        padding: 30px
         width: 445px
         height 445px
-        padding: 30px
         background-color #fff
         img
           width: 445px
@@ -213,6 +216,7 @@
         ul
           li
             margin-left 5px
+            cursor pointer
             &:first-child
               margin-left 0
             &.active, &:hover
@@ -223,6 +227,79 @@
             img
               width: 80px
               height 80px
+    .pro-info
+      float left
+      width 640px
+      padding-top 15px
+      .pro-name
+        font-size: 18px
+        color: #333
+        line-height: 20px
+      .details
+        margin-top 5px
+        font-size: 14px
+        color: #555
+        & > div
+          margin-top 10px
+          line-height: 30px
+          .c-green
+            color: #489e87
+          .star-list
+            display: inline-block
+            *display inline
+            *zoom 1
+            vertical-align: text-bottom
+            margin: 0 5px 0 10px
+          .img-list
+            display: inline-block
+            *display inline
+            *zoom 1
+            vertical-align: top
+            margin-top 5px
+            img
+              float left
+              margin-left 2px
+              &:first-child
+                margin-left 0
+          .type-choose-list
+            margin-left -10px
+            padding: 3px 0
+            .pic
+              float left
+              margin-left 10px
+              width: 48px
+              height 48px
+              border: 1px solid #e1e1e1
+              background-color #fff
+              cursor pointer
+              &:first-child
+              img
+                width: 48px
+                height 48px
+              &.on
+                width 46px
+                height 46px
+                border: 2px solid #489f87
+                img
+                  width 46px
+                  height 46px
+          &.price
+            span
+              margin: 0 15px 0 7px
+              font-size: 22px
+              vertical-align: bottom
+              font-weight: bold
+            .link
+              color: #489e87
+              text-decoration: underline
+          &.desc
+            p
+              color: #999
+              line-height: 20px
+          &:first-child
+            margin-top 0
+          .type-list
+            padding: 3px 0
 
 .pro-list-page
   background-color #f3f3f3
