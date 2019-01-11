@@ -179,16 +179,16 @@
       <div class="wrapper">
         <div class="nav-bar">
           <ul class="clearfix">
-            <li><a class="cur" href="#Description">Product description</a></li>
-            <li><a href="#Packaging">Packaging & Shipping</a></li>
-            <li><a href="#Review">Review(765)</a></li>
-            <li><a href="javascript:;">Write a Review</a></li>
-            <li><a href="#FAQ">FAQ</a></li>
+            <li><a class="cur" href="#1">Product description</a></li>
+            <li><a href="#2">Packaging & Shipping</a></li>
+            <li><a href="#3">Review(765)</a></li>
+            <li><a href="#4">Write a Review</a></li>
+            <li><a href="#5">FAQ</a></li>
           </ul>
         </div>
 
         <div class="contain">
-          <div class="tab-column description" id="Description">
+          <div class="tab-column description" id="1">
             <div class="title">Product description</div>
             <div class="table-list">
               <table>
@@ -222,7 +222,7 @@
             </div>
           </div>
           
-          <div class="tab-column packaging" id="Packaging">
+          <div class="tab-column packaging" id="2">
             <div class="title">Packaging & Shipping</div>
             <div class="table-list">
               <table>
@@ -267,7 +267,7 @@
             <img src="images/pro-detail/6.jpg">
           </div>
 
-          <div class="tab-column faq" id="FAQ">
+          <div class="tab-column faq" id="3">
             <div class="title">Customer questions & answers</div>
             <div class="faq-list">
               <div class="item">
@@ -361,7 +361,7 @@
             </div>
           </div>
 
-          <div class="tab-column comment" id="Comment">
+          <div class="tab-column comment" id="4">
             <div class="title">User Comment</div>
             <div class="form">
               <dl>
@@ -401,7 +401,7 @@
             </div>
           </div>
 
-          <div class="tab-column review" id="Review">
+          <div class="tab-column review" id="5">
             <div class="title">Write a Review</div>
             <div class="review-list">
               <div class="item">
@@ -628,6 +628,47 @@
         prevCell: '.prevCell',
         nextCell: '.nextCell'
       });
+
+      var navArr = []
+      function getOffsetTop() {
+        $('.nav-bar li').each(function () {
+          var i = $(this).index()
+          var id = $(this).children('a').attr('href').split('#')[1]
+          var offsetTop = $('#' + id) ? $('#' + id).offset().top : false
+          navArr.push({
+            /***
+             * key下标
+             * id滚动至id
+             */
+            key: i,
+            id: id,
+            offsetTop: offsetTop
+          })
+        })
+      }
+      getOffsetTop()
+      
+      let proDetailTop = $('.pro-detail').offset().top + 40
+      $(window).scroll(function(){
+        var _scrollTop=$(window).scrollTop();
+        if (_scrollTop >= proDetailTop){
+          $('.nav-bar').addClass('fixed')
+          for(var l = navArr.length-1; l >= 0; l--){
+            if(_scrollTop >= navArr[l]['offsetTop'] && navArr[l]['offsetTop']) {
+              $('.nav-bar li').children('a').removeClass('cur')
+              $('.nav-bar li').eq(navArr[l].key).children('a').addClass('cur')
+              break
+            }
+          }
+        } else {
+          $('.nav-bar').removeClass('fixed')
+        }
+      });
+
+      $('.nav-bar').on('click', 'a', function () {
+        $(this).addClass('cur')
+        $(this).parent().siblings().children('a').removeClass('cur')
+      })
     })
   </script>
 </body>
