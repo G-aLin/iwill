@@ -517,6 +517,8 @@
             display: inline
             vertical-align: top
             margin: 0 0 0 10px
+            width 78px
+            height 30px
           input
             height 28px
             line-height: 28px
@@ -581,7 +583,59 @@
         font-size: 16px
         color #333
       .list
+        position relative
+        padding: 19px 71px 14px
         border 2px solid #f3f3f3
+        font-size: 14px
+        color #555
+        .box
+          overflow hidden
+        .handle
+          position: absolute
+          top: 0
+          bottom: 0
+          width: 50px
+          cursor pointer
+          &.prevCell
+            left 0
+          &.nextCell
+            right 0
+          .icon-arrow
+            position: absolute
+            top: 50%
+            left 50%
+            margin-top: -18px
+            margin-left -10px
+          &:hover .prev
+            background-position 0 -36px
+          &:hover .next
+            background-position -20px -36px
+
+        ul
+          li
+            width 190px
+            margin-right:  90px
+            .pic
+              width 114px
+              height 114px
+              margin 0 auto
+              img
+                width 114px
+                height 114px
+            .name
+              margin-top 8px
+              line-height: 17px
+              height 51px
+              overflow: hidden
+              text-overflow: ellipsis
+              display: -webkit-box
+              -webkit-line-clamp: 3
+              -webkit-box-orient: vertical
+            .price
+              line-height: 30px
+              span
+                color: #489e87
+                font-weight: bold
 
 
 .pro-list-page
