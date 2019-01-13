@@ -15,33 +15,37 @@
   <script src="js/jquery-1.10.1.min.js"></script>
   <script src="js/fontSize.js"></script>
 
+  <style>
+      li{
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.3rem;
+        background-color: #f3f3f3;
+      }
+      a{
+        display: block;
+        padding: 0 0.2rem;
+        color: #777;
+      }
+      li:nth-child(2n){
+        background-color: #444;
+      }
+      li:nth-child(2n) a{
+        color: #ccc;
+      }
+    </style>
 </head>
 <body>
+
+
   <div class="page">
     <ul class="page-scroll">
       <li><a href="home.html">首页</a></li>
+      <li><a href="about-us.html">关于我们</a></li>
+      <li><a href="contact-us.html">联系我们</a></li>
     </ul>
   </div>
 
-  <style>
-    li{
-      height: 1rem;
-      line-height: 1rem;
-      font-size: 0.3rem;
-      background-color: #f3f3f3;
-    }
-    a{
-      display: block;
-      padding: 0 0.2rem;
-      color: #777;
-    }
-    li:nth-child(2n){
-      background-color: #444;
-    }
-    li:nth-child(2n) a{
-      color: #ccc;
-    }
-  </style>
 
 </body>
 </html>
