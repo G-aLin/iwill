@@ -8,29 +8,30 @@
 
 input, textarea
   display: block
-  padding: 0.1rem 0.1rem
+  box-sizing: border-box
+  padding: 0.17rem 0.1rem
   width: 100%
-  line-height: 0.28rem
-  background-color: #1f1f1f
-  border: 1px solid #575757
+  line-height: 0.36rem
   font-size: 0.2rem
+  background-color: #fff
+  border: 1px solid #eee
   color: #777777
   -webkit-appearance: none
   -webkit-tap-highlight-color: transparent
   border-radius: 0
 
 input
-  height: 0.28rem
+  height: 0.72rem
   &[type="submit"]
-    width: 2.45rem
-    height: 0.5rem
+    padding: 0
+    height: 0.8rem
     color #fff
     background-color: #489e87
     border: 0
-    font-size: 0.24rem
+    font-size: 0.36rem
 
 textarea
-  height: 1.78rem
+  height: 1.98rem
   resize: none
 
 .page
@@ -132,9 +133,22 @@ textarea
           width: 1.26rem
         input, textarea
           flex: 1
-        input[type='submit']
-          flex: 0 0 2.45rem
-          margin-left 1.26rem
+          padding: 0.1rem
+          line-height: 0.28rem
+          background-color: #1f1f1f
+          border: 1px solid #575757
+          color: #777777
+        input
+          height: 0.5rem
+          &[type='submit']
+            flex: 0 0 2.45rem
+            margin-left 1.26rem
+            width: 2.45rem
+            height: 0.5rem
+            color #fff
+            background-color: #489e87
+            border: 0
+            font-size: 0.24rem
   .copyright
     padding: 0.25rem
     font-size: 0.18rem
