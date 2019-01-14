@@ -6,7 +6,7 @@
   vertical-align: middle
   background-size: 1.88rem
 
-input, textarea
+input[type='type'], input[type='password'], input[type='submit'], textarea
   display: block
   box-sizing: border-box
   padding: 0.17rem 0.1rem
@@ -20,19 +20,40 @@ input, textarea
   -webkit-tap-highlight-color: transparent
   border-radius: 0
 
-input
+input[type='type'], input[type='password'], input[type='submit'],
   height: 0.72rem
-  &[type="submit"]
+
+input[type="submit"]
     padding: 0
     height: 0.8rem
     color #fff
     background-color: #489e87
     border: 0
-    font-size: 0.36rem
+    font-size: 0.32rem
 
 textarea
   height: 1.98rem
   resize: none
+
+label
+  input[type='checkbox']
+    display: none
+    color #000
+    &:checked + .simulate
+      background-color #ff444d
+      border-color: #ff444d
+  .simulate
+    display: inline-block
+    *display: inline
+    *zoom: 1
+    vertical-align: sub
+    width: 0.26rem
+    height 0.26rem
+    background-color #fff
+    border: 1px solid #e1e1e1
+    border-radius: 0.05rem
+  .name
+    margin-left 0.1rem
 
 .page
   height: 100%
@@ -45,6 +66,12 @@ textarea
 
 .c-green
   color: #489e87
+
+.c-666
+  color #666
+
+.font-bold
+  font-weight: bold
 
 .header
   display: flex
@@ -156,7 +183,6 @@ textarea
     line-height: 0.24rem
     background-color #1b1b1b
     text-align: center
-
 
 .index-page
   .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction
@@ -327,9 +353,6 @@ textarea
         align-items: center
         justify-content: center
 
-.lin
-  height 2px
-
 .contact-us-page
   .contact-details
     padding: 0.4rem 0.25rem
@@ -366,6 +389,112 @@ textarea
       margin-top 0.24rem
       img
         width 100%
+
+.change-password-page
+  padding: 2rem 1.42rem
+  background-color #f3f3f3
+  h5
+    font-size: 0.36rem
+    color #333
+    line-height: 0.96rem
+    text-align: center
+  .list
+    .item
+      position relative
+      margin-top 0.2rem
+      &:first-child
+        margin-top 0
+      .icon-global
+        position: absolute
+        top 50%
+        left 0.17rem
+        margin-top -0.11rem
+      input
+        padding-left 0.5rem
+  input[type='submit']
+    margin-top 0.5rem
+
+.inquiry-details-page
+  padding: 0.12rem 0.25rem 0.4rem
+  .inquiry
+    padding: 0.2rem 0.2rem 0.6rem
+    border 1px solid #e1e1e1
+    font-size: 0.22rem
+    color #555
+    line-height: 0.36rem
+    .pro
+      display: flex
+      align-items: flex-end
+      .pic
+        margin-right 0.15rem
+        flex: 0 0 1.5rem
+        width 1.5rem
+        height 1.5rem
+        display: flex
+        align-items: center
+        justify-content: center
+        overflow hidden
+        border: 1px solid #e1e1e1
+      .info
+        flex: 1
+        .order-id
+          color #333
+          line-height: 0.32rem
+        .desc
+          margin-top 0.2rem
+          line-height: 0.24rem
+          font-family '宋体'
+    .specification
+      margin-top 0.25rem
+    .user-info
+      margin-top 0.24rem
+
+.my-collection-page
+  padding: 0.2rem 0.25rem 0.56rem
+  font-size: 0.22rem
+  color: #555
+  h5
+    font-size: 0.24rem
+    color: #555
+    line-height: 54px
+    .handle
+      margin-left 0.46rem
+      color #555
+  .list
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    .item
+      box-sizing: border-box
+      flex: 0 0 48.57%
+      width 48.57%
+      margin-top 0.2rem
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+      position relative
+      padding: 0.3rem 0.2rem 0.35rem
+      border: 1px solid #e1e1e1
+      label
+        position: absolute
+        top 0
+        left 0
+        padding 0.2rem
+      .pic
+        display: flex
+        align-items: center
+        width 3rem
+        height 3rem
+      .name
+        margin-top 0.2rem
+        line-height: 0.34rem
+        font-family 'Arial'
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
 
 
 
