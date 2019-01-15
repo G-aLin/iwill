@@ -6,7 +6,7 @@
   vertical-align: middle
   background-size: 1.88rem
 
-input[type='type'], input[type='password'], input[type='submit'], textarea
+input[type='text'], input[type='password'], input[type='submit'], textarea
   display: block
   box-sizing: border-box
   padding: 0.17rem 0.1rem
@@ -20,16 +20,17 @@ input[type='type'], input[type='password'], input[type='submit'], textarea
   -webkit-tap-highlight-color: transparent
   border-radius: 0
 
-input[type='type'], input[type='password'], input[type='submit'],
+input[type='type'], input[type='password'], input[type='submit']
   height: 0.72rem
 
-input[type="submit"]
-    padding: 0
-    height: 0.8rem
-    color #fff
-    background-color: #489e87
-    border: 0
-    font-size: 0.32rem
+input[type='submit']
+  padding: 0
+  height: 0.8rem
+  line-height: 0.8rem
+  color #fff
+  background-color: #489e87
+  border: 0
+  font-size: 0.32rem
 
 textarea
   height: 1.98rem
@@ -46,13 +47,14 @@ label
     display: inline-block
     *display: inline
     *zoom: 1
-    vertical-align: sub
+    vertical-align: middle
     width: 0.26rem
     height 0.26rem
     background-color #fff
     border: 1px solid #e1e1e1
     border-radius: 0.05rem
   .name
+    vertical-align: middle
     margin-left 0.1rem
 
 .page
@@ -72,6 +74,9 @@ label
 
 .font-bold
   font-weight: bold
+
+.underline
+  text-decoration: underline
 
 .header
   display: flex
@@ -456,7 +461,7 @@ label
   h5
     font-size: 0.24rem
     color: #555
-    line-height: 54px
+    line-height: 0.54rem
     .handle
       margin-left 0.46rem
       color #555
@@ -496,6 +501,56 @@ label
         -webkit-line-clamp: 3
         -webkit-box-orient: vertical
 
+.sing-page
+  position relative
+  background-image: url('../images/6.png')
+  height 8.68rem
+  background-size: 100% 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  .contain
+    flex: 0 0 5.8rem
+    padding: 0 0.57rem 0.45rem
+    width: 5.8rem
+    height 5.3rem
+    font-size: 0.22rem
+    color #555
+    background-color #fff
+    border-radius: 0.03rem
+    box-sizing: border-box
+    &.sign-in
+      display: none
+    &.sign-up
+      display: block
+    h5
+      font-size: 0.36rem
+      color #333
+      line-height: 1rem
+      text-align: center
+    .list
+      .item
+        position relative
+        margin-top 0.2rem
+        &:first-child
+          margin-top 0
+        i.icon-global
+          position: absolute
+          top: 0.23rem
+          left 0.18rem
+        input
+          padding-left: 0.5rem
+        input[type='submit']
+          padding: 0
+          margin-top 0.3rem
+        .text
+          margin-top 0.12rem
+          line-height: 0.3rem
+          label
+            font-size: 0.18rem
+            color #999
+            line-height: 0.46rem
+            
 
 
 

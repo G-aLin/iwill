@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta data-n-head="true" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta content="telephone=no,email=no" name="format-detection">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+
+  <script src="js/jquery-1.10.1.min.js"></script>
+  <script src="js/fontSize.js"></script>
+
+</head>
+<body>
+
+  <div class="page">
+    <div class="header">
+      <span class="slot-left"><i class="icon-global bg-1"></i></span>
+      <img class="logo" src="images/logo.png">
+    </div>
+    <div class="page-scroll">
+      
+      <div class="sing-page">
+        <div class="contain sign-in">
+          <h5>Log in to I WILL</h5>
+          <div class="list">
+            <div class="item">
+              <i class="icon-global bg-9"></i>
+              <input type="text" placeholder="Emial or username">
+            </div>
+            <div class="item">
+              <i class="icon-global bg-10"></i>
+              <input type="password" placeholder="Password">
+              <input type="submit" value="Log in">
+              <div class="text">
+                <p>
+                  <label><input type="checkbox"><span class="simulate"></span><span class="name">Remember me</span></label>
+                </p>
+                <p>Don't have a I WILL account yet? <br /><a class="c-green" href="javascript:;" onclick="switchFn(0);">Create your account now</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contain sign-up">
+          <h5>Create Account</h5>
+          <div class="list">
+            <div class="item">
+              <i class="icon-global bg-9"></i>
+              <input type="text" placeholder="Emial or username">
+            </div>
+            <div class="item">
+              <i class="icon-global bg-10"></i>
+              <input type="password" placeholder="Password">
+              <input type="submit" value="register">
+              <div class="text">
+                <p>
+                  <label><input type="checkbox"><span class="simulate"></span><span class="name">you agree to the Terms of Use and Privacy Policy.</span></label>
+                </p>
+                <p><a class="c-green underline" href="javascript:;" onclick="switchFn(1);">Sign in &gt;</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="us">
+          <div class="contact-us">
+            <h5>Contact Us</h5>
+            <div class="item">
+              <span><i class="icon-global bg-2"></i></span>
+              <p>C320, 4F, NIULANQIAN BUILDING, MINZHI AVENUE, LONGHUA DISTRICT, SHENZHEN, GUANGDONG, 518131, CN</p>
+            </div>
+            <div class="item">
+              <span><i class="icon-global bg-3"></i></span>
+              <p>(+86)13632771766</p>
+            </div>
+            <div class="item">
+              <span><i class="icon-global bg-4"></i></span>
+              <p class="c-green">iwill@iwillcreatepro.com</p>
+            </div>
+          </div>
+
+          <div class="open-times">
+            <h5>Opening Times</h5>
+            <p>09:30 AM – 11:00 PM     Every Day</p>
+          </div>
+
+          <div class="inquiry">
+            <h5>How something to say?</h5>
+            <div class="item">
+              <span>Your name:</span>
+              <input type="text">
+            </div>
+            <div class="item">
+              <span>Your Email:</span>
+              <input type="text">
+            </div>
+            <div class="item">
+              <span>Captcha:</span>
+              <input type="text">
+              <img class="code" src="images/pic/14.png">
+            </div>
+            <div class="item">
+              <span>Your Inquiry:</span>
+              <textarea></textarea>
+            </div>
+            <div class="item">
+              <input type="submit" value="Submit">
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>© 2005-2018 SHENZHEN I WILL MARKETING CO., LTD. Copyright, All Rights Reserved.</p>
+          <p>C320, 4F, NIULANQIAN BUILDING MINZHI AVENUE, LONGHUA DISTRICT SHENZHEN GUANGDONG 518131 CN E-mail: iwill@iwillcreatepro.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  
+    function switchFn(type) {
+      if (type) {
+        // 登录
+        $('.sign-up').slideUp(300, function () {
+          $('.sign-in').slideDown()
+        })
+      } else {
+        // 注册
+        $('.sign-in').slideUp(300, function () {
+          $('.sign-up').slideDown()
+        })
+      }
+    }
+  
+  </script>
+</body>
+</html>
