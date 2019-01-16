@@ -120,3 +120,7 @@ img{
     max-height: 100%;
     line-height: 0;
 }
+
+.clearfix{ *zoom:1;}
+.clearfix:after{ clear: both; content: ""; display: block; height: 0; visibility: hidden; }
+.clearfix>li,.clearfix>dt,.clearfix>dd{float:left;display:inline;}
