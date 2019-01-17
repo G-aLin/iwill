@@ -4,7 +4,7 @@
   background-image url('../images/css_sprites.png') !important
   display: inline-block
   vertical-align: middle
-  background-size: 1.88rem
+  background-size: 1.94rem
 
 input[type='text'], input[type='password'], input[type='submit'], textarea
   display: block
@@ -64,12 +64,24 @@ label
     height 0.21rem
     background-image url('../images/icon-star.png')
     background-position -0.26rem 0
+    background-size: 0.5rem
     margin-left 0.04rem
     &:first-child
       margin-left 0
     &.on
       background-position 0 0
 
+.loadmore
+  display: block
+  margin: 0 auto
+  width 2.41rem
+  height 0.46rem
+  text-align: center
+  line-height: 0.46rem
+  font-size: 0.22rem
+  color #489e87
+  background-color #fff
+  border: 0.02rem solid #489e87
 
 .page
   height: 100%
@@ -304,17 +316,9 @@ label
       background-size: contain
       background-repeat no-repeat
       background-color #ecebf0
-      .more
-        display: block
-        margin: 0.3rem auto 0
-        width 2.41rem
-        height 0.46rem
-        text-align: center
-        line-height: 0.46rem
-        font-size: 0.22rem
-        color #489e87
+      .loadmore
+        margin-top: 0.3rem
         background-color #f0eff4
-        border: 0.02rem solid #489e87
 
 .top-banner
   display: flex
@@ -710,15 +714,7 @@ label
             color: #489e87
             line-height: 0.3rem
     .loadmore
-      margin: 0.6rem auto 0
-      display: block
-      width: 2.45rem
-      height 0.48rem
-      font-size: 0.22rem
-      color: #489e87
-      line-height: 0.48rem
-      text-align: center
-      border: 0.02rem solid #489e87
+      margin-top: 0.6rem
 
 .organizing-tips-details-page
   .detail
@@ -728,6 +724,157 @@ label
       line-height: 0.3rem
       text-align: center
       color: #333
+    .time
+      margin-top 0.16rem
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 0.2rem
+      color: #999
+      line-height: 0.34rem
+      span
+        margin: 0 0.17rem 0 0.06rem
+      .share-list
+        display: flex
+        img
+          margin-left 0.1rem
+          width 0.34rem
+          height 0.34rem
+          &:first-child
+            margin-left 0
+    .content
+      padding-top 0.34rem
+      padding-bottom 0.34rem
+      font-size: 0.22rem
+      color: #555
+      line-height: 0.28rem
+      img
+        max-width 100%
+    .context
+      padding 0.2rem 0
+      line-height: 0.3rem
+      font-size: 0.2rem
+      color: #555
+      span
+        font-weight: bold
+      a
+        color #555
+        &:hover
+          color: #489e87
+      p
+        margin-top 0.3rem
+        &:first-child
+          margin-top 0
+
+.promotion-deals-page
+  .top-banner
+    background-image url('../images/10.png')
+  .contain
+    padding: 0 0.25rem 0.57rem
+    .active-banner
+      margin-top 0.4rem
+      img
+        width: 100%
+    .list
+      margin-top 0.3rem
+      font-size: 0.2rem
+      line-height: 0.24rem
+      .item
+        position relative
+        margin-top 0.1rem
+        padding: 0.25rem 0.35rem 0.25rem 0.2rem
+        background-color #f7f7f7
+        &:first-child
+          margin-top 0
+        .name
+          padding-right 0.5rem
+          line-height: 0.28rem
+          font-size: 0.24rem
+          color #489e87
+        .desc
+          display: none
+          color: #555
+          line-height: 0.24rem
+        .icon-switch
+          position: absolute
+          top: 0.22rem
+          right 0.3rem
+          width 0.33rem
+          height 0.33rem
+          background-image url('../images/icon-switch.png')
+          background-size: 0.66rem
+          &.on
+            background-position -0.33rem 0
+    .loadmore
+      margin-top 0.4rem
+
+.shop-products-page
+  background-color #f3f3f3
+  .column
+    padding-bottom 0.4rem
+    .column-banner
+      img
+        width: 100%
+    .nav-list
+      padding: 0.2rem 0 0.3rem
+      display: flex
+      justify-content: center
+      font-size: 0.22rem
+      color #555
+      line-height: 0.5rem
+      a
+        margin-left 0.3rem
+        &:first-child
+          margin-left 0
+        &.cur
+          color: #4c9582
+          text-decoration: underline
+    .list
+      margin-top -0.2rem
+      padding: 0 0.25rem
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+      .item
+        box-sizing: border-box
+        padding: 0.05rem 0.15rem 0.1rem
+        flex: 0 0 48.57%
+        width 48.57%
+        margin-top 0.2rem
+        display: flex
+        flex-direction: column
+        background-color #fff
+        .pic
+          width: 3.1rem
+          height: 3.1rem
+        .icon-star-list
+          display: flex
+          justify-content: center
+          align-items: center
+          height: 0.4rem
+        .name
+          font-size: 0.2rem
+          color: #555
+          line-height: 0.3rem
+          font-family 'Arial'
+        .price
+          font-size: 0.3rem
+          color: #489e87
+          font-family 'Arial'
+          line-height: 0.5rem
+          text-align: center
+    .loadmore
+      margin-top 0.4rem
+      background-color #f3f3f3
+
+
+
+
+
+
+
+
+
 
 .asd
   height 2px
