@@ -6,7 +6,7 @@
   vertical-align: middle
   background-size: 1.94rem
 
-input[type='text'], input[type='password'], input[type='submit'], textarea
+input[type='text'], input[type='password'], input[type='submit'], select, textarea
   display: block
   box-sizing: border-box
   padding: 0.17rem 0.1rem
@@ -22,6 +22,14 @@ input[type='text'], input[type='password'], input[type='submit'], textarea
 
 input[type='type'], input[type='password'], input[type='submit']
   height: 0.72rem
+
+select
+  width 100%
+  background-image url('../images/icon-select.png')
+  background-repeat no-repeat
+  background-size: 0.15rem
+  background-position 6.7rem center
+  outline: none
 
 input[type='submit']
   padding: 0
@@ -867,14 +875,85 @@ label
       margin-top 0.4rem
       background-color #f3f3f3
 
+.shop-products-details-inquiry-page
+  padding: 0.28rem 0.25rem 0.4rem
+  .order
+    display: flex
+    align-items: flex-end
+    .pro
+      margin-right 0.17rem
+      flex 0 0 1.5rem
+      width 1.5rem
+      height 1.5rem
+      border: 1px solid #e1e1e1
+    .info
+      flex: 1
+      font-size: 0.22rem
+      color: #555
+      .order-id
+        color #333
+        line-height: 0.32rem
+      .name
+        margin-top 0.2rem
+        line-height: 0.24rem
+  .specification
+    margin-top 0.25rem
+    padding-bottom 0.18rem
+    line-height: 0.36rem
+    font-size: 0.22rem
+    color: #555
+    border-bottom: 1px solid #e1e1e1
+  .form
+    padding-top 0.2rem
+    font-size: 0.25rem
+    color: #555
+    em
+      color #ff444d
+      font-style normal
+    h6
+      line-height: 0.58rem
+    textarea
+      height 2.27rem
+  input[type='submit']
+    margin-top 0.4rem
 
-
-
-
-
-
-
-
+.member-page
+  padding: 0.5rem 0.25rem 0.6rem
+  .member
+    .avator
+      margin: 0 auto
+      padding: 0.12rem
+      box-sizing: border-box
+      width 2.68rem
+      height 2.68rem
+      border: 1px solid #86b3a7
+    p
+      font-size: 0.22rem
+      color: #555
+      line-height: 0.4rem
+      margin-top 0.3rem
+  .nav-list
+    margin-top 0.1rem
+    display: flex
+    flex-direction: column
+    line-height: 0.5rem
+    font-size: 0.2rem
+    a
+      position relative
+      padding-left 0.42rem
+      i
+        position: absolute
+        top: 50%
+        left 0
+        margin-top -0.09rem
+  .form
+    padding-top 0.2rem
+    font-size: 0.25rem
+    color: #555
+    h6
+      line-height: 0.58rem
+    input[type='submit']
+      margin-top 0.5rem
 
 .asd
   height 2px
