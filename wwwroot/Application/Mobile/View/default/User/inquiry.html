@@ -1,0 +1,34 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+  <div class="page-scroll">
+
+      <div class="inquiry-page">
+        <div class="list" id="list">
+        <?php foreach ($list as $key => $value): ?>
+          <a href="{:U('User/inquirydetail?id='.$value['id'])}"><div class="item">
+            <div class="pic"><img src="<?= $value['path']?>"></div>
+            <div class="info">
+              <div class="order-id">Order ID: #<?= $value['orderno']?></div>
+              <div class="name"><?= $value['name']?></div>
+              <div class="price">$<?= $value['total']?></div>
+            </div>
+          </div></a>
+       <?php endforeach ?>
+        </div>
+          <?php if ($more == 1): ?>
+          <a href="javascript:;" class="loadmore">MORE+</a>
+          <?php endif ?>
+      </div>
+    <script>
+    $(".loadmore").click(function(){
+          $.ajax({
+                url:"moreinquiry.html",
+                type: "post",
+                dataType: "JSON",
+                success: function (json) {
+                      $("#list").append(json.data);
+                      $(".loadmore").hide();
+            }
+        });
+    })
+  </script>
+<include file="Public/footer" />

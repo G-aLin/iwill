@@ -24,12 +24,20 @@
 
 		<!-- 高级搜索 -->
 		<div class="search-form fr cf">
-		<!-- 	<div class="sleft">
-				<input type="text" name="title" class="search-input" value="{:I('title')}" placeholder="请输入标题文档">
-				<a class="sch-btn" href="javascript:;" id="search" url="{:U('banner/index',false)}"><i class="btn-search"></i></a>
-			</div> -->
-            <div class="btn-group-click adv-sch-pannel fl">
-
+		   <div class="sleft">
+                    <div class="controls">
+                    <select name="type" id="type">
+                                <option value="0">筛选推荐商品</option>
+                                <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>首页轮播推荐</option>
+                                <!-- <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页推荐</option> -->
+                                <option value="3" <?php if ($_GET['type'] == 3): ?>selected<?php endif ?>>促销banner</option>
+                                <option value="4" <?php if ($_GET['type'] == 4): ?>selected<?php endif ?>>促销广告</option>
+                    </select>
+                    </div>
+</div>
+            <div class="sleft" style="display:none">
+                <input type="text" name="name" class="search-input" value="{:I('name')}" placeholder="请输入标题文档">
+                <a class="sch-btn" href="javascript:;" id="search" url="{:U('banner/index',false)}"><i class="btn-search"></i></a>
             </div>
 		</div>
 	</div>
@@ -64,15 +72,24 @@
                                 case '1':
                                     echo "首页banner";
                                     break;
+                                 case '2':
+                                    echo "首页banner";
+                                    break;
+                                 case '3':
+                                    echo "促销banner";
+                                    break;
+                                 case '4':
+                                    echo "促销广告";
+                                    break;
                                 default:
-                                    # code...
+
                                     break;
                             }
                          ?></td>
                         <td><img src="<?= $value['picture_url'] ?>" width="150" height="150"></td>
                         <td><?= $value['url']?></td>
                         <td><?= $value['level']?></td>
-                        <td><a class="ajax-get" href="{:U('banner/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td><a class="ajax-get" href="{:U('banner/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                         <td>
                         <a href="{:U('banner/edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('banner/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>
@@ -113,6 +130,15 @@ $(function(){
         }
 		window.location.href = url;
 	});
+
+        $("#type").change(function(){
+        var url = $("#search").attr('url'),type=$("#type").val();
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        url += '&' + query+'&type=' + type;
+        window.location.href = url;
+    });
 
 	/* 状态搜索子菜单 */
 	$(".search-form").find(".drop-down").hover(function(){

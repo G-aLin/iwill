@@ -73,6 +73,12 @@
                         </div>
                 </div>
 
+          <div class="form-item cf">
+                    <label class="item-label">列表摘要</label>
+                    <div class="controls">
+                     <textarea name="digest" rows="5" cols="40"><?= $data['digest'] ?></textarea>
+                    </div>
+            </div>
 
                         <div class="form-item cf">
             <label class="item-label">文章内容<span class="check-tips"></span></label>
@@ -136,10 +142,10 @@
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
                         <label class="radio">
-                                <input type="radio" name="status" value="1" <?php if ($data['status'] == 1): ?>checked<?php endif ?>>发布
+                                <input type="radio" name="status" value="1" <?php if ($data['status'] == 1): ?>checked<?php endif ?>>启用
                         </label>
                         <label class="radio">
-                                <input type="radio" name="status" value="0" <?php if ($data['status'] == 0): ?>checked<?php endif ?>>下架
+                                <input type="radio" name="status" value="0" <?php if ($data['status'] == 0): ?>checked<?php endif ?>>停用
                         </label>
                     </div>
             </div>
@@ -173,11 +179,10 @@ $(function(){
 //时间显示时分秒
 $('.time').datetimepicker({
     language:  'zh-CN',
-    format: 'yyyy-mm-dd hh:ii:ss',
+    format: 'yyyy-mm-dd',
     todayBtn:  1,
     autoclose: 1,
-    minView:0,  //0表示可以选择小时、分钟   1只可以选择小时
-    minuteStep:1,//分钟间隔1分钟
+    minView:"month",//分钟间隔1分钟
 });
     showTab();
 });

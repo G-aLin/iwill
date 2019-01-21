@@ -94,7 +94,7 @@
                         <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>1,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_1
                          ? '是' : '否' ?></a></td>
                          <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>2,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_2 ? '是' : '否' ?></a></td>
-                        <td><a class="ajax-get" href="{:U('item/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td><a class="ajax-get" href="{:U('item/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                          <td><?= $value['sort'] ?></td>
                         <td>
                         <a href="{:U('item/edit','id='.$value['id'])}">编辑</a>

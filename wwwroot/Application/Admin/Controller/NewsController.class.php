@@ -110,7 +110,7 @@ class NewsController extends AdminController {
         if(isset($_GET['title'])){
             $map['title']    =   array('like', '%'.(string)I('title').'%');
         }
-        $list = $this->lists('news', $map,'publish_time desc');
+        $list = $this->lists('news', $map,'id desc');
         $this->assign('list', $list);
         // 记录当前列表页的cookie
         Cookie('__forward__',$_SERVER['REQUEST_URI']);
@@ -315,6 +315,7 @@ class NewsController extends AdminController {
         $Sqldata =[
                 'title'=>$data['title'],
                 'content'=>$data['content'],
+                'digest'=>$data['digest'],
                 'status'=>$data['status'],
                 'cover_id'=>$data['cover_id'],
                 'level'=>$data['level'],

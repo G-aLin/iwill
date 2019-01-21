@@ -1,60 +1,130 @@
-<include file="Public/head" title="2我是标题" keywords="我是keywords" description="我是description"/>
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/passport.css">
 
-<header class="jumbotron subhead" id="overview">
-  <div class="container">
-    <h2>用户登录</h2>
-    <p><span><span class="pull-left"><span>还没有账号? <a href="{:U('User/register')}">立即注册</a></span> </span></p>
-  </div>
-</header>
+  <div class="sign-page">
+  <form class="login-form form-horizontal-login" action="login.html" method="post">
+    <div class="sign-contain signIn" data-aos="flip-left" <?php if ($register==1): ?>style="display:none"<?php endif ?>>
+      <h2>Log in to I WILL </h2>
+      <div class="form-list">
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="text" placeholder="Emial or username" name="username" maxlength="100"><i class="icon-global bg-15"></i></dd>
+          </dl>
+        </div>
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="password" placeholder="Password" name="password" maxlength="30"><i class="icon-global bg-14"></i></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><a class="forgot" href="changePassword.html">Forgot password?</a></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><input type="submit" value="Log in" class="ajax-post" target-form="form-horizontal-login"></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
 
-<section>
-	<div class="span12">
-        <form class="login-form form-horizontal" action="__SELF__" method="post">
-          <div class="control-group">
-            <label class="control-label" for="inputEmail">用户名</label>
-            <div class="controls">
-              <input type="text" id="inputEmail" class="span3" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputPassword">密码</label>
-            <div class="controls">
-              <input type="password" id="inputPassword"  class="span3" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputPassword">验证码</label>
-            <div class="controls">
-              <input type="text" id="inputPassword" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
-            </div>
-            <div class="controls Validform_checktip text-warning"></div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <label class="checkbox">
-                <input type="checkbox"> 自动登陆
-              </label>
-              <button type="submit" class="btn ajax-post" target-form="form-horizontal">登 陆</button>
-            </div>
-          </div>
+              <label><input type="checkbox" name="remember">Remember me</label>
+            </dd>
+          </dl>
+        </div>
         </form>
-	</div>
-</section>
+        <div class="item">
+          <dl>
+            <dd>
+              <p>
+                Don't have a I WILL account yet? <br />
+                <a class="toRegister" href="javascript:;">Create your account now</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="sign-contain register" data-aos="flip-right" <?php if ($register==1): ?>style="display:block"<?php endif ?>>
+       <form class="login-form-register form-horizontal" action="register.html" method="post">
+        <h2>Create Account</h2>
+        <div class="form-list">
+          <div class="item p-top-15">
+            <dl>
+              <dd><input type="text" placeholder="Emial or username" name="username" maxlength="100"><i class="icon-global bg-15"></i></dd>
+            </dl>
+          </div>
+          <div class="item p-top-15">
+            <dl>
+              <dd><input type="password" placeholder="Password" name="password"  maxlength="30"><i class="icon-global bg-14"></i></dd>
+            </dl>
+          </div>
+          <div class="item">
+            <dl>
+              <dd><input type="submit" value="REGISTER" class="ajax-post" target-form="form-horizontal-register"></dd>
+            </dl>
+          </div>
+          <div class="item">
+            <dl>
+              <dd><label><input type="checkbox" name="agree" checked>you agree to the Terms of Use and Privacy Policy.</label></dd>
+            </dl>
+          </div>
+          </form>
+          <div class="item">
+            <dl>
+              <dd>
+                <a class="toSignIn" href="javascript:;">Sign in &gt;</a>
+              </dd>
+            </dl>
+          </div>
+        </div>
+    </div>
+  </div>
 
-<script type="text/javascript">
-function sucessHandle(){
-   alert(11);
-}
+<script>
+    $(function () {
+      $('.toRegister').click(function () {
+        $('.signIn').removeClass('aos-animate')
+        $('.register').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.signIn').hide()
+          $('.register').show()
+          setTimeout(function () {
+            $('.register').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
 
-function errorHandle(){
-  alert(22);
-}
+      $('.toSignIn').click(function () {
+        $('.register').removeClass('aos-animate')
+        $('.signIn').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.register').hide()
+          $('.signIn').show()
+          setTimeout(function () {
+            $('.signIn').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
+
+    $("form").submit(function(){
+        var self = $(this);
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+          if(data.status){
+              layer.msg(data.info,{anim: 1},function(){
+                 window.location.href = data.url;
+            })
+          } else {
+            layer.msg(data.info)
+          }
+        }
+      });
+
+  })
 </script>
-
-<include file="Public/footer"/>
+<include file="Public/footer" />

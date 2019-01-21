@@ -24,12 +24,34 @@ class SendController extends HomeController {
         $res =  $mail->SendMail($data['email'],$data['name'],$data['inquiry'],'我是发件人');
         if($res){
              $redata['status']  = 1;
-             $redata['msg']  = 'send ok';
+             $redata['msg']  = 'Send successfully';
         }else {
                $redata['status']  = 0;
-               $redata['msg']  = 'send error';
+               $redata['msg']  = 'fail in send';
         }
          $this->ajaxReturn($redata);
+    }
+
+           public function message(){
+                        $post = I('post.');
+                        if(!check_verify($post['captcha'])){
+                            $this->error('Verification code input error！');
+                        } ;
+                        $data['uid'] = session('user_auth')['uid'] ;
+                        $data['item_id'] = 0 ;
+                        $data['status'] = 1 ;
+                        $data['type'] = 1 ;
+                        $data['reply_id'] = 0 ;
+                        $data['content'] = $post['inquiry'] ;
+                        $data['name'] = $post['name'] ;
+                        $data['email'] = $post['email'] ;
+                        $data['create_time'] = date('Y-m-d H:i:s',time());
+                        $res = M("message")->add($data);
+                          if($res !== false){ //成功
+                                $this->success('Submit successfully');
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                        }
     }
 
 }

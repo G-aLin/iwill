@@ -33,7 +33,7 @@ class CommentController extends AdminController {
         foreach ($list as $key=>$value){
             $userInfo = M('ucenter_member')->where(['id'=>$value['uid']])->find();
             $list[$key]['username']    =   $userInfo['username'];
-            $list[$key]['email']    =   $userInfo['email'];
+            // $list[$key]['email']    =   $userInfo['email'];
             $list[$key]['item']    =  M('item')->where(['id'=>$value['item_id']])->getField('name');
         }
         $this->assign('_list', $list);

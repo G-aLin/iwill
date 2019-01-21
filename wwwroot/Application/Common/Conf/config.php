@@ -12,7 +12,7 @@
  * 所有系统级别的配置
  */
 return array(
-
+     'WWW' => 'http://www.iwill.com',
     'DEFAULT_GROUP'      =>'Home',
      'APP_SUB_DOMAIN_DEPLOY'=>1,
      'APP_SUB_DOMAIN_RULES'=>array(

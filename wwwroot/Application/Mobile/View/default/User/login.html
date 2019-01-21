@@ -1,60 +1,87 @@
-<include file="Public/head" title="2我是标题" keywords="我是keywords" description="我是description"/>
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 
-<header class="jumbotron subhead" id="overview">
-  <div class="container">
-    <h2>用户登录</h2>
-    <p><span><span class="pull-left"><span>还没有账号? <a href="{:U('User/register')}">立即注册</a></span> </span></p>
-  </div>
-</header>
-111
-<section>
-	<div class="span12">
-        <form class="login-form form-horizontal" action="__SELF__" method="post">
-          <div class="control-group">
-            <label class="control-label" for="inputEmail">用户名</label>
-            <div class="controls">
-              <input type="text" id="inputEmail" class="span3" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+ <div class="page-scroll">
+      
+      <div class="sing-page">
+        <div class="contain sign-in">
+          <form class="login-form form-horizontal-login" action="login.html" method="post">
+          <h5>Log in to I WILL</h5>
+          <div class="list">
+            <div class="item">
+              <i class="icon-global bg-9"></i>
+              <input type="text" placeholder="Emial or username"  name="username" maxlength="100">
+            </div>
+            <div class="item">
+              <i class="icon-global bg-10"></i>
+              <input type="password" placeholder="Password" name="password" maxlength="30">
+              <input type="submit" value="Log in" class="ajax-post" target-form="form-horizontal-login">
+              <div class="text">
+                <p>
+                  <label><input type="checkbox"><span class="simulate"></span><span class="name">Remember me</span></label>
+                </p>
+                <p>Don't have a I WILL account yet? <br /><a class="c-green" href="javascript:;" onclick="switchFn(0);">Create your account now</a></p>
+              </div>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label" for="inputPassword">密码</label>
-            <div class="controls">
-              <input type="password" id="inputPassword"  class="span3" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputPassword">验证码</label>
-            <div class="controls">
-              <input type="text" id="inputPassword" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
-            </div>
-            <div class="controls Validform_checktip text-warning"></div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <label class="checkbox">
-                <input type="checkbox"> 自动登陆
-              </label>
-              <button type="submit" class="btn ajax-post" target-form="form-horizontal">登 陆</button>
-            </div>
-          </div>
-        </form>
-	</div>
-</section>
+             </form>
+        </div>
 
-<script type="text/javascript">
-function sucessHandle(){
-   alert(11);
-}
 
-function errorHandle(){
-  alert(22);
-}
+        <div class="contain sign-up">
+           <form class="login-form-register form-horizontal" action="register.html" method="post">
+          <h5>Create Account</h5>
+          <div class="list">
+            <div class="item">
+              <i class="icon-global bg-9"></i>
+              <input type="text" placeholder="Emial or username" name="username" maxlength="100">
+            </div>
+            <div class="item">
+              <i class="icon-global bg-10"></i>
+              <input type="password" placeholder="Password" name="password"  maxlength="30">
+              <input type="submit" value="register" class="ajax-post" target-form="form-horizontal-register">
+              <div class="text">
+                <p>
+                  <label><input type="checkbox"><span class="simulate"></span><span class="name">you agree to the Terms of Use and Privacy Policy.</span></label>
+                </p>
+                <p><a class="c-green underline" href="javascript:;" onclick="switchFn(1);">Sign in &gt;</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+         </form>
+      </div>
+
+<script>
+  $(function () {
+    $("form").submit(function(){
+        var self = $(this);
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+          if(data.status){
+              layer.msg(data.info,{anim: 1},function(){
+                 window.location.href = data.url;
+            })
+          } else {
+            layer.msg(data.info)
+          }
+        }
+      });
+  })
+
+    function switchFn(type) {
+      if (type) {
+        // 登录
+        $('.sign-up').slideUp(300, function () {
+          $('.sign-in').slideDown()
+        })
+      } else {
+        // 注册
+        $('.sign-in').slideUp(300, function () {
+          $('.sign-up').slideDown()
+        })
+      }
+    }
 </script>
-
-<include file="Public/footer"/>
+<include file="Public/footer" />

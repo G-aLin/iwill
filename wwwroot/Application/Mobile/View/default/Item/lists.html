@@ -1,0 +1,84 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+
+ <div class="page-scroll">     
+      <div class="shop-products-page">
+        <?php foreach ($data as $key => $value): ?>
+        <div class="column" id="Floor<?= $value['id'] ?>">
+          <div class="column-banner"><img src="<?= $value['banner_path'] ?>"></div>
+          <div class="nav-list">
+            <a href="javascript:;" class="cur" data-id=<?= $value['id'] ?>>All</a>
+            <?php foreach ((array)$value['list'] as $k => $v): ?>
+                 <a href="javascript:;" data-id="<?= $v['id'] ?>"><?= $v['name'] ?></a>
+            <?php endforeach ?>
+          </div>
+          <div class="list">
+            <?php foreach ((array)$value['item'] as $k => $v): ?>
+            <div class="item">
+              <a class="read" href="{:U('detail?id='.$v['id'])}">
+              <div class="pic"><img src="<?= $v['path'] ?>"></div>
+              <div class="icon-star-list clearfix">
+                <?php
+                    for ($i=1; $i <= 5 ; $i++) {
+                        if($i<=$v['star']){
+                                echo '<div class="icon-star on"></div>';
+                        }else{
+                                echo '<div class="icon-star"></div>';
+                        }
+                    }
+               ?>
+              </div>
+              <div class="name"><?= $v['name'] ?></div>
+              <div class="price">$<?= $v['bulky_price'] ?></div></a>
+            </div>
+             <?php endforeach ?>
+          </div>
+          <?php if ($value['isMore'] > 4): ?>
+          <a class="loadmore" href="javascript:;" data-id="<?= $value['id'] ?>">MORE+</a>
+          <?php endif ?>
+        </div>
+     <?php endforeach ?>
+  </div>
+<script type="text/javascript">
+$(function(){
+  $(".nav-list a").click(function(){
+      var that= $(this),id=$(this).data('id'),data={};
+      $(this).parent().find('a').removeClass('cur');
+      $(this).addClass('cur');
+        data['id'] = id;
+        data['more'] = 0;
+              $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                data: data,
+                success: function (json) {
+                          that.parent().next().html(json.data);
+                          that.parent().next().next().attr('data-id',id);
+                          if(json.more == 0){
+                              that.parent().next().next().hide();
+                          }else{
+                              that.parent().next().next().show();
+                          }
+            }
+        });
+
+  })
+
+    $("body").delegate(".loadmore",'click',function(){
+             var data={},that= $(this);
+             data['id'] = $(this).attr('data-id');
+             data['more'] = 1;
+              $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                data: data,
+                success: function (json) {
+                          that.prev().html(json.data);
+                          that.hide();
+            }
+        });
+    })
+})
+</script>
+<include file="Public/footer" />

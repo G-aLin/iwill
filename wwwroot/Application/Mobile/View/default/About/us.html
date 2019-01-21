@@ -1,0 +1,25 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+
+ <div class="page-scroll">
+      <div class="about-us-page">
+        <div class="top-banner">
+          <p>About Us</p>
+        </div>
+        <h5><?= $data['title'] ?></h5>
+        <img class="pic" src="<?= $data['img_path'] ?>">
+        <div class="text">
+            <?= $data['content'] ?>
+        </div>
+        <div class="our-team">
+          <h6>OUR TEAM</h6>
+          <p>The Top Pick... Team Members</p>
+          <ul class="list">
+            <?php foreach ($data_img as $key => $value):?>
+              <li><img src="<?= $value['path'] ?>"></li>
+            <?php endforeach ?>
+          </ul>
+        </div>
+      </div>
+
+
+<include file="Public/footer" />

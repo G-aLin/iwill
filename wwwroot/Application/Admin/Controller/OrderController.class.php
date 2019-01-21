@@ -33,17 +33,7 @@ class OrderController extends AdminController {
         foreach ($list as $key=>$value){
             $userInfo = M('ucenter_member')->where(['id'=>$value['uid']])->find();
             $list[$key]['username']    =   $userInfo['username'];
-            $list[$key]['email']    =   $userInfo['email'];
-            $list[$key]['item']    =M('order_item')->where(['order_id'=>$value['id']])->find();
-            $itemName = explode(",", $list[$key]['item']['item_spec_name'] );
-            $itemSpec = explode(",", $list[$key]['item']['item_spec'] );
-            if(!empty($itemName[0])){
-                  $count = count($itemName);
-                    for ($i=0; $i < $count ; $i++) {
-                            $list[$key]['item']['spec_info'] .= $itemName[$i]."：".$itemSpec[$i]."；";
-                    }
-                    $list[$key]['item']['spec_info'] = rtrim($list[$key]['item']['spec_info'],";");
-            }
+            // $list[$key]['email']    =   $userInfo['email'];
         }
 // var_dump($list) ;exit;
         $this->assign('_list', $list);
@@ -68,6 +58,15 @@ class OrderController extends AdminController {
         }
         $this->assign('info', $info);
         $this->assign('list', $list);
+        $this->display();
+    }
+
+        public function detail($id = 0){
+        empty($id) && $this->error('参数错误！');
+        $info = M('order')->field(true)->find($id);
+        $userInfo = M('ucenter_member')->where(['id'=>$info['uid']])->find();
+        $info['username']    =   $userInfo['username'];
+        $this->assign('info', $info);
         $this->display();
     }
 

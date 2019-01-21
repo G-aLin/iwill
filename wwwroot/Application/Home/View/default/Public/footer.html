@@ -1,10 +1,154 @@
+  <div class="footer">
+    <div class="siteinfo">
+      <div class="wrap clearfix">
+        <div class="suggest">
+          <h4>How something to say?</h4>
+            <div class="item">
+                <label>Your name:</label><input type="text" name="name" id="name">
+              </div>
+              <div class="item">
+                <label>Your Email:</label><input type="text" name="email" id="email">
+              </div>
+              <div class="item">
+                <label>Captcha:</label><input class="code" type="text" maxlength="4" id="captcha" style="width:120px">
+                <a href="javascript:;" class="reloadverify"><img class="code-pic verifyimg" src="{:U('Public/verify')}" style="margin-right:16px;width:90px;float:right"></a>
+              </div>
+              <div class="item">
+                <label>Your Inquiry:</label><textarea name="inquiry" id="inquiry"></textarea>
+              </div>
+              <div class="item">
+                <input type="submit" id="submit" value="Submit">
+              </div>
+        </div>
 
-    <!-- 底部
-    ================================================== -->
-    <footer class="footer">
-      <div class="container">
-          <p> 本站由 <strong><a href="http://www.onethink.cn" target="_blank">OneThink</a></strong> 强力驱动</p>
+        <div class="contact-us">
+          <h4>Contact Us</h4>
+          <p><i class="icon-global bg-10"></i><?= $contact['address'] ?></p>
+          <p><i class="icon-global bg-11"></i><?= $contact['call'] ?></p>
+          <p><i class="icon-global bg-12"></i><?= $contact['email'] ?></p>
+          <div class="time">
+            <h4>Opening Times</h4>
+            <p><?= $contact['time'] ?><br />Every Day</p>
+          </div>
+        </div>
+        <div class="our-company">
+          <h4>Our Company</h4>
+          <ul>
+            <li><i class="icon-global bg-13"></i><a href="{:U('Index/index')}">HOME</a></li>
+            <li><i class="icon-global bg-13"></i><a href="{:U('About/us')}">Aout Us</a></li>
+            <li><i class="icon-global bg-13"></i><a href="{:U('Item/lists')}">Product Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="{:U('News/lists')}">News Center</a></li>
+            <li><i class="icon-global bg-13"></i><a href="{:U('About/contact')}">Contact Us</a></li>
+          </ul>
+
+          <div class="friendlink clearfix social-share" data-initialized="true">
+            <a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/friendlink/1.png"></a>
+            <a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/friendlink/2.png"></a>
+            <a href="javascript:;" class="social-share-icon icon-google"><img src="__IMG__/friendlink/3.png"></a>
+      <!--       <a href="javascript:;"><img src="__IMG__/friendlink/4.png"></a>
+            <a href="#"><img src="__IMG__/friendlink/5.png"></a> -->
+          </div>
+          <script src="__STATIC__/social-share.min.js"></script>
+          <script>
+          var $config = {
+              title               : '我是分享标题',
+              description         : '我是分享描述',
+              url   : "http://www.baidu.com",
+              image  : 'http://static2.pinhui001.com/web/image/home/new-index/logo_d.png',
+              sites:['google', 'facebook', 'twitter','weibo']
+          };
+          socialShare('.social-share', $config);
+          </script>
+
+        </div>
       </div>
-    </footer>
+
+    </div>
+    <div class="copyright">
+        © 2005-2018 SHENZHEN I WILL MARKETING CO., LTD. Copyright, All Rights Reserved.<br />
+        C320, 4F, NIULANQIAN BUILDING MINZHI AVENUE, LONGHUA DISTRICT SHENZHEN GUANGDONG 518131 CN E-mail: iwill@iwillcreatepro.com
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      AOS.init({
+        offset: -120,
+        duration: 600,
+        anchorPlacement: 'top-center'
+      });
+
+                    //刷新验证码
+      var verifyimg = $(".verifyimg").attr("src");
+      $(".reloadverify").click(function(){
+            if( verifyimg.indexOf('?')>0){
+                $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+            }else{
+                $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }
+     });
+
+      // banner图轮播
+      jQuery(".banner").slide({ mainCell: ".bd ul", effect: "leftLoop",autoPlay:true,interTime:4500});
+      jQuery(".swiper").slide({mainCell:".swiper-view ul",effect: "leftLoop",autoPlay:true,autoPage: true,vis:3});
+
+      function watchWidth() {
+        // swiper左右按钮定位
+        var w = document.body.clientWidth
+        if(w < 1350) {
+          $('.swiper .prev').css('left', 0)
+          $('.swiper .next').css('right', 0)
+        } else {
+          $('.swiper .prev').removeAttr('style')
+          $('.swiper .next').removeAttr('style')
+        }
+      }
+      watchWidth()
+      $(window).resize(function() {
+        watchWidth()
+      })
+
+      var email_regx =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      $("#submit").click(function(){
+              var data = {};
+              data['name'] = $("#name").val() ;
+              data['email'] =  $("#email").val() ;
+              data['captcha'] =  $("#captcha").val() ;
+              data['inquiry'] =  $("#inquiry").val() ;
+
+                if (data['name'] .length == 0) {
+                     layer.msg('{$Think.lang.tips_1}');
+                    return false;
+                }else if (data['email'] .length == 0) {
+                     layer.msg('{$Think.lang.tips_2}');
+                    return false;
+                }else if(!email_regx.test(data['email'] )) {
+                    layer.msg('{$Think.lang.tips_5}');
+                    return false;
+                 }else if (data['captcha'] .length == 0) {
+                     layer.msg('{$Think.lang.tips_3}');
+                    return false;
+                }else if (data['inquiry'] .length == 0) {
+                     layer.msg('{$Think.lang.tips_4}');
+                    return false;
+                }
+
+              $.ajax({
+                  url:"{:U('Send/message')}",
+                  type: "post",
+                  data: data,
+                  success: function (result) {
+                       layer.msg(result.info);
+                       if(result.status == 1){
+                          $("#name").val('') ;
+                          $("#email").val('') ;
+                          $("#captcha").val('') ;
+                          $("#inquiry").val('') ;
+                       }
+                  }
+            });
+      })
+  })
+</script>
 </body>
 </html>

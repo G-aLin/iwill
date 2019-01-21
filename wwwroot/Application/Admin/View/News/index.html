@@ -59,7 +59,7 @@
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['title'] ?></td>
                         <td><?= $value['publish_time']?></td>
-                        <td><a class="ajax-get" href="{:U('news/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td><a class="ajax-get" href="{:U('news/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                         <td>
                         <a href="{:U('news/edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('news/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>

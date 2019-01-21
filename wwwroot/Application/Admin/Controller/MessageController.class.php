@@ -24,17 +24,18 @@ class MessageController extends AdminController {
         $map['status']    =   array('gt', -1);
         $map['type']    =   array('eq', 1);
            if(isset($_GET['name'])){
-            $where['username']    =   array('like', '%'.(string)I('name').'%');
-            $userInfo = M('ucenter_member')->field('id')->where($where)->select();
-            $ids = array_column($userInfo, 'id');
-              $map['uid'] = $ids ? array('in', $ids) : 0;
+            // $where['username']    =   array('like', '%'.(string)I('name').'%');
+            // $userInfo = M('ucenter_member')->field('id')->where($where)->select();
+            // $ids = array_column($userInfo, 'id');
+            //   $map['uid'] = $ids ? array('in', $ids) : 0;
+            $map['name']    =   array('like', '%'.(string)I('name').'%');
         }
         $list   =   $this->lists('message', $map);
         int_to_string($list);
         foreach ($list as $key=>$value){
             $userInfo = M('ucenter_member')->where(['id'=>$value['uid']])->find();
             $list[$key]['username']    =   $userInfo['username'];
-            $list[$key]['email']    =   $userInfo['email'];
+            // $list[$key]['email']    =   $userInfo['email'];
             $list[$key]['item']    =  M('item')->where(['id'=>$value['item_id']])->getField('name');
         }
         $this->assign('_list', $list);

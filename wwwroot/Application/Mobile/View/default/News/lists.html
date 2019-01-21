@@ -1,0 +1,59 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+
+
+   <div class="page-scroll">
+      
+      <div class="organizing-tips-page">
+        <div class="top-banner">
+          <p>Organizing Tips</p>
+        </div>
+        
+        <div class="organizing-tips">
+          <h5>Latest News</h5>
+          <div class="list"  id="list">
+ <?php foreach ($list as $key => $value): ?>
+            <div class="item">
+              <div class="pic"><img src="<?= $value['path'] ?>"></div>
+              <div class="info">
+                <div class="time"><i class="icon-global bg-11"></i> <?= $value['month'] ?> <?= $value['day'] ?>,<?= $value['year'] ?></div>
+                <div class="name"><?= $value['title'] ?></div>
+                <div class="desc"><?= $value['digest'] ?> [....]</div>
+                <a class="more" href="{:U('News/detail?id='.$value['id'])}">Read More</a>
+              </div>
+            </div>
+      <?php endforeach ?>
+          </div>
+          <?php if ($more == 1): ?>
+          <a href="javascript:;" class="loadmore">MORE+</a>
+          <?php endif ?>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+    <script>
+    $('.list').on('click', '.icon-switch', function() {
+      if ($(this).hasClass('on')) {
+        $(this).removeClass('on')
+        $(this).siblings('.desc').slideUp()
+      } else {
+        $(this).addClass('on')
+        $(this).siblings('.desc').slideDown()
+      }
+    })
+
+    $(".loadmore").click(function(){
+          $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                success: function (json) {
+                      $("#list").append(json.data);
+                      $(".loadmore").hide();
+            }
+        });
+    })
+  </script>
+</body>
+</html>

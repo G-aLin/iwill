@@ -1,0 +1,53 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<div class="page-scroll">
+
+      <div class="comment-page">
+        <div class="list" id="list">
+      <?php foreach ($list as $key => $value): ?>
+          <div class="item">
+            <div class="pro">
+              <div class="pic"><img src="<?= get_item_picture($value['item_id']) ?>"></div>
+              <div class="desc">
+                <div class="name"><?= get_item_name($value['item_id'])?></div>
+                <div class="score">
+                  Score:
+                  <div class="icon-star-list clearfix">
+                     <?php
+                          for ($i=1; $i <= 5 ; $i++) {
+                              if($i<=$value['star']){
+                                      echo '<i class="icon-star  on"></i>';
+                              }else{
+                                      echo '<i class="icon-star "></i>';
+                              }
+                          }
+                     ?>
+                  </div>
+                </div>
+                <div class="darwin">Darwin: <span><?= $value['create_time'] ?></span></div>
+              </div>
+            </div>
+            <div class="comment">
+              <h6>Comment</h6>
+              <p><?= $value['content'] ?></p>
+            </div>
+          </div>
+      <?php endforeach ?>
+        </div>
+          <?php if ($more == 1): ?>
+          <a href="javascript:;" class="loadmore">MORE+</a>
+          <?php endif ?>
+      </div>
+    <script>
+    $(".loadmore").click(function(){
+          $.ajax({
+                url:"morecomment.html",
+                type: "post",
+                dataType: "JSON",
+                success: function (json) {
+                      $("#list").append(json.data);
+                      $(".loadmore").hide();
+            }
+        });
+    })
+  </script>
+<include file="Public/footer" />

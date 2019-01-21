@@ -1,0 +1,37 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/master.css">
+
+  <div class="top-header">
+    <p data-aos="flip-left"><span>Organizing Tips</span></p>
+  </div>
+
+  <div class="organizing-page">
+    <h2>Latest News</h2>
+    <div class="wrapper-list">
+      <div class="list clearfix">
+        <?php foreach ($data as $key => $value):
+        ++$key
+        ?>
+        <div class="item" data-aos="fade-up" data-aos-delay="<?= $key*100 ?>">
+          <div class="info">
+            <div class="time"><i class="icon-global bg-18"></i><?= $value['month'] ?> <?= $value['day'] ?>,<?= $value['year'] ?></div>
+            <div class="title"><a href="{:U('News/detail?id='.$value['id'])}"><?= $value['title'] ?></a></div>
+            <div class="describe"><?= $value['digest'] ?> [....]</div>
+            <a class="read" href="{:U('News/detail?id='.$value['id'])}">Read More</a>
+          </div>
+          <div class="pic">
+            <img src="<?= $value['path'] ?>">
+          </div>
+        </div>
+      <?php endforeach ?>
+
+      </div>
+      <div class="paging">
+        <?= $_page ?>
+      </div>
+    </div>
+  </div>
+
+
+
+<include file="Public/footer" />

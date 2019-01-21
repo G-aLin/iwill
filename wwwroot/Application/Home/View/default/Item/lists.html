@@ -1,0 +1,93 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/passport.css">
+
+  <div class="header-box"></div>
+
+  <div class="pro-list-page">
+    <h4>Shop Products</h4>
+<?php foreach ($data as $key => $value): ?>
+ <div class="column" id="Floor<?= $value['id'] ?>">
+      <div class="column-banner" style="background-image: url('<?= $value['banner_path'] ?>');"></div>
+      <div class="wrapper">
+        <div class="tab-list" >
+          <ul>
+            <li class="cur" data-id=<?= $value['id'] ?>>All</li>
+            <?php foreach ((array)$value['list'] as $k => $v): ?>
+                 <li data-id="<?= $v['id'] ?>"><?= $v['name'] ?></li>
+            <?php endforeach ?>
+          </ul>
+        </div>
+        <div class="pro-list">
+          <ul class="clearfix">
+           <?php foreach ((array)$value['item'] as $k => $v): ?>
+            <li>
+            <a class="read" href="{:U('detail?id='.$v['id'])}">
+              <div class="pic"><img src="<?= $v['path'] ?>"></div>
+              <div class="star-list clearfix">
+              <?php
+                    for ($i=1; $i <= 5 ; $i++) {
+                        if($i<=$v['star']){
+                                echo '<i class="star on"></i>';
+                        }else{
+                                echo '<i class="star"></i>';
+                        }
+                    }
+               ?>
+              </div>
+              <div class="name"><?= $v['name'] ?></div>
+              <div class="price"><span></span><span>$<?= $v['bulky_price'] ?></span></div></a>
+            </li>
+       <?php endforeach ?>
+          </ul>
+        </div>
+<?php if ($value['isMore'] > 4): ?>
+    <a class="loadmore" href="javascript:;" data-id="<?= $value['id'] ?>">MORE+</a>
+<?php endif ?>
+      </div>
+    </div>
+   <?php endforeach ?>
+  </div>
+<script type="text/javascript">
+$(function(){
+  $(".tab-list ul li").click(function(){
+      var that= $(this),id=$(this).data('id'),data={};
+      $(this).parent().find('li').removeClass('cur');
+      $(this).addClass('cur');
+        data['id'] = id;
+        data['more'] = 0;
+              $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                data: data,
+                success: function (json) {
+                          that.parent().parent().next().find('ul').html(json.data);
+                          that.parent().parent().next().next().attr('data-id',id);
+                          if(json.more == 0){
+                              that.parent().parent().next().next().hide();
+                          }else{
+                              that.parent().parent().next().next().show();
+                          }
+            }
+        });
+
+  })
+
+    $("body").delegate(".loadmore",'click',function(){
+             var data={},that= $(this);
+             data['id'] = $(this).attr('data-id');
+             data['more'] = 1;
+              $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                data: data,
+                success: function (json) {
+                          that.prev().find('ul').html(json.data);
+                          that.hide();
+            }
+        });
+    })
+})
+</script>
+<include file="Public/footer" />

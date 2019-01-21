@@ -50,7 +50,7 @@
                         <td><?= $value['name'] ?></td>
                         <td><?= $value['spec'] ?></td>
                         <td><?= date('Y-m-d H:i:s',$value['create_time']) ?></td>
-                        <td><a class="ajax-get" href="{:U('item/setspec_status',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td><a class="ajax-get" href="{:U('item/setspec_status',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                         <td>
                         <a href="{:U('item/spec_edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('item/spec_delete','id='.$value['id'])}" class="ajax-get">删除</a>

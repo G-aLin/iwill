@@ -941,6 +941,18 @@ function get_cover($cover_id, $field = null){
     return empty($field) ? $picture : $picture[$field];
 }
 
+function get_picture($id){
+    return M('Picture')->where(array('status'=>1,'id'=>$id))->getField('path');
+}
+
+function get_item_picture($id){
+    return M('item_pic b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$id,'b.type'=>2])->order('b.id asc')->getField('p.path');
+}
+
+function get_item_name($id){
+    return M('item')->where(array('status'=>1,'id'=>$id))->getField('name');
+}
+
 /**
  * 检查$pos(推荐位的值)是否包含指定推荐位$contain
  * @param number $pos 推荐位的值

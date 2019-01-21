@@ -1,16 +1,16 @@
 ;$(function () {
-  
+
   $(document).scroll(function () {
     var scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     if (scrollTop > 500) {
-      if(!$('.header').hasClass('fixed') && !$('.header').hasClass('finish')){
-        $('.header').addClass('fixed').animate({'top': 0}, 200, function (){
+      if(!$('.header-abs').hasClass('fixed') && !$('.header-abs').hasClass('finish')){
+        $('.header-abs').addClass('fixed').animate({'top': 0}, 200, function (){
           $(this).addClass('finish').removeAttr('style')
         })
       }
     } else {
-      if($('.header').hasClass('fixed') && $('.header').hasClass('finish') && !$('.header').is(':animated')) {
-        $('.header').animate({'top': '-81px'}, 200, function () {
+      if($('.header-abs').hasClass('fixed') && $('.header-abs').hasClass('finish') && !$('.header-abs').is(':animated')) {
+        $('.header-abs').animate({'top': '-81px'}, 200, function () {
           $(this).removeClass('fixed finish').removeAttr('style')
         })
       }
@@ -31,6 +31,7 @@
       })
     }
   })
+
 })
 
 function ShowSubMenu(_this) {

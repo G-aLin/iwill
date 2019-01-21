@@ -18,37 +18,59 @@ class UserController extends HomeController {
 
 	/* 用户中心首页 */
 	public function index(){
-	echo 11;
+                        $uid = session('user_auth')['uid'] ;
+                        if(IS_POST){
+                        $data = I('post.');
+                        $memberM = M("member");
+                        $Sqldata =[
+                                'uid'=>$uid,
+                                'sex'=>$data['sex'],
+                                'phone'=>$data['phone'],
+                                'birthday'=>$data['birthday'],
+                                'country'=>$data['country'],
+                            ];
+                        $res = $memberM->data($Sqldata)->save();
+                            if($res !== false){ //成功
+                                $this->success('Submit successfully！',U('index'));
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                            }
+                        }else{
+                                $this->get_page_info(1);
+                                $this->assign('fixed',1);//
+                                $data  =M('member')->where(['uid'=>$uid])->find();
+                                $this->assign('data',$data);//
+                                $country  =M('country')->where(['status'=>1])->order('level desc')->select();
+                                $this->assign('country',$country);//
+                                $this->display();
+                        }
+
 	}
 
 	/* 注册页面 */
 	public function register($username = '', $password = '', $repassword = '', $email = '', $verify = ''){
-        if(!C('USER_ALLOW_REGISTER')){
-            $this->error('注册已关闭');
-        }
 		if(IS_POST){ //注册用户
-			/* 检测验证码 */
-			if(!check_verify($verify)){
-				$this->error('验证码输入错误！');
-			}
-
-			/* 检测密码 */
-			if($password != $repassword){
-				$this->error('密码和重复密码不一致！');
-			}
-
+                                     /* 检测 */
+                                        if(empty($username)){
+                                            $this->error('Account name is empty');
+                                        }
+                                          if(empty($password)){
+                                            $this->error('password is empty');
+                                        }
 			/* 调用注册接口注册用户 */
-            $User = new UserApi;
+                                       $User = new UserApi;
+                                       $email = $username ;
 			$uid = $User->register($username, $password, $email);
 			if(0 < $uid){ //注册成功
 				//TODO: 发送验证邮件
-				$this->success('注册成功！',U('login'));
+				$this->success('successfully！',U('index'));
 			} else { //注册失败，显示错误信息
 				$this->error($this->showRegError($uid));
 			}
 
 		} else { //显示注册表单
-			$this->display();
+                                       $this->assign('register',1);//列表
+			$this->display('login');
 		}
 	}
 
@@ -56,10 +78,12 @@ class UserController extends HomeController {
 	public function login($username = '', $password = '', $verify = ''){
 		if(IS_POST){ //登录验证
 			/* 检测验证码 */
-			if(!check_verify($verify)){
-				$this->error('验证码输入错误！');
-			}
-
+			  if(empty($username)){
+                                            $this->error('Account name is empty');
+                                        }
+                                          if(empty($password)){
+                                            $this->error('password is empty');
+                                        }
 			/* 调用UC登录接口登录 */
 			$user = new UserApi;
 			$uid = $user->login($username, $password);
@@ -68,7 +92,7 @@ class UserController extends HomeController {
 				$Member = D('Member');
 				if($Member->login($uid)){ //登录用户
 					//TODO:跳转到登录前页面
-					$this->success('登录成功！',U('Home/Index/index'));
+					$this->success('successfully！',U('Home/Index/index'));
 				} else {
 					$this->error($Member->getError());
 				}
@@ -79,6 +103,7 @@ class UserController extends HomeController {
 					case -2: $error = '密码错误！'; break;
 					default: $error = '未知错误！'; break; // 0-接口参数错误（调试阶段使用）
 				}
+                                                    $error ="Incorrect user or password";
 				$this->error($error);
 			}
 
@@ -126,8 +151,8 @@ class UserController extends HomeController {
 	/* 退出登录 */
 	public function logout(){
 		if(is_login()){
-			D('Member')->logout();
-			$this->success('退出成功！', U('User/login'));
+		D('Member')->logout();
+                                   $this->redirect('User/login');
 		} else {
 			$this->redirect('User/login');
 		}
@@ -146,10 +171,22 @@ class UserController extends HomeController {
 	 */
 	private function showRegError($code = 0){
 		switch ($code) {
-			case -1:  $error = '用户名长度必须在16个字符以内！'; break;
+// case -1:  $error = '用户名长度必须在16个字符以内！'; break;
+// case -2:  $error = '用户名被禁止注册！'; break;
+// case -3:  $error = '用户名被占用！'; break;
+// case -4:  $error = 'Password length must be between 6 and 30 characters！'; break;
+// case -5:  $error = '邮箱格式不正确！'; break;
+// case -6:  $error = '邮箱长度必须在1-32个字符之间！'; break;
+// case -7:  $error = '邮箱被禁止注册！'; break;
+// case -8:  $error = '邮箱被占用！'; break;
+// case -9:  $error = '手机格式不正确！'; break;
+// case -10: $error = '手机被禁止注册！'; break;
+// case -11: $error = '手机号被占用！'; break;
+// default:  $error = '未知错误';
+                                        case -1: $error = '用户名长度必须在16个字符以内！'; break;
 			case -2:  $error = '用户名被禁止注册！'; break;
-			case -3:  $error = '用户名被占用！'; break;
-			case -4:  $error = '密码长度必须在6-30个字符之间！'; break;
+			case -3:  $error = 'User name occupied！'; break;
+			case -4:  $error = 'Password length must be between 6 and 30 characters！'; break;
 			case -5:  $error = '邮箱格式不正确！'; break;
 			case -6:  $error = '邮箱长度必须在1-32个字符之间！'; break;
 			case -7:  $error = '邮箱被禁止注册！'; break;
@@ -167,22 +204,22 @@ class UserController extends HomeController {
      * 修改密码提交
      * @author huajie <banhuajie@163.com>
      */
-    public function profile(){
-		if ( !is_login() ) {
-			$this->error( '您还没有登陆',U('User/login') );
-		}
+    public function Changepassword(){
+        if ( !is_login() ) {
+		$this->error( '您还没有登陆',U('User/login') );
+}
         if ( IS_POST ) {
             //获取参数
             $uid        =   is_login();
             $password   =   I('post.old');
             $repassword = I('post.repassword');
             $data['password'] = I('post.password');
-            empty($password) && $this->error('请输入原密码');
-            empty($data['password']) && $this->error('请输入新密码');
-            empty($repassword) && $this->error('请输入确认密码');
+            empty($password) && $this->error('Please enter the original password');
+            empty($data['password']) && $this->error('Please enter the new password');
+            empty($repassword) && $this->error('Please enter the confirm password');
 
             if($data['password'] !== $repassword){
-                $this->error('您输入的新密码与确认密码不一致');
+                $this->error(' new password does not match the confirmation password ');
             }
 
             $Api = new UserApi();
@@ -195,6 +232,108 @@ class UserController extends HomeController {
         }else{
             $this->display();
         }
+    }
+
+        /* 用户 */
+    public function collection(){
+                        $uid = session('user_auth')['uid'] ;
+                        if(IS_POST){
+                        $data = I('post.');
+                        $memberM = M("member");
+                        $Sqldata =[
+                                'uid'=>$uid,
+                                'sex'=>$data['sex'],
+                                'phone'=>$data['phone'],
+                                'birthday'=>$data['birthday'],
+                                'country'=>$data['country'],
+                            ];
+                        $res = $memberM->data($Sqldata)->save();
+                            if($res !== false){ //成功
+                                $this->success('Submit successfully！',U('index'));
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                            }
+                        }else{
+                                $this->get_page_info(1);
+                                $this->assign('fixed',1);//
+
+                                $count = M('collection')->where(['uid'=>$uid,'status'=>1])->count();
+                                $page = new \Think\Page($count,12);
+                                $data =M('collection')->where(['uid'=>$uid,'status'=>1])->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
+                                $page->setConfig('prev','Prev page');
+                                $page->setConfig('next','Next page');
+                                $pageStyle = $page->show();
+                                // var_dump($data);exit;
+                                $this->assign('_page',$pageStyle);
+                                $this->assign('data',$data);
+
+                                $this->display();
+                        }
+
+    }
+
+            /* 用户中心首页 */
+    public function comment(){
+                $uid = session('user_auth')['uid'] ;
+                $this->get_page_info(1);
+                $this->assign('fixed',1);//
+
+                $count = M('comment')->where(['uid'=>$uid])->count();
+                $page = new \Think\Page($count,8);
+                $data =M('comment')->where(['uid'=>$uid])->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
+                $page->setConfig('prev','Prev page');
+                $page->setConfig('next','Next page');
+                $pageStyle = $page->show();
+ // var_dump($data);exit;
+                $this->assign('_page',$pageStyle);
+                $this->assign('data',$data);
+                $this->display();
+    }
+
+                /* 用户 */
+    public function inquiry(){
+                    $uid = session('user_auth')['uid'] ;
+                    $this->get_page_info(1);
+                    $this->assign('fixed',1);//
+
+                    $count = M('order')->where(['uid'=>$uid,'status'=>1])->count();
+                    $page = new \Think\Page($count,8);
+                    $data =M('order')->where(['uid'=>$uid,'status'=>1])->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
+                    $page->setConfig('prev','Prev page');
+                    $page->setConfig('next','Next page');
+                    $pageStyle = $page->show();
+                    // var_dump($data);exit;
+                    $this->assign('_page',$pageStyle);
+                    $this->assign('data',$data);
+                    $this->display();
+    }
+
+                    /* 用户 */
+    public function inquirydetail(){
+            $uid = session('user_auth')['uid'] ;
+            $this->get_page_info(1);
+            $this->assign('fixed',1);
+            $id   =   I('get.id');
+            $data  =M('order')->where(['id'=>$id,'status'=>1])->find();
+      // var_dump($data);exit;
+            $this->assign('data',$data);//
+            $this->display();
+    }
+
+                /* 用户cancelcollection页 */
+    public function cancelcollection(){
+                        $uid = session('user_auth')['uid'] ;
+                        if($uid && IS_POST){
+                        $ids = trim(I('post.ids'),",");
+                        $map['uid']  = $uid;
+                        $map['id']  = array('in',$ids);
+                        $res = M('collection')->where($map)->delete();
+                            if($res !== false){ //成功
+                                $this->success('Submit successfully！',U('index'));
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                            }
+                        }
     }
 
 }

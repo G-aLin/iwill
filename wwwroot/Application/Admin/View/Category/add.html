@@ -25,11 +25,68 @@
 
 
             <div class="form-item cf">
+                    <label class="item-label">类型<span class="check-tips"></span></label>
+                    <div class="controls">
+                    <select name="pid">
+                                <option value="0">一级分类</option>
+                                <?php foreach ($type as $key => $value): ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php endforeach ?>
+                    </select>
+                    </div>
+            </div>
+
+
+            <div class="form-item cf">
                     <label class="item-label">名称</label>
                     <div class="controls">
                         <input type="text" value="" name="name" class="text input-large">
                     </div>
             </div>
+
+               <div class="form-item cf">
+                    <label class="item-label">banner图片<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <div class="controls">
+                                    <input type="file" id="upload_picture_2">
+                                    <input type="hidden" name="banner_id" id="banner_id"/>
+                                    <div class="upload-img-box">
+                                    <notempty name="banner_id">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+                        <script type="text/javascript">
+                            /* 初始化上传插件 */
+                            $("#upload_picture_2").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_2
+                                });
+
+                                function uploadPicture_2(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#banner_id").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#banner_id").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+                        </script>
+                        </div>
+                </div>
 
                 <div class="form-item cf">
                     <label class="item-label">列表图片<span class="check-tips"></span></label>
@@ -88,10 +145,10 @@
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
                         <label class="radio">
-                                <input type="radio" name="status" value="1" checked>发布
+                                <input type="radio" name="status" value="1" checked>启用
                         </label>
                         <label class="radio">
-                                <input type="radio" name="status" value="0">下架
+                                <input type="radio" name="status" value="0">停用
                         </label>
                     </div>
             </div>

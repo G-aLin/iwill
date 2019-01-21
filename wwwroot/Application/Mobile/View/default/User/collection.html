@@ -1,0 +1,76 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<style type="text/css">
+.layui-layer-btn a{font-size:0.5em;}
+</style>
+    <div class="page-scroll">
+
+      <div class="my-collection-page">
+        <h5><label><input type="checkbox" id="check-all"><span class="simulate"></span><span class="name">All</span></label><a class="handle" href="javascript:;" id="Cancel">Cancel collection</a></h5>
+        <div class="list"  id="list">
+ <?php foreach ($list as $key => $value): ?>
+          <div class="item">
+            <label><input type="checkbox" data-id="<?= $value['id'] ?>" class="check-box-js"><span class="simulate"></span></label>
+            <div class="pic"><img src="<?= get_item_picture($value['id']) ?>"></div>
+            <div class="name"><?= get_item_name($value['id']) ?></div>
+          </div>
+  <?php endforeach ?>
+
+        </div>
+         <?php if ($more == 1): ?>
+          <a href="javascript:;" class="loadmore">MORE+</a>
+          <?php endif ?>
+      </div>
+
+<script type="text/javascript">
+$(function(){
+  $("#check-all").click(function(){
+      if($(this).is(':checked')){
+          $(".check-box-js").prop("checked",true);
+      }else{
+         $(".check-box-js").prop("checked",false);
+      }
+  })
+
+    $(".loadmore").click(function(){
+          $.ajax({
+                url:"morecollection.html",
+                type: "post",
+                dataType: "JSON",
+                success: function (json) {
+                      $("#list").append(json.data);
+                      $(".loadmore").hide();
+            }
+        });
+    })
+
+$("#Cancel").click(function(){
+  var ii = layer.confirm('Are you sure you want to delete it?', {
+      title:'',
+      btn: ['yes','no'] //按钮
+    }, function(){
+              layer.close(ii);
+              var data={};
+              data['ids'] ='';
+              $(".check-box-js").each(function(){
+                  if ($(this).is(':checked')) {
+                    data['ids'] += $(this).data('id')+',';
+                  }
+              });
+              if(data['ids'] == ''){
+                  layer.msg('Please choose the items.');
+                  return false;
+              }
+               layer.load();
+              $.post('{:U("cancelcollection")}', data, success, "json");
+                return false;
+              function success(data){
+                  location.reload();
+                }
+    }, function(){
+    });
+});
+
+
+})
+</script>
+<include file="Public/footer" />

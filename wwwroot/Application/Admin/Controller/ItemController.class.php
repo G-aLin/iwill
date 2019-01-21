@@ -278,6 +278,11 @@ class ItemController extends AdminController {
     public function add(){
         //获取左边菜单
         $this->getMenu();
+        $map['pid']  = array('gt',0);
+        $map['status']  = 1;
+        $type = M('item_category')->where($map)->select();
+        $this->assign('type', $type);
+
         $this->display();
     }
 
@@ -307,6 +312,10 @@ class ItemController extends AdminController {
         //获取当前分类的文档类型
         $this->assign('data', $data);
         $this->assign('picData', $picData);
+        $map['pid']  = array('gt',0);
+        $map['status']  = 1;
+        $type = M('item_category')->where($map)->select();
+        $this->assign('type', $type);
         $this->display();
     }
 
@@ -321,8 +330,17 @@ class ItemController extends AdminController {
         }
         // 获取详细数据
         $data  =M('item_spec')->where(['id'=>$id])->find();
+        $spec = explode(',',$data['spec']);
+        $spec_img = explode(',',$data['spec_img']);
+        $img = [];
+         foreach ($spec_img as $key => $value) {
+            $img[] = M('picture')->where(['id'=>$value ])->getField('path');
+         }
         //获取当前分类的文档类型
         $this->assign('data', $data);
+        $this->assign('spec', $spec);
+        $this->assign('spec_img', $spec_img);
+        $this->assign('img', $img);
         $this->display();
     }
 
@@ -340,9 +358,18 @@ class ItemController extends AdminController {
         $commend = join(",",$data['position']);
         $Sqldata =[
                 'name'=>$data['name'],
+                'category_id'=>$data['category_id'],
                 'stock'=>$data['stock'],
+                'amazon'=>$data['amazon'],
+                'jd'=>$data['jd'],
+                'taobao'=>$data['taobao'],
+                'star'=>$data['star'],
+                'sku'=>$data['sku'],
                 'status'=>$data['status'],
+                'bulky_price'=>$data['bulky_price'],
                 'desc'=>$data['content'],
+                'description'=>$data['description'],
+                'packaging_and_shipping'=>$data['packaging_and_shipping'],
                 'price_range'=>$data['price_range'],
                 'price'=>$data['price'],
                 'sort'=>$data['sort'],
@@ -380,6 +407,9 @@ class ItemController extends AdminController {
      if($data['picture_6']){
          $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_6'],'create_time'=>time());
      }
+      if($data['picture_7']){
+         $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_7'],'create_time'=>time());
+     }
       if($dataList){
          $ItemPic->addAll($dataList);
      }
@@ -391,10 +421,15 @@ class ItemController extends AdminController {
         if(empty($data['name'])){
              $this->error('请输入规格名称');
         }
-        if(empty($data['spec'])){
-             $this->error('请输入规格参数');
-        }
-        $Item = M("item_spec");
+      $Item = M("item_spec");
+      $data['spec'] = array_filter($data['spec']);
+      $spec_img = [];
+       foreach ($data['spec']  as $key => $value) {
+          $img_key = "picture_".$key;
+          $spec_img[] =   $data[$img_key];
+       }
+        $data['spec'] = join(",",$data['spec']);
+        $data['spec_img'] = join(",",$spec_img);
         $data['create_time'] = time();
         if($data['id']){
             $res = $Item->data($data)->save();

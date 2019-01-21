@@ -1,0 +1,67 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+
+ <div class="page-scroll">
+      
+      <div class="member-page">
+        <div class="member">
+          <div class="avator"><img src="__IMG__/17.png"></div>
+          <p>Welcome, <a class="c-green" href="javascript:;"><?= session('user_auth')['username']?></a></p>
+        </div>
+        <div class="nav-list">
+          <a href="javascript:;"><i class="icon-global bg-13"></i>Personal information</a>
+          <a href="{:U('inquiry')}"><i class="icon-global bg-13"></i>My inquiry</a>
+          <a href="{:U('collection')}"><i class="icon-global bg-13"></i>My collection</a>
+          <a href="{:U('comment')}"><i class="icon-global bg-13"></i>My comment</a>
+          <a href="{:U('changepassword')}"><i class="icon-global bg-13"></i>Change Password</a>
+        </div>
+        <form class="login-form form-horizontal" action="index.html" method="post">
+        <div class="form">
+         
+          <div class="item">
+            <h6>Gender</h6>
+           <select name="sex">
+                    <option value="1" <?php if ($data['sex'] == 1): ?>selected<?php endif ?>>male</option>
+                    <option value="2" <?php if ($data['sex'] == 2): ?>selected<?php endif ?>>female</option>
+            </select>
+          </div>
+        
+          <div class="item">
+            <h6>Phone Number</h6>
+            <input type="text" name="phone" value="<?= $data['phone']?>">
+          </div>
+          <div class="item">
+            <h6>Date of birth</h6>
+           <input type="date" class="time" name="birthday" value="<?= $data['birthday']?>">
+          </div>
+          <div class="item">
+            <h6>Country</h6>
+             <select name="country">
+                    <?php foreach ($country as $key => $value): ?>
+                         <option value="<?= $value['name']?>" <?php if ($value['name'] == $data['country'] ): ?>selected<?php endif ?>><?= $value['name']?></option>
+                    <?php endforeach ?>
+                    </select>
+          </div>
+          <input type="submit" value="Submit" class="ajax-post" target-form="form-horizontal">
+        </div>
+        </form>
+      </div>
+
+<script type="text/javascript">
+    $("form").submit(function(){
+        var self = $(this);
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+          if(data.status){
+            layer.msg(data.info,{anim: 1},function(){
+                 window.location.href = data.url;
+            })
+          } else {
+            alert(data.info)
+          }
+        }
+      });
+</script>
+
+<include file="Public/footer" />

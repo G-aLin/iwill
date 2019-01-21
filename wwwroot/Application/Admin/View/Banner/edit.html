@@ -28,8 +28,8 @@
                     <div class="controls">
                     <select name="type">
                                 <option value="1" <?php if ($data['type'] == 1): ?>selected<?php endif ?>>首页banner</option>
-                                <option value="2" <?php if ($data['type'] == 2): ?>selected<?php endif ?>>首页banner2</option>
-                                <option value="3" <?php if ($data['type'] == 3): ?>selected<?php endif ?>>首页banner3</option>
+                                <option value="3" <?php if ($data['type'] == 3): ?>selected<?php endif ?>>促销banner</option>
+                                <option value="4" <?php if ($data['type'] == 4): ?>selected<?php endif ?>>促销广告</option>
                     </select>
                     </div>
             </div>
@@ -98,10 +98,10 @@
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
                         <label class="radio">
-                                <input type="radio" name="status" value="1"  <?php if ($data['status'] == 1): ?>checked<?php endif ?>>发布
+                                <input type="radio" name="status" value="1"  <?php if ($data['status'] == 1): ?>checked<?php endif ?>>启用
                         </label>
                         <label class="radio">
-                                <input type="radio" name="status" value="0"  <?php if ($data['status'] == 0): ?>checked<?php endif ?>>下架
+                                <input type="radio" name="status" value="0"  <?php if ($data['status'] == 0): ?>checked<?php endif ?>>停用
                         </label>
                     </div>
             </div>

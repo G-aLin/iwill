@@ -19,8 +19,8 @@
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
 function check_verify($code, $id = 1){
-	$verify = new \Think\Verify();
-	return $verify->check($code, $id);
+    $verify = new \Think\Verify();
+    return $verify->check($code, $id);
 }
 
 /**
@@ -75,4 +75,8 @@ function get_page_info($id){
         $info= M('seo')->where(['id'=>$id])->field('title,keywords,description')->find();
     }
     return $info;
+}
+
+function get_order_id(){
+    return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
 }

@@ -1,0 +1,68 @@
+
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/layout.css">
+
+  <div class="header-box"></div>
+
+
+  <div class="layout-two-col">
+    <div class="wrapper clearfix">
+      <div class="sideNav">
+        <ul>
+        <li><a  href="{:U('index')}"><i class="icon-global bg-4"></i>Personal information</a></li>
+          <li><a class="active" href="javascript:;"><i class="icon-global bg-4"></i>My inquiry</a></li>
+          <li><a href="{:U('collection')}"><i class="icon-global bg-4"></i>My collection</a></li>
+          <li><a href="{:U('comment')}"><i class="icon-global bg-4"></i>My comment</a></li>
+          <li><a href="{:U('changepassword')}"><i class="icon-global bg-4"></i>Change Password</a></li>
+        </ul>
+      </div>
+      <div class="contain">
+        <div class="inquiry-detail-page">
+          <h4>Inquiry details</h4>
+          <div class="inquiry-contain">
+            <div class="inquiry-pro clearfix">
+              <div class="pic">
+                <img src="<?= $data['path']?>">
+              </div>
+              <div class="order-detail">
+                <div class="order-id">Order ID: #<?= $data['orderno']?></div>
+                <div class="desc"><?= $data['name']?></div>
+                <div class="specification">
+               <?php
+                $spec = explode(",", $data['spec']);
+                ?>
+                <?php foreach ((array)$spec as $key => $value): ?>
+                  <p><?= $value ?></p>
+                <?php endforeach ?>
+                  <p>SKU.:   <?= $data['sku']?></p>
+                  <p>Quantity: <?= $data['num']?></p>
+                  <p>Unit price: $<?= $data['unit_price']?></p>
+                </div>
+                <div class="total">
+                  <p>Subtotal :  <?= $data['total']?></p>
+                  <p>Shipping :  $0.00</p>
+                  <p>Taxes :    $0.00</p>
+                  <p>Total :   $<?= $data['total']?></p>
+                </div>
+              </div>
+            </div>
+            <div class="inquiry-user">
+              <p>Name: <?= $data['first_name']?> <?= $data['last_name']?></p>
+              <p>Country: <?= $data['country']?></p>
+              <p>Zip Code: <?= $data['zip_code']?></p>
+              <p>City: <?= $data['city']?></p>
+              <p>State/Territory:  <?= $data['state']?></p>
+              <p>Address Line1: <?= $data['address_line1']?></p>
+              <p>Address Line2: <?= $data['address_line2']?></p>
+              <p>Phone Number: <?= $data['phone']?></p>
+              <p>leave comments: <?= $data['comments']?></p>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<include file="Public/footer" />

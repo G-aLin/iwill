@@ -18,23 +18,40 @@ class SendController extends HomeController {
 
 
     public function send_message(){
-        echo 11;exit;
         $data = I('post.');
-        empty($data['content']) && $this->error('请输入回复内容！');
+        empty($data['email']) && $this->error(L('tips_2'));
         $mail = new \Think\Mail();
-        $res =  $mail->SendMail($data['email'],$data['item'],$data['content'],'我是发件人');
+        $res =  $mail->SendMail($data['email'],$data['name'],$data['inquiry'],'我是发件人');
         if($res){
-            $Sqldata =[
-                'uid'=>session('user_auth.uid'),
-                'order_id'=>$data['order_id'],
-                'content'=>$data['content'],
-                'create_time'=>date('Y-m-d H:s:',time())
-            ];
-            M('order_message')->data($Sqldata)->add();
-            $this->success('提交成功', Cookie('__forward__'));
+             $redata['status']  = 1;
+             $redata['msg']  = 'Send successfully';
         }else {
-             $this->error('网络异常，提交失败');
+               $redata['status']  = 0;
+               $redata['msg']  = 'fail in send';
         }
+         $this->ajaxReturn($redata);
+    }
+
+           public function message(){
+                        $post = I('post.');
+                        if(!check_verify($post['captcha'])){
+                            $this->error('Verification code input error！');
+                        } ;
+                        $data['uid'] = session('user_auth')['uid'] ;
+                        $data['item_id'] = 0 ;
+                        $data['status'] = 1 ;
+                        $data['type'] = 1 ;
+                        $data['reply_id'] = 0 ;
+                        $data['content'] = $post['inquiry'] ;
+                        $data['name'] = $post['name'] ;
+                        $data['email'] = $post['email'] ;
+                        $data['create_time'] = date('Y-m-d H:i:s',time());
+                        $res = M("message")->add($data);
+                          if($res !== false){ //成功
+                                $this->success('Submit successfully');
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                        }
     }
 
 }

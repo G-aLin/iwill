@@ -45,7 +45,8 @@
                     </th>
                     <th>编号</th>
                     <th>名称</th>
-                    <th>图片</th>
+                    <th>上级分类</th>
+                    <!-- <th>图片</th> -->
                     <th>排序</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -59,9 +60,10 @@
                         <td><input class="ids" type="checkbox" value="<?= $value['id'] ?>" name="ids[]"></td>
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['name'] ?></td>
-                        <td><img src="<?= $value['picture_url'] ?>" width="150" height="150"></td>
+                        <td><?= $value['pid_name'] ?></td>
+                        <!-- <td><img src="<?= $value['picture_url'] ?>" width="150" height="150"></td> -->
                         <td><?= $value['level']?></td>
-                        <td><a class="ajax-get" href="{:U('category/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '上架' : '下架' ?></a></td>
+                        <td><a class="ajax-get" href="{:U('category/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                         <td>
                         <a href="{:U('category/edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('category/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>

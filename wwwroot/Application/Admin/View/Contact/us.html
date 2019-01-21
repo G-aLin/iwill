@@ -1,0 +1,84 @@
+<extend name="Public/base" />
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+
+<block name="body">
+    <script src="/Public/static/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+    <div class="main-title cf">
+        <h2>
+            联系我们
+        </h2>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+    <ul class="tab-nav nav">
+        <li data-tab="tab1" class="current"><a href="javascript:void(0);">内容</a></li>
+    </ul>
+    <div class="tab-content">
+    <!-- 表单 -->
+    <form class="form-horizontal" method="post" action="{:U('update')}" id="form">
+    <!-- tab-1 start -->
+    <div class="tab-pane tab1 in" id="tab1">
+            <div class="form-item cf">
+                    <label class="item-label">Address</label>
+                    <div class="controls">
+                           <textarea name="address" rows="5" cols="55"><?= $data['address'] ?></textarea>
+                    </div>
+            </div>
+
+                <div class="form-item cf">
+                    <label class="item-label">Call US</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['call'] ?>" name="call" class="text input-large">
+                    </div>
+            </div>
+
+                <div class="form-item cf">
+                    <label class="item-label">Mail</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['email'] ?>" name="email" class="text input-large">
+                    </div>
+            </div>
+
+                <div class="form-item cf">
+                    <label class="item-label">Opening Time</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['time'] ?>" name="time" class="text input-large">
+                    </div>
+            </div>
+
+                <div class="form-item cf">
+                    <label class="item-label">经度(longitude)</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['longitude'] ?>" name="longitude" class="text input-large">
+                    </div>
+            </div>
+
+                <div class="form-item cf">
+                    <label class="item-label">纬度(latitude)</label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['latitude'] ?>" name="latitude" class="text input-large">
+                    </div>
+            </div>
+     </div>
+       <!-- tab-1 end -->
+
+        <div class="form-item cf">
+        <input type="hidden" name="id" value="1">
+            <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<script type="text/javascript">
+$('#submit').click(function(){
+    $('#form').submit();
+});
+</script>
+</block>

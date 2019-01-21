@@ -1,11 +1,11 @@
 <?php
 return array(
     //输入提示
-    'tips_1'=>'请输入Your name',
-    'tips_2'=>'请输入Your Email',
-    'tips_3'=>'请输入Captcha',
-    'tips_4'=>'请输入Your Inquiry',
-    'tips_5'=>'请输入正确的Email',
+    'tips_1'=>'Please input Your name',
+    'tips_2'=>'Please input Your Email',
+    'tips_3'=>'Please input Captcha',
+    'tips_4'=>'Please input Your Inquiry',
+    'tips_5'=>'Please enter the correct email',
     'tips_6'=>'邮件发送失败',
 
 );

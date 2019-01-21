@@ -17,60 +17,112 @@
     <ul class="tab-nav nav">
         <li data-tab="tab1" class="current"><a href="javascript:void(0);">基础</a></li>
         <li data-tab="tab2" ><a href="javascript:void(0);">图片</a></li>
-        <li data-tab="tab3" ><a href="javascript:void(0);">详情</a></li>
+        <li data-tab="tab3" ><a href="javascript:void(0);">Description</a></li>
+        <li data-tab="tab4" ><a href="javascript:void(0);">Packaging Shipp</a></li>
         </ul>
     <div class="tab-content">
     <!-- 表单 -->
     <form class="form-horizontal" method="post" action="{:U('update')}" id="form">
     <!-- tab-1 start -->
     <div class="tab-pane tab1 in" id="tab1">
-            <div class="form-item cf">
-                    <label class="item-label">名称</label>
+
+          <div class="form-item cf">
+                    <label class="item-label">所属分类<span class="check-tips"></span></label>
                     <div class="controls">
-                        <input type="text" value="" name="name" class="text input-large">
+                    <select name="category_id">
+                                <?php foreach ($type as $key => $value): ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php endforeach ?>
+                    </select>
                     </div>
             </div>
 
             <div class="form-item cf">
-                    <label class="item-label">库存<span class="check-tips"></span></label>
+                    <label class="item-label">名称</label>
                     <div class="controls">
-                        <input type="text" value="" name="stock" class="text input-large">                    </div>
+                         <textarea name="name" rows="5" cols="55"></textarea>
+                    </div>
+            </div>
+
+               <div class="form-item cf">
+                    <label class="item-label">sku<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="sku" class="text input-large">                    </div>
                 </div>
 
+                     <div class="form-item cf">
+                    <label class="item-label">star<span class="check-tips">(数字 1-5)</span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="star" class="text input-large" maxlength="1">                    </div>
+                </div>
+
+             <div class="form-item cf">
+                    <label class="item-label">未登录价格<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="bulky_price" class="text input-large">                    </div>
+                </div>
+
+
+
                                <div class="form-item cf">
-                    <label class="item-label">价格区间<span class="check-tips">单个写0  多个用英文;号分离 例如：1-100;101-300;301以上</span></label>
+                    <label class="item-label">价格区间<span class="check-tips">单个写0  多个用英文;号分离 例如：1-100;101-300;301-500;501-999</span></label>
                     <div class="controls">
                         <input type="text" value="" name="price_range" class="text input-large">                    </div>
                 </div>
 
                    <div class="form-item cf">
-                    <label class="item-label">价格区间值<span class="check-tips">多个用英文;号分离 </span></label>
+                    <label class="item-label">价格区间值<span class="check-tips">多个用英文;号分离 例如：500;400;300;99</span></label>
                     <div class="controls">
                         <input type="text" value="" name="price" class="text input-large">                    </div>
                 </div>
+
+                 <div class="form-item cf">
+                    <label class="item-label">库存<span class="check-tips">(数字)</span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="stock" class="text input-large">                    </div>
+                </div>
+
+               <div class="form-item cf">
+                    <label class="item-label">BUY ON AMAZON<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="amazon" class="text input-large">                    </div>
+                </div>
+
+                  <div class="form-item cf">
+                    <label class="item-label">BUY ON JD<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="jd" class="text input-large">                    </div>
+                </div>
+
+                  <div class="form-item cf">
+                    <label class="item-label">BUY ON TAOBAO<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="taobao" class="text input-large">                    </div>
+                </div>
+
 
             <div class="form-item cf">
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
                         <label class="radio">
-                                <input type="radio" name="status" value="1" checked>发布
+                                <input type="radio" name="status" value="1" checked>启用
                         </label>
                         <label class="radio">
-                                <input type="radio" name="status" value="0">下架
+                                <input type="radio" name="status" value="0">停用
                         </label>
                     </div>
             </div>
 
-            <div class="form-item cf">
+           <!--  <div class="form-item cf">
                 <label class="item-label">推荐商品<span class="check-tips"></span></label>
                 <div class="controls">
                     <label class="checkbox"><input type="checkbox" name="position[]" value="1">首页轮播推荐 </label>
                     <label class="checkbox"><input type="checkbox" name="position[]" value="2">首页推荐 </label>
                 </div>
-            </div>
+            </div> -->
 
                 <div class="form-item cf">
-                    <label class="item-label">推荐商品排序<span class="check-tips">数字越大越前，默认按id倒序</span></label>
+                    <label class="item-label">排序<span class="check-tips">数字越大越前，默认按id倒序</span></label>
                     <div class="controls">
                         <input type="text" value="0" name="sort" class="text input-large">                    </div>
                 </div>
@@ -117,50 +169,6 @@
        <!-- tab-1 end -->
             <!-- tab-2 start -->
             <div class="tab-pane  tab2" id="tab2">
-                <div class="form-item cf">
-                    <label class="item-label">列表图片<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <div class="controls">
-                                    <input type="file" id="upload_picture_1">
-                                    <input type="hidden" name="picture_1" id="picture_1"/>
-                                    <div class="upload-img-box">
-                                    <notempty name="picture_1">
-                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
-                                    </notempty>
-                                    </div>
-                        </div>
-                        <script type="text/javascript">
-                            /* 初始化上传插件 */
-                            $("#upload_picture_1").uploadify({
-                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
-                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
-                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
-                                    "width"           : 120,'removeTimeout'   : 1,
-                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
-                                    "onUploadSuccess" : uploadPicture_1
-                                });
-
-                                function uploadPicture_1(file, data){
-                                    var data = $.parseJSON(data);
-                                    var src = '';
-                                    if(data.status){
-                                        $("#picture_1").val(data.id);
-                                        src = data.url || '' + data.path
-                                        $("#picture_1").parent().find('.upload-img-box').html(
-                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
-                                        );
-                                    } else {
-                                        updateAlert(data.info);
-                                        setTimeout(function(){
-                                            $('#top-alert').find('button').click();
-                                            $(that).removeClass('disabled').prop('disabled',false);
-                                        },1500);
-                                    }
-                                }
-                        </script>
-                        </div>
-                </div>
-
             <div class="form-item cf">
                     <label class="item-label">商品图片<span class="check-tips"></span></label>
                     <div class="controls">
@@ -207,6 +215,16 @@
                           <div class="controls">
                                     <input type="file" id="upload_picture_6">
                                     <input type="hidden" name="picture_6" id="picture_6"/>
+                                    <div class="upload-img-box">
+                                    <notempty name="picture_6">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                           <div class="controls">
+                                    <input type="file" id="upload_picture_7">
+                                    <input type="hidden" name="picture_7" id="picture_7"/>
                                     <div class="upload-img-box">
                                     <notempty name="picture_6">
                                         <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
@@ -354,6 +372,34 @@
                                             $(that).removeClass('disabled').prop('disabled',false);
                                         },1500);
                                     }
+
+                                }
+                          /* 初始化上传插件 */
+                            $("#upload_picture_7").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_7
+                                });
+
+                                function uploadPicture_7(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_7").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_7").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
                                 }
                         </script>
                         </div>
@@ -363,8 +409,16 @@
         <!-- tab-2 end -->
         <!-- tab-3 start -->
         <div class="tab-pane  tab3" id="tab3">
+
             <div class="form-item cf">
-            <label class="item-label">文章内容<span class="check-tips"></span></label>
+                    <label class="item-label">Description</label>
+                    <div class="controls">
+                         <textarea name="description" rows="5" cols="100" maxlength="5000"></textarea>
+                    </div>
+            </div>
+
+            <div class="form-item cf">
+            <label class="item-label">详情内容<span class="check-tips"></span></label>
             <div class="controls">
             <label class="textarea">
             <textarea name="content" style="display: none;"></textarea>
@@ -373,13 +427,13 @@
             <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
             <script src="/Public/static/kindeditor/zh_CN.js" charset="utf-8"></script>
             <script type="text/javascript">
-                 var editor_content;
+                 var editor_packaging_and;
                 KindEditor.ready(function(K) {
-                    editor_content = K.create('textarea[name="content"]', {
+                    editor_packaging_and = K.create('textarea[name="content"]', {
                         allowFileManager : false,
                         themesPath: K.basePath,
                         width: '100%',
-                        height: '500px',
+                        height: '800px',
                         resizeType: 1,
                         pasteType : 2,
                         urlType : 'absolute',
@@ -394,11 +448,11 @@
                 $(function(){
                     //传统表单提交同步
                     $('textarea[name="content"]').closest('form').submit(function(){
-                        editor_content.sync();
+                        editor_packaging_and.sync();
                     });
                     //ajax提交之前同步
                     $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
-                        editor_content.sync();
+                        editor_packaging_and.sync();
                     });
                 })
             </script>
@@ -407,6 +461,51 @@
             </div>
         </div>
     <!-- tab-3 end -->
+
+      <!-- tab-4 start -->
+        <div class="tab-pane  tab4" id="tab4">
+            <div class="form-item cf">
+            <label class="item-label">Packaging Shipp<span class="check-tips"></span></label>
+            <div class="controls">
+            <label class="textarea">
+            <textarea name="packaging_and_shipping" style="display: none;"></textarea>
+            <input type="hidden" value="0" name="parse">
+            <script type="text/javascript">
+                 var editor_packaging_and;
+                KindEditor.ready(function(K) {
+                    editor_packaging_and = K.create('textarea[name="packaging_and_shipping"]', {
+                        allowFileManager : false,
+                        themesPath: K.basePath,
+                        width: '100%',
+                        height: '800px',
+                        resizeType: 1,
+                        pasteType : 2,
+                        urlType : 'absolute',
+                        fileManagerJson : '{:U('fileManagerJson')}',
+                        uploadJson : '{:addons_url("EditorForAdmin://Upload/ke_upimg")}',
+                        extraFileUploadParams: {
+                             session_id : '{:session_id()}'
+                        }
+                    });
+                });
+
+                $(function(){
+                    //传统表单提交同步
+                    $('textarea[name="packaging_and_shipping"]').closest('form').submit(function(){
+                        editor_packaging_and.sync();
+                    });
+                    //ajax提交之前同步
+                    $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+                        editor_packaging_and.sync();
+                    });
+                })
+            </script>
+                    </label>
+                </div>
+            </div>
+        </div>
+    <!-- tab-4 end -->
+
         <div class="form-item cf">
             <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
             <a href="{:U('Item/index')}" class="btn btn-return">返 回</a>

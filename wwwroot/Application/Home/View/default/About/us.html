@@ -1,0 +1,29 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/master.css">
+
+  <div class="top-header">
+    <p data-aos="flip-left"><span>About Us</span></p>
+  </div>
+
+  <div class="about-us-page wrap">
+    <div class="clearfix">
+      <div class="intro">
+          <h4><?= $data['title'] ?></h4>
+          <?= $data['content'] ?>
+      </div>
+      <div class="pic"><img src="<?= $data['img_path'] ?>"></div>
+    </div>
+    <div class="our-team">
+      <h4>OUR TEAM</h4>
+      <p>The Top Pick... Team Members</p>
+      <ul class="clearfix list">
+      <?php foreach ($data_img as $key => $value):
+      ++$key;
+      ?>
+          <li class="list" data-aos="fade-up" data-aos-delay="<?= $key*100 ?>"><img src="<?= $value['path'] ?>"></li>
+      <?php endforeach ?>
+      </ul>
+    </div>
+  </div>
+
+<include file="Public/footer" />

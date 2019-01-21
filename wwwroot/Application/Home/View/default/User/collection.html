@@ -1,0 +1,105 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/layout.css">
+
+  <div class="header-box"></div>
+
+
+  <div class="layout-two-col">
+    <div class="wrapper clearfix">
+      <div class="sideNav">
+        <ul>
+          <li><a  href="{:U('index')}"><i class="icon-global bg-4"></i>Personal information</a></li>
+          <li><a href="{:U('inquiry')}"><i class="icon-global bg-4"></i>My inquiry</a></li>
+          <li><a class="active" href="javascript:;"><i class="icon-global bg-4"></i>My collection</a></li>
+          <li><a href="{:U('comment')}"><i class="icon-global bg-4"></i>My comment</a></li>
+          <li><a href="{:U('changepassword')}"><i class="icon-global bg-4"></i>Change Password</a></li>
+        </ul>
+      </div>
+      <div class="contain">
+        <div class="collection-page">
+          <div class="title clearfix">
+            <div class="handle">
+              <div class="check-box" id="check-all">
+                <i class="icon-global bg-26"></i>
+                <i class="icon-global bg-27"></i>
+                All
+              </div>
+              <a href="javascript:;" id="Cancel">Cancel collection</a>
+            </div>
+            <h4>My collection</h4>
+          </div>
+          <div class="list clearfix">
+            <?php foreach ($data as $key => $value):
+            $delay = ($key%4) *100 + 100;
+            ?>
+            <div class="item" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+              <div class="check-box check-box-js" data-id="<?= $value['id'] ?>">
+                <i class="icon-global bg-26"></i>
+                <i class="icon-global bg-27"></i>
+              </div>
+              <div class="pic">
+                <img src="<?= get_item_picture($value['id']) ?>">
+              </div>
+              <div class="desc"><?= get_item_name($value['id']) ?></div>
+            </div>
+            <?php endforeach ?>
+
+          </div>
+          <div class="paging">
+                <?= $_page ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+$(function(){
+  $("#check-all").click(function(){
+      if($(this).hasClass('on')){
+          $(this).removeClass("on");
+          $(".check-box-js").removeClass("on");
+      }else{
+          $(this).addClass("on");
+         $(".check-box-js").addClass("on");
+      }
+  })
+
+    $(".check-box-js").click(function(){
+      if($(this).hasClass('on')){
+         $(this).removeClass("on");
+      }else{
+         $(this).addClass("on");
+      }
+  })
+
+$("#Cancel").click(function(){
+  var ii = layer.confirm('Are you sure you want to delete it?', {
+      title:'',
+      btn: ['yes','no'] //按钮
+    }, function(){
+              layer.close(ii);
+              var data={};
+              data['ids'] ='';
+              $(".check-box-js").each(function(){
+                  if ($(this).hasClass("on")) {
+                    data['ids'] += $(this).data('id')+',';
+                  }
+              });
+              if(data['ids'] == ''){
+                  layer.msg('Please choose the items.');
+                  return false;
+              }
+               layer.load();
+              $.post('{:U("cancelcollection")}', data, success, "json");
+                return false;
+              function success(data){
+                  location.reload();
+                }
+    }, function(){
+    });
+});
+
+
+})
+</script>
+<include file="Public/footer" />

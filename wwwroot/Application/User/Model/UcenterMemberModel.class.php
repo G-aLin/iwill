@@ -35,10 +35,10 @@ class UcenterMemberModel extends Model{
 		array('password', '6,30', -4, self::EXISTS_VALIDATE, 'length'), //密码长度不合法
 
 		/* 验证邮箱 */
-		array('email', 'email', -5, self::EXISTS_VALIDATE), //邮箱格式不正确
-		array('email', '1,32', -6, self::EXISTS_VALIDATE, 'length'), //邮箱长度不合法
-		array('email', 'checkDenyEmail', -7, self::EXISTS_VALIDATE, 'callback'), //邮箱禁止注册
-		array('email', '', -8, self::EXISTS_VALIDATE, 'unique'), //邮箱被占用
+		// array('email', 'email', -5, self::EXISTS_VALIDATE), //邮箱格式不正确
+		// array('email', '1,32', -6, self::EXISTS_VALIDATE, 'length'), //邮箱长度不合法
+		// array('email', 'checkDenyEmail', -7, self::EXISTS_VALIDATE, 'callback'), //邮箱禁止注册
+		// array('email', '', -8, self::EXISTS_VALIDATE, 'unique'), //邮箱被占用
 
 		/* 验证手机号码 */
 		array('mobile', '//', -9, self::EXISTS_VALIDATE), //手机格式不正确 TODO:
@@ -112,6 +112,15 @@ class UcenterMemberModel extends Model{
 		/* 添加用户 */
 		if($this->create($data)){
 			$uid = $this->add();
+			if($uid){
+			   $auth = array(
+			            'uid'             => $uid,
+			            'username'        => $username,
+			            'last_login_time' => time(),
+			        );
+			        session('user_auth', $auth);
+			        session('user_auth_sign', data_auth_sign($auth));
+			 }
 			return $uid ? $uid : 0; //0-未知错误，大于0-注册成功
 		} else {
 			return $this->getError(); //错误详情见自动验证注释
@@ -235,7 +244,8 @@ class UcenterMemberModel extends Model{
 
 		//更新前检查用户密码
 		if(!$this->verifyUser($uid, $password)){
-			$this->error = '验证出错：密码不正确！';
+			// $this->error = '验证出错：密码不正确！';
+			$this->error = 'Incorrect password！';
 			return false;
 		}
 

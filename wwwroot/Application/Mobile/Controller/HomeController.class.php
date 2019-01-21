@@ -26,10 +26,16 @@ class HomeController extends Controller {
         /* 读取站点配置 */
         $config = api('Config/lists');
         C($config); //添加配置
+        if(!C('WEB_SITE_CLOSE')){
+            $this->error('站点已经关闭，请稍后访问~');
+        }
+        $this->get_shop_nav();
+        $this->get_contact_info();
     }
 
 	/* 用户登录检测 */
 	protected function login(){
+                        // session('user_auth'); array uid username
 		/* 用户登录检测 */
 		is_login() || $this->error('您还没有登录，请先登录！', U('User/login'));
 	}
@@ -38,6 +44,20 @@ class HomeController extends Controller {
     protected function get_page_info($id){
         $info =get_page_info($id);
         $this->assign('info',$info);//栏目
+    }
+
+       protected function get_contact_info(){
+        $contact = M('contact')->find();
+        $this->assign('contact',$contact);//
+    }
+
+        protected function get_shop_nav(){
+        $item_categoryM =   M('item_category') ;
+        $shopNav = $item_categoryM->where(['status'=>1,'pid'=>0])->order('level desc,id asc')->select();
+        foreach ($shopNav as $key => $value) {
+           $shopNav[$key]['children'] = $item_categoryM->where(['status'=>1,'pid'=>$value['id']])->order('level desc,id asc')->select();
+        }
+        $this->assign('shopNav',$shopNav);//
     }
 
 }

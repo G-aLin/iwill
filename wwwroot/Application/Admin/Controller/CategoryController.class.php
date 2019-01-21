@@ -112,8 +112,10 @@ class CategoryController extends AdminController {
         }
         $list = $this->lists('item_category', $map,'id desc');
         $pictureM = M('picture') ;
+        $categoryM = M('item_category') ;
         foreach ($list as $key => $value) {
             $list[$key]['picture_url'] = $pictureM->where(['id'=>$value['picture_id']])->getField('path');
+            $list[$key]['pid_name'] = $categoryM->where(['id'=>$value['pid']])->getField('name');
         }
         $this->assign('list', $list);
         // 记录当前列表页的cookie
@@ -155,6 +157,8 @@ class CategoryController extends AdminController {
     public function add(){
         //获取左边菜单
         $this->getMenu();
+        $type = M('item_category')->where(['pid'=>0,'status'=>1])->select();
+        $this->assign('type', $type);
         $this->display();
     }
 
@@ -173,8 +177,12 @@ class CategoryController extends AdminController {
         // 获取详细数据
         $data  =M('item_category')->where(['id'=>$id])->find();
         $data['picture_path']  =M('picture')->where(['id'=>$data['picture_id'] ])->getField('path');
+        $data['banner_path']  =M('picture')->where(['id'=>$data['banner_id'] ])->getField('path');
         //获取当前分类的文档类型
         $this->assign('data', $data);
+
+        $type = M('item_category')->where(['pid'=>0,'status'=>1])->select();
+        $this->assign('type', $type);
         $this->display();
     }
 
@@ -186,13 +194,15 @@ class CategoryController extends AdminController {
      */
     public function update(){
         $data = I('post.');
-        if(empty($data['picture_id'])){
-             $this->error('请上传图片');
+        if(empty($data['name'])){
+             $this->error('请输入名称');
         }
         $item_category = M("item_category");
         $Sqldata =[
                 'name'=>$data['name'],
                 'status'=>$data['status'],
+                'pid'=>$data['pid'],
+                'banner_id'=>$data['banner_id'],
                 'picture_id'=>$data['picture_id'],
                 'level'=>$data['level'],
                 'create_time'=>time()

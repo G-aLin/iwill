@@ -1,0 +1,53 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+
+    <div class="page-scroll">
+      
+      <div class="promotion-deals-page">
+        <div class="top-banner" style="background-image: url('<?= $banner['path'] ?>');"></div>
+        <div class="contain">
+          <div class="active-banner">
+            <img src="<?= $ad['path'] ?>">
+          </div>
+          <div class="list" id="list">
+<?php foreach ($list as $key => $value): ?>
+            <div class="item">
+              <i class="icon-switch"></i>
+              <div class="name"><?= $value['title'] ?></div>
+              <div class="desc"><?= $value['content'] ?><a class="c-green underline" href="<?= $value['url'] ?>">More information</a></div>
+            </div>
+<?php endforeach ?>       
+          </div>
+<?php if ($more == 1): ?>
+        <a href="javascript:;" class="loadmore">MORE+</a>
+<?php endif ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $('.list').on('click', '.icon-switch', function() {
+      if ($(this).hasClass('on')) {
+        $(this).removeClass('on')
+        $(this).siblings('.desc').slideUp()
+      } else {
+        $(this).addClass('on')
+        $(this).siblings('.desc').slideDown()
+      }
+    })
+
+    $(".loadmore").click(function(){
+          $.ajax({
+                url:"more.html",
+                type: "post",
+                dataType: "JSON",
+                success: function (json) {
+                      $("#list").append(json.data);
+                      $(".loadmore").hide();
+            }
+        });
+    })
+  </script>
+    </div>
+  
+</body>
+</html>

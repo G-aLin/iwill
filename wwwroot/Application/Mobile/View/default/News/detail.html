@@ -1,0 +1,47 @@
+<include file="Public/head" title="{$data.title}{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<div class="page-scroll">
+      
+      <div class="organizing-tips-details-page">
+        <div class="top-banner">
+          <p>Organizing Tips</p>
+        </div>
+        <div class="detail">
+          <h6><?= $data['title'] ?></h6>
+          <div class="time">
+            <i class="icon-global bg-12"></i>
+            <span><?= date('Y-m-d',strtotime($data['publish_time'])) ?></span>
+            <div class="share-list social-share-news" data-initialized="true">
+             <a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/7.png"></a> 
+             <a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/8.png"></a> 
+             <a href="javascript:;" class="social-share-icon icon-linkedin"><img src="__IMG__/9.png"></a> 
+            </div>
+        <script src="__STATIC__/social-share.min.js"></script>
+        <script>
+          var $config = {
+              title               : '<?= $data['title'] ?>',
+              description         : '<?= $data['digest'] ?>',
+              url   : "'<?= $data['shareUrl'] ?>",
+              image  : "<?= $data['path'] ?>",
+              sites:['linkedin', 'facebook', 'twitter','weibo']
+          };
+          socialShare('.social-share-news', $config);
+          </script>
+          </div>
+          <div class="content">
+              <?= $data['content'] ?>
+          </div>
+          <div class="context">
+<?php if ($previous): ?>
+      <p><a href="{:U('News/detail?id='.$previous['id'])}"><span>Previous:</span><?= $previous['title'] ?></a></p>
+<?php endif ?>
+<?php if ($next): ?>
+      <p><a href="{:U('News/detail?id='.$next['id'])}"><span>Next:</span><?= $next['title'] ?></a></p>
+<?php endif ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>

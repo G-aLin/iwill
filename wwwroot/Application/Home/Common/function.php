@@ -76,3 +76,7 @@ function get_page_info($id){
     }
     return $info;
 }
+
+function get_order_id(){
+    return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+}

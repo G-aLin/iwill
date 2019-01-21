@@ -1,0 +1,76 @@
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/master.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BInXo82MnBcfz51DlbXSLpyvK8SpiSDg"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<style type="text/css">
+.BMapLib_SearchInfoWindow{display:none;}
+</style>
+
+  <div class="top-header">
+    <p data-aos="flip-left"><span>Contact Us</span></p>
+  </div>
+
+  <div class="contact-us-page wrapper">
+    <div class="clearfix">
+      <div class="contact-detail">
+        <h4>Contact Details</h4>
+        <p>Please find below contact details and contact us today!</p>
+        <div class="info">
+          <h5>Corporate Office?</h5>
+          <div class="list">
+            <div class="item">
+              <i class="icon-global bg-20"></i>
+              <span>Address</span>
+              <?= $contact['address'] ?>
+            </div>
+            <div class="item">
+              <i class="icon-global bg-21"></i>
+              <span>Call US:</span><br />
+               <?= $contact['call'] ?>
+            </div>
+            <div class="item">
+              <i class="icon-global bg-22"></i>
+              <span>Mail US:</span><br />
+             <?= $contact['email'] ?>
+            </div>
+            <div class="item">
+              <i class="icon-global bg-20"></i>
+              <span>Opening Time:</span><br />
+             <?= $contact['time'] ?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map">
+        <div class="map" id="allmap" style="width: 100%;height:100%"></div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+    // 百度地图API功能
+            var map = new BMap.Map('allmap');
+            var poi = new BMap.Point('<?= $contact['longitude'] ?>','<?= $contact['latitude'] ?>');
+            map.centerAndZoom(new BMap.Point('<?= $contact['longitude'] ?>','<?= $contact['latitude'] ?>'), 16);
+            map.enableScrollWheelZoom();
+            map.addControl(new BMap.NavigationControl());
+            map.addControl(new BMap.MapTypeControl({
+                mapTypes:[
+                    BMAP_NORMAL_MAP,
+                    BMAP_HYBRID_MAP
+                ]}));
+
+
+
+            //创建检索信息窗口对象
+            var searchInfoWindow = null;
+            searchInfoWindow = new BMapLib.SearchInfoWindow(map);
+            var marker = new BMap.Marker(poi); //创建marker对象
+            marker.enableDragging(); //marker可拖拽
+            marker.addEventListener("click", function(e){
+
+            })
+            map.addOverlay(marker); //在地图中添加marker
+            searchInfoWindow.open(marker);
+</script>
+<include file="Public/footer" />

@@ -27,16 +27,16 @@
     <thead>
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-                        <th class="">编号</th>
+                        <th class="">订单号</th>
                         <th class="">用户</th>
-                        <th class="">用户邮箱</th>
+
                         <th class="">产品名称</th>
                         <th class="">产品规格</th>
                         <th class="">单价</th>
                         <th class="">数量</th>
                         <th class="">合计</th>
                         <th class="">下单时间</th>
-                        <th class="">备注</th>
+
                         <th class="">操作</th>
 		</tr>
     </thead>
@@ -45,18 +45,19 @@
 		<volist name="_list" id="vo">
 		<tr>
             <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-			<td>{$vo.id} </td>
+			<td>{$vo.orderno} </td>
                                         <td>{$vo.username}</td>
-                                       <td>{$vo.email}</td>
-                                       <td>{$vo.item.item_name}</td>
-                                       <td>{$vo.item.spec_info}</td>
-                                        <td>{$vo.item.money}</td>
-			<td>{$vo.item.num}</td>
-			<td>{$vo.item.amount}</td>
+
+                                       <td>{$vo.name}</td>
+                                       <td>{$vo.spec}</td>
+                                        <td>{$vo.unit_price}</td>
+			<td>{$vo.num}</td>
+			<td>{$vo.total}</td>
 			<td><span>{$vo.create_time}</span></td>
-                                        <td>{$vo.item.note}</td>
+
 			<td>
-                                        <a href="{:U('order/edit?id='.$vo['id'])}">回复</a>
+                                        <!-- <a href="{:U('order/edit?id='.$vo['id'])}">回复</a> -->
+                                        <a href="{:U('order/detail?id='.$vo['id'])}">详情</a>
 			<a class="confirm ajax-get" href="{:U('order/remove?ids='.$vo['id'])}">删除
             </a>
                 </td>

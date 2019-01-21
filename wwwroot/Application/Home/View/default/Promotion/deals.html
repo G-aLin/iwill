@@ -1,0 +1,62 @@
+
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/master.css">
+
+
+  <div class="top-header" style="background-image: url('<?= $banner['path'] ?>');">
+  </div>
+
+  <div class="wrapper promotion-deals-page">
+    <div class="wrapper-list">
+      <div class="activity"><a href="'<?= $ad['url'] ?>"><img src="<?= $ad['path'] ?>"></a></div>
+      <h4>What we do</h4>
+      <div class="list">
+
+     <?php foreach ($list as $key => $value): ?>
+        <div class="item" data-aos="fade-up">
+          <div class="controller">
+            <div class="icon-global bg-24"></div>
+            <div class="icon-global bg-25"></div>
+          </div>
+          <div class="title"><a href="javascript:;"><?= $value['title'] ?></a></div>
+          <div class="summary"><?= $value['content'] ?> <a href="<?= $value['url'] ?>">More information</a></div>
+        </div>
+  <?php endforeach ?>
+
+      </div>
+      <div class="paging">
+          <?= $_page ?>
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function() {
+      $('body').on('click', '.controller .bg-25 ', function() {
+        $(this).hide()
+        $(this).siblings('.bg-24').show()
+        $(this).parent().siblings('.summary').stop(true).slideDown()
+      })
+
+      $('body').on('click', '.controller .bg-24', function() {
+        $(this).hide()
+        $(this).siblings('.bg-25').show()
+        $(this).parent().siblings('.summary').stop(true).slideUp()
+      })
+
+      $('body').on('click', '.title', function() {
+        if($(this).prev().find('.bg-24').is(':hidden')){
+          $(this).prev().find('.bg-24').show();
+          $(this).prev().find('.bg-25').hide();
+          $(this).next().stop(true).slideDown()
+        }else{
+          $(this).prev().find('.bg-24').hide();
+          $(this).prev().find('.bg-25').show();
+          $(this).next().stop(true).slideUp()
+        }
+
+      })
+
+    })
+    </script>
+
+<include file="Public/footer" />

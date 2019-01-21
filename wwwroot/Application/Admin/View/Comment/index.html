@@ -26,8 +26,9 @@
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
 		<th class="" style="width:5%">编号</th>
 		<th class="">用户</th>
-                          <th class="">用户邮箱</th>
+                          <th class="">邮箱</th>
                           <th class=""  style="width:15%">产品名称</th>
+                          <th class=""  style="width:5%">star</th>
 		<th class="">内容</th>
                           <th class="" style="width:6%">提交时间</th>
 		<th class="" style="width:10%">状态</th>
@@ -43,6 +44,7 @@
 			<td>{$vo.username}</td>
                                        <td>{$vo.email}</td>
                                        <td>{$vo.item}</td>
+                                       <td>{$vo.star}</td>
 			<td>{$vo.content}</td>
 			<td><span>{$vo.create_time}</span></td>
                                       <td><a class="ajax-get" href="{:U('comment/setstatus',['id'=>$vo['id'],'status'=>$vo['status']])}"><?= $vo['status'] == 1 ? '审核通过' : '待审核' ?></a></td>

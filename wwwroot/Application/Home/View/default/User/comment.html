@@ -1,0 +1,67 @@
+
+<include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
+<link rel="stylesheet" href="__CSS__/layout.css">
+
+  <div class="header-box"></div>
+
+  <div class="layout-two-col">
+    <div class="wrapper clearfix">
+      <div class="sideNav">
+        <ul>
+          <li><a  href="{:U('index')}"><i class="icon-global bg-4"></i>Personal information</a></li>
+          <li><a href="{:U('inquiry')}"><i class="icon-global bg-4"></i>My inquiry</a></li>
+          <li><a href="{:U('collection')}"><i class="icon-global bg-4"></i>My collection</a></li>
+          <li><a class="active" href="javascript:;"><i class="icon-global bg-4"></i>My comment</a></li>
+          <li><a href="{:U('changepassword')}"><i class="icon-global bg-4"></i>Change Password</a></li>
+        </ul>
+      </div>
+      <div class="contain">
+        <div class="comment-page">
+          <h4>My comment</h4>
+          <div class="list">
+            <table>
+                <thead>
+                  <tr>
+                    <th>Commodity</th>
+                    <th>DARWIN</th>
+                    <th>Score</th>
+                    <th>Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+<?php foreach ($data as $key => $value): ?>
+                  <tr>
+                    <td class="pro clearfix">
+                      <div class="pic"><img src="<?= get_item_picture($value['item_id']) ?>"></div>
+                      <div class="name"><?= get_item_name($value['item_id'])?></div>
+                    </td>
+                    <td class="time"><?= $value['create_time'] ?></td>
+                    <td class="star-td">
+                      <div class="star-list clearfix">
+                        <?php
+                          for ($i=1; $i <= 5 ; $i++) {
+                              if($i<=$value['star']){
+                                      echo '<i class="star on"></i>';
+                              }else{
+                                      echo '<i class="star"></i>';
+                              }
+                          }
+                     ?>
+                      </div>
+                    </td>
+                    <td class="content"><?= $value['content'] ?></td>
+                  </tr>
+<?php endforeach ?>
+
+                </tbody>
+            </table>
+          </div>
+          <div class="paging">
+             <?= $_page ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<include file="Public/footer" />

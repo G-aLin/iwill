@@ -31,6 +31,7 @@ class Page
         'first'  => '1...',
         'last'   => '...%TOTAL_PAGE%',
         'theme'  => '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%',
+        'suffix'=>''
     );
 
     /**
@@ -98,22 +99,22 @@ class Page
 
         //上一页
         $up_row  = $this->nowPage - 1;
-        $up_page = $up_row > 0 ? '<a class="prev" href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a>' : '';
+        $up_page = $up_row > 0 ? '<a class="prev" href="' . $this->url($up_row).$this->config['suffix'] . '">' . $this->config['prev'] . '</a>' : '';
 
         //下一页
         $down_row  = $this->nowPage + 1;
-        $down_page = ($down_row <= $this->totalPages) ? '<a class="next" href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a>' : '';
+        $down_page = ($down_row <= $this->totalPages) ? '<a class="next" href="' . $this->url($down_row).$this->config['suffix'] . '">' . $this->config['next'] . '</a>' : '';
 
         //第一页
         $the_first = '';
         if ($this->totalPages > $this->rollPage && ($this->nowPage - $now_cool_page) >= 1) {
-            $the_first = '<a class="first" href="' . $this->url(1) . '">' . $this->config['first'] . '</a>';
+            $the_first = '<a class="first" href="' . $this->url(1).$this->config['suffix'] . '">' . $this->config['first'] . '</a>';
         }
 
         //最后一页
         $the_end = '';
         if ($this->totalPages > $this->rollPage && ($this->nowPage + $now_cool_page) < $this->totalPages) {
-            $the_end = '<a class="end" href="' . $this->url($this->totalPages) . '">' . $this->config['last'] . '</a>';
+            $the_end = '<a class="end" href="' . $this->url($this->totalPages).$this->config['suffix'] . '">' . $this->config['last'] . '</a>';
         }
 
         //数字连接
@@ -129,13 +130,13 @@ class Page
             if ($page > 0 && $page != $this->nowPage) {
 
                 if ($page <= $this->totalPages) {
-                    $link_page .= '<a class="num" href="' . $this->url($page) . '">' . $page . '</a>';
+                    $link_page .= '<a class="num" href="' . $this->url($page).$this->config['suffix'] . '">' . $page . '</a>';
                 } else {
                     break;
                 }
             } else {
                 if ($page > 0 && 1 != $this->totalPages) {
-                    $link_page .= '<span class="current">' . $page . '</span>';
+                    $link_page .= '<a data-aos="fade-up" data-aos-delay="100" class="cur">' . $page . '</a>';
                 }
             }
         }

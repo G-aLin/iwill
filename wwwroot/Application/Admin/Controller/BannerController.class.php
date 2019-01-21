@@ -20,6 +20,32 @@ class BannerController extends AdminController {
     static protected $allow = array( 'draftbox','mydocument');
 
        private $cate_id        =   null; //文档分类id
+
+
+           /**
+     * 列表页
+     */
+    public function index(){
+         $this->getMenu();
+        /* 查询条件初始化 */
+        $map = array();
+        if(isset($_GET['title'])){
+            $map['title']    =   array('like', '%'.(string)I('title').'%');
+        }
+          if(!empty($_GET['type'])){
+            $map['type']    =   $_GET['type'] ;
+        }
+        $list = $this->lists('banner', $map,'id desc');
+        $pictureM = M('picture') ;
+        foreach ($list as $key => $value) {
+            $list[$key]['picture_url'] = $pictureM->where(['id'=>$value['picture_id']])->getField('path');
+        }
+        $this->assign('list', $list);
+        // 记录当前列表页的cookie
+        Cookie('__forward__',$_SERVER['REQUEST_URI']);
+        $this->display();
+    }
+
     /**
      * 显示左边菜单，进行权限控制
      * @author huajie <banhuajie@163.com>
@@ -100,26 +126,7 @@ class BannerController extends AdminController {
         $this->assign('show_examine', IS_ROOT || $this->checkRule('Admin/article/examine'));
     }
 
-    /**
-     * 列表页
-     */
-    public function index(){
-         $this->getMenu();
-        /* 查询条件初始化 */
-        $map = array();
-        if(isset($_GET['title'])){
-            $map['title']    =   array('like', '%'.(string)I('title').'%');
-        }
-        $list = $this->lists('banner', $map,'id desc');
-        $pictureM = M('picture') ;
-        foreach ($list as $key => $value) {
-            $list[$key]['picture_url'] = $pictureM->where(['id'=>$value['picture_id']])->getField('path');
-        }
-        $this->assign('list', $list);
-        // 记录当前列表页的cookie
-        Cookie('__forward__',$_SERVER['REQUEST_URI']);
-        $this->display();
-    }
+
 
 
 
