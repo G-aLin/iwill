@@ -47,6 +47,7 @@ class ItemController extends HomeController {
                     }
      // var_dump($data[0]) ;exit;
                    $this->assign('data',$data);//
+                   $this->assign('t',I('get.t'));//
                    $this->display();
 	}
 

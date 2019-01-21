@@ -89,5 +89,21 @@ $(function(){
         });
     })
 })
+
+$(function(){
+    <?php if($t):
+      $t = explode("-",$t);
+    ?>
+    $(".tab-list").eq(<?= $t[0] ?>).find('li').eq(<?= ++$t[1] ?>).click();
+    <?php endif; ?>
+
+    $('.third-menu').click(function(){
+        var t = $(this).attr('data-t'),v = $(this).attr('data-v');
+        ++v;
+         $(".tab-list").eq(t).find('li').eq(v).click();
+    })
+
+})
+
 </script>
 <include file="Public/footer" />

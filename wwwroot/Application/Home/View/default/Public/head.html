@@ -47,7 +47,7 @@
                 <a class="sub-menu" href="javascript:;" onclick="ShowSubMenu($(this))"><?= $value['name']?><i class="icon-global bg-4"></i></a>
                 <div class="subnav">
                   <?php foreach ($value['children'] as $k => $v): ?>
-                      <a class="third-menu" href="{:U('Item/lists')}#Floor<?= $value['id'] ?>"><?= $v['name']?></a>
+                      <a class="third-menu" href="{:U('Item/lists')}?t=<?= $key ?>-<?= $k ?>#Floor<?= $value['id'] ?>" data-t="<?= $key ?>"  data-v="<?= $k ?>"><?= $v['name']?></a>
                   <?php endforeach ?>
                 </div>
               </div>
