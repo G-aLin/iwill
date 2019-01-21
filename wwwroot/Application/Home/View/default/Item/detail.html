@@ -153,6 +153,7 @@ $('.type-choose-list .pic').click(function(){
             <div>
               Sample purchase please click:
               <a class="btn green" href="javascript:;" id="Inquiry">Inquiry</a>
+               <input type="hidden" value="<?= is_login() ?>" id="is_login">
             </div>
             <div class="sell">
               Click to buy in bulk:
@@ -325,15 +326,21 @@ $('.type-choose-list .pic').click(function(){
               </dl>
             </div>
           </div>
+
 <script type="text/javascript">
 $(function(){
       $("#Inquiry").click(function(){
-          var spec = '',num = $('#item_num').val(),item_id=<?= $data['id'] ?>,url="{:U('Item/orderhanlde')}";
-          $('input[name="spec[]"]').each(function(){
-               spec += $(this).val()+'|';
-          })
-          location.href= url+"?id="+item_id+"&num="+num+'&spec='+spec;
+          var spec = '',is_login=$("#is_login").val(),num = $('#item_num').val(),item_id=<?= $data['id'] ?>,url="{:U('Item/orderhanlde')}";
+          if(is_login == 0){
+                location.href= "{:U('User/login')}?uri={:U('Item/detail')}?id="+item_id;
+          }else{
+                $('input[name="spec[]"]').each(function(){
+                   spec += $(this).val()+'|';
+              })
+              location.href= url+"?id="+item_id+"&num="+num+'&spec='+spec;
+          }
       });
+
         $("#comment-star-list i").click(function(){
             var ref = $(this).attr('ref');
             $("#comment-star-list i").removeClass("on");

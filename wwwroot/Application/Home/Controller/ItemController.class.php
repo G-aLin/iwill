@@ -111,6 +111,15 @@ class ItemController extends HomeController {
                         $data = I('post.');
                         $orderInfo = S($data['orderno']);
                         if(empty($orderInfo)) $this->error('Network error');
+                        if(empty($data['first_name'])) $this->error('Please input First Name');
+                        if(empty($data['last_name'])) $this->error('Please input Last Name');
+                        if(empty($data['country'])) $this->error('Please input Country');
+                        if(empty($data['zip_code'])) $this->error('Please input Zip Code');
+                        if(empty($data['city'])) $this->error('Please input City');
+                        if(empty($data['state'])) $this->error('Please input State/Territory');
+                        if(empty($data['address_line1'])) $this->error('Please input Address Line1');
+                        if(empty($data['address_line2'])) $this->error('Please input Address Line2');
+                        if(empty($data['phone'])) $this->error('Please input Phone Number');
                         $memberM = M("order");
                         $data['uid'] = $uid ;
                         $data['status'] = 1 ;

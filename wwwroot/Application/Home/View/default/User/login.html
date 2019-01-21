@@ -117,7 +117,8 @@
         function success(data){
           if(data.status){
               layer.msg(data.info,{anim: 1},function(){
-                 window.location.href = data.url;
+                 var url = "<?= $_GET['uri'] ?>" ? "<?= $_GET['uri'] ?>" : data.url;
+                 window.location.href = url;
             })
           } else {
             layer.msg(data.info)
