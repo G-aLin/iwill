@@ -27,11 +27,13 @@
 		   <div class="sleft">
                     <div class="controls">
                     <select name="type" id="type">
-                                <option value="0">筛选推荐商品</option>
-                                <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>首页轮播商品</option>
-                                <!-- <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页推荐</option> -->
-                                <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页Product Categories</option>
-                                <option value="3" <?php if ($_GET['type'] == 3): ?>selected<?php endif ?>>首页Hot Product</option>
+                        <option value="0">筛选推荐商品</option>
+                        <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>PC首页轮播商品</option>
+                        <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>PC首页Product Categories</option>
+                        <option value="3" <?php if ($_GET['type'] == 3): ?>selected<?php endif ?>>PC首页Hot Product</option>
+                        <option value="4" <?php if ($_GET['type'] == 4): ?>selected<?php endif ?>>WAP首页轮播商品</option>
+                        <option value="5" <?php if ($_GET['type'] == 5): ?>selected<?php endif ?>>WAP首页Product Categories</option>
+                        <option value="6" <?php if ($_GET['type'] == 6): ?>selected<?php endif ?>>WAP首页Hot Product</option>
                     </select>
                     </div>
 </div>
@@ -70,16 +72,22 @@
                         <td><?php
                             switch ($value['type']) {
                                 case '1':
-                                    echo "首页轮播商品";
+                                    echo "PC首页轮播商品";
                                     break;
                                  case '2':
-                                    echo "首页Product Categories";
+                                    echo "PC首页Product Categories";
                                     break;
                                  case '3':
-                                    echo "首页Hot Product";
+                                    echo "PC首页Hot Product";
                                     break;
                                  case '4':
-                                    echo "";
+                                    echo "WAP首页轮播商品";
+                                    break;
+                                case '5':
+                                    echo "WAP首页Product Categories";
+                                    break;
+                                case '6':
+                                    echo "WAP首页Hot Product";
                                     break;
                                 default:
 

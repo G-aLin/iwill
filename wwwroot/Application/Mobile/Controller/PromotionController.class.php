@@ -24,8 +24,8 @@ class PromotionController extends HomeController {
         $this->assign('abs',1);
         $this->assign('nav',4);//
 
-        $banner =M('banner b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.type'=>3,'b.status'=>1])->field('b.url,p.path')->find();
-        $ad =M('banner b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.type'=>4,'b.status'=>1])->field('b.url,p.path')->find();
+        $banner =M('banner b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.type'=>6,'b.status'=>1])->field('b.url,p.path')->find();
+        $ad =M('banner b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.type'=>7,'b.status'=>1])->field('b.url,p.path')->find();
      // var_dump($banner)  ;
      // var_dump($ad)  ; exit;
         $this->assign('banner',$banner);
@@ -34,11 +34,11 @@ class PromotionController extends HomeController {
         $pageSize = $this->_pageSize ;
         ++ $pageSize ;
         $list =  M('promotion')->where(['status'=>1])->order('level desc,id desc')->limit(0,$pageSize)->select();
-        $more = 0 ;      
+        $more = 0 ;
         if(count($list) == $pageSize){
             $more = 1;
             array_pop($list);
-        } 
+        }
         $this->assign('list', $list);
         $this->assign('more', $more);
         $this->display();

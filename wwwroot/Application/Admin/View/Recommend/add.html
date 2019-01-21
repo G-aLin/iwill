@@ -27,9 +27,12 @@
                     <label class="item-label">类型<span class="check-tips"></span></label>
                     <div class="controls">
                     <select name="type" id="type">
-                                <option value="1">首页轮播商品</option>
-                                <option value="2">首页Product Categories</option>
-                                <option value="3">首页Hot Product</option>
+                                <option value="1">PC首页轮播商品</option>
+                                <option value="2">PC首页Product Categories</option>
+                                <option value="3">PC首页Hot Product</option>
+                                <option value="4">WAP首页轮播商品</option>
+                                <option value="5">WAP首页Product Categories</option>
+                                <option value="6">WAP首页Hot Product</option>
                     </select>
                     </div>
             </div>
@@ -37,7 +40,7 @@
 
 $('#type').change(function(){
     var id = $(this).val();
-    if(id ==2){
+    if(id ==2 || id ==5){
         $("#item_category").show();
         $("#item").hide();
     }else{

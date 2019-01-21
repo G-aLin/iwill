@@ -214,14 +214,15 @@ class RecommendController extends AdminController {
         }
         $recommend = M("recommend");
         switch ($data['type']) {
-             case '1':
+                case '1':
+                case '3':
+                case '4':
+                case '6':
               $data['value'] = $data['item_id'] ;
                 break;
              case '2':
+             case '5':
                $data['value'] = $data['item_category_id'] ;
-                break;
-             case '3':
-                $data['value'] = $data['item_id'] ;
                 break;
             default:
                 # code...

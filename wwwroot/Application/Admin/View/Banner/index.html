@@ -28,10 +28,12 @@
                     <div class="controls">
                     <select name="type" id="type">
                                 <option value="0">筛选推荐商品</option>
-                                <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>首页轮播推荐</option>
-                                <!-- <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页推荐</option> -->
-                                <option value="3" <?php if ($_GET['type'] == 3): ?>selected<?php endif ?>>促销banner</option>
-                                <option value="4" <?php if ($_GET['type'] == 4): ?>selected<?php endif ?>>促销广告</option>
+                                <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>PC首页轮播推荐</option>
+                                <option value="3" <?php if ($_GET['type'] == 3): ?>selected<?php endif ?>>PC促销banner</option>
+                                <option value="4" <?php if ($_GET['type'] == 4): ?>selected<?php endif ?>>PC促销广告</option>
+                                <option value="5" <?php if ($_GET['type'] == 5): ?>selected<?php endif ?>>WAP首页轮播推荐</option>
+                                <option value="6" <?php if ($_GET['type'] == 6): ?>selected<?php endif ?>>WAP促销banner</option>
+                                <option value="7" <?php if ($_GET['type'] == 7): ?>selected<?php endif ?>>WAP促销广告</option>
                     </select>
                     </div>
 </div>
@@ -70,16 +72,22 @@
                         <td><?php
                             switch ($value['type']) {
                                 case '1':
-                                    echo "首页banner";
-                                    break;
-                                 case '2':
-                                    echo "首页banner";
+                                    echo "PC首页banner";
                                     break;
                                  case '3':
-                                    echo "促销banner";
+                                    echo "PC促销banner";
                                     break;
                                  case '4':
-                                    echo "促销广告";
+                                    echo "PC促销广告";
+                                    break;
+                                case '5':
+                                    echo "WAP首页banner";
+                                    break;
+                                       case '6':
+                                    echo "WAP促销banner";
+                                    break;
+                                       case '7':
+                                    echo "WAP促销广告";
                                     break;
                                 default:
 
