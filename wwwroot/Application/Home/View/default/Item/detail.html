@@ -196,94 +196,25 @@ $('.type-choose-list .pic').click(function(){
           <div class="tab-column faq" id="FAQ">
             <div class="title">Customer questions & answers</div>
             <div class="faq-list">
+<?php foreach ($question_list as $key => $value): ?>
               <div class="item">
                 <dl>
                   <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
+                  <dd><?= $value['content'] ?></dd>
                 </dl>
                 <dl>
                   <dt>Answer:</dt>
                   <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                    <div class="text"><?= $value['reply'] ?></div>
+                    <div class="time">By <?= $value['username'] ?> Hand on <?= $value['reply'] ?> <?= $value['day'] ?>, <?= $value['year'] ?></div>
                   </dd>
                 </dl>
               </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
+<?php endforeach ?>
+
             </div>
             <div class="paging">
-          <!--     <a data-aos="fade-up" data-aos-delay="100" href="javascript:;" class="disabled">Prev page</a>
-              <a data-aos="fade-up" data-aos-delay="200" href="javascript:;" class="cur">1</a>
-              <a data-aos="fade-up" data-aos-delay="300" href="javascript:;">2</a>
-              <a data-aos="fade-up" data-aos-delay="400" href="javascript:;">3</a>
-              <a data-aos="fade-up" data-aos-delay="500" href="javascript:;">4</a>
-              <a data-aos="fade-up" data-aos-delay="600" href="javascript:;">5</a>
-              <a data-aos="fade-up" data-aos-delay="700" href="javascript:;">...</a>
-              <a data-aos="fade-up" data-aos-delay="800" href="javascript:;">Next page</a> -->
+                <?= $_question_page ?>
             </div>
           </div>
 
@@ -431,10 +362,31 @@ $(function(){
     </div>
 
   </div>
-  <script>
-    $(function () {
-     $(".jqzoom").jqueryzoom({ xzoom: 400, yzoom: 400 });
+<script>
+  $(function () {
 
+  $(".jqzoom").jqueryzoom({ xzoom: 400, yzoom: 400 });
+  //商品提问
+$("#ask").click(function(){
+    layer.prompt({
+      title: 'ask a question',
+      formType: 2,
+      // area: ['500px', '150px'],
+      maxlength: 500,
+      btn: ['yes','no']
+    }, function(pass, index){
+          var data = {};
+          data['item_id'] = <?= $data['id']?>;
+          data['content'] =pass;
+          $.post("{:U('ask')}",data, success, "json");
+            return false;
+            function success(data){
+                      layer.msg(data.info,{anim: 1},function(){
+                      location.reload();
+                  })
+            }
+  });
+})
 
              //商品轮播
     $(".goods-list ul li").hover(function(){
