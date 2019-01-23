@@ -24,4 +24,21 @@ class Mail{
 		$mail->IsHTML(C('MAIL_HTML'));
 		return($mail->Send());
 	}
+
+	function SendMailByInfo($address,$title,$message,$info,$fromname='NONE'){
+		$mail = new PHPMailer\PHPMailer;
+		$mail->IsSMTP();
+		$mail->CharSet=C('MAIL_CHARSET');
+		$mail->AddAddress($address);
+		$mail->Body=$message;
+		$mail->From= $info['address'];
+		$mail->FromName=$fromname;
+		$mail->Subject=$title;
+		$mail->Host=$info['smtp'];
+		$mail->SMTPAuth=C('MAIL_AUTH');
+		$mail->Username=$info['name'];
+		$mail->Password=$info['passpord'];
+		$mail->IsHTML(C('MAIL_HTML'));
+		return($mail->Send());
+	}
 }

@@ -43,6 +43,14 @@ class MessageController extends AdminController {
         $this->display();
     }
 
+        /**
+     */
+    public function add(){
+        $info = M('config_email')->where('id=1')->find();
+        $this->assign('data', $info);
+        $this->display();
+    }
+
     /**
      * 查看行为日志
      * @author huajie <banhuajie@163.com>
@@ -50,13 +58,11 @@ class MessageController extends AdminController {
     public function edit($id = 0){
         empty($id) && $this->error('参数错误！');
         $info = M('message')->field(true)->find($id);
-        $userInfo = M('ucenter_member')->where(['id'=>$info['uid']])->find();
-        $info['username']    =   $userInfo['username'];
-        $info['email']    =   $userInfo['email'];
-        $info['item']    =  M('item')->where(['id'=>$info['item_id']])->getField('name');
-        //回复记录
-        $list = M('message')->where(['type'=>2,'reply_id'=>$id])->select();
         $this->assign('info', $info);
+        $data = M('config_email')->where('id=1')->find();
+        $this->assign('data', $data);
+          //回复记录
+        $list = M('message')->where(['type'=>2,'reply_id'=>$id])->select();
         $this->assign('list', $list);
         $this->display();
     }
@@ -66,8 +72,9 @@ class MessageController extends AdminController {
     public function send_message(){
         $data = I('post.');
         empty($data['content']) && $this->error('请输入回复内容！');
+        $info = M('config_email')->where('id=1')->find();
         $mail = new \Think\Mail();
-        $res =  $mail->SendMail($data['email'],$data['item'],$data['content'],'我是发件人');
+        $res =  $mail->SendMailByInfo($data['email'],$data['title'],$data['content'],$info,$info['send_name']);
         if($res){
             $Sqldata =[
                 'type'=>2,
@@ -116,6 +123,20 @@ class MessageController extends AdminController {
         }else {
             $this->error('日志清空失败！');
         }
+    }
+
+        /**
+     * 更新一条数据
+     * @author huajie <banhuajie@163.com>
+     */
+    public function update(){
+        $data = I('post.');
+        empty($data['address']) && $this->error('邮箱地址不能为空！');
+        empty($data['smtp']) && $this->error('邮箱SMTP服务器不能为空！');
+        empty($data['name']) && $this->error('邮箱登录帐号不能为空！');
+        empty($data['passpord']) && $this->error('邮箱密码不能为空！');
+        M('config_email')->where(['id'=>1])->data($data)->save();
+        $this->success('提交成功', Cookie('__forward__'));
     }
 
 }
