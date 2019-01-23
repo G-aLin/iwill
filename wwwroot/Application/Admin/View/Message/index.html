@@ -7,6 +7,7 @@
     </div>
 
     <div>
+      <a  class="btn" href="{:U('message/add')}">设置发件人</a>
                             <!-- <button class="btn ajax-get confirm" url="{:U('clear')}">清 空</button> -->
         <button class="btn ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>
 
@@ -49,7 +50,7 @@
             <td><span>{$vo.create_time}</span></td>
              <!-- <td><?= $vo['status'] == 1 ? '未回复' : '已回复' ?></a></td> -->
             <td>
-              <!-- <a href="{:U('message/edit?id='.$vo['id'])}">回复</a> -->
+              <a href="{:U('message/edit?id='.$vo['id'])}">回复</a>
              <a class="confirm ajax-get" href="{:U('message/remove?ids='.$vo['id'])}">删除</a>
                                         </td>
         </tr>
