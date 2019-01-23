@@ -91,6 +91,27 @@ label
   background-color #fff
   border: 0.02rem solid #489e87
 
+.paging
+  display: flex
+  align-items: center
+  justify-content center
+  a
+    margin-left 0.1rem
+    font-size: 0.18rem
+    padding: 0 0.1rem
+    height 0.28rem
+    line-height: 0.28rem
+    text-align: center
+    color #ddd
+    border: 1px solid #e1e1e1
+    border-radius: 0.03rem
+    &:first-child
+      margin-left 0
+    &.cur
+      background-color #489e87
+      border-color: #489e87
+      color #fff
+
 .page
   height: 100%
   display: flex
@@ -1067,4 +1088,123 @@ label
         background-color #489e87
       &.buy-btn
         background-color #ffb80e
+  .l
+    margin-top 0.22rem
+    .tab-box
+      padding: 0.1rem 0
+      height: 0.65rem
+      line-height: 0.65rem
+      .tab-list
+        display: flex
+        white-space: nowrap
+        overflow-x: auto
+        background-color #fff
+        &.fixed
+          position: fixed
+          top: 0
+          left 0
+          right 0
+          box-shadow: 0 0 0.05rem rgba(0,0,0,0.2)
+        a
+          position relative
+          color #555
+          padding: 0 0.33rem
+          &:before
+            content: ''
+            position: absolute
+            top: 50%
+            left 0
+            width: 0.01rem
+            height 0.2rem
+            margin-top -0.1rem
+            background-color #e1e1e1
+          &:first-child
+            border-left 0
+            &:before
+              display: none
+          &.active
+            color: #489e87
+    .l-contain
+      padding: 0 0.25rem
+      .column
+        .title
+          line-height: 0.76rem
+          font-size: 0.24rem
+          color #333
+          text-align: center
+        .detail
+          .table
+            font-size: 0.14rem
+            color #555
+            line-height: 0.25rem
+            border: 1px solid #e8e8e8
+            .lborder
+              border-left: 1px solid #e8e8e8
+            table
+              width 100%
+              &.table-fixed
+                table-layout: fixed
+              tr
+                border-top 1px solid #e8e8e8
+                &:first-child
+                  border-top 0
+                th
+                  padding: 0.05rem 0.13rem
+                  font-weight: normal
+                  background-color #f3f3f3
+                  text-align: left 
+                td
+                  padding: 0.05rem 0.13rem
+                  background-color #fff
+        p
+          margin-top 0.2rem
+          line-height: 0.24rem
+          font-size: 0.2rem
+          color #555
+        .questions
+          padding-bottom 0.24rem
+          .quiz
+            display: flex
+            align-items center
+            justify-content center
+            height 0.97rem
+            background-color #489e87
+            a
+              width 3.22rem
+              height 0.5rem
+              line-height: 0.5rem
+              text-align: center
+              font-size: 0.24rem
+              color: #fff
+              background-color rgba(188, 249, 233, 0.34)
+              border-radius: 0.25rem
+          .list
+            padding 0.24rem 0
+            font-size: 0.2rem
+            color #555
+            line-height: 0.3rem
+            dl
+              margin-top 0.36rem
+              &:first-child
+                margin-top 0
+              dt, dd
+                display: flex
+                span
+                  flex: 0 0 1rem
+                  width 1rem
+                .text
+                  flex: 1
+              dt
+                .text
+                  color #489e87
+              dd
+                margin-top 0.1rem
+                .text
+                  color #666
+                  .time
+                    margin-top 0.14rem
+                    color #999
+          .paging
+            margin-top 0.24rem
 
+          
