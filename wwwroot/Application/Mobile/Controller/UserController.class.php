@@ -187,18 +187,11 @@ class UserController extends HomeController {
 // case -10: $error = '手机被禁止注册！'; break;
 // case -11: $error = '手机号被占用！'; break;
 // default:  $error = '未知错误';
-                                        case -1: $error = '用户名长度必须在16个字符以内！'; break;
-			case -2:  $error = '用户名被禁止注册！'; break;
-			case -3:  $error = 'User name occupied！'; break;
-			case -4:  $error = 'Password length must be between 6 and 30 characters！'; break;
-			case -5:  $error = '邮箱格式不正确！'; break;
-			case -6:  $error = '邮箱长度必须在1-32个字符之间！'; break;
-			case -7:  $error = '邮箱被禁止注册！'; break;
-			case -8:  $error = '邮箱被占用！'; break;
-			case -9:  $error = '手机格式不正确！'; break;
-			case -10: $error = '手机被禁止注册！'; break;
-			case -11: $error = '手机号被占用！'; break;
-			default:  $error = '未知错误';
+                                     case -1: $error = 'User name length must be less than 16 characters'; break;
+            case -2:  $error = 'User name is prohibited from registration！'; break;
+            case -3:  $error = 'User name occupied！'; break;
+            case -4:  $error = 'Password length must be between 6 and 30 characters！'; break;
+            default:  $error = 'Network anomaly';
 		}
 		return $error;
 	}
