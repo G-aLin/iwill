@@ -309,7 +309,7 @@ class ItemController extends HomeController {
              }
     }
 
-                    /* comment */
+                    /* ask */
     public function ask(){
             $uid = session('user_auth')['uid'] ;
                     if(IS_POST){

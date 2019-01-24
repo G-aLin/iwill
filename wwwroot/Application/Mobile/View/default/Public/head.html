@@ -20,7 +20,36 @@
 <body>
   <div class="page">
     <div class="header">
-      <span class="slot-left"><i class="icon-global bg-1"></i></span>
+      <span class="slot-left"><i class="icon-global bg-1"></i><i class="icon-global bg-16"></i></span>
       <img class="logo" src="__IMG__/logo.png">
+      <div class="nav-list-pop">
+        <a href="{:U('Index/index')}">Home</a>
+        <a href="{:U('Item/lists')}">Shop Products</a>
+        <a href="{:U('News/lists')}">Organizing Tips</a>
+        <a href="{:U('Promotion/deals')}">Promotion&Deals</a>
+        <a href="{:U('About/contact')}">Contact Us</a>
+        <a href="{:U('About/us')}">About Us</a>
+        <a href="{:U('About/policy')}">Privacy Poilcy</a>
+        <a href="{:U('About/us')}#Terms">Terms of Use</a>
+ <if condition="!is_login()">
+        <a href="{:U('User/login')}">Sign In</a>
+        <a href="{:U('User/register')}">Sign up</a>
+  <else />
+         <a href="{:U('User/Index')}">My Profile</a>
+        <a href="{:U('User/logout')}">Log Out</a>
+  </if>
+      </div>
     </div>
   <!-- header -->
+<script>
+      $(function () {
+      $('.header .slot-left .bg-1').click(function() {
+        $(this).parent().addClass('active')
+        $('.header .nav-list-pop').fadeIn()
+      })
+      $('.header .slot-left .bg-16').click(function() {
+        $(this).parent().removeClass('active')
+        $('.header .nav-list-pop').fadeOut()
+      })
+    })
+  </script>

@@ -206,7 +206,7 @@ $('.type-choose-list .pic').click(function(){
                   <dt>Answer:</dt>
                   <dd>
                     <div class="text"><?= $value['reply'] ?></div>
-                    <div class="time">By <?= $value['username'] ?> Hand on <?= $value['reply'] ?> <?= $value['day'] ?>, <?= $value['year'] ?></div>
+                    <div class="time">By <?= $value['username'] ?> Hand on <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?></div>
                   </dd>
                 </dl>
               </div>
@@ -299,7 +299,9 @@ $(function(){
                 return false;
                 function success(data){
                       layer.msg(data.info,{anim: 1},function(){
-                      location.reload();
+                       if (data.status ==1) {
+                           location.reload();
+                        }
                   })
                 }
             })

@@ -111,6 +111,7 @@ class UserController extends HomeController {
 			}
 
 		} else { //显示登录表单
+                                    $this->assign('login',1);//列表
 			$this->display();
 		}
 	}

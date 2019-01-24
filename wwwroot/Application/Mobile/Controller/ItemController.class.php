@@ -21,7 +21,6 @@ class ItemController extends HomeController {
                     $this->get_page_info(4);
                     $this->assign('fixed',1);//
                     $this->assign('nav',2);//
-
                     $map['pid']  =0;
                     $map['status']  = 1;
                     $data  =M('item_category')->where($map)->order('level desc')->select();
@@ -99,6 +98,26 @@ class ItemController extends HomeController {
             $this->assign('_page',$pageStyle);
             $this->assign('comment_list',$comment_list);
      // var_dump($comment_list);exit;
+    // 问答
+            $question_count = M('item_question')->where(['item_id'=>$id,'type'=>1,'status'=>1])->count();
+            $question_page = new \Think\Pagetwo($question_count,10);
+            $question_list =M('item_question')->where(['item_id'=>$id,'type'=>1,'status'=>1])->order('id desc')->limit($question_page->firstRow.','.$question_page->listRows)->select();
+            $question_page->setConfig('prev','Prev page');
+            $question_page->setConfig('next','Next page');
+            $question_page->setConfig('p','page');
+            $question_page->setConfig('suffix','#FAQ');
+            $question_pageStyle = $question_page->show();
+            foreach ($question_list as $key => $value) {
+                $question_list[$key]['username']    =   M('ucenter_member')->where(['id'=>$value['uid']])->getField('username');
+                $publish_time = strtotime($value['create_time']);
+                $question_list[$key]['year'] = date('Y',$publish_time);
+                $question_list[$key]['month'] =date('F',$publish_time);
+                $question_list[$key]['day'] = date('d',$publish_time);
+                $question_list[$key]['reply']  = M('item_question')->where(['item_id'=>$id,'type'=>2,'reply_id'=>$value['id'],'status'=>1])->getField('content');
+            }
+            $this->assign('_question_page',$question_pageStyle);
+            $this->assign('question_list',$question_list);
+     // var_dump($question_list);exit;
 
             $this->display();
     }
@@ -281,6 +300,27 @@ class ItemController extends HomeController {
                         $res = M("comment")->data($data)->add();
                          if($res !== false){ //成功
                                 $this->success('Comment successfully');
+                            } else { //注册失败，显示错误信息
+                                $this->error($this->showRegError($uid));
+                        }
+             }
+    }
+
+                        /* ask */
+    public function ask(){
+            $uid = session('user_auth')['uid'] ;
+                    if(IS_POST){
+                        $data = I('post.');
+                        /* 检测验证码 TODO: */
+                        $data['uid'] = $uid ;
+                        $data['item_id'] = $data['item_id'] ;
+                        $data['type'] = 1;
+                        $data['content'] = $data['content'] ;
+                        $data['status'] = 0 ;
+                        $data['create_time'] = date('Y-m-d H:i:s',time());
+                        $res = M("item_question")->data($data)->add();
+                         if($res !== false){ //成功
+                                $this->success('Submit successfully');
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));
                         }

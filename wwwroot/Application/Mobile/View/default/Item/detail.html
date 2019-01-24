@@ -1,37 +1,39 @@
 <include file="Public/head" title="{$data.name}-{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
-<link rel="stylesheet" href="__CSS__/passport.css">
-<script src="__JS__/jquery.jqzoom.js"></script>
+<link href="https://cdn.bootcss.com/Swiper/4.4.6/css/swiper.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/Swiper/4.4.6/js/swiper.min.js"></script>
 <style type="text/css">
-/*图片放大镜样式*/
-.jqzoom{float:left;border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
-.zoomdiv{z-index:100;position:absolute;top:0px;left:0px;width:400px;height:400px;border:1px solid #CCCCCC;display:block;text-align:center;overflow:hidden;background:#fff;}
-.jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:20px;height:20px;border:1px solid #aaa;background:#ffffff;opacity: 0.5;-moz-opacity: 0.5;-khtml-opacity: 0.5;filter: alpha(Opacity=50);}
+.layui-layer-btn a{font-size:0.5em;}
+.sell-pop{display: none;
+    z-index: 1;
+    width: 253px;
+    border: 1px solid #ffb80e;
+    background-color: #fff;}
+.sell-pop ul li{
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+    color: #555;
+    background-color: #e1e1e1;
+    border-radius: 18px;}
 </style>
 
-  <div class="pro-detail-page">
-    <div class="pro-content">
-      <div class="wrapper">
-        <div class="pro-pic">
-          <div class="big-pic jqzoom">
-            <img  src="<?= $data['item_pic'][0]['path'] ?>"  jqimg="<?= $data['item_pic'][0]['path'] ?>">
-          </div>
-          <div class="pic-list">
-            <ul class="clearfix">
-          <?php foreach ($data['item_pic'] as  $key=> $value): ?>
-              <li <?php if ($key === 0): ?>class="active"<?php endif ?>><img src="<?= $value['path'] ?>" data-bigImg="<?= $value['path'] ?>"></li>
+    <div class="page-scroll">
+
+      <div class="shop-products-details-page">
+
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <?php foreach ($data['item_pic'] as  $key=> $value): ?>
+               <div class="swiper-slide"><img src="<?= $value['path'] ?>"></div>
             <?php endforeach ?>
-            </ul>
           </div>
+          <div class="swiper-pagination"></div>
         </div>
-        <div class="pro-info">
-          <div class="pro-name"><?= $data['name'] ?></div>
-          <div class="details">
-            <div>SKU:   <?= $data['sku'] ?></div>
-  <if condition="!is_login()">
-            <div class="price">
-              Bulky Price: <span class="c-green">$<?= $data['bulky_price'] ?></span> <a class="link" href="">Login</a>  to view wholesale prices
-            </div>
- <else />
+        <div class="pro-details">
+          <div class="bborder">
+            <div class="name"><?= $data['name'] ?></div>
+            <div class="price">Bulky Price: <span>$<?= $data['bulky_price'] ?></span></div>
+
             <div class="price-list">
               <ul class="clearfix">
               <?php
@@ -39,94 +41,100 @@
               $price_range = explode(",",$data['price_range']);
               ?>
                 <li>
-                  <div>Quantity:</div>
-                  <div>Interval price:</div>
+                  <div  class="price">Quantity:</div>
+                  <div  class="price">Interval price:</div>
                 </li>
                 <?php foreach ((array)$price_range as $key => $value): ?>
                 <li>
-                  <div class="district"><?= $value ?></div>
-                  <div class="num">$<?= $price[$key] ?></div>
+                  <div class="price">  <?= $value ?> </div>
+                  <div class="price">  $<?= $price[$key] ?></div>
                 </li>
                 <?php endforeach ?>
               </ul>
             </div>
-     </if>
-            <div>
-              Rank:
-              <div class="star-list big clearfix">
-                <?php
+
+            <div class="star-contain">
+              <div class="icon-star-list">
+                  <?php
                     for ($i=1; $i <= 5 ; $i++) {
                         if($i<=$data['star']){
-                                echo '<i class="star on"></i>';
+                                echo '<i class="icon-star on"></i>';
                         }else{
-                                echo '<i class="star"></i>';
+                                echo '<i class="icon-star"></i>';
                         }
                     }
                ?>
-                </div>
-              <span class="c-green">754</span> Reviews
-              <div class="img-list clearfix">
-                <a href="javascript:;"><img src="__IMG__/icon-collect.png" id="collection"></a>
-                <li><a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/organizing/9.png"></a></li>
-                <li><a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/organizing/10.png"></a></li>
-                <li><a href="javascript:;" class="social-share-icon icon-linkedin"><img src="__IMG__/organizing/11.png"></a></li>
-        <script src="__STATIC__/social-share.min.js"></script>
-        <script>
-          var $config = {
-              title               : '<?= $data['name'] ?>',
-              description         : '<?= $data['description'] ?>',
-              url   : "'<?= $data['shareUrl'] ?>",
-              image  : "<?= $data['item_pic'][0]['path'] ?>",
-              sites:['linkedin', 'facebook', 'twitter','weibo']
-          };
-          socialShare('.social-share-item', $config);
-          $('#collection').click(function(){
-                var id = <?= $data['id']?>;
-                $.post("{:U('collection')}", {id:id}, success, "json");
-                return false;
-                function success(data){
-                   layer.msg(data.info)
-                }
-              })
-          </script>
-
               </div>
+              <span>754</span> Reviews
             </div>
-
-      <?php foreach ($data['item_spec'] as $key => $value):
-                  $spec_img = explode(",", $value['spec_img']);
-                  $spec = explode(",", $value['spec']); ?>
-          <div>
-              <span class="chooseSpec"><?= $value['name'] ?>:<?= $spec[0] ?></span>
-              <div class="type-choose-list clearfix">
-              <?php foreach ($spec_img as $k=> $v): ?>
-                  <div class="pic <?php if ($k===0): ?>on<?php endif ?>" data-name="<?= $value['name'].':'.$spec[$k] ?>" data-spec="<?= $value['id'].'-'.$k?>"><img src=" <?= get_picture($v) ?>"></div>
-              <?php endforeach ?>
-              </div>
-              <input type="hidden" name="spec[]" value="<?= $value['id'].'-'.$k ?>">
           </div>
-      <?php endforeach ?>
+          <div class="bborder">
+            <div class="sku">SKU:   <?= $data['sku'] ?></div>
+            <div class="description">
+              <h6>Description:</h6>
+              <p><?= $data['description'] ?></p>
+            </div>
+          </div>
+        <?php foreach ($data['item_spec'] as $key => $value):
+                  $spec_img = explode(",", $value['spec_img']);
+                  $spec = explode(",", $value['spec']);
+                  ?>
+          <div class="color">
+            <h6><?= $value['name'] ?>:<?= $spec[0] ?></h6>
+            <div class="color-list">
+              <?php foreach ($spec_img as $k=> $v): ?>
+                  <a href="javascript:;"  class="<?php if ($k===0): ?>cur<?php endif ?> pic" data-name="<?= $value['name'].':'.$spec[$k] ?>" data-spec="<?= $value['id'].'-'.$k?>"><img src=" <?= get_picture($v) ?>"></a>
+               <?php endforeach ?>
+            </div>
+               <input type="hidden" name="spec[]" value="<?= $value['id'].'-'.$k ?>">
+          </div>
+        <?php endforeach ?>
 <script type="text/javascript">
-$('.type-choose-list .pic').click(function(){
+$('.color-list a').click(function(){
   var name = $(this).data('name');
-  $(this).parent().find('.pic').removeClass('on');
-  $(this).addClass('on');
+  $(this).parent().find('.pic').removeClass('cur');
+  $(this).addClass('cur');
   $(this).parent().prev().html(name);
   $(this).parent().next().val($(this).data('spec'));
 })
 
 </script>
-            <div class="desc">
-              Description:
-              <p><?= $data['description'] ?></p>
+
+          <div class="quantity">
+            Quantity:
+            <div class="controller">
+              <em class="sub"><i class="icon-global bg-14"></i></em>
+              <input type="text" value="1" id="item_num" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9">
+              <em class="add"><i class="icon-global bg-15"></i></em>
             </div>
-            <div class="quantity">
-              Quantity:
-              <div class="edit">
-                <input type="text" value="1" id="item_num" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9">
-                <span class="add"><i class="icon-global bg-28"></i></span>
-                <span class="sub"><i class="icon-global bg-29"></i></span>
+            Piece
+            <span>In stock <?= $data['stock'] ?> Piece</span>
+          </div>
+          <a class="inquiry-btn btn" href="javascript:;" id="Inquiry">Inquiry</a>
+           <input type="hidden" value="<?= is_login() ?>" id="is_login">
+          <a class="buy-btn btn" id="buy">Buy</a>
+        </div>
+<div class="sell-pop">
+               <ul>
+                  <li>BUY ON AMAZON <a href="<?= $data['amazon'] ?>" target="_blank">GO</a></li>
+                  <li>BUY ON JD <a href="<?= $data['jd'] ?>" target="_blank">GO</a></li>
+                  <li>BUY ON TAOBAO <a href="<?= $data['taobao'] ?>" target="_blank">GO</a></li>
+                </ul>
+</div>
+
  <script type="text/javascript">
+ $('#buy').click(function(){
+  layer.open({
+  type: 1,
+  shade: false,
+  title: false, //不显示标题
+  content: $('.sell-pop'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+  cancel: function(){
+
+  }
+});
+ })
+
  $('.add').click(function(){
     var num = $("#item_num").val();
     $("#item_num").val(++num)
@@ -146,194 +154,115 @@ $('.type-choose-list .pic').click(function(){
  })
 
  </script>
-              </div>
-              Piece
-              <span class="stock">In stock <?= $data['stock'] ?> Piece</span>
-            </div>
-            <div>
-              Sample purchase please click:
-              <a class="btn green" href="javascript:;" id="Inquiry">Inquiry</a>
-            </div>
-            <div class="sell">
-              Click to buy in bulk:
-              <a class="btn yellow switchPop" href="javascript:;">Buy</a>
-              <div class="sell-pop">
-                <ul>
-                  <li>BUY ON AMAZON <a href="<?= $data['amazon'] ?>" target="_blank">GO</a></li>
-                  <li>BUY ON JD <a href="<?= $data['jd'] ?>" target="_blank">GO</a></li>
-                  <li>BUY ON TAOBAO <a href="<?= $data['taobao'] ?>" target="_blank">GO</a></li>
-                </ul>
-              </div>
+
+        <div class="l">
+          <div class="tab-box">
+            <div class="tab-list">
+              <a href="javascript:;" class="active">Product description</a>
+              <a href="javascript:;">Packaging & Shipping</a>
+              <a href="javascript:;">Review(765)</a>
+              <a href="javascript:;">Write a Review</a>
+              <a href="javascript:;">FAQ</a>
             </div>
           </div>
+          <div class="l-contain">
+            <div class="column" id="1">
+              <div class="detail">
+                 <?= $data['desc'] ?>
+              </div>
+            </div>
 
-        </div>
-      </div>
-    </div>
-    <div class="pro-detail">
-      <div class="wrapper">
-        <div class="nav-bar">
-          <ul class="clearfix">
-            <li><a class="cur" href="#Description">Product description</a></li>
-            <li><a href="#Packaging">Packaging & Shipping</a></li>
-            <li><a href="#Review">Review(765)</a></li>
-            <li><a href="#Comment">Write a Review</a></li>
-            <li><a href="#FAQ">FAQ</a></li>
-          </ul>
-        </div>
+            <div class="column" id="2">
+              <div class="detail">
+                 <?= $data['packaging_and_shipping'] ?>
+              </div>
+            </div>
 
-        <div class="contain">
+            <div class="column">
+              <div class="title">Customer questions & answers</div>
+              <div class="questions">
+                <div class="quiz"><a href="javascript:;" id="ask">I have to ask a question</a></div>
+                <div class="list" id="FAQ">
+<?php foreach ($question_list as $key => $value): ?>
+                  <dl>
+                    <dt>
+                      <span>Question:</span>
+                      <div class="text">
+                        <?= $value['content'] ?>
+                      </div>
+                    </dt>
+                    <dd>
+                      <span>Answer:</span>
+                      <div class="text">
+                        <?= $value['reply'] ?>
+                        <div class="time">By <?= $value['username'] ?> Hand on <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?></div>
+                      </div>
+                    </dd>
+                  </dl>
+ <?php endforeach ?>
 
-          <div class="tab-column description" id="Description">
-            <?= $data['desc'] ?>
-          </div>
+                </div>
+                <div class="paging">
+                   <?= $_question_page ?>
+                </div>
+              </div>
+            </div>
 
-          <div class="tab-column packaging" id="Packaging">
-           <?= $data['packaging_and_shipping'] ?>
-          </div>
-
-          <div class="tab-column faq" id="FAQ">
-            <div class="title">Customer questions & answers</div>
-            <div class="faq-list">
-              <div class="item">
+            <div class="column">
+              <div class="title">User Comment</div>
+              <div class="comment">
                 <dl>
-                  <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
+                  <dt>Username: </dt>
+                  <dd>Anonymous user</dd>
                 </dl>
                 <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                  <dt>E-mail: </dt>
+                  <dd><input class="e-mail" type="text" id="comment_email"></dd>
+                </dl>
+                <dl>
+                  <dt>Rank: </dt>
+                  <dd class="star-box">
+                    <div class="icon-star-list"  id="comment-star-list">
+                      <i class="icon-star on star" ref=0></i>
+                      <i class="icon-star on star" ref=1></i>
+                      <i class="icon-star on star" ref=2></i>
+                      <i class="icon-star on star" ref=3></i>
+                      <i class="icon-star on star" ref=4></i>
+                    </div>
                   </dd>
                 </dl>
-              </div>
-              <div class="item">
                 <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
+                  <dt>Content: </dt>
                   <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                    <textarea maxlength="5000" id="comment_content"></textarea>
                   </dd>
                 </dl>
-              </div>
-              <div class="item">
                 <dl>
-                  <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
+                  <dt>Verification code: </dt>
                   <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>How does it compare to first gen amazonbasic lighting cable? does it have the same quality "click" into port feel (just like apple cable)?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
-                  </dd>
-                </dl>
-              </div>
-              <div class="item">
-                <dl>
-                  <dt>Question:</dt>
-                  <dd>Can I download my photos from my Iphone X to my laptop using this cable?</dd>
-                </dl>
-                <dl>
-                  <dt>Answer:</dt>
-                  <dd>
-                    <div class="text">Yes. It clicks. It is a well made cable with strain reliefs on each end. Well worth the price. </div>
-                    <div class="time">By Antony M Hand on November 27, 2018</div>
+                    <br />
+                    <div class="code">
+                       <input class="code" type="text" maxlength="4" id="comment_code"><a href="javascript:;" class="reloadverify"><img class="code-pic verifyimg" src="{:U('Public/verify')}"></a>
+                    </div>
+                     <input type="submit" value="Submit" id="commentSubmit">
                   </dd>
                 </dl>
               </div>
             </div>
-            <div class="paging">
-          <!--     <a data-aos="fade-up" data-aos-delay="100" href="javascript:;" class="disabled">Prev page</a>
-              <a data-aos="fade-up" data-aos-delay="200" href="javascript:;" class="cur">1</a>
-              <a data-aos="fade-up" data-aos-delay="300" href="javascript:;">2</a>
-              <a data-aos="fade-up" data-aos-delay="400" href="javascript:;">3</a>
-              <a data-aos="fade-up" data-aos-delay="500" href="javascript:;">4</a>
-              <a data-aos="fade-up" data-aos-delay="600" href="javascript:;">5</a>
-              <a data-aos="fade-up" data-aos-delay="700" href="javascript:;">...</a>
-              <a data-aos="fade-up" data-aos-delay="800" href="javascript:;">Next page</a> -->
-            </div>
-          </div>
-
-          <div class="tab-column comment" id="Comment">
-            <div class="title">User Comment</div>
-            <div class="form">
-              <dl>
-                <dt>Username:</dt>
-                <dd>Anonymous user</dd>
-              </dl>
-              <dl>
-                <dt>E-mail:</dt>
-                <dd><input class="e-mail" type="text" id="comment_email"></dd>
-              </dl>
-              <dl>
-                <dt>Rank:</dt>
-                <dd>
-                  <div class="star-list clearfix" id="comment-star-list">
-                    <i class="star on" ref=0></i>
-                    <i class="star on" ref=1></i>
-                    <i class="star on" ref=2></i>
-                    <i class="star on" ref=3></i>
-                    <i class="star on" ref=4></i>
-                  </div>
-                </dd>
-              </dl>
-              <dl>
-                <dt>Content:</dt>
-                <dd>
-                  <textarea maxlength="5000" id="comment_content"></textarea>
-                </dd>
-              </dl>
-              <dl>
-                <dt>Verification code:</dt>
-                <dd>
-                  <br />
-                  <input class="code" type="text" maxlength="4" id="comment_code"><a href="javascript:;" class="reloadverify"><img class="code-pic verifyimg" src="{:U('Public/verify')}"></a>
-                  <input type="submit" value="Submit" id="commentSubmit">
-                </dd>
-              </dl>
-            </div>
-          </div>
 <script type="text/javascript">
 $(function(){
       $("#Inquiry").click(function(){
-          var spec = '',num = $('#item_num').val(),item_id=<?= $data['id'] ?>,url="{:U('Item/orderhanlde')}";
-          $('input[name="spec[]"]').each(function(){
-               spec += $(this).val()+'|';
-          })
-          location.href= url+"?id="+item_id+"&num="+num+'&spec='+spec;
+          var spec = '',is_login=$("#is_login").val(),num = $('#item_num').val(),item_id=<?= $data['id'] ?>,url="{:U('Item/orderhanlde')}";
+          if(is_login == 0){
+                location.href= "{:U('User/login')}?uri={:U('Item/detail')}?id="+item_id;
+          }else{
+                $('input[name="spec[]"]').each(function(){
+                   spec += $(this).val()+'|';
+              })
+              location.href= url+"?id="+item_id+"&num="+num+'&spec='+spec;
+          }
       });
+
         $("#comment-star-list i").click(function(){
             var ref = $(this).attr('ref');
             $("#comment-star-list i").removeClass("on");
@@ -361,103 +290,115 @@ $(function(){
                 return false;
                 function success(data){
                       layer.msg(data.info,{anim: 1},function(){
-                      location.reload();
+                        if (data.status ==1) {
+                           location.reload();
+                        }
                   })
                 }
             })
 
 })
 </script>
-          <div class="tab-column review" id="Review">
-            <div class="title">Write a Review</div>
-            <div class="review-list">
-
-            <?php foreach ($comment_list as $key => $value): ?>
-              <div class="item">
-                <div class="star-total">
-                  <div class="star-list clearfix">
-                     <?php
+            <div class="column">
+              <div class="title">Write a Review</div>
+              <div class="review">
+                <div class="list" id="Review">
+  <?php foreach ($comment_list as $key => $value): ?>
+                  <div class="item">
+                    <div class="star-box">
+                      <div class="icon-star-list">
+                        <?php
                         for ($i=1; $i <= 5 ; $i++) {
                             if($i<=$value['star']){
-                                    echo '<i class="star on"></i>';
+                                    echo '<i class="icon-star on"></i>';
                             }else{
-                                    echo '<i class="star"></i>';
+                                    echo '<i class="icon-star"></i>';
                             }
                         }
                    ?>
+                      </div>
+                      <span><?= $value['star'] ?>.0</span>
+                    </div>
+                    <div class="member">
+                      Anonymous user <span><?= $value['create_time'] ?></span>
+                    </div>
+                    <div class="text"><?= $value['content'] ?></div>
                   </div>
-                  <?= $value['star'] ?>.0
+  <?php endforeach ?>
+
                 </div>
-                <div class="customer">Anonymous user <span class="time"> <?= $value['create_time'] ?></span></div>
-                <div class="content"><?= $value['content'] ?></div>
-            </div>
-            <?php endforeach ?>
-
-            </div>
-            <div class="paging">
-              <?= $_page ?>
+                <div class="paging">
+                 <?= $_page ?>
+                </div>
               </div>
-          </div>
-        </div>
-
-        <div class="history">
-          <h5>View History</h5>
-          <div class="list">
-            <div class="box">
-              <ul class="clearfix bd">
-              <?php foreach ($ViewHistoryList as $key => $value): ?>
-                <li><a href="{:U('detail?id='.$value['id'])}">
-                  <div class="pic"><img src="<?= $value['path']?>"></div>
-                  <div class="name"><?= $value['name']?></div>
-                  <div class="price"><span>$<?= $value['bulky_price']?></span> /Piece</div></a>
-                </li>
-              <?php endforeach ?>
-              </ul>
             </div>
-            <span class="prevCell handle"><i class="icon-arrow prev"></i></span>
-            <span class="nextCell handle"><i class="icon-arrow next"></i></span>
+
           </div>
         </div>
+
+<?php if ($ViewHistoryList ): ?>
+        <div class="history">
+          <div class="title">View History</div>
+          <div class="list">
+  <?php foreach ($ViewHistoryList as $key => $value): ?>
+            <div class="item"><a href="{:U('detail?id='.$value['id'])}">
+              <div class="pic">
+                <img src="<?= $value['path']?>">
+              </div>
+              <div class="name"><?= $value['name'] ?></div>
+              <div class="price">
+                <span>$<?= $value['bulky_price'] ?></span> /Piece
+              </div></a>
+            </div>
+    <?php endforeach ?>
+          </div>
+        </div>
+  <?php endif ?>
       </div>
-    </div>
 
-  </div>
   <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      autoplay: true,//可选选项，自动滑动
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      loop: true
+    })
+
     $(function () {
-     $(".jqzoom").jqueryzoom({ xzoom: 400, yzoom: 400 });
-
-
-             //商品轮播
-    $(".goods-list ul li").hover(function(){
-        // $(this).addClass("curr").siblings().removeClass("curr");
-        // var imgSrc = $(this).find('img').attr('src');
-        // var bigImgSrc = $(this).find('img').attr('jqimg');
-        // $('#preview .jqzoom img').attr('src',bigImgSrc);
-        // $('#preview .jqzoom img').attr('jqimg',bigImgSrc);
-    },function(){
-        /*$('#preview .jqzoom img').attr('src',$('#preview .jqzoom img').attr('img'));*/
-    });
-
-
-      $('.pic-list').on('click', 'li', function () {
-        $(this).addClass('active').siblings().removeClass('active')
-        let Src = $(this).children('img').attr('data-bigImg')
-        $('.pro-pic .big-pic img').attr('src', Src).attr('jqimg',Src);
+      $('.header .slot-left .bg-1').click(function() {
+        $(this).parent().addClass('active')
+        $('.header .nav-list-pop').fadeIn()
+      })
+      $('.header .slot-left .bg-16').click(function() {
+        $(this).parent().removeClass('active')
+        $('.header .nav-list-pop').fadeOut()
       })
 
-      $('.sell').on('click', '.switchPop', function () {
-        $('.sell-pop').stop(true).fadeToggle()
-      })
+  //商品提问
+$("#ask").click(function(){
+    layer.prompt({
+      title: 'ask a question',
+      formType: 2,
+      // area: ['500px', '150px'],
+      maxlength: 500,
+      btn: ['yes','no']
+    }, function(pass, index){
+          var data = {};
+          data['item_id'] = <?= $data['id']?>;
+          data['content'] =pass;
+          $.post("{:U('ask')}",data, success, "json");
+            return false;
+            function success(data){
+                      layer.msg(data.info,{anim: 1},function(){
+                      location.reload();
+                  })
+            }
+  });
+})
 
-      $(".history .list").slide({
-        mainCell:".bd",
-        autoPage:true,
-        effect:"leftLoop",
-        autoPlay:true,
-        vis:4,
-        prevCell: '.prevCell',
-        nextCell: '.nextCell'
-      });
     })
   </script>
+
+
 <include file="Public/footer" />

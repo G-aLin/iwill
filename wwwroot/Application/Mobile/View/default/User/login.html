@@ -1,9 +1,9 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 
  <div class="page-scroll">
-      
+
       <div class="sing-page">
-        <div class="contain sign-in">
+        <div class="contain sign-in"  <?php if ($login==1): ?>style="display:block"<?php endif ?>>
           <form class="login-form form-horizontal-login" action="login.html" method="post">
           <h5>Log in to I WILL</h5>
           <div class="list">
@@ -27,7 +27,7 @@
         </div>
 
 
-        <div class="contain sign-up">
+        <div class="contain sign-up"  <?php if ($login==1): ?>style="display:none"<?php endif ?>>
            <form class="login-form-register form-horizontal" action="register.html" method="post">
           <h5>Create Account</h5>
           <div class="list">
@@ -61,7 +61,8 @@
         function success(data){
           if(data.status){
               layer.msg(data.info,{anim: 1},function(){
-                 window.location.href = data.url;
+                   var url = "<?= $_GET['uri'] ?>" ? "<?= $_GET['uri'] ?>" : data.url;
+                 window.location.href = url;
             })
           } else {
             layer.msg(data.info)

@@ -1,102 +1,73 @@
-
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
-<link rel="stylesheet" href="__CSS__/passport.css">
 
-  <div class="header-box"></div>
-
+<div class="page-scroll">
 <form class="login-form form-horizontal" action="order.html" method="post">
-  <div class="wrap">
-    <div class="order-page">
-      <h4>Inquiry request</h4>
-      <div class="clearfix">
-        <div class="order-form">
-          <div class="title">
-            Shipping Address
-            <span><em>*</em>indicates required fields</span>
+      <div class="shop-products-details-inquiry-page">
+        <div class="order">
+          <div class="pro"><img src="<?= $data['path']?>"></div>
+          <div class="info">
+            <div class="order-id">Order ID: #<?= $data['orderNo']?></div>
+            <div class="name"><?= $data['name']?></div>
           </div>
-          <div class="form">
-            <div class="two-col clearfix">
-              <dl>
-                <dt>First Name<em>*</em></dt>
-                <dd><input type="text" name="first_name" maxlength="100"></dd>
-              </dl>
-              <dl>
-                <dt>Last Name<em>*</em></dt>
-                <dd><input type="text" name="last_name" maxlength="100"></dd>
-              </dl>
-            </div>
-            <div class="two-col clearfix">
-              <dl>
-                <dt>Country<em>*</em></dt>
-                <dd><input type="text" name="country" maxlength="50"></dd>
-              </dl>
-              <dl>
-                <dt>Zip Code<em>*</em></dt>
-                <dd><input type="text" name="zip_code" maxlength="100"></dd>
-              </dl>
-            </div>
-            <div class="two-col clearfix">
-              <dl>
-                <dt>City<em>*</em></dt>
-                <dd><input type="text" name="city" maxlength="100"></dd>
-              </dl>
-              <dl>
-                <dt>State/Territory<em>*</em></dt>
-                <dd><input type="text" name="state" maxlength="100"></dd>
-              </dl>
-            </div>
-            <dl>
-              <dt>Address Line1<em>*</em></dt>
-              <dd><input type="text" name="address_line1" maxlength="500"></dd>
-            </dl>
-            <dl>
-              <dt>Address Line2<em>*</em></dt>
-              <dd><input type="text" name="address_line2" maxlength="500"></dd>
-            </dl>
-            <dl>
-              <dt>Phone Number<em>*</em></dt>
-              <dd><input type="text" name="phone" maxlength="20"></dd>
-            </dl>
-            <dl>
-              <dt>leave comments</dt>
-              <dd><textarea name="comments" maxlength="2000"></textarea></dd>
-            </dl>
-            <input type="hidden" name="orderno" value="<?= $data['orderNo']?>">
+        </div>
+        <div class="specification">
+ <?php  foreach ( $data['specList'] as $key => $value): ?>
+         <p><?= $value['spec_name'] ?>: <?= $value['spec'] ?></p>
+  <?php endforeach ?>
+          <p>SKU.:   <?= $data['sku'] ?></p>
+          <p>Quantity: <?= $data['num'] ?></p>
+          <p>Unit price: $<?= $data['unit_price'] ?></p>
+          <p>Subtotal :  <?= $data['total'] ?></p>
+          <p>Shipping :  $0.00</p>
+          <p>Taxes :    $0.00</p>
+          <p class="c-green font-bold">Total :   $<?= $data['total'] ?></p>
+        </div>
+        <div class="form">
+          <div class="item">
+            <h6>First Name<em>*</em></h6>
+            <input type="text" name="first_name" maxlength="100">
+          </div>
+          <div class="item">
+            <h6>Last Name<em>*</em></h6>
+            <input type="text" name="last_name" maxlength="100">
+          </div>
+          <div class="item">
+            <h6>Country<em>*</em></h6>
+            <input type="text" name="country" maxlength="50">
+          </div>
+          <div class="item">
+            <h6>Zip Code<em>*</em></h6>
+           <input type="text" name="zip_code" maxlength="100">
+          </div>
+          <div class="item">
+            <h6>City<em>*</em></h6>
+           <input type="text" name="city" maxlength="100">
+          </div>
+          <div class="item">
+            <h6>State/Territory<em>*</em></h6>
+           <input type="text" name="state" maxlength="100">
+          </div>
+          <div class="item">
+            <h6>Address Line1<em>*</em></h6>
+            <input type="text" name="address_line1" maxlength="500">
+          </div>
+          <div class="item">
+            <h6>Address Line2</h6>
+            <input type="text" name="address_line2" maxlength="500">
+          </div>
+          <div class="item">
+            <h6>Phone Number<em>*</em></h6>
+            <input type="text" name="phone" maxlength="20">
+          </div>
+          <div class="item">
+            <h6>leave comments</h6>
+           <textarea name="comments" maxlength="2000"></textarea>
+          </div>
+        </div>
+           <input type="hidden" name="orderno" value="<?= $data['orderNo']?>">
             <input type="submit" value="Submit" class="ajax-post" target-form="form-horizontal">
-          </div>
-        </div>
-</form>
-        <div class="order-detail">
-            <div class="title">
-              Order Details
-            </div>
-          <div class="detail">
-            <div class="pro">
-              <div class="pic"><a href="{:U('detail?id='.$data['id'])}" target="_blank"><img src="<?= $data['path']?>"></a></div>
-              <div class="info">
-                <div class="order-id">Order ID: #<?= $data['orderNo']?></div>
-                <div class="description"><?= $data['name']?></div>
-                <div class="spec">
-              <?php  foreach ( $data['specList'] as $key => $value): ?>
-                     <p><?= $value['spec_name'] ?>: <?= $value['spec'] ?></p>
-              <?php endforeach ?>
-                    <p>SKU.:   <?= $data['sku'] ?></p>
-                    <p>Quantity: <?= $data['num'] ?></p>
-                    <p>Unit price: $<?= $data['unit_price'] ?></p>
-                  </div>
-              </div>
-            </div>
-            <div class="total">
-              <p class="clearfix"><span>Subtotal :</span> $<?= $data['total'] ?></p>
-              <p class="clearfix"><span>Shipping :</span> $0.00</p>
-              <p class="clearfix"><span>Taxes :</span> $0.00</p>
-              <p class="clearfix c-green"><span>Total :</span> $<?= $data['total'] ?></p>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
+ </form>
   <script type="text/javascript">
     $("form").submit(function(){
         var self = $(this);
@@ -109,7 +80,7 @@
                  window.location.href = data.url;
             })
           } else {
-            alert(data.info)
+            layer.msg(data.info)
           }
         }
       });
