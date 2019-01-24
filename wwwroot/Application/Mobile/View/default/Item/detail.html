@@ -20,8 +20,9 @@
         <div class="pro-details">
           <div class="bborder">
             <div class="name"><?= $data['name'] ?></div>
+  <if condition="!is_login()">
             <div class="price">Bulky Price: <span>$<?= $data['bulky_price'] ?></span></div>
-
+ <else />
             <div class="price-list">
               <ul class="clearfix">
               <?php
@@ -29,18 +30,18 @@
               $price_range = explode(",",$data['price_range']);
               ?>
                 <li>
-                  <div  class="price">Quantity:</div>
-                  <div  class="price">Interval price:</div>
+                  <div>Quantity:</div>
+                  <div>Intervalprice:</div>
                 </li>
                 <?php foreach ((array)$price_range as $key => $value): ?>
                 <li>
-                  <div class="price">  <?= $value ?> </div>
-                  <div class="price">  $<?= $price[$key] ?></div>
+                  <div class="district">  <?= $value ?> </div>
+                  <div class="num">  $<?= $price[$key] ?></div>
                 </li>
                 <?php endforeach ?>
               </ul>
             </div>
-
+</if>
             <div class="star-contain">
               <div class="icon-star-list">
                   <?php
@@ -53,7 +54,7 @@
                     }
                ?>
               </div>
-              <span>754</span> Reviews
+              <span><?= $comment_count ?></span> Reviews
             </div>
           </div>
           <div class="bborder">
@@ -115,7 +116,7 @@ $('.color-list a').click(function(){
             <div class="tab-list">
               <a href="javascript:;" class="active">Product description</a>
               <a href="javascript:;">Packaging & Shipping</a>
-              <a href="javascript:;">Review(765)</a>
+              <a href="javascript:;">Review(<?= $comment_count ?>)</a>
               <a href="javascript:;">Write a Review</a>
               <a href="javascript:;">FAQ</a>
             </div>
@@ -332,6 +333,10 @@ $(function(){
 
     //商品提问
       $("#ask").click(function(){
+            if($("#is_login").val() == 0){
+          location.href= "{:U('User/login')}?uri={:U('Item/detail')}?id=<?= $data['id']?>";
+          return false;
+    }
         layer.prompt({
           title: 'ask a question',
           formType: 2,

@@ -30,7 +30,7 @@
             <div>SKU:   <?= $data['sku'] ?></div>
   <if condition="!is_login()">
             <div class="price">
-              Bulky Price: <span class="c-green">$<?= $data['bulky_price'] ?></span> <a class="link" href="">Login</a>  to view wholesale prices
+              Bulky Price: <span class="c-green">$<?= $data['bulky_price'] ?></span> <a class="link" href="{:U('User/login')}?uri={:U('Item/detail')}?id=<?= $data['id']?>">Login</a>  to view wholesale prices
             </div>
  <else />
             <div class="price-list">
@@ -178,7 +178,7 @@ $('.type-choose-list .pic').click(function(){
           <ul class="clearfix">
             <li><a class="cur" href="#Description">Product description</a></li>
             <li><a href="#Packaging">Packaging & Shipping</a></li>
-            <li><a href="#Review">Review(765)</a></li>
+            <li><a href="#Review">Review(<?= $comment_count ?>)</a></li>
             <li><a href="#Comment">Write a Review</a></li>
             <li><a href="#FAQ">FAQ</a></li>
           </ul>
@@ -372,6 +372,10 @@ $(function(){
   $(".jqzoom").jqueryzoom({ xzoom: 400, yzoom: 400 });
   //商品提问
 $("#ask").click(function(){
+    if($("#is_login").val() == 0){
+          location.href= "{:U('User/login')}?uri={:U('Item/detail')}?id=<?= $data['id']?>";
+          return false;
+    }
     layer.prompt({
       title: 'ask a question',
       formType: 2,
