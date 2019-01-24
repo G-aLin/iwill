@@ -41,11 +41,11 @@ class MemberModel extends Model{
             $user = $this->create(array('nickname' => $info[1], 'status' => 1));
             $user['uid'] = $uid;
             if(!$this->add($user)){
-                $this->error = '前台用户信息注册失败，请重试！';
+                $this->error = 'failed！';
                 return false;
             }
         } elseif(1 != $user['status']) {
-            $this->error = '用户未激活或已禁用！'; //应用级别禁用
+            $this->error = 'The user is disabled！'; //应用级别禁用
             return false;
         }
 

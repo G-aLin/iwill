@@ -99,6 +99,7 @@ class ItemController extends HomeController {
             $pageStyle = $page->show();
             $this->assign('_page',$pageStyle);
             $this->assign('comment_list',$comment_list);
+            $this->assign('comment_count',$count);
      // var_dump($comment_list);exit;
              // 问答
             $question_count = M('item_question')->where(['item_id'=>$id,'type'=>1,'status'=>1])->count();

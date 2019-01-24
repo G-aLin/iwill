@@ -32,7 +32,8 @@ class UserController extends AdminController {
         $list   = $this->lists('Member', $map);
         int_to_string($list);
         foreach ($list as $key => $value) {
-            $list[$key]['email'] = M('ucenter_member')->where(['id'=>$value['uid']])->getField('email');
+            $ucenter_member = M('ucenter_member')->where(['id'=>$value['uid']])->field('username,email')->find();
+            $list[$key]['username'] = $ucenter_member['username'] ;
         }
         $this->assign('_list', $list);
         $this->meta_title = '用户信息';
@@ -114,7 +115,7 @@ class UserController extends AdminController {
         $Api    =   new UserApi();
         $res    =   $Api->updateInfo(UID, $password, $data);
         if($res['status']){
-            $this->success('修改密码成功！');
+             $this->success('修改密码成功！', U('Public/logout'));
         }else{
             $this->error($res['info']);
         }

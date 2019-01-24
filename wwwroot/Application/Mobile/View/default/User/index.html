@@ -1,7 +1,7 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 
  <div class="page-scroll">
-      
+
       <div class="member-page">
         <div class="member">
           <div class="avator"><img src="__IMG__/17.png"></div>
@@ -16,7 +16,7 @@
         </div>
         <form class="login-form form-horizontal" action="index.html" method="post">
         <div class="form">
-         
+
           <div class="item">
             <h6>Gender</h6>
            <select name="sex">
@@ -24,14 +24,14 @@
                     <option value="2" <?php if ($data['sex'] == 2): ?>selected<?php endif ?>>female</option>
             </select>
           </div>
-        
+
           <div class="item">
             <h6>Phone Number</h6>
             <input type="text" name="phone" value="<?= $data['phone']?>">
           </div>
           <div class="item">
             <h6>Date of birth</h6>
-           <input type="date" class="time" name="birthday" value="<?= $data['birthday']?>">
+           <input type="date" class="time" name="birthday" value="<?= $data['birthday'] ? $data['birthday'] : '2000-01-01'?>">
           </div>
           <div class="item">
             <h6>Country</h6>

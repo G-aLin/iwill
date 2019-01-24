@@ -1,22 +1,20 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
-<link rel="stylesheet" href="__CSS__/layout.css">
 
-  <div class="header-box"></div>
-  <div class="layout-two-col">
-    <div class="wrapper clearfix">
-      <div class="sideNav">
-        <ul>
-        <?php foreach ($data as $key => $value): ?>
-          <li><a <?php if ($id == $value['id'] ): ?>class="active"<?php endif ?> href="{:U('About/policy?id='.$value['id'])}"><i class="icon-global bg-4"></i><?= $value['title'] ?></a></li>
-        <?php endforeach ?>
-        </ul>
-      </div>
-      <div class="contain">
+<div class="page-scroll">
 
-        <?= $info['content'] ?>
-
+    <div class="shop-products-page">
+      <div class="column">
+      <div class="nav-list">
+              <?php foreach ($data as $key => $value): ?>
+             <a <?php if ($id == $value['id'] ): ?>class="cur"<?php endif ?> href="{:U('About/policy?id='.$value['id'])}"><?= $value['title'] ?></a>
+            <?php endforeach ?>
+            </div>
       </div>
     </div>
-  </div>
+<div class="about-us-page">
+        <div class="text">
+             <?= $info['content'] ?>
+        </div>
+</div>
 
 <include file="Public/footer" />

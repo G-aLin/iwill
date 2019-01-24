@@ -64,7 +64,7 @@
                     }
                ?>
                 </div>
-              <span class="c-green">754</span> Reviews
+              <span class="c-green"><?= $comment_count ?></span> Reviews
               <div class="img-list clearfix">
                 <a href="javascript:;"><img src="__IMG__/icon-collect.png" id="collection"></a>
                 <li><a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/organizing/9.png"></a></li>
@@ -195,6 +195,7 @@ $('.type-choose-list .pic').click(function(){
 
           <div class="tab-column faq" id="FAQ">
             <div class="title">Customer questions & answers</div>
+             <div class="quiz"><a href="javascript:;" id="ask">I have to ask a question</a></div>
             <div class="faq-list">
 <?php foreach ($question_list as $key => $value): ?>
               <div class="item">

@@ -6,3 +6,7 @@ reSize();
 window.onresize = function(){
   reSize();
 }
+
+$(function() {
+    FastClick.attach(document.body);
+});
