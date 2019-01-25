@@ -27,7 +27,7 @@ class ItemController extends HomeController {
                     $pictureM = M('picture') ;
                     $category_id = [];
                     foreach ($data as $key => $value) {
-                        $data[$key]['banner_path'] = $pictureM->where(['id'=>$value['banner_id']])->getField('path');
+                        $data[$key]['banner_path'] = $pictureM->where(['id'=>$value['picture_id']])->getField('path');
                         $map['pid']  = $value['id'];
                         $data[$key]['list'] = M('item_category')->where($map)->field('id,name')->order('level desc')->select();
                         foreach ($data[$key]['list']  as $k=> $v) {
