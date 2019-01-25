@@ -16,7 +16,7 @@ use OT\DataDictionary;
  */
 class PromotionController extends HomeController {
 
-    private $_pageSize = 3 ;
+    private $_pageSize = 8 ;
    //
     public function deals(){
 

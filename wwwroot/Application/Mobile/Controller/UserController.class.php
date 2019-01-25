@@ -16,7 +16,7 @@ use User\Api\UserApi;
  */
 class UserController extends HomeController {
 
-            private $_pageSize = 2 ;
+            private $_pageSize = 8 ;
 
 	/* 用户中心首页 */
 	public function index(){

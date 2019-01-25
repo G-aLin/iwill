@@ -16,7 +16,7 @@ use OT\DataDictionary;
  */
 class NewsController extends HomeController {
 
-    private $_pageSize = 3 ;
+    private $_pageSize = 8 ;
    //
     public function lists(){
         $this->get_page_info(6);
