@@ -4,13 +4,15 @@
 <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <style type="text/css">
 img{
- max-width: 375px;
- max-height:220px
+ max-height:4rem
+}
+.map{
+  height: 4rem
 }
 .BMapLib_SearchInfoWindow{display:none;}
 </style>
 
-   <div class="page-scroll">     
+   <div class="page-scroll">
       <div class="contact-us-page">
         <div class="top-banner">
           <p>Contact Us</p>
@@ -37,8 +39,7 @@ img{
               <dd><span>Opening Time:</span><?= $contact['time'] ?></dd>
             </dl>
           </div>
-          <div class="map">
-             <div class="map" id="allmap" style="width: 375px;height:220px"></div>
+          <div class="map" id="allmap">
           </div>
         </div>
       </div>
