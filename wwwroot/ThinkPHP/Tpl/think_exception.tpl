@@ -22,7 +22,7 @@ h1{ font-size: 32px; line-height: 48px; }
 <body>
 <div class="error">
 <p class="face">:(</p>
-<h1><?php echo strip_tags('Page Not Found');?></h1>
+<h1><?php echo strip_tags($e['message']);?></h1>
 <div class="content">
 <?php if(isset($e['file'])) {?>
 	<div class="info">

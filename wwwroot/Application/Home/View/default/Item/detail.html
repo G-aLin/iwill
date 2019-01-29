@@ -65,8 +65,8 @@
                     }
                ?>
                 </div>
-              <span class="c-green"><?= $comment_count ?></span> Reviews
-              <div class="img-list clearfix social-share-item">
+              <span class="c-green"><a href="#Review"><?= $comment_count ?></a></span> Reviews
+              <div class="img-list clearfix social-share-item" data-initialized="true">
                 <a href="javascript:;"><img src="__IMG__/icon-collect.png" id="collection"></a>
                 <a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/organizing/9.png"></a>
                 <a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/organizing/10.png"></a>
@@ -90,7 +90,6 @@
                 }
               })
           </script>
-
               </div>
             </div>
 
@@ -427,6 +426,48 @@ $("#ask").click(function(){
         prevCell: '.prevCell',
         nextCell: '.nextCell'
       });
+
+           var navArr = []
+      function getOffsetTop() {
+        $('.nav-bar li').each(function () {
+          var i = $(this).index()
+          var id = $(this).children('a').attr('href').split('#')[1]
+          var offsetTop = $('#' + id) ? $('#' + id).offset().top : false
+          navArr.push({
+            /***
+             * key下标
+             * id滚动至id
+             */
+            key: i,
+            id: id,
+            offsetTop: offsetTop
+          })
+        })
+      }
+      getOffsetTop()
+
+      let proDetailTop = $('.pro-detail').offset().top + 40
+      $(window).scroll(function(){
+        var _scrollTop=$(window).scrollTop();
+        if (_scrollTop >= proDetailTop){
+          $('.nav-bar').addClass('fixed')
+          for(var l = navArr.length-1; l >= 0; l--){
+            if(_scrollTop >= navArr[l]['offsetTop'] && navArr[l]['offsetTop']) {
+              $('.nav-bar li').children('a').removeClass('cur')
+              $('.nav-bar li').eq(navArr[l].key).children('a').addClass('cur')
+              break
+            }
+          }
+        } else {
+          $('.nav-bar').removeClass('fixed')
+        }
+      });
+
+      $('.nav-bar').on('click', 'a', function () {
+        $(this).addClass('cur')
+        $(this).parent().siblings().children('a').removeClass('cur')
+      })
+
     })
   </script>
 <include file="Public/footer" />
