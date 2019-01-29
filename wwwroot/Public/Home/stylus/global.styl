@@ -5,6 +5,31 @@
   display: inline-block
   vertical-align: middle
 
+.icon-share
+  background-image url('../images/icon-share.png')
+  width: 20px
+  height 20px
+  display: inline-block
+  *display inline
+  *zoom 1
+  background-position 0 0
+  &.collection
+    background-position 0 0
+  &.facebook
+    background-position -25px 0
+  &.twitter
+    background-position -50px 0
+  &.linkedin
+    background-position -75px 0
+  &:hover.collection, &.already
+    background-position 0 -23px
+  &:hover.facebook
+    background-position -25px -23px
+  &:hover.twitter
+    background-position -50px -23px
+  &:hover.linkedin
+    background-position -75px -23px
+
 .wrap
   width: 1200px
   margin-left auto
