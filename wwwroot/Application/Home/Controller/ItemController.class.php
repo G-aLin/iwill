@@ -39,7 +39,7 @@ class ItemController extends HomeController {
                             $item_map['category_id']  = array('in',$data[$key]['category']);
                             $item_map['status']  = 1;
                             $data[$key]['isMore'] = M('item')->where($item_map)->count();
-                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price')->order('sort desc,id desc')->limit(4)->select();
+                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img')->order('sort desc,id desc')->limit(4)->select();
                             foreach ($data[$key]['item'] as $k => $v) {
                                 $data[$key]['item'][$k]['path'] =M('item_pic b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$v['id'],'b.type'=>2])->order('b.id asc')->getField('p.path');
                             }
@@ -235,7 +235,7 @@ class ItemController extends HomeController {
             $item= [];
             $item_map['category_id']  = array('in',$category);
             $item_map['status']  = 1;
-            $item= M('item')->where($item_map)->field('id,name,star,bulky_price')->order('sort desc,id desc')->select();
+            $item= M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img')->order('sort desc,id desc')->select();
             $more = 0;
             if($data['more'] == 0){
                     $more = count($item) >4 ? 1 : 0 ;
@@ -245,7 +245,7 @@ class ItemController extends HomeController {
             $tpl = "";
             foreach ($item as $k => $v) {
                 $item[$k]['path'] =M('item_pic b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$v['id'],'b.type'=>2])->order('b.id asc')->getField('p.path');
-                $tpl .= '<li><a class="read" href="'.U('detail?id='.$v['id']).'"><div class="pic"><img src="'.$item[$k]['path'].'"></div><div class="star-list clearfix">';
+                $tpl .= '<li><a class="read" href="'.U('detail?id='.$v['id']).'"><div class="pic"><img src="'.$item[$k]['path'].'"><img src="'.($item[$k]['rollover_img'] ? get_picture($item[$k]['rollover_img']) : $item[$k]['path']).'"></div><div class="star-list clearfix">';
                 for ($i=1; $i <= 5 ; $i++) {
                         if($i<=$v['star']){
                                  $tpl .= '<i class="star on"></i>';

@@ -308,7 +308,7 @@ class ItemController extends AdminController {
         $data  =M('item')->where(['id'=>$id])->find();
         $data['commendArr'] = explode(',',$data['commend']);
         $Model = M('item_pic i');
-        $picData = $Model->join('onethink_picture p ON p.id = i.picture_id')->where(['i.item_id'=>$id])->select();
+        $picData = $Model->join('onethink_picture p ON p.id = i.picture_id')->where(['i.item_id'=>$id])->order('i.id asc')->select();
         //获取当前分类的文档类型
         $this->assign('data', $data);
         $this->assign('picData', $picData);
@@ -361,6 +361,7 @@ class ItemController extends AdminController {
                 'category_id'=>$data['category_id'],
                 'stock'=>$data['stock'],
                 'amazon'=>$data['amazon'],
+                'rollover_img'=>$data['rollover_img'],
                 'jd'=>$data['jd'],
                 'taobao'=>$data['taobao'],
                 'star'=>$data['star'],
@@ -387,10 +388,7 @@ class ItemController extends AdminController {
             $this->error('网络异常，提交失败');
        }
 
-      $ItemPic->where(['item_id'=>$item_id])->delete();
-       if($data['picture_1']){
-            $ItemPic->data([ 'item_id'=>$item_id,'type'=>1,'picture_id'=>$data['picture_1'], 'create_time'=>time()])->add();
-       }
+    $ItemPic->where(['item_id'=>$item_id])->delete();
     $dataList = [] ;
      if($data['picture_2']){
          $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_2'],'create_time'=>time());

@@ -22,7 +22,10 @@
            <?php foreach ((array)$value['item'] as $k => $v): ?>
             <li>
             <a class="read" href="{:U('detail?id='.$v['id'])}">
-              <div class="pic"><img src="<?= $v['path'] ?>"></div>
+              <div class="pic">
+              <img src="<?= $v['path'] ?>">
+              <img src="<?= $v['rollover_img'] ? get_picture($v['rollover_img']) : $v['path']?>">
+              </div>
               <div class="star-list clearfix">
               <?php
                     for ($i=1; $i <= 5 ; $i++) {

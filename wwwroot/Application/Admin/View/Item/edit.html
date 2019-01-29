@@ -135,60 +135,60 @@
                     <div class="controls">
                         <div class="controls">
                                     <input type="file" id="upload_picture_2">
-                                    <input type="hidden" name="picture_2" id="picture_2" value="<?= $picData[1]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_2" id="picture_2" value="<?= $picData[0]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                     <notempty name="picData[1]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[1]['path'] ?>"/></div>
+                                     <notempty name="picData[0]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[0]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
 
                          <div class="controls">
                                     <input type="file" id="upload_picture_3">
-                                    <input type="hidden" name="picture_3" id="picture_3" value="<?= $picData[2]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_3" id="picture_3" value="<?= $picData[1]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                   <notempty name="picData[2]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[2]['path'] ?>"/></div>
+                                   <notempty name="picData[1]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[1]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
 
                           <div class="controls">
                                     <input type="file" id="upload_picture_4">
-                                    <input type="hidden" name="picture_4" id="picture_4" value="<?= $picData[3]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_4" id="picture_4" value="<?= $picData[2]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                     <notempty name="picData[3]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[3]['path'] ?>"/></div>
+                                     <notempty name="picData[2]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[2]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
 
                         <div class="controls">
                                     <input type="file" id="upload_picture_5">
-                                    <input type="hidden" name="picture_5" id="picture_5" value="<?= $picData[4]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_5" id="picture_5" value="<?= $picData[3]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                      <notempty name="picData[4]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[4]['path'] ?>"/></div>
+                                      <notempty name="picData[3]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[3]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
 
                           <div class="controls">
                                     <input type="file" id="upload_picture_6">
-                                    <input type="hidden" name="picture_6" id="picture_6" value="<?= $picData[5]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_6" id="picture_6" value="<?= $picData[4]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                        <notempty name="picData[5]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[5]['path'] ?>"/></div>
+                                        <notempty name="picData[4]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[4]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
 
                             <div class="controls">
                                     <input type="file" id="upload_picture_7">
-                                    <input type="hidden" name="picture_7" id="picture_7" value="<?= $picData[6]['picture_id'] ?>"/>
+                                    <input type="hidden" name="picture_7" id="picture_7" value="<?= $picData[5]['picture_id'] ?>"/>
                                     <div class="upload-img-box">
-                                        <notempty name="picData[6]['path']">
-                                        <div class="upload-pre-item"><img src="<?= $picData[6]['path'] ?>"/></div>
+                                        <notempty name="picData[5]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[5]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
@@ -362,10 +362,51 @@
                                         },1500);
                                     }
                                 }
+
                         </script>
                         </div>
                 </div>
+                <div class="form-item cf">
+                    <label class="item-label">商品列表翻转后图片<span class="check-tips"></span></label>
+                    <div class="controls">
+                                    <input type="file" id="upload_picture_8">
+                                    <input type="hidden" name="rollover_img" id="rollover_img" value="<?= $data['rollover_img'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="data['rollover_img']">
+                                        <div class="upload-pre-item"><img src="<?= get_picture($data['rollover_img'] )?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+                </div>
+<script type="text/javascript">
+                       /* 初始化上传插件 */
+                            $("#upload_picture_8").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_8
+                                });
 
+                                function uploadPicture_8(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#rollover_img").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#rollover_img").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+</script>
         </div>
         <!-- tab-2 end -->
         <!-- tab-3 start -->
