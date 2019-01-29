@@ -199,10 +199,9 @@ textarea
         white-space: nowrap
         text-align: left
         a:hover
-          text-decoration: underline
+          background-color #489e87
         .nav-item
           position relative
-          padding: 5px 0
           &:before
             content: ''
             position: absolute
@@ -215,8 +214,9 @@ textarea
             display: none
           .sub-menu
             position relative
-            padding: 0 33px 0 12px
+            padding: 5px 33px 5px 12px
             line-height: 30px
+            transition: all .1s linear
             .bg-3
               position: absolute
               right 10px
@@ -232,6 +232,7 @@ textarea
             .third-menu
               padding: 0 25px
               line-height: 30px
+              transition: all .1s linear
       a
         display: block
         padding: 0 10px

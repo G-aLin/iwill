@@ -3,7 +3,7 @@
 <script src="__JS__/jquery.jqzoom.js"></script>
 <style type="text/css">
 /*图片放大镜样式*/
-.jqzoom{float:left;border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
+.jqzoom{border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
 .zoomdiv{z-index:100;position:absolute;top:0px;left:0px;width:400px;height:400px;border:1px solid #CCCCCC;display:block;text-align:center;overflow:hidden;background:#fff;}
 .jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:20px;height:20px;border:1px solid #aaa;background:#ffffff;opacity: 0.5;-moz-opacity: 0.5;-khtml-opacity: 0.5;filter: alpha(Opacity=50);}
 .layui-layer-btn .layui-layer-btn0{    border-color: #489e87; background-color: #489e87;}
@@ -66,11 +66,11 @@
                ?>
                 </div>
               <span class="c-green"><?= $comment_count ?></span> Reviews
-              <div class="img-list clearfix">
+              <div class="img-list clearfix social-share-item">
                 <a href="javascript:;"><img src="__IMG__/icon-collect.png" id="collection"></a>
-                <li><a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/organizing/9.png"></a></li>
-                <li><a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/organizing/10.png"></a></li>
-                <li><a href="javascript:;" class="social-share-icon icon-linkedin"><img src="__IMG__/organizing/11.png"></a></li>
+                <a href="javascript:;" class="social-share-icon icon-facebook"><img src="__IMG__/organizing/9.png"></a>
+                <a href="javascript:;" class="social-share-icon icon-twitter"><img src="__IMG__/organizing/10.png"></a>
+                <a href="javascript:;" class="social-share-icon icon-linkedin"><img src="__IMG__/organizing/11.png"></a>
         <script src="__STATIC__/social-share.min.js"></script>
         <script>
           var $config = {

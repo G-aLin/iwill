@@ -1,0 +1,439 @@
+@import './icon'
+@import './animation'
+.icon-global
+  background-image url('../images/css_sprites.png') !important
+  display: inline-block
+  vertical-align: middle
+
+.wrap
+  width: 1200px
+  margin-left auto
+  margin-right auto
+
+.wrapper
+  width: 1176px
+  margin-left auto
+  margin-right auto
+
+.wrapper-list
+  width: 1110px
+  margin-left auto
+  margin-right auto
+
+.positionR
+  position relative
+
+input[type='text'], input[type='password']
+  padding: 0 10px
+  width 238px
+  height 38px
+  line-height 38px
+  font-size: 14px
+  background-color #fff
+  border: 1px solid #eee
+
+select
+  padding: 0 10px
+  width 260px
+  height 40px
+  font-size: 14px
+  background-color #fff
+  border: 1px solid #eee
+  outline: none
+
+.check-box
+  cursor pointer
+  display: inline-block
+  *display inline
+  *zoom: 1
+  vertical-align: top
+  .icon-global
+    display: inline-block
+    *display inline
+    *zoom: 1
+    vertical-align: sub
+  .bg-27
+    display: none
+  &.on
+    .bg-26
+      display: none
+    .bg-27
+      display: inline-block
+      *display inline
+      
+input[type='submit']
+  padding: 0
+  width 260px
+  height 40px
+  cursor pointer
+  border: 0
+  font-size: 18px
+  color: #fff
+  background-color #489e87
+
+textarea
+  display: block
+  width 568px
+  height 138px
+  border: 1px solid #e1e1e1
+  resize: none
+  padding: 10px
+  line-height 20px
+  font-size: 14px
+
+.banner
+  position relative
+  height 816px
+  overflow hidden
+  .bd
+    position: absolute
+    height 100%
+    left 50%
+    margin-left -1000px
+    width: 2000px
+    text-align: center
+    li
+      position: relative
+      overflow: hidden
+      img
+        margin: 0 auto
+  .hd
+    position: absolute
+    z-index: 20
+    bottom: 40px
+    width: 100%
+    text-align: center
+    li
+      display: inline-block
+      *display inline
+      *zoom 1
+      width: 30px
+      height: 2px
+      background: #fff
+      margin: 0 3px
+      // opacity: 0.8
+      cursor: pointer
+      transition: all 0.3s linear
+      &.on, &:hover
+        width: 50px
+        height: 3px
+        background-color: #6dddbf
+
+// 头部
+.header-box
+  height 81px
+.header
+  position: relative
+  top: 0
+  left 0
+  right 0
+  z-index: 999;
+  font-size: 13px
+  font-family 'Arial'
+  height 81px
+  &.index.header-abs
+    .logo
+      display: block
+    .logo-white
+      display none
+  &.header-abs
+    background-color transparent
+    position absolute
+    .logo, .logo-white
+      top: 35px
+    .logo
+      display none
+    .logo-white
+      display: block
+    ul
+      top: 56px
+    .sign
+      top: 56px
+  &.fixed
+    position fixed
+    top: -81px
+    background-color #fff
+    box-shadow: 0 0 8px rgba(197, 197, 197, 0.35)
+    .logo, .logo-white
+      top: 10px
+    .logo
+      display: block
+    .logo-white
+      display: none
+    ul
+      top: 28px
+      li
+        a
+          color: #86b3a7
+    .sign
+      top: 32px
+      a
+        color: #86b3a7
+  &.finish
+    top: 0
+  .logo, .logo-white
+    position absolute
+    top: 10px
+    left 12px
+  .logo
+    display: block
+  .logo-white
+    display: none
+  ul
+    position absolute
+    top: 28px
+    left 270px
+    li
+      position relative
+      line-height: 25px
+      margin-left 20px
+      text-align: center
+      .nav-list
+        display: none
+        position absolute
+        top: 100%
+        left 0
+        padding-bottom 8px
+        padding-top 5px
+        background-color #86b3a7
+        white-space: nowrap
+        text-align: left
+        a:hover
+          background-color #489e87
+        .nav-item
+          position relative
+          &:before
+            content: ''
+            position: absolute
+            left 4px
+            right 4px
+            top: 0
+            height 1px
+            background-color #98c4b8
+          &:first-child:before
+            display: none
+          .sub-menu
+            position relative
+            padding: 5px 33px 5px 12px
+            line-height: 30px
+            transition: all .1s linear
+            .bg-3
+              position: absolute
+              right 10px
+              top: 50%
+              margin-top -4px
+            .bg-4
+              position: absolute
+              right 10px
+              top: 50%
+              margin-top -7px
+          .subnav
+            display: none
+            .third-menu
+              padding: 0 25px
+              line-height: 30px
+              transition: all .1s linear
+      a
+        display: block
+        padding: 0 10px
+        color #86b3a7
+      &:first-child
+        margin-left 0
+      &.cur, &:hover
+        background-color #86b3a7
+        a
+          color #fff
+  .sign
+    position absolute
+    top: 32px
+    right 0
+    a
+      float left
+      color #4c9582
+      padding: 0 15px
+      &:first-child
+        border-right: 1px solid #6c8881
+  .bg-1, .bg-16
+    margin-right 8px
+  .bg-2, .bg-17
+    margin-right 5px
+
+// 底部
+.footer
+  font-size: 13px
+  color: #777
+  .siteinfo
+    background-color #232323
+    padding-top 70px
+    padding-bottom 40px
+    a
+      color: #777
+      &:hover
+        color: #489e87
+    h4
+      font-size: 24px
+      color #f3f3f3
+      line-height: 36px
+      font-weight bold
+    .contact-us
+      float left
+      padding-left 12px
+      width 368px
+      line-height: 15px
+      background: url('../images/bg-footer-map.png') no-repeat 0 60px
+      p
+        position relative
+        padding-left 20px
+        margin-top 24px
+        &:hover
+          color: #489e87
+        i
+          position: absolute
+          top: 0
+          left 0
+      .time
+        margin-top 54px
+        line-height: 24px
+        p
+          padding-left 0
+    .our-company
+      float left
+      width 400px
+      margin-left 55px
+      ul
+        margin-top 25px
+        li
+          position relative
+          padding-left 40px
+          line-height: 40px
+          .bg-13
+            position: absolute
+            top: 50%
+            left 7px
+            margin-top -3px
+      .friendlink
+        margin-top 42px
+        padding 0 15px
+        a
+          float left
+          margin-left 7px
+          &:first-child
+            margin-left 0
+    .suggest
+      float right
+      width 354px
+      .item
+        position relative
+        margin-top 15px
+        padding-left 90px
+        line-height: 30px
+        label
+          position absolute
+          top: 0
+          left 0
+        input, textarea
+          padding: 0 10px
+          width: 226px
+          line-height: 28px
+          background-color #1f1f1f
+          border 1px solid #575757
+          resize: none
+          vertical-align: top
+          font-size: 14px
+          color #777
+        input
+          height 28px
+        textarea
+          height 106px
+          padding: 4px 10px
+          line-height: 20px
+        input[type='submit']
+          padding: 0
+          border: 0 none 
+          background-color #489e87
+          width 100px
+          height 30px
+          line-height: 30px
+          font-size: 16px
+          color #fff
+          cursor pointer
+  .copyright
+    padding: 14px 0 28px
+    line-height: 25px
+    text-align: center
+    background-color #1b1b1b
+    
+// 分页
+.paging
+  text-align: center
+  font-size: 0
+  line-height: 0
+  a
+    display: inline-block
+    *display inline
+    *zoom: 1
+    padding-left 9px
+    padding-right 9px
+    font-size: 16px
+    line-height: 40px
+    height 40px
+    white-space nowrap
+    min-width: 22px
+    color: #e3e3e3
+    border: 1px solid #e2e2e2
+    background-color #fff
+    transition: all 0.2s linear
+    margin-left 20px
+    border-radius: 3px
+    &:first-child
+      margin-left 0
+    &.cur, &:hover
+      color: #fff
+      border-color: #489e87
+      background-color #489e87
+    &.disabled
+      color: #e3e3e3
+      background-color #fff
+      border-color: #e2e2e2
+      cursor not-allowed
+
+.star-list
+  width 73px
+  &.big
+    width 105px
+    .star
+      width 19px
+      height 17px
+      background-position -21px -14px
+      &.on
+        background-position 0 -14px
+  .star
+    margin-left 2px
+    float left
+    vertical-align: top 
+    width 13px
+    height 12px
+    background-image url('../images/icon-star.png')
+    background-position -15px 0
+    &:first-child
+      margin-left 0
+    &.on
+      background-position 0 0
+
+.icon-arrow
+  display: inline-block
+  *display inline
+  *zoom 1
+  vertical-align: middle
+  width: 20px
+  height 36px
+  background-image: url('../images/icon-arrow.png')
+  background-repeat no-repeat
+  &.prev
+    background-position 0 0
+  &.next
+    background-position -20px 0
+  &:hover.prev
+    background-position 0 -36px
+  &:hover.next
+    background-position -20px -36px
