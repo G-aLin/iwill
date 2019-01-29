@@ -67,7 +67,7 @@
                 </div>
               <span class="c-green"><a href="#Review"><?= $comment_count ?></a></span> Reviews
               <div class="img-list clearfix social-share-item" data-initialized="true">
-                <a href="javascript:;"><i id="collection" class="icon-share collection <?php if ($already==1): ?>already<?php endif ?>"></i></a>
+                <a href="javascript:;"><i id="collection" class="icon-share collection <?php if ($already==1): ?>already<?php endif ?>" data-already="<?= $already ?>"></i></a>
                 <a href="javascript:;" class="social-share-icon icon-facebook"><i class="icon-share facebook"></i></a>
                 <a href="javascript:;" class="social-share-icon icon-twitter"><i class="icon-share twitter"></i></a>
                 <a href="javascript:;" class="social-share-icon icon-linkedin"><i class="icon-share linkedin"></i></a>
@@ -82,11 +82,20 @@
           };
           socialShare('.social-share-item', $config);
           $('#collection').click(function(){
+              if($("#is_login").val() == 0){
+                  location.href= "{:U('User/login')}?uri={:U('Item/detail')}?id=<?= $data['id']?>";
+                  return false;
+            }
+              if( $(this).attr('data-already') == 1){
+                  return false;
+            }
                 var id = <?= $data['id']?>;
                 $.post("{:U('collection')}", {id:id}, success, "json");
                 return false;
                 function success(data){
-                   layer.msg(data.info)
+                   layer.msg(data.info);
+                   $("#collection").addClass('already');
+                   $("#collection").attr('data-already','1');
                 }
               })
           </script>

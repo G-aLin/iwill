@@ -121,7 +121,13 @@ class ItemController extends HomeController {
             $this->assign('_question_page',$question_pageStyle);
             $this->assign('question_list',$question_list);
      // var_dump($question_list);exit;
-
+            $uid = session('user_auth')['uid'] ;
+            $already = 0;
+            if($uid){
+                $isCollection = M('collection')->where(['uid'=>$uid,'item_id'=>$id,'status'=>1])->count();
+                $already  = $isCollection ? 1 :  0;
+            }
+            $this->assign('already',$already);
             $this->display();
     }
 
