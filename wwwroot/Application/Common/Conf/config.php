@@ -13,6 +13,7 @@
  */
 return array(
      'WWW' => 'http://www.iwill.com',
+     'WAP' => 'http://m.iwill.com',
     'DEFAULT_GROUP'      =>'Home',
      'APP_SUB_DOMAIN_DEPLOY'=>1,
      'APP_SUB_DOMAIN_RULES'=>array(

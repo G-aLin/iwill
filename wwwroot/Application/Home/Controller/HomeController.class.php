@@ -23,6 +23,11 @@ class HomeController extends Controller {
 
 
     protected function _initialize(){
+        if(is_mobile()){
+              $url = C('WAP');
+              header("Location: $url");
+              exit;
+        }
         /* 读取站点配置 */
         $config = api('Config/lists');
         C($config); //添加配置
