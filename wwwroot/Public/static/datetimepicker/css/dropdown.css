@@ -213,7 +213,7 @@
 }
 
 
-[class^="icon-"], [class*=" icon-"] {
+.datetimepicker [class^="icon-"], .datetimepicker [class*=" icon-"] {
     display: inline-block;
     width: 14px;
     height: 14px;
@@ -224,9 +224,9 @@
     background-position: 14px 14px;
     background-repeat: no-repeat;
 }
-.icon-arrow-left {
+.datetimepicker .icon-arrow-left {
     background-position: -240px -96px;
 }
-.icon-arrow-right {
+.datetimepicker .icon-arrow-right {
     background-position: -264px -96px;
 }
