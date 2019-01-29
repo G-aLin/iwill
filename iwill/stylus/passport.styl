@@ -717,14 +717,30 @@
         text-align: center
         font-size: 14px
         color #555
-        transition: all 0.15s linear
+        transition: all 0.3s linear
         &:hover
           box-shadow: 0 0 10px rgba(114, 114, 114, 0.35)
+          transform translate3d(0, -5px, 0)
+          .pic
+            img
+              opacity 1
+              &:first-child
+                opacity 0
         .pic
+          width 242px
+          height 242px
+          position relative
           padding 44px 0 54px
           img
+            position: absolute
+            top: 44px
+            left 0
             width 242px
             height 242px
+            opacity 0
+            transition: all 0.3s linear
+            &:first-child
+              opacity 1
         .star-list
           margin: 0 auto
         .name
