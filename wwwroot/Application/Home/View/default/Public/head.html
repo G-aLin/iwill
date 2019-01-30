@@ -38,9 +38,10 @@
           <img src="__IMG__/logo-white.png">
         </a>
         <ul class="nav clearfix">
-          <li <?php if ($nav == 1): ?>class="cur"<?php endif ?>><a class="main-menu" href="{:U('Index/index')}">Home</a></li>
+          <li <?php if ($nav == 1): ?>class="cur"<?php endif ?>><a class="main-menu" href="{:U('Index/index')}">Home</a><span class="link"></span></li>
           <li <?php if ($nav == 2): ?>class="cur"<?php endif ?>>
             <a class="main-menu" href="{:U('Item/lists')}">Shop Products</a>
+            <span class="link"></span>
             <div class="nav-list">
       <?php foreach ($shopNav as $key => $value): ?>
               <div class="nav-item">
@@ -56,13 +57,13 @@
             </div>
           </li>
           <li <?php if ($nav == 3): ?>class="cur"<?php endif ?>>
-            <a class="main-menu" href="{:U('News/lists')}">Organizing Tips</a>
+            <a class="main-menu" href="{:U('News/lists')}">Organizing Tips</a><span class="link"></span>
           </li>
           <li <?php if ($nav == 4): ?>class="cur"<?php endif ?>>
-            <a class="main-menu" href="{:U('Promotion/deals')}">Promotion&Deals</a>
+            <a class="main-menu" href="{:U('Promotion/deals')}">Promotion&Deals</a><span class="link"></span>
           </li>
           <li <?php if ($nav == 5): ?>class="cur"<?php endif ?>>
-            <a class="main-menu" href="{:U('About/contact')}">Contact Us</a>
+            <a class="main-menu" href="{:U('About/contact')}">Contact Us</a><span class="link"></span>
           </li>
         </ul>
     </div>
