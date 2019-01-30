@@ -213,6 +213,23 @@ textarea
       line-height: 25px
       margin-left 20px
       text-align: center
+      position relative
+      .link
+        opacity 0
+        content: ''
+        position: absolute
+        bottom: 0
+        left 50%
+        width: 0
+        height 2px
+        background-color #86b3a7
+        transition: all .3s linear
+        font-size: 0
+        line-height: 0
+      &:hover
+        .link
+          opacity 1
+          margin-left -50%
       .nav-list
         display: none
         position absolute
@@ -242,6 +259,7 @@ textarea
             padding: 5px 33px 5px 12px
             line-height: 30px
             transition: all .1s linear
+            color #fff
             .bg-3
               position: absolute
               right 10px
@@ -255,6 +273,7 @@ textarea
           .subnav
             display: none
             .third-menu
+              color #fff
               padding: 0 25px
               line-height: 30px
               transition: all .1s linear
@@ -265,9 +284,8 @@ textarea
       &:first-child
         margin-left 0
       &.cur, &:hover
-        background-color #86b3a7
         a
-          color #fff
+          color #489e87
   .sign
     position absolute
     top: 32px

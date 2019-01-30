@@ -19,12 +19,16 @@
 
   // 头部导航栏
   $('.nav li').hover(function(){
+    var w = $(this).children('.nav-list').length ? $(this).children('.nav-list').width() : $(this).width()
+    $(this).children('.link').width(w)
+
     if ($(this).children('.nav-list').length) {
-      $(this).children('.nav-list').stop(true).slideDown(200, function () {
+      $(this).children('.nav-list').stop(true).delay(300).slideDown(400, function () {
         $(this).removeAttr('style').css('display', 'block')
       })
     }
   }, function () {
+    $(this).children('.link').removeAttr('style')
     if ($(this).children('.nav-list').length) {
       $(this).children('.nav-list').stop(true).slideUp(200, function () {
         $(this).removeAttr('style').css('display', 'none')
