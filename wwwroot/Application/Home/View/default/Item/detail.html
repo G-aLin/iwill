@@ -17,11 +17,15 @@
             <img  src="<?= $data['item_pic'][0]['path'] ?>"  jqimg="<?= $data['item_pic'][0]['path'] ?>">
           </div>
           <div class="pic-list">
-            <ul class="clearfix">
-          <?php foreach ($data['item_pic'] as  $key=> $value): ?>
-              <li <?php if ($key === 0): ?>class="active"<?php endif ?>><img src="<?= $value['path'] ?>" data-bigImg="<?= $value['path'] ?>"></li>
-            <?php endforeach ?>
-            </ul>
+            <div class="cell prevCell"><i class="bg-30 icon-global"></i></div>
+            <div class="cell nextCell"><i class="bg-31 icon-global"></i></div>
+            <div class="bd">
+              <ul class="clearfix">
+                <?php foreach ($data['item_pic'] as  $key=> $value): ?>
+                <li <?php if ($key === 0): ?>class="active"<?php endif ?>><img src="<?= $value['path'] ?>" data-bigImg="<?= $value['path'] ?>"></li>
+                <?php endforeach ?>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="pro-info">
@@ -425,6 +429,16 @@ $("#ask").click(function(){
       $('.sell').on('click', '.switchPop', function () {
         $('.sell-pop').stop(true).fadeToggle()
       })
+
+      jQuery(".pic-list").slide({
+        mainCell:"ul",
+        autoPage:true,
+        effect:"leftLoop",
+        // autoPlay:true,
+        vis:5,
+        prevCell: '.prevCell',
+        nextCell: '.nextCell'
+      });
 
       $(".history .list").slide({
         mainCell:".bd",

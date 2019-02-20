@@ -72,14 +72,18 @@
             <img src="images/pro-detail/pro.jpg">
           </div>
           <div class="pic-list">
-            <ul class="clearfix">
-              <li><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
-              <li class="active"><img src="images/pro-detail/2.jpg" data-bigImg="images/pro-detail/2.jpg"></li>
-              <li><img src="images/pro-detail/3.jpg" data-bigImg="images/pro-detail/3.jpg"></li>
-              <li><img src="images/pro-detail/4.jpg" data-bigImg="images/pro-detail/4.jpg"></li>
-              <li><img src="images/pro-detail/5.jpg" data-bigImg="images/pro-detail/5.jpg"></li>
-              <li><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
-            </ul>
+            <div class="cell prevCell"><i class="bg-30 icon-global"></i></div>
+            <div class="cell nextCell"><i class="bg-31 icon-global"></i></div>
+            <div class="bd">
+              <ul class="clearfix">
+                <li class="active"><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
+                <li><img src="images/pro-detail/2.jpg" data-bigImg="images/pro-detail/2.jpg"></li>
+                <li><img src="images/pro-detail/3.jpg" data-bigImg="images/pro-detail/3.jpg"></li>
+                <li><img src="images/pro-detail/4.jpg" data-bigImg="images/pro-detail/4.jpg"></li>
+                <li><img src="images/pro-detail/5.jpg" data-bigImg="images/pro-detail/5.jpg"></li>
+                <li><img src="images/pro-detail/1.jpg" data-bigImg="images/pro-detail/pro.jpg"></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="pro-info">
@@ -619,6 +623,16 @@
       $('.sell').on('click', '.switchPop', function () {
         $('.sell-pop').stop(true).fadeToggle()
       })
+      
+      jQuery(".pic-list").slide({
+        mainCell:"ul",
+        autoPage:true,
+        effect:"leftLoop",
+        // autoPlay:true,
+        vis:5,
+        prevCell: '.prevCell',
+        nextCell: '.nextCell'
+      });
 
       jQuery(".history .list").slide({
         mainCell:".bd",
