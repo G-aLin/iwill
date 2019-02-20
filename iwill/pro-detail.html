@@ -607,6 +607,112 @@
     </div>
   </div>
 
+  <div class="pop">
+    <div class="sign-contain signIn" data-aos="flip-left">
+      <div class="close-pop aRotate"><i class="icon-global bg-32"></i></div>
+      <h2>Log in to I WILL </h2>
+      <div class="form-list">
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="text" placeholder="Emial or username"><i class="icon-global bg-15"></i></dd>
+          </dl>
+        </div>
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="password" placeholder="Password"><i class="icon-global bg-14"></i></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><a class="forgot" href="changePassword.html">Forgot password?</a></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><input type="submit" value="Log in"></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
+              <label><input type="checkbox" name="remember">Remember me</label>
+            </dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
+              <p>
+                Don't have a I WILL account yet? <br />
+                <a class="toRegister" href="javascript:;">Create your account now</a>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="sign-contain register" data-aos="flip-right">
+      <div class="close-pop aRotate"><i class="icon-global bg-32"></i></div>
+      <h2>Create Account</h2>
+      <div class="form-list">
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="text" placeholder="Emial or username"><i class="icon-global bg-15"></i></dd>
+          </dl>
+        </div>
+        <div class="item p-top-15">
+          <dl>
+            <dd><input type="password" placeholder="Password"><i class="icon-global bg-14"></i></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><input type="submit" value="REGISTER"></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd><label><input type="checkbox" name="agree">you agree to the Terms of Use and Privacy Policy.</label></dd>
+          </dl>
+        </div>
+        <div class="item">
+          <dl>
+            <dd>
+              <a class="toSignIn" href="javascript:;">Sign in &gt;</a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function() {
+      $('.toRegister').click(function () {
+        $('.signIn').removeClass('aos-animate')
+        $('.register').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.signIn').hide()
+          $('.register').show()
+          setTimeout(function () {
+            $('.register').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
+
+      $('.toSignIn').click(function () {
+        $('.register').removeClass('aos-animate')
+        $('.signIn').removeClass('aos-animate')
+        setTimeout(function() {
+          $('.register').hide()
+          $('.signIn').show()
+          setTimeout(function () {
+            $('.signIn').addClass('aos-animate')
+          }, 30)
+        }, 500)
+      })
+    })
+  </script>
+
 
   <script>
     $(function () {

@@ -440,6 +440,78 @@ textarea
       border-color: #e2e2e2
       cursor not-allowed
 
+.pop
+  display: none
+  position: fixed
+  top: 0
+  left 0
+  right 0
+  bottom: 0
+  z-index 1000
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    left 0
+    right 0
+    bottom: 0
+    background:#000
+    *filter: unquote('alpha(opacity=24)')
+    filter: unquote('alpha(opacity=24)\9')
+    opacity: 0.24;
+    z-index -1
+  .sign-contain
+    position: absolute
+    top: 50%
+    left 50%
+    width 485px
+    height 470px
+    margin: -235px 0 0 -242px
+    background-color #fff
+    border-radius: 3px
+    .close-pop
+      position: absolute
+      top: 10px
+      right 10px
+      cursor pointer
+    &.signIn
+      display: block
+    &.register
+      display: none
+      margin-top -207px
+      height: 414px
+      input[type='submit']
+        margin-top 30px
+    h2
+      font-size: 30px
+      color: #333
+      line-height: 118px
+      text-align: center
+    .form-list
+      .item.p-top-15
+        padding-top 15px
+      label
+        white-space: nowrap
+        height 42px
+        line-height: 42px
+        input[type='checkbox']
+          vertical-align: middle
+          margin-right 8px
+      .toSignIn
+        line-height: 20px
+        text-decoration: underline
+        color: #489e87
+      p
+        margin-top 10px
+        line-height 20px
+        a
+          color: #489e87
+
+    .forgot
+      line-height: 44px
+      &:hover
+        color: #489e87
+
 .star-list
   width 73px
   &.big
