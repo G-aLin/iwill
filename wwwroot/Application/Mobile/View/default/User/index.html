@@ -7,7 +7,7 @@
 
       <div class="member-page">
         <div class="member">
-          <div class="avator" id="localImag"><img id="head_icon_img" src="<?= $data['head_icon'] ? $data['head_icon'] : '__IMG__/17.png' ?>"></div>
+          <div class="avator" id="localImag"><img style=" width: 2.42rem;height: 2.42rem;" id="head_icon_img" src="<?= $data['head_icon'] ? $data['head_icon'] : '__IMG__/17.png' ?>"></div>
           <p>Welcome, <a class="c-green" href="javascript:;"><?= session('user_auth')['username']?></a></p>
         </div>
         <div class="nav-list">
@@ -44,6 +44,34 @@
                          <option value="<?= $value['name']?>" <?php if ($value['name'] == $data['country'] ): ?>selected<?php endif ?>><?= $value['name']?></option>
                     <?php endforeach ?>
                     </select>
+          </div>
+            <div class="item">
+            <h6>First Name</h6>
+            <input type="text" name="first_name" value="<?= $data['first_name']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>Last Name</h6>
+            <input type="text" name="last_name" value="<?= $data['last_name']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>Zip Code</h6>
+            <input type="text" name="zip_code" value="<?= $data['zip_code']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>City</h6>
+            <input type="text" name="city" value="<?= $data['city']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>State/Territory</h6>
+            <input type="text" name="state" value="<?= $data['state']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>Address Line1</h6>
+            <input type="text" name="address_line1" value="<?= $data['address_line1']?>" maxlength="100"  >
+          </div>
+            <div class="item">
+            <h6>Address Line2</h6>
+            <input type="text" name="address_line2" value="<?= $data['address_line2']?>" maxlength="100"  >
           </div>
           <input type="submit" value="Submit" class="ajax-post" target-form="form-horizontal">
         </div>

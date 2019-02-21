@@ -56,6 +56,42 @@
                     </select>
                 </dd>
               </dl>
+
+ <dl>
+                <dt>First Name</dt>
+                <dd><input type="text" name="first_name" maxlength="100"  value="<?= $data['first_name']?>"></dd>
+              </dl>
+              <dl>
+                <dt>Last Name</dt>
+                <dd><input type="text" name="last_name" maxlength="100"  value="<?= $data['last_name']?>"></dd>
+              </dl>
+
+
+              <dl>
+                <dt>Zip Code</dt>
+                <dd><input type="text" name="zip_code" maxlength="100" value="<?= $data['zip_code']?>"></dd>
+              </dl>
+
+               <dl>
+                <dt>City</dt>
+                <dd><input type="text" name="city" maxlength="100" value="<?= $data['city']?>"></dd>
+              </dl>
+              <dl style="width: 800px;">
+                <dt>State/Territory</dt>
+                <dd><input style="width: 778px;" type="text" name="state" maxlength="100" value="<?= $data['state']?>"></dd>
+              </dl>
+
+             <dl style="width: 800px;">
+                <dt>Address Line1</dt>
+                <dd><input style="width: 778px;" type="text" name="address_line1" maxlength="500" value="<?= $data['address_line1']?>"></dd>
+              </dl>
+
+            <dl style="width: 800px;">
+                <dt>Address Line2</dt>
+                <dd><input style="width: 778px;" type="text" name="address_line2" maxlength="500" value="<?= $data['address_line2']?>"></dd>
+              </dl>
+
+
             </div>
             <input type="submit" value="Submit" class="ajax-post" target-form="form-horizontal">
         </div>

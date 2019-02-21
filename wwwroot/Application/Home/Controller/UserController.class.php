@@ -30,6 +30,13 @@ class UserController extends HomeController {
                                 'birthday'=>$data['birthday'],
                                 'country'=>$data['country'],
                                 'head_icon'=>$data['head_icon'],
+                                'first_name'=>$data['first_name'],
+                                'last_name'=>$data['last_name'],
+                                'zip_code'=>$data['zip_code'],
+                                'city'=>$data['city'],
+                                'state'=>$data['state'],
+                                'address_line1'=>$data['address_line1'],
+                                'address_line2'=>$data['address_line2'],
                             ];
                         $res = $memberM->data($Sqldata)->save();
                             if($res !== false){ //成功
