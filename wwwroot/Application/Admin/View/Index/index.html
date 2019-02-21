@@ -40,6 +40,15 @@
                         <span id="FLASHTips">支持</span>
                     </th>
                     </tr>
+                    <tr>
+                        <th>发件邮箱：
+<?php if (empty($data['address'])): ?>
+                        无 <a  class="btn" href="{:U('message/add')}">设置发件邮箱</a>
+<?php else: ?>
+                       <?= $data['address'] ?>
+<?php endif ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

@@ -97,6 +97,39 @@
                                     </div>
                         </div>
 
+                           <div class="controls">
+                            <input type="text" value="" name="spec[]" class="text input">
+                                    <input type="file" id="upload_picture_6">
+                                    <input type="hidden" name="picture_6" id="picture_6"/>
+                                    <div class="upload-img-box">
+                                    <notempty name="picture_6">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                           <div class="controls">
+                            <input type="text" value="" name="spec[]" class="text input">
+                                    <input type="file" id="upload_picture_7">
+                                    <input type="hidden" name="picture_7" id="picture_7"/>
+                                    <div class="upload-img-box">
+                                    <notempty name="picture_7">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                           <div class="controls">
+                            <input type="text" value="" name="spec[]" class="text input">
+                                    <input type="file" id="upload_picture_8">
+                                    <input type="hidden" name="picture_8" id="picture_8"/>
+                                    <div class="upload-img-box">
+                                    <notempty name="picture_8">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
 
 
 
@@ -268,6 +301,90 @@
                                     }
                                 }
 
+                                    /* 初始化上传插件 */
+                            $("#upload_picture_6").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_6
+                                });
+
+                                function uploadPicture_6(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_6").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_6").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                    /* 初始化上传插件 */
+                            $("#upload_picture_7").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_7
+                                });
+
+                                function uploadPicture_7(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_7").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_7").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                    /* 初始化上传插件 */
+                            $("#upload_picture_8").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_8
+                                });
+
+                                function uploadPicture_8(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_8").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_8").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
 
                         </script>
 
@@ -291,7 +408,7 @@
         <div class="form-item cf">
             <input type="hidden" name="item_id" value="<?= $id ?>">
             <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
-            <a href="{:U('item/spec',['id'=>1])}" class="btn btn-return">返 回</a>
+            <a href="{:U('item/spec',['id'=>$id])}" class="btn btn-return">返 回</a>
         </div>
     </form>
     </div>

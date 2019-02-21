@@ -137,6 +137,19 @@ class ItemController extends AdminController {
         $this->display();
     }
 
+      public function buyon(){
+         $this->getMenu();
+        /* 查询条件初始化 */
+        $map = array();
+        $map['item_id']    =   I('get.id');
+        $list = $this->lists('item_buyon', $map,'sort,id');
+        $this->assign('list', $list);
+        $this->assign('id', I('get.id'));
+        // 记录当前列表页的cookie
+        Cookie('__forward__',$_SERVER['REQUEST_URI']);
+        $this->display();
+    }
+
     /**
      * 默认文档列表方法
      * @param integer $cate_id 分类id
@@ -255,6 +268,12 @@ class ItemController extends AdminController {
       $this->editRow('item_spec', array('status'=>$status), array('id'=>I('get.id')));
     }
 
+        public function setBuyon_status($model=''){
+      $status = I('get.status');
+      $status = $status == 1 ? 0 : 1;
+      $this->editRow('item_buyon', array('status'=>$status), array('id'=>I('get.id')));
+    }
+
      /**
      * 删除一条或者多条数据的状态
      * @author huajie <banhuajie@163.com>
@@ -267,6 +286,12 @@ class ItemController extends AdminController {
 
         public function spec_delete(){
       $item = M('item_spec');
+      $item->delete(I('get.id'));
+      $this->success('删除成功', Cookie('__forward__'),ture);
+    }
+
+      public function buyon_delete(){
+      $item = M('item_buyon');
       $item->delete(I('get.id'));
       $this->success('删除成功', Cookie('__forward__'),ture);
     }
@@ -287,6 +312,13 @@ class ItemController extends AdminController {
     }
 
         public function spec_add(){
+        //获取左边菜单
+        $this->getMenu();
+        $this->assign('id', I('get.id'));
+        $this->display();
+    }
+
+        public function buyon_add(){
         //获取左边菜单
         $this->getMenu();
         $this->assign('id', I('get.id'));
@@ -344,6 +376,29 @@ class ItemController extends AdminController {
         $this->display();
     }
 
+        public function buyon_edit(){
+        //获取左边菜单
+        $this->getMenu();
+        $id     =   I('get.id','');
+        if(empty($id)){
+            $this->error('参数不能为空！');
+        }
+        // 获取详细数据
+        $data  =M('item_buyon')->where(['id'=>$id])->find();
+        $spec = explode(',',$data['spec']);
+        $spec_img = explode(',',$data['spec_img']);
+        $img = [];
+         foreach ($spec_img as $key => $value) {
+            $img[] = M('picture')->where(['id'=>$value ])->getField('path');
+         }
+        //获取当前分类的文档类型
+        $this->assign('data', $data);
+        $this->assign('spec', $spec);
+        $this->assign('spec_img', $spec_img);
+        $this->assign('img', $img);
+        $this->display();
+    }
+
     /**
      * 更新一条数据
      * @author huajie <banhuajie@163.com>
@@ -360,10 +415,7 @@ class ItemController extends AdminController {
                 'name'=>$data['name'],
                 'category_id'=>$data['category_id'],
                 'stock'=>$data['stock'],
-                'amazon'=>$data['amazon'],
                 'rollover_img'=>$data['rollover_img'],
-                'jd'=>$data['jd'],
-                'taobao'=>$data['taobao'],
                 'star'=>$data['star'],
                 'sku'=>$data['sku'],
                 'status'=>$data['status'],
@@ -408,6 +460,15 @@ class ItemController extends AdminController {
       if($data['picture_7']){
          $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_7'],'create_time'=>time());
      }
+      if($data['picture_8']){
+         $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_8'],'create_time'=>time());
+     }
+      if($data['picture_9']){
+         $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_9'],'create_time'=>time());
+     }
+      if($data['picture_10']){
+         $dataList[] = array('item_id'=>$item_id,'type'=>'2', 'picture_id'=>$data['picture_10'],'create_time'=>time());
+     }
       if($dataList){
          $ItemPic->addAll($dataList);
      }
@@ -428,6 +489,24 @@ class ItemController extends AdminController {
        }
         $data['spec'] = join(",",$data['spec']);
         $data['spec_img'] = join(",",$spec_img);
+        $data['create_time'] = time();
+        if($data['id']){
+            $res = $Item->data($data)->save();
+        }else{
+            $res = $Item->data($data)->add();
+        }
+       if(empty($res)) {
+            $this->error('网络异常，提交失败');
+       }
+        $this->success('提交成功', Cookie('__forward__'));
+    }
+
+       public function buyon_update(){
+        $data = I('post.');
+        if(empty($data['name'])){
+             $this->error('请输入名称');
+        }
+        $Item = M("item_buyon");
         $data['create_time'] = time();
         if($data['id']){
             $res = $Item->data($data)->save();

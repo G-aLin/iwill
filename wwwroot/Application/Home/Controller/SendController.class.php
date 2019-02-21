@@ -48,6 +48,7 @@ class SendController extends HomeController {
                         $data['create_time'] = date('Y-m-d H:i:s',time());
                         $res = M("message")->add($data);
                           if($res !== false){ //成功
+                                send_email_tpl($data['email'],3);
                                 $this->success('Submit successfully');
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));

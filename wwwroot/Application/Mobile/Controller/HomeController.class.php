@@ -40,6 +40,13 @@ class HomeController extends Controller {
 		is_login() || $this->error('您还没有登录，请先登录！', U('User/login'));
 	}
 
+    protected function check_login(){
+        if(empty(session('user_auth')['uid'])){
+              $url = U('User/login');
+              header("Location: $url");
+              exit;
+        }
+    }
 
     protected function get_page_info($id){
         $info =get_page_info($id);

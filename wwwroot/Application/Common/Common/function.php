@@ -1045,3 +1045,33 @@ function is_mobile(){
     }
     return $is_mobile;
 }
+
+    //
+     function send_email_tpl($email,$type){
+        $mode = '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/';
+        if(!preg_match($mode,$email)){
+            return 0;
+        }
+        $info = M('config_email')->where('id=1')->find();
+        if (empty($info)) {
+           return 0;
+        }
+        $configM = M('config');
+        switch ($type) {
+            case '1':
+                $tpl = $configM->where(['id'=>39,'status'=>1])->find();
+                break;
+            case '2':
+                $tpl = $configM->where(['id'=>40,'status'=>1])->find();
+                break;
+            case '3':
+                $tpl = $configM->where(['id'=>41,'status'=>1])->find();
+                break;
+            default:
+                return 0;
+                break;
+        }
+        $mail = new \Think\Mail();
+        $res =  $mail->SendMailByInfo($email,$tpl['title'],$tpl['value'],$info,$info['send_name']);
+        return $res ? 1 : 0 ;
+    }

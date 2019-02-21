@@ -9,7 +9,7 @@
     <script src="/Public/static/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
     <div class="main-title cf">
         <h2>
-            编辑新闻
+            新增新闻
         </h2>
     </div>
     <!-- 标签页导航 -->
@@ -25,7 +25,7 @@
             <div class="form-item cf">
                     <label class="item-label">标题</label>
                     <div class="controls">
-                        <input type="text" value="<?= $data['title'] ?>" name="title" class="text input-large">
+                        <input type="text" value="" name="title" class="text input-large">
                     </div>
             </div>
 
@@ -34,10 +34,10 @@
                     <div class="controls">
                         <div class="controls">
                                     <input type="file" id="upload_picture_1">
-                                    <input type="hidden" name="cover_id" id="cover_id" value="<?= $data['cover_id'] ?>"/>
+                                    <input type="hidden" name="cover_id" id="cover_id"/>
                                     <div class="upload-img-box">
-                                    <notempty name="data['cover_path']">
-                                        <div class="upload-pre-item"><img src="<?= $data['cover_path'] ?>"/></div>
+                                    <notempty name="cover_id">
+                                        <div class="upload-pre-item"><img src="{get_cover='path'}"/></div>
                                     </notempty>
                                     </div>
                         </div>
@@ -72,25 +72,25 @@
                         </script>
                         </div>
                 </div>
-
-          <div class="form-item cf">
+                   <div class="form-item cf">
                     <label class="item-label">列表摘要</label>
                     <div class="controls">
-                     <textarea name="digest" rows="5" cols="40"><?= $data['digest'] ?></textarea>
+                     <textarea name="digest" rows="5" cols="40"></textarea>
                     </div>
             </div>
+
 
                         <div class="form-item cf">
             <label class="item-label">文章内容<span class="check-tips"></span></label>
             <div class="controls">
             <label class="textarea">
-            <textarea name="content" style="display: none;"><?= $data['content'] ?></textarea>
+            <textarea name="content" style="display: none;"></textarea>
             <input type="hidden" value="0" name="parse">
             <link href="/Public/static/kindeditor/default/default.css" rel="stylesheet">
             <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
             <script src="/Public/static/kindeditor/zh_CN.js" charset="utf-8"></script>
             <script type="text/javascript">
-                       var editor_content;
+                  var editor_content;
                 KindEditor.ready(function(K) {
                     editor_content = K.create('textarea[name="content"]', {
                         allowFileManager : false,
@@ -127,14 +127,14 @@
             <div class="form-item cf">
                     <label class="item-label">发布时间<span class="check-tips"></span></label>
                     <div class="controls">
-                        <input type="text" placeholder="请选择时间" value="<?= $data['publish_time'] ?>" class="text time" name="publish_time">
+                        <input type="text" placeholder="请选择时间" value="" class="text time" name="publish_time">
                     </div>
             </div>
 
                <div class="form-item cf">
                     <label class="item-label">排序<span class="check-tips">数字越大越前，默认按发布时间倒序</span></label>
                     <div class="controls">
-                        <input type="text" value="<?= $data['level'] ?>" name="level" class="text input-large">                    </div>
+                        <input type="text" value="" name="level" class="text input-large">                    </div>
                 </div>
 
 
@@ -142,10 +142,10 @@
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
                         <label class="radio">
-                                <input type="radio" name="status" value="1" <?php if ($data['status'] == 1): ?>checked<?php endif ?>>启用
+                                <input type="radio" name="status" value="1" checked>启用
                         </label>
                         <label class="radio">
-                                <input type="radio" name="status" value="0" <?php if ($data['status'] == 0): ?>checked<?php endif ?>>停用
+                                <input type="radio" name="status" value="0">停用
                         </label>
                     </div>
             </div>
@@ -154,7 +154,6 @@
        <!-- tab-1 end -->
 
         <div class="form-item cf">
-        <input type="hidden" name="id" value="<?= $data['id'] ?>">
             <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
             <a href="{:U('news/index')}" class="btn btn-return">返 回</a>
         </div>
@@ -172,7 +171,7 @@
 <script type="text/javascript">
 
 $('#submit').click(function(){
-    $('#form').submit();
+	$('#form').submit();
 });
 
 $(function(){

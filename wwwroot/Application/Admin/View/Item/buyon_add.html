@@ -1,0 +1,84 @@
+<extend name="Public/base" />
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+
+<block name="body">
+    <script src="/Public/static/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+    <div class="main-title cf">
+        <h2>
+            新增
+        </h2>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+
+    <div class="tab-content">
+    <!-- 表单 -->
+    <form class="form-horizontal" method="post" action="{:U('buyon_update')}" id="form">
+    <!-- tab-1 start -->
+    <div class="tab-pane tab1 in" id="tab1">
+            <div class="form-item cf">
+                    <label class="item-label">名称<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="name" class="text input-large">
+                    </div>
+            </div>
+
+            <div class="form-item cf">
+                    <label class="item-label">url<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="url" class="text input-large">
+                    </div>
+            </div>
+
+<div class="form-item cf">
+                    <label class="item-label">排序<span class="check-tips">数字越大越前，默认按id倒序</span></label>
+                    <div class="controls">
+                        <input type="text" value="0" name="sort" class="text input-large">                    </div>
+                </div>
+
+            <div class="form-item cf">
+                    <label class="item-label">状态<span class="check-tips"></span></label>
+                    <div class="controls">
+                        <label class="radio">
+                                <input type="radio" name="status" value="1" checked>启用
+                        </label>
+                        <label class="radio">
+                                <input type="radio" name="status" value="0">停用
+                        </label>
+                    </div>
+            </div>
+
+     </div>
+       <!-- tab-1 end -->
+        <div class="form-item cf">
+            <input type="hidden" name="item_id" value="<?= $id ?>">
+            <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
+            <a href="{:U('item/buyon',['id'=>$id])}" class="btn btn-return">返 回</a>
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+$('#submit').click(function(){
+	$('#form').submit();
+});
+
+$(function(){
+
+    showTab();
+});
+</script>
+</block>

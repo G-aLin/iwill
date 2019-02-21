@@ -82,24 +82,6 @@
                         <input type="text" value="<?= $data['stock'] ?>" name="stock" class="text input-large">                    </div>
                 </div>
 
-                 <div class="form-item cf">
-                    <label class="item-label">BUY ON AMAZON<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <input type="text" value="<?= $data['amazon'] ?>" name="amazon" class="text input-large">                    </div>
-                </div>
-
-                  <div class="form-item cf">
-                    <label class="item-label">BUY ON JD<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <input type="text" value="<?= $data['jd'] ?>" name="jd" class="text input-large">                    </div>
-                </div>
-
-                  <div class="form-item cf">
-                    <label class="item-label">BUY ON TAOBAO<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <input type="text" value="<?= $data['taobao'] ?>" name="taobao" class="text input-large">                    </div>
-                </div>
-
             <div class="form-item cf">
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
@@ -189,6 +171,36 @@
                                     <div class="upload-img-box">
                                         <notempty name="picData[5]['path']">
                                         <div class="upload-pre-item"><img src="<?= $picData[5]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                          <div class="controls">
+                                    <input type="file" id="upload_picture_8">
+                                    <input type="hidden" name="picture_8" id="picture_8" value="<?= $picData[6]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="picData[6]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[6]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                          <div class="controls">
+                                    <input type="file" id="upload_picture_9">
+                                    <input type="hidden" name="picture_9" id="picture_9" value="<?= $picData[7]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="picData[7]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[7]['path'] ?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+
+                          <div class="controls">
+                                    <input type="file" id="upload_picture_10">
+                                    <input type="hidden" name="picture_10" id="picture_10" value="<?= $picData[8]['picture_id'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="picData[8]['path']">
+                                        <div class="upload-pre-item"><img src="<?= $picData[8]['path'] ?>"/></div>
                                     </notempty>
                                     </div>
                         </div>
@@ -363,23 +375,7 @@
                                     }
                                 }
 
-                        </script>
-                        </div>
-                </div>
-                <div class="form-item cf">
-                    <label class="item-label">商品列表翻转后图片<span class="check-tips"></span></label>
-                    <div class="controls">
-                                    <input type="file" id="upload_picture_8">
-                                    <input type="hidden" name="rollover_img" id="rollover_img" value="<?= $data['rollover_img'] ?>"/>
-                                    <div class="upload-img-box">
-                                        <notempty name="data['rollover_img']">
-                                        <div class="upload-pre-item"><img src="<?= get_picture($data['rollover_img'] )?>"/></div>
-                                    </notempty>
-                                    </div>
-                        </div>
-                </div>
-<script type="text/javascript">
-                       /* 初始化上传插件 */
+                                      /* 初始化上传插件 */
                             $("#upload_picture_8").uploadify({
                                     "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
                                     "fileObjName"     : "download", "buttonText"      : "上传图片",
@@ -390,6 +386,106 @@
                                 });
 
                                 function uploadPicture_8(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_8").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_8").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                      /* 初始化上传插件 */
+                            $("#upload_picture_9").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_9
+                                });
+
+                                function uploadPicture_9(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_9").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_9").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                                      /* 初始化上传插件 */
+                            $("#upload_picture_10").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_10
+                                });
+
+                                function uploadPicture_10(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#picture_10").val(data.id);
+                                        src = data.url || '' + data.path
+                                        $("#picture_10").parent().find('.upload-img-box').html(
+                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+
+                        </script>
+                        </div>
+                </div>
+                <div class="form-item cf">
+                    <label class="item-label">商品列表翻转后图片<span class="check-tips"></span></label>
+                    <div class="controls">
+                                    <input type="file" id="upload_picture_1">
+                                    <input type="hidden" name="rollover_img" id="rollover_img" value="<?= $data['rollover_img'] ?>"/>
+                                    <div class="upload-img-box">
+                                        <notempty name="data['rollover_img']">
+                                        <div class="upload-pre-item"><img src="<?= get_picture($data['rollover_img'] )?>"/></div>
+                                    </notempty>
+                                    </div>
+                        </div>
+                </div>
+<script type="text/javascript">
+                       /* 初始化上传插件 */
+                            $("#upload_picture_1").uploadify({
+                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
+                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture_1
+                                });
+
+                                function uploadPicture_1(file, data){
                                     var data = $.parseJSON(data);
                                     var src = '';
                                     if(data.status){

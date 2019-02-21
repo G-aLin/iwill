@@ -25,7 +25,7 @@
           <h4>Contact Us</h4>
           <p><i class="icon-global bg-10"></i><?= $contact['address'] ?></p>
           <p><i class="icon-global bg-11"></i><?= $contact['call'] ?></p>
-          <p><i class="icon-global bg-12"></i><?= $contact['email'] ?></p>
+          <p><i class="icon-global bg-12"></i><a href="mailto:<?= $contact['email'] ?>"><?= $contact['email'] ?></a></p>
           <div class="time">
             <h4>Opening Times</h4>
             <p><?= $contact['time'] ?><br />Every Day</p>

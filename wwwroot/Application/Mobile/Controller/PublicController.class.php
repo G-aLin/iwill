@@ -77,5 +77,49 @@ class PublicController extends \Think\Controller {
         $verify->entry(1);
     }
 
+                  public function img()
+    {
+        if (IS_POST) {
+            if ($_FILES['file']['error'] === 0) {
+                //获得文件扩展名
+                $temp_arr = explode(".", $_FILES['file']['name']);
+                $file_ext = array_pop($temp_arr);
+                $file_ext = strtolower(trim($file_ext));
+                //检查扩展名
+                if (in_array($file_ext, [ 'jpg', 'jpeg', 'png']) && getimagesize($_FILES['file']['tmp_name'])) {
+                    //检查文件大小
+                    if( $_FILES['imgFile']['size'] < 2097152 ){
+                        $file_path = './'.'Uploads/User/'.date('Y-m-d') ;
+                        if ( !is_dir($file_path) ) {
+                            mkdir($file_path );
+                        }
+                        $file_name = uniqid().'.'.$file_ext ;
+                        if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path.DIRECTORY_SEPARATOR.$file_name ) === false){
+                               $data['msg'] = 'Upload failure';
+                               $data['status'] = 0 ;
+                        }else{
+                              $data['msg'] = '';
+                              $data['status'] = 1 ;
+                              $data['data'] = '/Uploads/User/'.date('Y-m-d').'/'.$file_name ;
+                        }
+                    }else{
+                         $data['msg'] = 'Please upload the internal picture within 2M';
+                         $data['status'] = 0 ;
+                    }
+                }else{
+                     $data['msg'] = 'Please upload pictures in jpg, jpeg, png format';
+                     $data['status'] = 0 ;
+                }
+             }else{
+                 $data['msg'] = 'Upload failure';
+                 $data['status'] = 0 ;
+            }
+        }else{
+                $data['msg'] = 'False request';
+                $data['status'] = 0 ;
+        }
+        $this->ajaxReturn($data);
+    }
+
 
 }

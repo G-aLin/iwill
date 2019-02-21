@@ -29,11 +29,11 @@
 		<div class="search-form fr cf">
         <div class="sleft">
                     <div class="controls">
-                    <select name="type" id="type">
+               <!--      <select name="type" id="type">
                                 <option value="0">筛选推荐商品</option>
                                 <option value="1" <?php if ($_GET['type'] == 1): ?>selected<?php endif ?>>首页轮播推荐</option>
                                 <option value="2" <?php if ($_GET['type'] == 2): ?>selected<?php endif ?>>首页推荐</option>
-                    </select>
+                    </select> -->
                     </div>
 </div>
 			<div class="sleft">
@@ -71,8 +71,8 @@
                     <th>编号</th>
                     <th>名称</th>
                     <th>库存</th>
-                    <th>首页轮播</th>
-                    <th>首页推荐</th>
+                 <!--    <th>首页轮播</th>
+                    <th>首页推荐</th> -->
                     <th>排序</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -91,14 +91,15 @@
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['name'] ?></td>
                         <td><?= $value['stock'] ?></td>
-                        <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>1,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_1
+                      <!--   <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>1,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_1
                          ? '是' : '否' ?></a></td>
-                         <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>2,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_2 ? '是' : '否' ?></a></td>
+                         <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>2,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_2 ? '是' : '否' ?></a></td> -->
                         <td><a class="ajax-get" href="{:U('item/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                          <td><?= $value['sort'] ?></td>
                         <td>
                         <a href="{:U('item/edit','id='.$value['id'])}">编辑</a>
                         <a href="{:U('item/spec','id='.$value['id'])}">设置规格</a>
+                        <a href="{:U('item/buyon','id='.$value['id'])}">设置BUYON</a>
                         <a href="{:U('item/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>
                         </td>
             </tr>

@@ -1,6 +1,7 @@
 <include file="Public/head" title="{$data.name}-{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/passport.css">
 <script src="__JS__/jquery.jqzoom.js"></script>
+
 <style type="text/css">
 /*图片放大镜样式*/
 .jqzoom{border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
@@ -121,11 +122,13 @@
       <?php endforeach ?>
 <script type="text/javascript">
 $('.type-choose-list .pic').click(function(){
-  var name = $(this).data('name');
+  var name = $(this).data('name'),
+  Src=$(this).find('img').attr('src');
   $(this).parent().find('.pic').removeClass('on');
   $(this).addClass('on');
   $(this).parent().prev().html(name);
   $(this).parent().next().val($(this).data('spec'));
+  $('.pro-pic .big-pic img').attr('src', Src).attr('jqimg',Src);
 })
 
 </script>
@@ -173,9 +176,9 @@ $('.type-choose-list .pic').click(function(){
               <a class="btn yellow switchPop" href="javascript:;">Buy</a>
               <div class="sell-pop">
                 <ul>
-                  <li>BUY ON AMAZON <a href="<?= $data['amazon'] ?>" target="_blank">GO</a></li>
-                  <li>BUY ON JD <a href="<?= $data['jd'] ?>" target="_blank">GO</a></li>
-                  <li>BUY ON TAOBAO <a href="<?= $data['taobao'] ?>" target="_blank">GO</a></li>
+                  <?php foreach ((array)$buyon as $key => $value): ?>
+                      <li>BUY ON <?= $value['name'] ?> <a href="<?= $value['url'] ?>" target="_blank">GO</a></li>
+                  <?php endforeach ?>
                 </ul>
               </div>
             </div>

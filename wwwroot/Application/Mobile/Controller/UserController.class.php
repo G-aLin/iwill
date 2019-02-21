@@ -20,6 +20,7 @@ class UserController extends HomeController {
 
 	/* 用户中心首页 */
 	public function index(){
+                     $this->check_login();
                         $uid = session('user_auth')['uid'] ;
                         if(IS_POST){
                         $data = I('post.');
@@ -30,6 +31,7 @@ class UserController extends HomeController {
                                 'phone'=>$data['phone'],
                                 'birthday'=>$data['birthday'],
                                 'country'=>$data['country'],
+                                 'head_icon'=>$data['head_icon'],
                             ];
 
                         $res = $memberM->data($Sqldata)->save();
@@ -62,10 +64,18 @@ class UserController extends HomeController {
                                         }
 			/* 调用注册接口注册用户 */
                                        $User = new UserApi;
-                                       $email = $username ;
+                                       $email = '' ;
 			$uid = $User->register($username, $password, $email);
 			if(0 < $uid){ //注册成功
 				//TODO: 发送验证邮件
+         $user = M('member')->where(['uid'=>$uid])->find();
+                                        if(!$user){
+                                            $mdata['uid'] = $uid ;
+                                            $mdata['nickname'] = $username ;
+                                            $mdata['status'] = 1 ;
+                                            M('member')->data($mdata)->add();
+                                        }
+                                        send_email_tpl($username,1);          //
 				$this->success('successfully！',U('index'));
 			} else { //注册失败，显示错误信息
 				$this->error($this->showRegError($uid));
@@ -233,6 +243,7 @@ class UserController extends HomeController {
 
         /* 用户 */
     public function collection(){
+         $this->check_login();
                 $uid = session('user_auth')['uid'] ;
                 $this->get_page_info(1);
                 $this->assign('fixed',1);//

@@ -36,8 +36,8 @@
         <a href="{:U('About/policy')}">Privacy Poilcy</a>
         <a href="{:U('About/us')}#Terms">Terms of Use</a>
  <if condition="!is_login()">
-        <a href="{:U('User/login')}">Sign In</a>
-        <a href="{:U('User/register')}">Sign up</a>
+        <a href="{:U('User/login')}?uri=<?= $_SERVER['REQUEST_URI'] ?>">Sign In</a>
+        <a href="{:U('User/register')}?uri=<?= $_SERVER['REQUEST_URI'] ?>">Sign up</a>
   <else />
          <a href="{:U('User/index')}">My Profile</a>
         <a href="{:U('User/logout')}">Log Out</a>

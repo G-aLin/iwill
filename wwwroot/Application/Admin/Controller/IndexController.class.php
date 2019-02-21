@@ -22,6 +22,8 @@ class IndexController extends AdminController {
      */
     public function index(){
         $this->meta_title = '管理首页';
+        $data = M('config_email')->where('id=1')->find();
+        $this->assign('data', $data);
         $this->display();
     }
 

@@ -22,8 +22,8 @@
     <div class="wrap positionR">
     <if condition="!is_login()">
       <div class="sign clearfix">
-          <a href="{:U('User/login')}"><i class="icon-global bg-1"></i>Sign In</a>
-          <a href="{:U('User/register')}"><i class="icon-global bg-2"></i>Sign up</a>
+          <a href="{:U('User/login')}?uri=<?= $_SERVER['REQUEST_URI'] ?>"><i class="icon-global bg-1"></i>Sign In</a>
+          <a href="{:U('User/register')}?uri=<?= $_SERVER['REQUEST_URI'] ?>"><i class="icon-global bg-2"></i>Sign up</a>
         </div>
     <else />
         <div class="sign clearfix">

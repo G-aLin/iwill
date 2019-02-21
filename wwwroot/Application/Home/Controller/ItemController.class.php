@@ -128,6 +128,9 @@ class ItemController extends HomeController {
                 $already  = $isCollection ? 1 :  0;
             }
             $this->assign('already',$already);
+
+            $buyon = M('item_buyon')->where(['item_id'=>$id,'status'=>1])->order('sort desc,id desc')->select();
+            $this->assign('buyon',$buyon);
             $this->display();
     }
 
@@ -165,6 +168,7 @@ class ItemController extends HomeController {
                         $data['spec'] = rtrim($data['spec'],",");
                         $res = $memberM->data($data)->add();
                          if($res !== false){ //成功
+                                 send_email_tpl(session('user_auth')['username'],2);
                                 $this->success('Submit successfully！',U('User/inquiry'));
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));
@@ -210,6 +214,8 @@ class ItemController extends HomeController {
 // var_dump($orderNo);exit;
                                 $this->assign('data',$data);//
                                 S($data['orderNo'],$data,86400);
+                                $user  =M('member')->where(['uid'=>session('user_auth')['uid']])->find();
+                                $this->assign('user',$user);//
                                 $this->display();
                         }
 

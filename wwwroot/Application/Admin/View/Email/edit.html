@@ -9,7 +9,7 @@
     <script src="/Public/static/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
     <div class="main-title cf">
         <h2>
-            编辑新闻
+            编辑
         </h2>
     </div>
     <!-- 标签页导航 -->
@@ -22,69 +22,19 @@
     <form class="form-horizontal" method="post" action="{:U('update')}" id="form">
     <!-- tab-1 start -->
     <div class="tab-pane tab1 in" id="tab1">
-            <div class="form-item cf">
+
+       <div class="form-item cf">
                     <label class="item-label">标题</label>
                     <div class="controls">
                         <input type="text" value="<?= $data['title'] ?>" name="title" class="text input-large">
                     </div>
             </div>
 
-                <div class="form-item cf">
-                    <label class="item-label">列表图片<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <div class="controls">
-                                    <input type="file" id="upload_picture_1">
-                                    <input type="hidden" name="cover_id" id="cover_id" value="<?= $data['cover_id'] ?>"/>
-                                    <div class="upload-img-box">
-                                    <notempty name="data['cover_path']">
-                                        <div class="upload-pre-item"><img src="<?= $data['cover_path'] ?>"/></div>
-                                    </notempty>
-                                    </div>
-                        </div>
-                        <script type="text/javascript">
-                            /* 初始化上传插件 */
-                            $("#upload_picture_1").uploadify({
-                                    "height"          : 30,"swf"             : "__STATIC__/uploadify/uploadify.swf",
-                                    "fileObjName"     : "download", "buttonText"      : "上传图片",
-                                   "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
-                                    "width"           : 120,'removeTimeout'   : 1,
-                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
-                                    "onUploadSuccess" : uploadPicture_1
-                                });
-
-                                function uploadPicture_1(file, data){
-                                    var data = $.parseJSON(data);
-                                    var src = '';
-                                    if(data.status){
-                                        $("#cover_id").val(data.id);
-                                        src = data.url || '' + data.path
-                                        $("#cover_id").parent().find('.upload-img-box').html(
-                                          '<div class="upload-pre-item"><img src="' + src + '"/></div>'
-                                        );
-                                    } else {
-                                        updateAlert(data.info);
-                                        setTimeout(function(){
-                                            $('#top-alert').find('button').click();
-                                            $(that).removeClass('disabled').prop('disabled',false);
-                                        },1500);
-                                    }
-                                }
-                        </script>
-                        </div>
-                </div>
-
-          <div class="form-item cf">
-                    <label class="item-label">列表摘要</label>
-                    <div class="controls">
-                     <textarea name="digest" rows="5" cols="40"><?= $data['digest'] ?></textarea>
-                    </div>
-            </div>
-
-                        <div class="form-item cf">
-            <label class="item-label">文章内容<span class="check-tips"></span></label>
+      <div class="form-item cf">
+            <label class="item-label">模板内容<span class="check-tips"></span></label>
             <div class="controls">
             <label class="textarea">
-            <textarea name="content" style="display: none;"><?= $data['content'] ?></textarea>
+            <textarea name="content" style="display: none;"><?= $data['value'] ?></textarea>
             <input type="hidden" value="0" name="parse">
             <link href="/Public/static/kindeditor/default/default.css" rel="stylesheet">
             <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
@@ -123,21 +73,6 @@
                 </div>
             </div>
 
-
-            <div class="form-item cf">
-                    <label class="item-label">发布时间<span class="check-tips"></span></label>
-                    <div class="controls">
-                        <input type="text" placeholder="请选择时间" value="<?= $data['publish_time'] ?>" class="text time" name="publish_time">
-                    </div>
-            </div>
-
-               <div class="form-item cf">
-                    <label class="item-label">排序<span class="check-tips">数字越大越前，默认按发布时间倒序</span></label>
-                    <div class="controls">
-                        <input type="text" value="<?= $data['level'] ?>" name="level" class="text input-large">                    </div>
-                </div>
-
-
             <div class="form-item cf">
                     <label class="item-label">状态<span class="check-tips"></span></label>
                     <div class="controls">
@@ -156,7 +91,7 @@
         <div class="form-item cf">
         <input type="hidden" name="id" value="<?= $data['id'] ?>">
             <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
-            <a href="{:U('news/index')}" class="btn btn-return">返 回</a>
+            <a href="{:U('email/index')}" class="btn btn-return">返 回</a>
         </div>
     </form>
     </div>

@@ -1,10 +1,13 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
-
+<script type="text/javascript" src="__STATIC__/webuploader.min.js"></script>
+<style>
+    .webuploader-element-invisible{display:none}
+</style>
  <div class="page-scroll">
 
       <div class="member-page">
         <div class="member">
-          <div class="avator"><img src="__IMG__/17.png"></div>
+          <div class="avator" id="localImag"><img id="head_icon_img" src="<?= $data['head_icon'] ? $data['head_icon'] : '__IMG__/17.png' ?>"></div>
           <p>Welcome, <a class="c-green" href="javascript:;"><?= session('user_auth')['username']?></a></p>
         </div>
         <div class="nav-list">
@@ -15,6 +18,7 @@
           <a href="{:U('changepassword')}"><i class="icon-global bg-13"></i>Change Password</a>
         </div>
         <form class="login-form form-horizontal" action="index.html" method="post">
+         <input type="hidden" name="head_icon" id="head_icon" value="<?= $data['head_icon']?>">
         <div class="form">
 
           <div class="item">
@@ -62,6 +66,53 @@
           }
         }
       });
+
+            var uploader = WebUploader.create({
+            auto: true,
+            swf: ' __STATIC__ /js/common/Uploader.swf',
+            server:"{:U('public/img')}",
+            pick: '#localImag',
+            fileSingleSizeLimit:2*1024*1024,
+            // 只允许选择图片文件。
+            duplicate:true,
+            accept: {
+                title: 'Images',
+                extensions: 'jpg,jpeg,png',
+                mimeTypes: 'image/gif,image/jpeg,image/jpg,image/jpg,image/png'
+            }
+        });
+
+    //验证文件格式以及文件大小
+    uploader.on("error",function (type){
+        if (type == "Q_TYPE_DENIED"){
+             layer.msg('Please upload pictures in jpg, jpeg, png format');
+
+        }else if(type =="F_EXCEED_SIZE"){
+              layer.msg('Please upload the internal picture within 2M');
+        }
+    });
+
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+
+    });
+
+
+ // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file,response ) {
+             if(response.status == 1){
+                $("#head_icon_img").attr('src',response.data);
+                $("#head_icon").val(response.data);
+            }else{
+               layer.msg(response.msg);
+            }
+    });
+
+      // 文件上传失败，现实上传出错。
+    uploader.on( 'uploadError', function( file ) {
+         layer.msg('Upload failure');
+    });
 </script>
 
 <include file="Public/footer" />

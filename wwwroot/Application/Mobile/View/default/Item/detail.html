@@ -105,9 +105,9 @@ $('.color-list a').click(function(){
         </div>
         <div class="sell-pop">
           <ul>
-            <li>BUY ON AMAZON <a href="<?= $data['amazon'] ?>" target="_blank">GO</a></li>
-            <li>BUY ON JD <a href="<?= $data['jd'] ?>" target="_blank">GO</a></li>
-            <li>BUY ON TAOBAO <a href="<?= $data['taobao'] ?>" target="_blank">GO</a></li>
+             <?php foreach ((array)$buyon as $key => $value): ?>
+                      <li>BUY ON <?= $value['name'] ?> <a href="<?= $value['url'] ?>" target="_blank">GO</a></li>
+              <?php endforeach ?>
           </ul>
         </div>
 
