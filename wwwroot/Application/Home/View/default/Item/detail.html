@@ -111,27 +111,27 @@
               </div>
             </div>
 
-      <?php foreach ($data['item_spec'] as $key => $value):
-                  $spec_img = explode(",", $value['spec_img']);
-                  $spec = explode(",", $value['spec']); ?>
           <div>
-              <span class="chooseSpec"><?= $value['name'] ?>:<?= $spec[0] ?></span>
+              <span class="chooseSpec" id="chooseSpec" data-spec_name = "<?= $data['spec_name'] ?>"  data-src = "<?= get_item_picture($data['id']) ?>"><?= $data['spec'] ?>:<span id="spec_name"><?= $data['spec_name'] ?></span></span>
               <div class="type-choose-list clearfix">
-              <?php foreach ($spec_img as $k=> $v): ?>
-                  <div class="pic <?php if ($k===0): ?>on<?php endif ?>" data-name="<?= $value['name'].':'.$spec[$k] ?>" data-spec="<?= $value['id'].'-'.$k?>"><img src=" <?= get_picture($v) ?>"></div>
+              <?php foreach ($spec as $k=> $v): ?>
+                  <div class="pic <?php if ($v['id']===$_GET['id']): ?>on<?php endif ?>" data-spec_name="<?= $v['spec_name'] ?>">
+                  <a href="{:U('detail?id='.$v['id'])}"><img src=" <?= get_item_picture($v['id']) ?>"></a>
+                  </div>
               <?php endforeach ?>
               </div>
-              <input type="hidden" name="spec[]" value="<?= $value['id'].'-'.$k ?>">
+              <input type="hidden" name="spec[]" value="<?= $data['spec'].'-'.$data['spec_name'] ?>">
           </div>
-      <?php endforeach ?>
 <script type="text/javascript">
-$('.type-choose-list .pic').click(function(){
-  var name = $(this).data('name'),
+$('.type-choose-list .pic').hover(function(){
+  var  spec_name = $(this).attr('data-spec_name'),
   Src=$(this).find('img').attr('src');
-  $(this).parent().find('.pic').removeClass('on');
-  $(this).addClass('on');
-  $(this).parent().prev().html(name);
-  $(this).parent().next().val($(this).data('spec'));
+  $("#spec_name").html(spec_name);
+  $('.pro-pic .big-pic img').attr('src', Src).attr('jqimg',Src);
+},function(){
+  var  spec_name = $('#chooseSpec').attr('data-spec_name'),
+  Src= $('#chooseSpec').attr('data-src');
+  $("#spec_name").html(spec_name);
   $('.pro-pic .big-pic img').attr('src', Src).attr('jqimg',Src);
 })
 
@@ -388,7 +388,7 @@ $(function(){
 <script>
   $(function () {
 
-  $(".jqzoom").jqueryzoom({ xzoom: 505, yzoom: 505,offset: 30 });
+  $(".jqzoom").jqueryzoom({ xzoom: 800, yzoom: 800,offset: 30 });
   //商品提问
 $("#ask").click(function(){
     if($("#is_login").val() == 0){

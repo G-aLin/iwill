@@ -87,6 +87,16 @@ class ItemController extends HomeController {
             $detail['shareUrl'] = C('WWW').'/Item/detail/id/'.$id.'.html' ;
             $this->assign('data',$detail);
 
+            if($detail['pid'] !=0){
+                 $spec =$itemM->where(['pid'=>$detail['pid']])->field('id,spec,spec_name')->select();
+                $specParent =$itemM->where(['id'=>$detail['pid']])->field('id,spec,spec_name')->find();
+            }else{
+                 $spec =$itemM->where(['pid'=>$detail['id']])->field('id,spec,spec_name')->select();
+                $specParent =$itemM->where(['id'=>$detail['id']])->field('id,spec,spec_name')->find();
+            }
+            array_unshift($spec , $specParent);
+             $this->assign('spec',$spec);
+
 
             $count = M('comment')->where(['item_id'=>$id,'status'=>1])->count();
             $page = new \Think\Page($count,10);
@@ -195,10 +205,8 @@ class ItemController extends HomeController {
                                 $specList = [] ;
                                 foreach ($spec as $key => $value) {
                                          $arr = explode("-",$value);
-                                         $item_spec=  M('item_spec')->where(['id'=>$arr['0'],'item_id'=>$get['id'],'status'=>1])->find();
-                                         $specList[$key]['spec_name'] = $item_spec['name'];
-                                         $spec = explode(",", $item_spec['spec']);
-                                         $specList[$key]['spec'] = $spec[$arr[1]];
+                                         $specList[$key]['spec_name'] = $arr['0'];
+                                         $specList[$key]['spec'] = $arr['1'];
                                 }
                                 $data['specList'] = $specList;
 // var_dump($orderNo);exit;

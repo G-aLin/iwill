@@ -64,30 +64,16 @@
               <p><?= $data['description'] ?></p>
             </div>
           </div>
-        <?php foreach ($data['item_spec'] as $key => $value):
-                  $spec_img = explode(",", $value['spec_img']);
-                  $spec = explode(",", $value['spec']);
-                  ?>
+
           <div class="color">
-            <h6><?= $value['name'] ?>:<?= $spec[0] ?></h6>
+            <h6><?= $data['spec'] ?>:<?= $data['spec_name'] ?></h6>
             <div class="color-list">
-              <?php foreach ($spec_img as $k=> $v): ?>
-                  <a href="javascript:;"  class="<?php if ($k===0): ?>cur<?php endif ?> pic" data-name="<?= $value['name'].':'.$spec[$k] ?>" data-spec="<?= $value['id'].'-'.$k?>"><img src=" <?= get_picture($v) ?>"></a>
+              <?php foreach ($spec as $k=> $v): ?>
+                  <a href="{:U('detail?id='.$v['id'])}"  class="<?php if ($v['id']===$_GET['id']): ?>cur<?php endif ?> pic"><img src=" <?= get_item_picture($v['id']) ?>"></a>
                <?php endforeach ?>
             </div>
-               <input type="hidden" name="spec[]" value="<?= $value['id'].'-'.$k ?>">
+             <input type="hidden" name="spec[]" value="<?= $data['spec'].'-'.$data['spec_name'] ?>">
           </div>
-        <?php endforeach ?>
-<script type="text/javascript">
-$('.color-list a').click(function(){
-  var name = $(this).data('name');
-  $(this).parent().find('.pic').removeClass('cur');
-  $(this).addClass('cur');
-  $(this).parent().prev().html(name);
-  $(this).parent().next().val($(this).data('spec'));
-})
-
-</script>
 
           <div class="quantity">
             Quantity:

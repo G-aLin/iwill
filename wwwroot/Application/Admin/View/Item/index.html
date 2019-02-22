@@ -9,7 +9,7 @@
 	<!-- 标题 -->
 	<div class="main-title">
 		<h2>
-		商品列表({$_total})
+		<?php if ($_GET['pid']): ?>子<?php endif ?>商品列表({$_total})
 		</h2>
 	</div>
 
@@ -18,7 +18,8 @@
 		<div class="fl">
 			<div class="btn-group">
 				<gt name="allow" value="0">
-					<button class="btn document_add" url="{:U('item/add')}">新 增</button>
+					<button class="btn document_add" url="{:U('item/add',['pid'=>$id])}">新 增</button>
+                    <?php if ($_GET['pid']): ?>   <a class="btn" href="{:U('item/index','pid=0')}">返 回</a><?php endif ?>
 			</div>
                                <!--          <button class="btn ajax-post" target-form="ids" url="{:U("Article/setStatus",array("status"=>1))}">启 用</button>
 			<button class="btn ajax-post" target-form="ids" url="{:U("Article/setStatus",array("status"=>0))}">禁 用</button>
@@ -38,7 +39,7 @@
 </div>
 			<div class="sleft">
 				<input type="text" name="name" class="search-input" value="{:I('name')}" placeholder="请输入标题文档">
-				<a class="sch-btn" href="javascript:;" id="search" url="{:U('item/index',false)}"><i class="btn-search"></i></a>
+				<a class="sch-btn" href="javascript:;" id="search" url="{:U('item/index',['id'=>$id])}"><i class="btn-search"></i></a>
 			</div>
 
 
@@ -97,9 +98,10 @@
                         <td><a class="ajax-get" href="{:U('item/setstatus',['id'=>$value['id'],'status'=>$value['status']])}"><?= $value['status'] == 1 ? '启用' : '停用' ?></a></td>
                          <td><?= $value['sort'] ?></td>
                         <td>
-                        <a href="{:U('item/edit','id='.$value['id'])}">编辑</a>
-                        <a href="{:U('item/spec','id='.$value['id'])}">设置规格</a>
-                        <a href="{:U('item/buyon','id='.$value['id'])}">设置BUYON</a>
+                        <a href="{:U('item/edit',['id'=>$value['id'],'pid'=>$id])}">编辑</a>
+<?php if ($id == 0): ?><a href="{:U('item/index','pid='.$value['id'])}">子产品列表</a><?php endif ?>
+<!-- <?php if ($id == 0): ?> <a href="{:U('item/spec',['id'=>$value['id'],'pid'=>$id])}">设置规格</a><?php endif ?> -->
+                        <a href="{:U('item/buyon',['id'=>$value['id'],'pid'=>$id])}">设置BUYON</a>
                         <a href="{:U('item/delete','id='.$value['id'])}" class="confirm ajax-get">删除</a>
                         </td>
             </tr>
@@ -123,12 +125,12 @@
 $(function(){
 	//搜索功能
 	$("#search").click(function(){
-		var url = $(this).attr('url'),type=$("#type").val();
+		var url = $(this).attr('url');
         var query  = $('.search-form').find('input').serialize();
         query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
         query = query.replace(/^&/g,'');
         if( url.indexOf('?')>0 ){
-            url += '&' + query+'&type=' + type;
+            url += '&' + query;
         }else{
             url += '?' + query;
         }

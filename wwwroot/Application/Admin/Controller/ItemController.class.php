@@ -107,6 +107,7 @@ class ItemController extends AdminController {
          $this->getMenu();
         /* 查询条件初始化 */
         $map = array();
+        $map['pid']    =  $_GET['pid'] ? $_GET['pid'] : 0 ;
         if(isset($_GET['name'])){
             $map['name']    =   array('like', '%'.(string)I('name').'%');
         }
@@ -116,6 +117,7 @@ class ItemController extends AdminController {
         }
         $list = $this->lists('Item', $map,'id desc');
         $this->assign('list', $list);
+        $this->assign('id', $map['pid'] );
         // 记录当前列表页的cookie
         Cookie('__forward__',$_SERVER['REQUEST_URI']);
         $this->display();
@@ -308,6 +310,8 @@ class ItemController extends AdminController {
         $type = M('item_category')->where($map)->select();
         $this->assign('type', $type);
 
+        $pdata  =M('item')->where(['id'=>$_GET['pid']])->find();
+        $this->assign('pdata', $pdata);
         $this->display();
     }
 
@@ -348,6 +352,9 @@ class ItemController extends AdminController {
         $map['status']  = 1;
         $type = M('item_category')->where($map)->select();
         $this->assign('type', $type);
+
+        $pdata  =M('item')->where(['id'=>$_GET['pid']])->find();
+        $this->assign('pdata', $pdata);
         $this->display();
     }
 
@@ -414,7 +421,10 @@ class ItemController extends AdminController {
         $Sqldata =[
                 'name'=>$data['name'],
                 'category_id'=>$data['category_id'],
+                'pid'=>$data['pid'],
                 'stock'=>$data['stock'],
+                'spec'=>$data['spec'],
+                'spec_name'=>$data['spec_name'],
                 'rollover_img'=>$data['rollover_img'],
                 'star'=>$data['star'],
                 'sku'=>$data['sku'],
