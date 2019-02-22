@@ -79,7 +79,7 @@ class ItemController extends HomeController {
             $item_picM = M('item_pic b') ;
             $item_specM = M('item_spec') ;
             $detail = $itemM->where(['id'=>$id,'status'=>1])->find();
-            if(empty($detail)) $this->error('页面未找到');
+            if(empty($detail)) $this->error('404 Page Not Found');
             $detail['item_pic'] = $item_picM->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$id,'b.type'=>2])->field('b.id,p.path')->order('b.sort desc,b.id asc')->select();
             $detail['item_spec'] = $item_specM->where(['item_id'=>$id,'status'=>1])->order('sort desc,id asc')->select();
             // foreach ($detail['item_spec'] as $key => $value) {

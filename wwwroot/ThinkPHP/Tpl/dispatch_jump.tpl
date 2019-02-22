@@ -30,7 +30,7 @@ body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 16p
 <?php }?>
 <p class="detail"></p>
 <p class="jump">
-页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+Auto <a id="href" href="<?php echo($jumpUrl); ?>">Jump</a> wait： <b id="wait"><?php echo($waitSecond); ?></b>
 </p>
 </div>
 <script type="text/javascript">

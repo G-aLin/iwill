@@ -52,7 +52,7 @@ class NewsController extends HomeController {
         $id   =   I('get.id');
         $newsM = M('news') ;
         $detail = $newsM->where(['id'=>$id,'status'=>1])->find();
-        if(empty($detail)) $this->error('页面未找到');
+        if(empty($detail)) $this->error('404 Page Not Found');
         $path = M('picture')->where(['id'=>$detail['cover_id']])->getField('path');
         $detail['path'] = C('WWW').$path ;
         $detail['shareUrl'] = C('WWW').'/news/detail/id/'.$id.'.html' ;
