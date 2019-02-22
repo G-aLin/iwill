@@ -4,8 +4,10 @@
 
 <style type="text/css">
 /*图片放大镜样式*/
+.pro-detail-page .pro-content .pro-pic .big-pic{position: static;}
+.zoomdiv img{width: auto!important;}
 .jqzoom{border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
-.zoomdiv{z-index:100;position:absolute;top:0px;left:0px;width:400px;height:400px;border:1px solid #CCCCCC;display:block;text-align:center;overflow:hidden;background:#fff;}
+.zoomdiv{z-index:100;position:absolute;top:0px;left:0px;display:block;text-align:center;overflow:hidden;background:#fff;margin-top: -30px;}
 .jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:20px;height:20px;border:1px solid #aaa;background:#ffffff;opacity: 0.5;-moz-opacity: 0.5;-khtml-opacity: 0.5;filter: alpha(Opacity=50);}
 .layui-layer-btn .layui-layer-btn0{    border-color: #489e87; background-color: #489e87;}
 </style>
@@ -14,8 +16,10 @@
     <div class="pro-content">
       <div class="wrapper">
         <div class="pro-pic">
-          <div class="big-pic jqzoom">
-            <img  src="<?= $data['item_pic'][0]['path'] ?>"  jqimg="<?= $data['item_pic'][0]['path'] ?>">
+          <div class="big-pic">
+            <div class="jqzoom">
+              <img class="img" src="<?= $data['item_pic'][0]['path'] ?>"  jqimg="<?= $data['item_pic'][0]['path'] ?>">
+            </div>
           </div>
           <div class="pic-list">
             <div class="cell prevCell"><i class="bg-30 icon-global"></i></div>
@@ -384,7 +388,7 @@ $(function(){
 <script>
   $(function () {
 
-  $(".jqzoom").jqueryzoom({ xzoom: 400, yzoom: 400 });
+  $(".jqzoom").jqueryzoom({ xzoom: 505, yzoom: 505,offset: 30 });
   //商品提问
 $("#ask").click(function(){
     if($("#is_login").val() == 0){
