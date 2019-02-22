@@ -315,6 +315,7 @@ class ItemController extends HomeController {
                         } ;
                         $data['uid'] = $uid ;
                         $data['item_id'] = $data['item_id'] ;
+                        $data['name'] = $data['name'] ;
                         $data['email'] = $data['email'] ;
                         $data['content'] = $data['content'] ;
                         $data['star'] =$data['star'] ;

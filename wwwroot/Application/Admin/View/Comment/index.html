@@ -25,7 +25,8 @@
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
 		<th class="" style="width:5%">编号</th>
-		<th class="">用户</th>
+              <th class="" style="width:5%">用户名</th>
+		<th class="" style="width:5%">评论名称</th>
                           <th class="">邮箱</th>
                           <th class=""  style="width:15%">产品名称</th>
                           <th class=""  style="width:5%">star</th>
@@ -41,7 +42,8 @@
 		<tr>
             <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
 			<td>{$vo.id} </td>
-			<td>{$vo.username}</td>
+      <td>{$vo.username}</td>
+			<td>{$vo.name}</td>
                                        <td>{$vo.email}</td>
                                        <td>{$vo.item}</td>
                                        <td>{$vo.star}</td>

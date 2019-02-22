@@ -244,7 +244,7 @@ $('.type-choose-list .pic').hover(function(){
             <div class="form">
               <dl>
                 <dt>Username:</dt>
-                <dd>Anonymous user</dd>
+                <dd><input class="e-mail" type="text" id="comment_name" value="Anonymous user"></dd>
               </dl>
               <dl>
                 <dt>E-mail:</dt>
@@ -307,6 +307,7 @@ $(function(){
             $('#commentSubmit').click(function(){
                 var data = {};
                 data['item_id'] = <?= $data['id']?>;
+                data['name'] =$('#comment_name').val();
                 data['email'] =$('#comment_email').val();
                 data['content'] =$('#comment_content').val();
                 data['code'] =$('#comment_code').val();
@@ -349,7 +350,7 @@ $(function(){
                   </div>
                   <?= $value['star'] ?>.0
                 </div>
-                <div class="customer">Anonymous user <span class="time"> <?= $value['create_time'] ?></span></div>
+                <div class="customer"><?= $value['name']  ? $value['name']  : 'Anonymous user' ?> <span class="time"> <?= $value['create_time'] ?></span></div>
                 <div class="content"><?= $value['content'] ?></div>
             </div>
             <?php endforeach ?>
