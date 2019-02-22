@@ -562,9 +562,9 @@
             <script src="/Public/static/kindeditor/kindeditor-min.js" charset="utf-8"></script>
             <script src="/Public/static/kindeditor/zh_CN.js" charset="utf-8"></script>
             <script type="text/javascript">
-                 var editor_packaging_and;
+                 var editor_content;
                 KindEditor.ready(function(K) {
-                    editor_packaging_and = K.create('textarea[name="content"]', {
+                    editor_content = K.create('textarea[name="content"]', {
                         allowFileManager : false,
                         themesPath: K.basePath,
                         width: '100%',
@@ -583,11 +583,11 @@
                 $(function(){
                     //传统表单提交同步
                     $('textarea[name="content"]').closest('form').submit(function(){
-                        editor_packaging_and.sync();
+                        editor_content.sync();
                     });
                     //ajax提交之前同步
                     $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
-                        editor_packaging_and.sync();
+                        editor_content.sync();
                     });
                 })
             </script>
