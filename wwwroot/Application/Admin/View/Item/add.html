@@ -31,7 +31,7 @@
                     <div class="controls">
                     <select name="category_id">
                                 <?php foreach ($type as $key => $value): ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if ($pdata['category_id'] ==$value['id']): ?>selected<?php endif ?>><?= $value['name'] ?></option>
                                 <?php endforeach ?>
                     </select>
                     </div>
