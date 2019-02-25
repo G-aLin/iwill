@@ -88,6 +88,8 @@
                         <input type="text"
                         <?php if ($_GET['pid']): ?>
                           value="<?= $pdata['spec'] ?>"  readonly="true"  style="background:#CCCCCC"
+                        <?php else: ?>
+                            value="<?= $data['spec'] ?>"
                         <?php endif ?>
                         name="spec" class="text input-large">
                         </div>
