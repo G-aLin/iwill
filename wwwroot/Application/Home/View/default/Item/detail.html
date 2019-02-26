@@ -1,6 +1,7 @@
 <include file="Public/head" title="{$data.name}-{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/passport.css">
 <script src="__JS__/jquery.jqzoom.js"></script>
+<link href="/Public/static/kindeditor/default/default.css" rel="stylesheet">
 
 <style type="text/css">
 /*图片放大镜样式*/
@@ -83,8 +84,8 @@
         <script src="__STATIC__/social-share.min.js"></script>
         <script>
           var $config = {
-              title               : '<?= $data['name'] ?>',
-              description         : '<?= $data['description'] ?>',
+              title               : "'<?= $data['name'] ?>",
+              description         : "<?= $data['description'] ?>",
               url   : "'<?= $data['shareUrl'] ?>",
               image  : "<?= $data['item_pic'][0]['path'] ?>",
               sites:['linkedin', 'facebook', 'twitter','weibo']
