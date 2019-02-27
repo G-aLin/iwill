@@ -1,11 +1,7 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/master.css">
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BInXo82MnBcfz51DlbXSLpyvK8SpiSDg"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
-<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
-<style type="text/css">
-.BMapLib_SearchInfoWindow{display:none;}
-</style>
+
+<script src="http://ditu.google.cn/maps/api/js?key=&language=en"></script>
 
   <div class="top-header">
     <p data-aos="flip-left"><span>Contact Us</span></p>
@@ -43,34 +39,24 @@
         </div>
       </div>
       <div class="contact-map">
-        <div class="map" id="allmap" style="width: 100%;height:100%"></div>
+        <div class="map" id="map" style="width: 100%;height:100%"></div>
       </div>
     </div>
   </div>
 <script type="text/javascript">
-    // 百度地图API功能
-            var map = new BMap.Map('allmap');
-            var poi = new BMap.Point('<?= $contact['longitude'] ?>','<?= $contact['latitude'] ?>');
-            map.centerAndZoom(new BMap.Point('<?= $contact['longitude'] ?>','<?= $contact['latitude'] ?>'), 16);
-            map.enableScrollWheelZoom();
-            map.addControl(new BMap.NavigationControl());
-            map.addControl(new BMap.MapTypeControl({
-                mapTypes:[
-                    BMAP_NORMAL_MAP,
-                    BMAP_HYBRID_MAP
-                ]}));
+var mapType = google.maps.MapTypeId.ROADMAP;
+var lat = <?= $contact['latitude'] ?>, lng = <?= $contact['longitude'] ?>, zoom = 15;
+var mapOptions = {
+    center: new google.maps.LatLng(lat, lng),  //地图的中心点
+    zoom: zoom,               　　　　　　　　　　//地图缩放比例
+    mapTypeId: mapType,       　　　　　　　　　　//指定地图展示类型：卫星图像、普通道路
+    scrollwheel: true          　　　　　　　　　 //是否允许滚轮滑动进行缩放
+};
+var map = new google.maps.Map(document.getElementById("map"), mapOptions); //创建谷歌地图
 
-
-
-            //创建检索信息窗口对象
-            var searchInfoWindow = null;
-            searchInfoWindow = new BMapLib.SearchInfoWindow(map);
-            var marker = new BMap.Marker(poi); //创建marker对象
-            marker.enableDragging(); //marker可拖拽
-            marker.addEventListener("click", function(e){
-
-            })
-            map.addOverlay(marker); //在地图中添加marker
-            searchInfoWindow.open(marker);
+var marker = new google.maps.Marker({
+    map: map,
+    position: new google.maps.LatLng(lat, lng)
+});
 </script>
 <include file="Public/footer" />
