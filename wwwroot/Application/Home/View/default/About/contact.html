@@ -1,8 +1,6 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/master.css">
 
-<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyBxJAqB-5pcEnVS557M_kYWslCe2bupCC4&language=en"></script>
-
   <div class="top-header">
     <p data-aos="flip-left"><span>Contact Us</span></p>
   </div>
@@ -43,20 +41,20 @@
       </div>
     </div>
   </div>
-<script type="text/javascript">
-var mapType = google.maps.MapTypeId.ROADMAP;
-var lat = <?= $contact['latitude'] ?>, lng = <?= $contact['longitude'] ?>, zoom = 15;
-var mapOptions = {
-    center: new google.maps.LatLng(lat, lng),  //地图的中心点
-    zoom: zoom,               　　　　　　　　　　//地图缩放比例
-    mapTypeId: mapType,       　　　　　　　　　　//指定地图展示类型：卫星图像、普通道路
-    scrollwheel: true          　　　　　　　　　 //是否允许滚轮滑动进行缩放
-};
-var map = new google.maps.Map(document.getElementById("map"), mapOptions); //创建谷歌地图
-
-var marker = new google.maps.Marker({
-    map: map,
-    position: new google.maps.LatLng(lat, lng)
-});
-</script>
+  <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
+  <script src="https://webapi.amap.com/maps?v=1.4.13&key="></script>
+  <script>
+    //初始化地图
+    var map = new AMap.Map('map', {
+      resizeEnable: true,
+      center: [<?= $contact['longitude'] ?>, <?= $contact['latitude'] ?>],
+      zoom: 14,
+      lang: "en" //可选值：en，zh_en, zh_cn
+    });
+    var lnglat = [<?= $contact['longitude'] ?>, <?= $contact['latitude'] ?>];
+    var m1 = new AMap.Marker({
+        position: lnglat
+    });
+    map.add(m1);
+  </script>
 <include file="Public/footer" />
