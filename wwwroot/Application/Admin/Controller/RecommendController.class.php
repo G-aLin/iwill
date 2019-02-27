@@ -231,6 +231,8 @@ class RecommendController extends AdminController {
         $Sqldata =[
                 'type'=>$data['type'],
                 'value'=>$data['value'],
+                'title'=>$data['title'],
+                'desc'=>$data['desc'],
                 'status'=>$data['status'],
                 'picture_id'=>$data['picture_id'],
                 'level'=>$data['level']

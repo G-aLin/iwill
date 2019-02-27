@@ -74,6 +74,20 @@ $('#type').change(function(){
                     </div>
             </div>
 <?php endif ?>
+
+  <div class="form-item cf" id="title"">
+                    <label class="item-label">标题<span class="check-tips">(Hot Product类型填写)</span></label>
+                    <div class="controls">
+                        <input type="text" value="<?= $data['title'] ?>" name="title" class="text input-large">                    </div>
+                </div>
+
+                  <div class="form-item cf">
+                    <label class="item-label">描述<span class="check-tips">(Hot Product类型填写)</span></label>
+                    <div class="controls">
+                         <textarea name="desc" rows="5" cols="54" maxlength="1000"><?= $data['desc'] ?></textarea>
+                    </div>
+            </div>
+
 <div class="form-item cf">
                     <label class="item-label">展示图片<span class="check-tips"></span></label>
                     <div class="controls">

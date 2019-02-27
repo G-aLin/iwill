@@ -57,7 +57,7 @@
           </a>
         </div>
         <ul class="clearfix">
-          <?php foreach ($categories_list as $key => $value): 
+          <?php foreach ($categories_list as $key => $value):
           if ($key === 0 ) continue;
           ?>
           <?php if ($key === 1): ?>
@@ -69,7 +69,7 @@
                   </div>
                 </a>
               </li>
-              <?php else: ?>  
+              <?php else: ?>
               <li class="box" data-aos="fade-up-right"><a href="{:U('Item/lists')}#Floor<?= $value['value'] ?>"><img src="<?=$value['path'] ?>"></a></li>
               <?php endif ?>
           <?php endforeach; ?>
@@ -88,8 +88,8 @@
             <a href="{:U('item/detail?id='.$value['value'])}" target="_blank"><div class="item">
               <div class="cell" data-aos="fade-right">
                 <div class="text">
-                  <h5><?=$value['name'] ?></h5>
-                  <p><?=$value['description'] ?></p>
+                  <h5><?=$value['title'] ?></h5>
+                  <p><?=$value['desc'] ?></p>
                 </div>
               </div>
               <div class="cell" data-aos="fade-left">
@@ -104,8 +104,8 @@
           </div>
           <div class="cell" data-aos="fade-left">
                 <div class="text">
-                    <h5><?=$value['name'] ?></h5>
-                    <p><?=$value['description'] ?></p>
+                    <h5><?=$value['title'] ?></h5>
+                    <p><?=$value['desc'] ?></p>
                   </div>
                 </div>
           <i class="icon-global bg-8"></i>

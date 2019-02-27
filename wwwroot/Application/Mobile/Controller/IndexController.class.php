@@ -32,7 +32,7 @@ class IndexController extends HomeController {
         $categories_list  =M('recommend b')->join('onethink_picture p ON p.id = b.picture_id')->join('onethink_item_category i ON i.id = b.value')->where(['b.type'=>5,'b.status'=>1])->field('b.value,p.path,i.name')->order('b.level desc,b.id desc')->select();
         $this->assign('categories_list',$categories_list);//列表
 
-        $hot_product_list  =M('recommend b')->join('onethink_picture p ON p.id = b.picture_id')->join('onethink_item i ON i.id = b.value')->where(['b.type'=>6,'b.status'=>1])->field('b.value,p.path,i.name,i.description')->order('b.level desc,b.id desc')->select();
+        $hot_product_list  =M('recommend b')->join('onethink_picture p ON p.id = b.picture_id')->join('onethink_item i ON i.id = b.value')->where(['b.type'=>6,'b.status'=>1])->field('b.value,p.path,i.name,i.description,b.title,b.desc')->order('b.level desc,b.id desc')->select();
         $this->assign('hot_product_list',$hot_product_list);//列表
 // var_dump($rotation_list);
 // var_dump($categories_list);
