@@ -422,7 +422,7 @@ $(function(){
               <?php foreach ($ViewHistoryList as $key => $value): ?>
                 <li><a href="{:U('detail?id='.$value['id'])}">
                   <div class="pic"><img src="<?= $value['path']?>"></div>
-                  <div class="name"><?= $value['name']?></div>
+                  <div class="name" title="<?= $value['name']?>"><?= $value['name']?></div>
                   <div class="price"><span>$<?= $value['bulky_price']?></span> /Piece</div></a>
                 </li>
               <?php endforeach ?>

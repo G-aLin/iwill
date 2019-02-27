@@ -70,6 +70,7 @@
                         <input class="check-all" type="checkbox">
                     </th>
                     <th>编号</th>
+                    <th>SKU</th>
                     <th>名称</th>
                     <th>库存</th>
                  <!--    <th>首页轮播</th>
@@ -90,6 +91,7 @@
                 <tr>
                         <td><input class="ids" type="checkbox" value="<?= $value['id'] ?>" name="ids[]"></td>
                         <td><?= $value['id'] ?></td>
+                        <td><?= $value['sku'] ?></td>
                         <td><?= $value['name'] ?></td>
                         <td><?= $value['stock'] ?></td>
                       <!--   <td><a class="ajax-get" href="{:U('item/show',['id'=>$value['id'],'location'=>1,'a'=>$commend_1,'b'=>$commend_2])}"><?= $commend_1

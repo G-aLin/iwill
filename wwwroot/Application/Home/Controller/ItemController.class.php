@@ -272,7 +272,7 @@ class ItemController extends HomeController {
                                  $tpl .= '<i class="star"></i>';
                         }
                 }
-              $tpl .= '</div><div class="name">'.$v['name'].'</div><div class="price"><span></span><span>$'. $v['bulky_price'] .'</span></a></div>
+              $tpl .= '</div><div class="name" title="'.$v['name'].'">'.$v['name'].'</div><div class="price"><span></span><span>$'. $v['bulky_price'] .'</span></a></div>
             </li>';
             }
             $this->ajaxReturn([
