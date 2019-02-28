@@ -41,6 +41,16 @@ class OrderController extends AdminController {
         $this->display();
     }
 
+               /**
+     * 设置阅读状态
+     * @author huajie <banhuajie@163.com>
+     */
+    public function setIsread($model=''){
+      $status = I('get.status');
+      $status = $status == 1 ? 0: 1;
+      $this->editRow('order', array('is_read'=>$status), array('id'=>I('get.id')));
+    }
+
     /**
      * 查看行为日志
      * @author huajie <banhuajie@163.com>

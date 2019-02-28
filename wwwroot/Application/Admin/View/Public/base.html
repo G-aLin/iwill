@@ -61,7 +61,28 @@
                         <ul class="side-sub-menu">
                             <volist name="sub_menu" id="menu">
                                 <li>
-                                    <a class="item" href="{$menu.url|U}">{$menu.title}</a>
+                                    <a class="item" href="{$menu.url|U}">{$menu.title}
+                                    <?php if (in_array($menu['id'], [127,140,125,126])):
+                                    switch ($menu['id']) {
+                                        case '127':
+                                            $tableName ='order';
+                                            break;
+                                        case '140':
+                                            $tableName ='item_question';
+                                            break;
+                                        case '125':
+                                            $tableName ='comment';
+                                            break;
+                                        case '126':
+                                            $tableName ='message';
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    ?>
+                                              (未读<?= getUnRead($tableName) ?>)
+                                    <?php endif ?>
+                                    </a>
                                 </li>
                             </volist>
                         </ul>

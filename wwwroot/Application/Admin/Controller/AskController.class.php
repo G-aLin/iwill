@@ -90,6 +90,16 @@ class AskController extends AdminController {
       $this->editRow('item_question', array('status'=>$status), array('id'=>I('get.id')));
     }
 
+            /**
+     * 设置阅读状态
+     * @author huajie <banhuajie@163.com>
+     */
+    public function setIsread($model=''){
+      $status = I('get.status');
+      $status = $status == 1 ? 0: 1;
+      $this->editRow('item_question', array('is_read'=>$status), array('id'=>I('get.id')));
+    }
+
     /**
      * 清空日志
      */

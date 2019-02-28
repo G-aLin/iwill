@@ -369,7 +369,7 @@ function parse_field_attr($string) {
         // 支持读取配置参数（必须是数组类型）
         return C(substr($string,1,-1));
     }
-    
+
     $array = preg_split('/[,;\r\n]+/', trim($string, ",;\r\n"));
     if(strpos($string,':')){
         $value  =   array();
@@ -439,4 +439,28 @@ function get_action_type($type, $all = false){
         return $list;
     }
     return $list[$type];
+}
+
+
+function getUnRead($tableName){
+          $map['is_read'] = 0;
+          switch ($tableName) {
+                    case 'order':
+                        $map['status']    =   array('gt', 0);
+                        break;
+                    case 'item_question':
+                        $map['status']    =   array('gt', -1);
+                        $map['type']    =   array('eq', 1);
+                        break;
+                    case 'comment':
+                         $map['status']    =   array('gt', -1);
+                        break;
+                    case 'message':
+                        $map['status']    =   array('gt', -1);
+                        $map['type']    =   array('eq', 1);
+                        break;
+                    default:
+                        break;
+                }
+    return M($tableName)->where($map)->count();
 }

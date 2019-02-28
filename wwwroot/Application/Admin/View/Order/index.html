@@ -26,7 +26,8 @@
 	<table class="">
     <thead>
         <tr>
-		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+	<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+                          <th class="" style="width:6%">是否阅读</th>
                         <th class="">订单号</th>
                         <th class="">用户</th>
 
@@ -45,7 +46,8 @@
 		<volist name="_list" id="vo">
 		<tr>
             <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-			<td>{$vo.orderno} </td>
+             <td><a class="ajax-get" href="{:U('order/setisread',['id'=>$vo['id'],'status'=>$vo['is_read']])}"><?= $vo['is_read'] == 1 ? '已读' : '未读' ?></a></td>
+			<td> {$vo.orderno}</td>
                                         <td>{$vo.username}</td>
 
                                        <td>{$vo.name}</td>

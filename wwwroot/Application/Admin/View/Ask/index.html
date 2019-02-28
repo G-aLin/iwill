@@ -25,6 +25,7 @@
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
 		<th class="" style="width:5%">编号</th>
+          <th class="" style="width:6%">是否阅读</th>
 		<th class="">用户</th>
 
                           <th class=""  style="width:15%">产品名称</th>
@@ -42,6 +43,7 @@
 		<tr>
             <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
 			<td>{$vo.id} </td>
+              <td><a class="ajax-get" href="{:U('ask/setisread',['id'=>$vo['id'],'status'=>$vo['is_read']])}"><?= $vo['is_read'] == 1 ? '已读' : '未读' ?></a></td>
 			<td>{$vo.username}</td>
 
                                        <td>{$vo.item}</td>
