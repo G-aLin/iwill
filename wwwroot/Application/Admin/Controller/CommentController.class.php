@@ -50,6 +50,17 @@ class CommentController extends AdminController {
       $this->editRow('comment', array('is_read'=>$status), array('id'=>I('get.id')));
     }
 
+            public function setallisread($ids = 0){
+        empty($ids) && $this->error('参数错误！');
+        if(is_array($ids)){
+            $map['id'] = array('in', $ids);
+        }elseif (is_numeric($ids)){
+            $map['id'] = $ids;
+        }
+        $res = M('comment')->where($map)->save(['is_read'=>1]);
+        $this->success('设置成功！');
+    }
+
     /**
      * 查看行为日志
      * @author huajie <banhuajie@163.com>
