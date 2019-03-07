@@ -254,7 +254,7 @@ $('.type-choose-list .pic').hover(function(){
         <div class="contain">
 
           <div class="tab-column description" id="Description">
-            <iframe src="/item/desc.html?id=<?= $data['id'] ?>"></iframe>
+            <iframe src="/item/desc.html?id=<?= $data['id'] ?>" name="iframe2" onload="this.height=iframe2.document.body.scrollHeight" width="1092px" scrolling="no"></iframe>
           </div>
 
           <div class="tab-column packaging" id="Packaging">
