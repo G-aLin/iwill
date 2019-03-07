@@ -1,10 +1,13 @@
- <style>
 
+<script src="__JS__/jquery-1.10.1.min.js"></script>
+ 
+
+<style>
 html {margin:0;padding:0;}
-body {margin:0;padding:5px;}
+body {margin:0;padding:0.05rem;}
 body, td {font:12px/1.5 "sans serif",tahoma,verdana,helvetica;}
 body, p, div {word-wrap: break-word;}
-p {margin:5px 0;}
+p {margin:0.05rem 0;}
 table {border-collapse:collapse;}
 img {border:0;}
 noscript {display:none;}
@@ -35,8 +38,8 @@ img.ke-media {
 }
 img.ke-anchor {
 	border:1px dashed #666;
-	width:16px;
-	height:16px;
+	width:0.16rem;
+	height:0.16rem;
 }
 .ke-script, .ke-noscript, .ke-display-none {
 	display:none;
@@ -47,52 +50,83 @@ img.ke-anchor {
 .ke-pagebreak {
 	border:1px dotted #AAA;
 	font-size:0;
-	height:2px;
+	height:0.02rem;
 }
 
 
 
-
-
-.title {
-  font-size: 20px;
-  color: #333;
-  line-height: 78px;
-  text-align: center;
+table{
+	width: 100% !important;
 }
-
-.table-list {
-  border: 1px solid #e8e8e8;
-  text-align: left;
+img{
+	max-width: 100%;
 }
-.table-list table {
-  font-size: 14px;
+.table {
+  font-size: 0.14rem;
   color: #555;
-  table-layout: fixed;
-  width: 100%;
+  line-height: 0.25rem;
+  border: 1px solid #e8e8e8;
 }
-.table-list table tr {
+.table .lborder {
+  border-left: 1px solid #e8e8e8;
+}
+.table table {
+  width: 100%;
+  font-size: 0.14rem;
+  color: #555;
+  line-height: 0.25rem;
+}
+.table table.table-fixed {
+  table-layout: fixed;
+}
+.table table tr {
   border-top: 1px solid #e8e8e8;
 }
-.table-list table tr:first-child {
+.table table tr:first-child {
   border-top: 0;
 }
-.table-list table tr th {
-  width: 210px;
-  padding: 7px 20px;
-  line-height: 21px;
-  background-color: #f3f3f3;
+.table table tr th {
+  padding: 0.05rem 0.13rem;
   font-weight: normal;
+  background-color: #f3f3f3;
   text-align: left;
 }
-.table-list table tr td {
-  padding: 7px 20px;
-  line-height: 21px;
-}
-.table-list table tr td.border-left {
-  border-left: 1px solid #e8e8e8;
+.table table tr td {
+  padding: 0.05rem 0.13rem;
+  background-color: #fff;
 }
 
 </style>
-
  <?= $data['desc'] ?>
+
+ <script type="text/javascript">
+ 	function reSize(){
+	  var viewW = $(window).width();
+	  $('html').css('font-size', viewW / 750 * 100 + 'px');
+	}
+	reSize();
+	window.onresize = function(){
+	  reSize();
+	}
+
+	$('table td, table th').each(function() {
+		$(this).removeAttr('width')
+	})
+ 	$('img').each(function(){
+ 		var that = $(this)
+ 		var img_url = $(this).attr('src')
+ 		console.log(img_url)
+ 		var img = new Image()
+		// 改变图片的src
+		img.src = img_url
+
+		// 加载完成执行
+		img.onload = function(){
+		    // 打印
+		    // alert('width:'+img.width+',height:'+img.height)
+		    that.width(img.width/100 + 'rem')
+		    that.height(img.height/100 + 'rem')
+		}
+ 	})
+
+ </script>
