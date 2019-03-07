@@ -344,7 +344,14 @@ $(function(){
               </div>
               <div class="name"><?= $value['name'] ?></div>
               <div class="price">
-                <span>$<?= $value['bulky_price'] ?></span> /Piece
+                <span>$<if condition="!is_login()"><?= $value['bulky_price'] ?>
+                  <else /><?php $price = explode(",",$value['price']);
+                  if(count($price) == 1){
+                      echo $price[0];
+                  }else{
+                      echo end($price).'-'.$price[0];
+                  }
+                  ?></if></span> /Piece
               </div></a>
             </div>
     <?php endforeach ?>

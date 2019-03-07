@@ -39,7 +39,7 @@ class ItemController extends HomeController {
                             $item_map['category_id']  = array('in',$data[$key]['category']);
                             $item_map['status']  = 1;
                             $data[$key]['isMore'] = M('item')->where($item_map)->count();
-                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img')->order('sort desc,id desc')->limit(4)->select();
+                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img,price,price_range')->order('sort desc,id desc')->limit(4)->select();
                             foreach ($data[$key]['item'] as $k => $v) {
                                 $data[$key]['item'][$k]['path'] =M('item_pic b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$v['id'],'b.type'=>2])->order('b.id asc')->getField('p.path');
                             }
@@ -254,7 +254,7 @@ class ItemController extends HomeController {
             $item= [];
             $item_map['category_id']  = array('in',$category);
             $item_map['status']  = 1;
-            $item= M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img')->order('sort desc,id desc')->select();
+            $item= M('item')->where($item_map)->field('id,name,star,bulky_price,price,rollover_img')->order('sort desc,id desc')->select();
             $more = 0;
             if($data['more'] == 0){
                     $more = count($item) >4 ? 1 : 0 ;
@@ -272,7 +272,17 @@ class ItemController extends HomeController {
                                  $tpl .= '<i class="star"></i>';
                         }
                 }
-              $tpl .= '</div><div class="name" title="'.$v['name'].'">'.$v['name'].'</div><div class="price"><span></span><span>$'. $v['bulky_price'] .'</span></a></div>
+                if(session('user_auth')['uid']){
+                     $price = explode(",",$v['price']);
+                      if(count($price) == 1){
+                            $item_price =  $price[0];
+                      }else{
+                          $item_price =  end($price).'-'.$price[0];
+                      }
+                }else{
+                    $price = explode(",",$v['bulky_price']);
+                }
+              $tpl .= '</div><div class="name" title="'.$v['name'].'">'.$v['name'].'</div><div class="price"><span></span><span>$'. $item_price .'</span></a></div>
             </li>';
             }
             $this->ajaxReturn([

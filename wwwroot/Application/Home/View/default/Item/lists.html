@@ -38,7 +38,15 @@
                ?>
               </div>
               <div class="name" title="<?= $v['name'] ?>"><?= $v['name'] ?></div>
-              <div class="price"><span></span><span>$<?= $v['bulky_price'] ?></span></div></a>
+              <div class="price"><span></span><span>$<if condition="!is_login()"><?= $v['bulky_price'] ?>
+                  <else /><?php $price = explode(",",$v['price']);
+                  if(count($price) == 1){
+                      echo $price[0];
+                  }else{
+                      echo end($price).'-'.$price[0];
+                  }
+                    ?></if>
+              </span></div></a>
             </li>
        <?php endforeach ?>
           </ul>

@@ -70,7 +70,9 @@
                 </a>
               </li>
               <?php else: ?>
-              <li class="box" data-aos="fade-up-right"><a href="{:U('Item/lists')}#Floor<?= $value['value'] ?>"><img src="<?=$value['path'] ?>"></a></li>
+              <li class="box" data-aos="fade-up-right"><a href="{:U('Item/lists')}#Floor<?= $value['value'] ?>"><img src="<?=$value['path'] ?>"><div class="mask">
+                    <p><?=$value['name'] ?><i class="icon-global bg-9"></i></p>
+                  </div></a></li>
               <?php endif ?>
           <?php endforeach; ?>
         </ul>

@@ -423,7 +423,15 @@ $(function(){
                 <li><a href="{:U('detail?id='.$value['id'])}">
                   <div class="pic"><img src="<?= $value['path']?>"></div>
                   <div class="name" title="<?= $value['name']?>"><?= $value['name']?></div>
-                  <div class="price"><span>$<?= $value['bulky_price']?></span> /Piece</div></a>
+                  <div class="price"><span>$<if condition="!is_login()"><?= $value['bulky_price'] ?>
+                  <else /><?php $price = explode(",",$value['price']);
+                  if(count($price) == 1){
+                      echo $price[0];
+                  }else{
+                      echo end($price).'-'.$price[0];
+                  }
+                  ?></if>
+                  </span> /Piece</div></a>
                 </li>
               <?php endforeach ?>
               </ul>
