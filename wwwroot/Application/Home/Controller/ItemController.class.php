@@ -144,6 +144,14 @@ class ItemController extends HomeController {
             $this->display();
     }
 
+         public function desc(){
+            $id   =   I('get.id');
+            $itemM = M('item') ;
+            $detail = $itemM->where(['id'=>$id,'status'=>1])->find();
+            $this->assign('data',$detail);
+            $this->display();
+    }
+
         /* order */
     public function order(){
                         $uid = session('user_auth')['uid'] ;
