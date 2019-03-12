@@ -288,7 +288,7 @@ class ItemController extends HomeController {
                           $item_price =  end($price).'-'.$price[0];
                       }
                 }else{
-                    $price = explode(",",$v['bulky_price']);
+                    $item_price = $v['bulky_price'];
                 }
               $tpl .= '</div><div class="name" title="'.$v['name'].'">'.$v['name'].'</div><div class="price"><span></span><span>$'. $item_price .'</span></a></div>
             </li>';
