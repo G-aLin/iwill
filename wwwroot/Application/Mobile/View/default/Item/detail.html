@@ -113,6 +113,7 @@ img.ke-anchor {
           </div>
           <div class="bborder">
             <div class="sku">SKU:   <?= $data['sku'] ?></div>
+            <div class="sku">NO:   <?= $data['amazon'] ?></div>
             <div class="description">
               <h6>Description:</h6>
               <p><?= $data['description'] ?></p>
@@ -120,7 +121,7 @@ img.ke-anchor {
           </div>
 
           <div class="color">
-            <h6><?= $data['spec'] ?>:<?= $data['spec_name'] ?></h6>
+            <h6><?= $data['spec'] ?>:  <?= $data['spec_name'] ?></h6>
             <div class="color-list">
               <?php foreach ($spec as $k=> $v): ?>
                   <a href="{:U('detail?id='.$v['id'])}"  class="<?php if ($v['id']===$_GET['id']): ?>cur<?php endif ?> pic"><img src=" <?= get_item_picture($v['id']) ?>"></a>

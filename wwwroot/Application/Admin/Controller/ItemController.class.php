@@ -428,6 +428,7 @@ class ItemController extends AdminController {
                 'rollover_img'=>$data['rollover_img'],
                 'star'=>$data['star'],
                 'sku'=>$data['sku'],
+                'amazon'=>$data['amazon'],
                 'status'=>$data['status'],
                 'bulky_price'=>$data['bulky_price'],
                 'desc'=>$data['content'],

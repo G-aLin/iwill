@@ -85,6 +85,7 @@ img.ke-anchor {
           <div class="pro-name"><?= $data['name'] ?></div>
           <div class="details">
             <div>SKU:   <?= $data['sku'] ?></div>
+            <div>NO:   <?= $data['amazon'] ?></div>
   <if condition="!is_login()">
             <div class="price">
               Bulky Price: <span class="c-green">$<?= $data['bulky_price'] ?></span> <a class="link" href="{:U('User/login')}?uri={:U('Item/detail')}?id=<?= $data['id']?>">Login</a>  to view wholesale prices
@@ -160,7 +161,7 @@ img.ke-anchor {
             </div>
 
           <div>
-              <span class="chooseSpec" id="chooseSpec" data-spec_name = "<?= $data['spec_name'] ?>"  data-src = "<?= get_item_picture($data['id']) ?>"><?= $data['spec'] ?>:<span id="spec_name"><?= $data['spec_name'] ?></span></span>
+              <span class="chooseSpec" id="chooseSpec" data-spec_name = "<?= $data['spec_name'] ?>"  data-src = "<?= get_item_picture($data['id']) ?>"><?= $data['spec'] ?>: <span id="spec_name"> <?= $data['spec_name'] ?></span></span>
               <div class="type-choose-list clearfix">
               <?php foreach ($spec as $k=> $v): ?>
                   <div class="pic <?php if ($v['id']===$_GET['id']): ?>on<?php endif ?>" data-spec_name="<?= $v['spec_name'] ?>">
