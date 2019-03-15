@@ -62,17 +62,17 @@ $('#type').change(function(){
             </div>
 
                <div class="form-item cf" id="item">
-                    <label class="item-label">商品选择<span class="check-tips"></span></label>
+                    <label class="item-label">商品sku选择<span class="check-tips"></span></label>
                     <div class="controls">
                     <select name="item_id">
                                 <?php foreach ($item as $key => $value): ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['id'] ?>"><?= $value['sku'] ?></option>
                                 <?php endforeach ?>
                     </select>
                     </div>
             </div>
 
-                 <div class="form-item cf" id="title"">
+                 <div class="form-item cf" id="title">
                     <label class="item-label">标题<span class="check-tips">(Hot Product类型填写)</span></label>
                     <div class="controls">
                         <input type="text" value="" name="title" class="text input-large">                    </div>

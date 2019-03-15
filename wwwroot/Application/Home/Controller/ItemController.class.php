@@ -178,6 +178,9 @@ class ItemController extends HomeController {
                         $data['path'] = $orderInfo['path'] ;
                         $data['num'] = $orderInfo['num'] ;
                         $data['unit_price'] = $orderInfo['unit_price'] ;
+                        $data['subtotal'] = $orderInfo['subtotal'] ;
+                        $data['shipping'] = $orderInfo['shipping'] ;
+                        $data['taxex'] = $orderInfo['taxex'] ;
                         $data['total'] = $orderInfo['total'] ;
                         $data['spec'] = '';
                         foreach ((array)$orderInfo['specList'] as $key => $value) {
@@ -200,7 +203,7 @@ class ItemController extends HomeController {
                                 $get = json_decode($get,ture);
 
                                 $orderNo =get_order_id();
-                                $data  =M('item')->where(['id'=>$get['id']])->field('id,name,stock,price_range,price,bulky_price,sku')->find();
+                                $data  =M('item')->where(['id'=>$get['id']])->field('id,name,stock,price_range,price,bulky_price,sku,shipping,taxex')->find();
                                 if(empty($data)) throw new \Think\Exception('Page not find');
                                 $data['path'] = M('item_pic i')->join('onethink_picture p ON p.id = i.picture_id')->where(['i.item_id'=>$get['id'],'i.type'=>2])->order('i.id asc')->getField('p.path');
                                 $data['orderNo'] =get_order_id();
@@ -217,8 +220,11 @@ class ItemController extends HomeController {
                                                 }
                                         }
                                 }
-                               $data['total'] =  $data['num']  *  $data['unit_price']  ;
-
+                               $data['shipping']  = round($data['shipping'] * $data['num'] ,2);
+                               $data['subtotal'] =  round($data['num']  *  $data['unit_price'] ,2);
+                               $taxex = ($data['shipping']+$data['subtotal']) * $data['taxex'] ;
+                               $data['taxex'] =  round($taxex /100,2);
+                               $data['total'] =  $data['subtotal']  + $data['shipping']  +$data['taxex'] ;
                                 $spec = explode("|", trim($get['spec'],"|"));
                                 $specList = [] ;
                                 foreach ($spec as $key => $value) {

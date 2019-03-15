@@ -22,9 +22,9 @@
             <p>SKU.:   <?= $data['sku']?></p>
             <p>Quantity: <?= $data['num']?></p>
             <p>Unit price: $<?= $data['unit_price']?></p>
-            <p>Subtotal :  <?= $data['total']?></p>
-            <p>Shipping :  $0.00</p>
-            <p>Taxes :    $0.00</p>
+            <p>Subtotal :  $<?= $data['subtotal'] ? $data['subtotal'] : 0  ?></p>
+            <p>Shipping :  $<?= $data['shipping'] ? $data['shipping'] : 0 ?></p>
+            <p>Taxes :    $<?= $data['taxex'] ? $data['taxex'] : 0 ?></p>
             <p class="c-green font-bold">Total :   $<?= $data['total']?></p>
           </div>
           <div class="user-info">

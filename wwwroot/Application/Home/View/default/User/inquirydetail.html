@@ -10,7 +10,7 @@
       <div class="sideNav">
         <ul>
         <li><a  href="{:U('index')}"><i class="icon-global bg-4"></i>Personal information</a></li>
-          <li><a class="active" href="javascript:;"><i class="icon-global bg-4"></i>My inquiry</a></li>
+          <li><a class="active" href="{:U('inquiry')}"><i class="icon-global bg-4"></i>My inquiry</a></li>
           <li><a href="{:U('collection')}"><i class="icon-global bg-4"></i>My collection</a></li>
           <li><a href="{:U('comment')}"><i class="icon-global bg-4"></i>My comment</a></li>
           <li><a href="{:U('changepassword')}"><i class="icon-global bg-4"></i>Change Password</a></li>
@@ -39,9 +39,9 @@
                   <p>Unit price: $<?= $data['unit_price']?></p>
                 </div>
                 <div class="total">
-                  <p>Subtotal :  <?= $data['total']?></p>
-                  <p>Shipping :  $0.00</p>
-                  <p>Taxes :    $0.00</p>
+                  <p>Subtotal :  $<?= $data['subtotal'] ? $data['subtotal'] : 0 ?></p>
+                  <p>Shipping :  $<?= $data['shipping'] ? $data['shipping'] : 0 ?></p>
+                  <p>Taxes :    $<?= $data['taxex'] ? $data['taxex'] : 0 ?></p>
                   <p>Total :   $<?= $data['total']?></p>
                 </div>
               </div>

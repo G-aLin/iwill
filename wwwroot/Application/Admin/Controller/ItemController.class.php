@@ -423,6 +423,8 @@ class ItemController extends AdminController {
                 'category_id'=>$data['category_id'],
                 'pid'=>$data['pid'],
                 'stock'=>$data['stock'],
+                'shipping'=>$data['shipping'],
+                'taxex'=>$data['taxex'],
                 'spec'=>$data['spec'],
                 'spec_name'=>$data['spec_name'],
                 'rollover_img'=>$data['rollover_img'],

@@ -163,7 +163,7 @@ class RecommendController extends AdminController {
         //获取左边菜单
         $this->getMenu();
 
-        $item  =M('item')->where(['status'=>1 ])->field('id,name')->order('id desc')->select();
+        $item  =M('item')->where(['status'=>1 ])->field('id,name,sku')->order('id desc')->select();
         $item_category  =M('item_category')->where(['pid'=>0,'status'=>1 ])->field('id,name')->order('id desc')->select();
  // var_dump($item) ;
  // var_dump($item_category) ; exit;
@@ -191,7 +191,7 @@ class RecommendController extends AdminController {
         //获取当前分类的文档类型
         $this->assign('data', $data);
 
-        $item  =M('item')->where(['status'=>1 ])->field('id,name')->order('id desc')->select();
+        $item  =M('item')->where(['status'=>1 ])->field('id,name,sku')->order('id desc')->select();
         $item_category  =M('item_category')->where(['pid'=>0,'status'=>1 ])->field('id,name')->order('id desc')->select();
  // var_dump($item) ;
  // var_dump($item_category) ; exit;
