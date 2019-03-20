@@ -32,10 +32,10 @@
                 <?php foreach ($data as $key => $value): ?>
                   <tr>
                     <td class="pro clearfix">
-                      <div class="pic"><img src="<?= $value['path']?>"></div>
-                      <div class="name" title="<?= $value['name']?>"><?= $value['name']?></div>
+                      <div class="pic"><a href="{:U('Item/detail?id='.$value['item_id'])}"><img src="<?= $value['path']?>"></a></div>
+                      <div class="name" title="<?= $value['name']?>"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= $value['name']?></a></div>
                     </td>
-                    <td class="order-id">#<?= $value['orderno']?></td>
+                    <td class="order-id"><a href="{:U('Item/detail?id='.$value['item_id'])}">#<?= $value['orderno']?></a></td>
                     <td class="amount">
                       $<?= $value['total']?>
                     </td>

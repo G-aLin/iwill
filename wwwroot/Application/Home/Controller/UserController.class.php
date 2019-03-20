@@ -274,7 +274,6 @@ class UserController extends HomeController {
                                 $page->setConfig('prev','Prev page');
                                 $page->setConfig('next','Next page');
                                 $pageStyle = $page->show();
-                                // var_dump($data);exit;
                                 $this->assign('_page',$pageStyle);
                                 $this->assign('data',$data);
 

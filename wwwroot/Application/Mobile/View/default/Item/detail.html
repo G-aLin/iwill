@@ -206,7 +206,7 @@ img.ke-anchor {
             </div>
 
             <div class="column">
-              <div class="title">User Comment</div>
+              <div class="title">Write a Review</div>
               <div class="comment">
                 <dl>
                   <dt>Name: </dt>
@@ -298,7 +298,7 @@ $(function(){
 })
 </script>
             <div class="column">
-              <div class="title">Write a Review</div>
+              <div class="title">User Comment</div>
               <div class="review">
                 <div class="list" id="Review">
   <?php foreach ($comment_list as $key => $value): ?>
@@ -315,10 +315,10 @@ $(function(){
                         }
                    ?>
                       </div>
-                      <span><?= $value['star'] ?>.0</span>
+                      <span style="font-weight:bold"><?= $value['name']  ? $value['name']  : 'Anonymous user' ?></span>
                     </div>
                     <div class="member">
-                      <?= $value['name']  ? $value['name']  : 'Anonymous user' ?> <span><?= $value['create_time'] ?></span>
+                      <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?>
                     </div>
                     <div class="text"><?= $value['content'] ?></div>
                   </div>

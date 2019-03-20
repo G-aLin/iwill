@@ -6,9 +6,9 @@
       <?php foreach ($list as $key => $value): ?>
           <div class="item">
             <div class="pro">
-              <div class="pic"><img src="<?= get_item_picture($value['item_id']) ?>"></div>
+              <div class="pic"><a href="{:U('Item/detail?id='.$value['item_id'])}"><img src="<?= get_item_picture($value['item_id']) ?>"></a></div>
               <div class="desc">
-                <div class="name"><?= get_item_name($value['item_id'])?></div>
+                <div class="name"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= get_item_name($value['item_id'])?></a></div>
                 <div class="score">
                   Score:
                   <div class="icon-star-list clearfix">

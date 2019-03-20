@@ -6,10 +6,10 @@
       <div class="inquiry-details-page">
         <div class="inquiry">
           <div class="pro">
-            <div class="pic"><img src="__IMG__/pic/20.png"></div>
+            <div class="pic"><a href="{:U('Item/detail?id='.$data['item_id'])}"><img src="__IMG__/pic/20.png"></a></div>
             <div class="info">
-              <div class="order-id">Order ID: #<?= $data['orderno']?></div>
-              <div class="desc"><?= $data['name']?></div>
+              <div class="order-id">Order ID: <a href="{:U('Item/detail?id='.$data['item_id'])}">#<?= $data['orderno']?></a></div>
+              <div class="desc"><a href="{:U('Item/detail?id='.$data['item_id'])}"><?= $data['name']?></a></div>
             </div>
           </div>
           <div class="specification">

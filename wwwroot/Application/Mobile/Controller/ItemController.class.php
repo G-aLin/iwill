@@ -105,6 +105,12 @@ class ItemController extends HomeController {
             $page->setConfig('next','Next page');
             $page->setConfig('suffix','#Review');
             $pageStyle = $page->show();
+            foreach ($comment_list as $key => $value) {
+                $publish_time = strtotime($value['create_time']);
+                $comment_list[$key]['year'] = date('Y',$publish_time);
+                $comment_list[$key]['month'] =date('F',$publish_time);
+                $comment_list[$key]['day'] = date('d',$publish_time);
+            }
             $this->assign('_page',$pageStyle);
             $this->assign('comment_list',$comment_list);
             $this->assign('comment_count',$count);

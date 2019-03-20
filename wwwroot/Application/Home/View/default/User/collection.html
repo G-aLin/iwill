@@ -42,9 +42,9 @@
                 <i class="icon-global bg-27"></i>
               </div>
               <div class="pic">
-                <img src="<?= get_item_picture($value['id']) ?>">
+                <a href="{:U('Item/detail?id='.$value['item_id'])}"><img src="<?= get_item_picture($value['item_id']) ?>"></a>
               </div>
-              <div class="desc" title="<?= get_item_name($value['id']) ?>"><?= get_item_name($value['id']) ?></div>
+              <div class="desc" title="<?= get_item_name($value['item_id']) ?>"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= get_item_name($value['item_id']) ?></a></div>
             </div>
             <?php endforeach ?>
 

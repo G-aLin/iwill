@@ -22,11 +22,11 @@
           <div class="inquiry-contain">
             <div class="inquiry-pro clearfix">
               <div class="pic">
-                <img src="<?= $data['path']?>">
+                <a href="{:U('Item/detail?id='.$data['item_id'])}"><img src="<?= $data['path']?>"></a>
               </div>
               <div class="order-detail">
-                <div class="order-id">Order ID: #<?= $data['orderno']?></div>
-                <div class="desc"><?= $data['name']?></div>
+                <div class="order-id">Order ID: <a href="{:U('Item/detail?id='.$data['item_id'])}">#<?= $data['orderno']?></a></div>
+                <div class="desc"><a href="{:U('Item/detail?id='.$data['item_id'])}"><?= $data['name']?></a></div>
                 <div class="specification">
                <?php
                 $spec = explode(",", $data['spec']);

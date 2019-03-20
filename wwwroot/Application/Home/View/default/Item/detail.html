@@ -220,12 +220,12 @@ $('.type-choose-list .pic').hover(function(){
               <span class="stock">In stock <?= $data['stock'] ?> Piece</span>
             </div>
             <div>
-              Sample purchase please bulk:
+              Click to buy in bulk:
               <a class="btn green" href="javascript:;" id="Inquiry">Inquiry</a>
                <input type="hidden" value="<?= is_login() ?>" id="is_login">
             </div>
             <div class="sell">
-              Click to buy in click:
+              Sample purchase please click:
               <a class="btn yellow switchPop" href="javascript:;">Buy</a>
               <div class="sell-pop">
                 <ul>
@@ -289,7 +289,7 @@ $('.type-choose-list .pic').hover(function(){
           </div>
 
           <div class="tab-column comment" id="Comment">
-            <div class="title">User Comment</div>
+            <div class="title">Write a Review</div>
             <div class="form">
               <dl>
                 <dt>Username:</dt>
@@ -380,7 +380,7 @@ $(function(){
 })
 </script>
           <div class="tab-column review" id="Review">
-            <div class="title">Write a Review</div>
+            <div class="title">User Comment</div>
             <div class="review-list">
 
             <?php foreach ($comment_list as $key => $value): ?>
@@ -397,9 +397,9 @@ $(function(){
                         }
                    ?>
                   </div>
-                  <?= $value['star'] ?>.0
+                  <strong><?= $value['name']  ? $value['name']  : 'Anonymous user' ?></strong>
                 </div>
-                <div class="customer"><?= $value['name']  ? $value['name']  : 'Anonymous user' ?> <span class="time"> <?= $value['create_time'] ?></span></div>
+                <div class="customer"> <span class="time"> <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?></span></div>
                 <div class="content"><?= $value['content'] ?></div>
             </div>
             <?php endforeach ?>
