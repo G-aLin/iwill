@@ -8,7 +8,7 @@
 	<div class="tab-wrap">
 		<div class="tab-content">
 			<!-- 表单 -->
-			<form id="form" method="post" class="form-horizontal doc-modal-form" action="{:U('send_message')}">
+			<form id="form" method="post" class="form-horizontal doc-modal-form" action="{:U('update')}">
 				<!-- 基础 -->
 				<div id="tab1" class="tab-pane in tab1">
 				<div class="form-item cf">
@@ -27,13 +27,22 @@
 						<label class="item-label">商品SKU：<span class="controls"><?= $info['sku'] ?></span></label>
 				</div>
 				<div class="form-item cf">
-						<label class="item-label">数量：<span class="controls"><?= $info['num'] ?></span></label>
+						<label class="item-label">数量：<span class="controls"><input type="text" value="<?= $info['num'] ?>" name="num" class="text input-large">                   </span></label>
 				</div>
 				<div class="form-item cf">
-						<label class="item-label">单价：<span class="controls"><?= $info['unit_price'] ?></span></label>
+						<label class="item-label">单价：<span class="controls"><input type="text" value="<?= $info['unit_price'] ?>" name="unit_price" class="text input-large">                   </span></label>
 				</div>
 				<div class="form-item cf">
-						<label class="item-label">总价：<span class="controls"><?= $info['total'] ?></span></label>
+						<label class="item-label">商品总价：<span class="controls"><input type="text" value="<?= $info['subtotal'] ?>" name="subtotal" class="text input-large">                   </span></label>
+				</div>
+				<div class="form-item cf">
+						<label class="item-label">运费：<span class="controls"><input type="text" value="<?= $info['shipping'] ?>" name="shipping" class="text input-large">                   </span></label>
+				</div>
+				<div class="form-item cf">
+						<label class="item-label">税费：<span class="controls"><input type="text" value="<?= $info['taxex'] ?>" name="taxex" class="text input-large">                   </span></label>
+				</div>
+				<div class="form-item cf">
+						<label class="item-label">总价：<span class="controls"> <input type="text" value="<?= $info['total'] ?>" name="total" class="text input-large"></span>                   </label>
 				</div>
 				<div class="form-item cf">
 						<label class="item-label">First Name：<span class="controls"><?= $info['first_name'] ?></span></label>
@@ -68,6 +77,11 @@
 
 
 				</div>
+				     <div class="form-item cf">
+        <input type="hidden" name="id" value="<?= $info['id'] ?>">
+            <button target-form="form-horizontal" type="submit" id="submit" class="btn submit-btn ajax-post hidden">确 定</button>
+            <a href="{:U('order/index')}" class="btn btn-return">返 回</a>
+        </div>
 			</form>
 		</div>
 
@@ -88,6 +102,11 @@ $(function(){
 })
 //拖曳插件初始化
 $(function(){
+	$('#submit').click(function(){
+    $('#form').submit();
+});
+
+
 	$(".dragsort").dragsort({
 	     dragSelector:'li',
 	     placeHolderTemplate: '<li class="draging-place">&nbsp;</li>',

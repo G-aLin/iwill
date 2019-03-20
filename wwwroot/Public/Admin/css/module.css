@@ -64,7 +64,7 @@ select[multiple] {
 .form-horizontal .item-label {
 	display: block;
 	margin-right: 5px;
-	height: 30px;
+	/*height: 30px;*/
 	line-height: 30px;
 	font-weight: bold;
 }

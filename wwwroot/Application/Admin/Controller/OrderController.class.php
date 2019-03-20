@@ -111,6 +111,22 @@ class OrderController extends AdminController {
         }
     }
 
+        public function update(){
+        $data = I('post.');
+        $news = M("order");
+        $Sqldata =[
+                'num'=>$data['num'],
+                'unit_price'=>$data['unit_price'],
+                'subtotal'=>$data['subtotal'],
+                'shipping'=>$data['shipping'],
+                'taxex'=>$data['taxex'],
+                'total'=>$data['total']
+            ];
+            $Sqldata['id'] = $data['id'];
+            $news->data($Sqldata)->save();
+        $this->success('提交成功', Cookie('__forward__'));
+    }
+
     /**
      * 清空日志
      */

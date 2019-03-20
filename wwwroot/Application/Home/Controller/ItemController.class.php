@@ -39,7 +39,7 @@ class ItemController extends HomeController {
                             $item_map['category_id']  = array('in',$data[$key]['category']);
                             $item_map['status']  = 1;
                             $data[$key]['isMore'] = M('item')->where($item_map)->count();
-                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img,price,price_range')->order('sort desc,id desc')->limit(4)->select();
+                            $data[$key]['item'] = M('item')->where($item_map)->field('id,name,star,bulky_price,rollover_img,price,price_range')->order('sort desc,id desc')->limit(8)->select();
                             foreach ($data[$key]['item'] as $k => $v) {
                                 $data[$key]['item'][$k]['path'] =M('item_pic b')->join('onethink_picture p ON p.id = b.picture_id')->where(['b.item_id'=>$v['id'],'b.type'=>2])->order('b.id asc')->getField('p.path');
                             }
@@ -277,8 +277,8 @@ class ItemController extends HomeController {
             $item= M('item')->where($item_map)->field('id,name,star,bulky_price,price,rollover_img')->order('sort desc,id desc')->select();
             $more = 0;
             if($data['more'] == 0){
-                    $more = count($item) >4 ? 1 : 0 ;
-                    $item = array_slice($item,0,4);
+                    $more = count($item) >8 ? 1 : 0 ;
+                    $item = array_slice($item,0,8);
             }
   // var_dump($item);exit;
             $tpl = "";

@@ -4,14 +4,14 @@
       <div class="inquiry-page">
         <div class="list" id="list">
         <?php foreach ($list as $key => $value): ?>
-          <a href="{:U('User/inquirydetail?id='.$value['id'])}"><div class="item">
+          <div class="item">
             <div class="pic"><a href="{:U('Item/detail?id='.$value['item_id'])}"><img src="<?= $value['path']?>"></a></div>
             <div class="info">
-              <div class="order-id">Order ID: <a href="{:U('Item/detail?id='.$value['item_id'])}">#<?= $value['orderno']?></a></div>
+              <div class="order-id">Order ID: <a href="{:U('User/inquirydetail?id='.$value['id'])}}">#<?= $value['orderno']?></a></div>
               <div class="name"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= $value['name']?></a></div>
               <div class="price">$<?= $value['total']?></div>
             </div>
-          </div></a>
+          </div>
        <?php endforeach ?>
         </div>
           <?php if ($more == 1): ?>
