@@ -209,11 +209,11 @@ img.ke-anchor {
               <div class="title">Write a Review</div>
               <div class="comment">
                 <dl>
-                  <dt>Name: </dt>
-                  <dd><input class="e-mail" type="text" id="comment_name" value="Anonymous user" style="width:3rem"></dd>
+                  <dt>Theme: </dt>
+                  <dd><input class="e-mail" type="text" id="comment_name" value="" style="width:3rem"></dd>
                 </dl>
                 <dl>
-                  <dt>E-mail: </dt>
+                  <dt>Username: </dt>
                   <dd><input class="e-mail" type="text" id="comment_email" style="width:3rem"></dd>
                 </dl>
                 <dl>
@@ -315,10 +315,10 @@ $(function(){
                         }
                    ?>
                       </div>
-                      <span style="font-weight:bold"><?= $value['name']  ? $value['name']  : 'Anonymous user' ?></span>
+                      <span style="font-weight:bold"><?= $value['name'] ?></span>
                     </div>
                     <div class="member">
-                      <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?>
+                      <b style="font-weight:bold"><?= $value['email'] ?></b> <?= $value['month'] ?> <?= $value['day'] ?>, <?= $value['year'] ?>
                     </div>
                     <div class="text"><?= $value['content'] ?></div>
                   </div>

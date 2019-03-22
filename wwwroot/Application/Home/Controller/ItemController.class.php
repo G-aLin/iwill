@@ -99,10 +99,13 @@ class ItemController extends HomeController {
             array_unshift($spec , $specParent);
              $this->assign('spec',$spec);
 
+            $ids = array_column($spec, 'id');
             //评论
-            $count = M('comment')->where(['item_id'=>$id,'status'=>1])->count();
+            $pMap['item_id']  = array('in',$ids);
+            $pMap['status']  = 1;
+            $count = M('comment')->where($pMap)->count();
             $page = new \Think\Page($count,10);
-            $comment_list =M('comment')->where(['item_id'=>$id,'status'=>1])->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
+            $comment_list =M('comment')->where($pMap)->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
             $page->setConfig('prev','Prev page');
             $page->setConfig('next','Next page');
             $page->setConfig('suffix','#Review');
@@ -118,9 +121,10 @@ class ItemController extends HomeController {
             $this->assign('comment_count',$count);
      // var_dump($comment_list);exit;
              // 问答
-            $question_count = M('item_question')->where(['item_id'=>$id,'type'=>1,'status'=>1])->count();
+            $pMap['type']  = 1;
+            $question_count = M('item_question')->where($pMap)->count();
             $question_page = new \Think\Pagetwo($question_count,10);
-            $question_list =M('item_question')->where(['item_id'=>$id,'type'=>1,'status'=>1])->order('id desc')->limit($question_page->firstRow.','.$question_page->listRows)->select();
+            $question_list =M('item_question')->where($pMap)->order('id desc')->limit($question_page->firstRow.','.$question_page->listRows)->select();
             $question_page->setConfig('prev','Prev page');
             $question_page->setConfig('next','Next page');
             $question_page->setConfig('p','page');
@@ -340,7 +344,16 @@ class ItemController extends HomeController {
                     if(IS_POST){
                         $data = I('post.');
                         /* 检测验证码 TODO: */
-                        if(!check_verify($data['code'])){
+                           if(empty($data['name'])){
+                            $this->error('Theme is empty！');
+                        } ;
+                           if(empty($data['email'])){
+                            $this->error('Username is empty！');
+                        } ;
+                           if(empty($data['content'])){
+                            $this->error('Content is empty！');
+                        } ;
+                        if(empty($data['code'])){
                             $this->error('Verification code input error！');
                         } ;
                         $data['uid'] = $uid ;
