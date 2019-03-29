@@ -1,5 +1,6 @@
- <style>
+  <script src="__JS__/jquery-1.10.1.min.js"></script>
 
+ <style>
 html {margin:0;padding:0;}
 body {margin:0;padding:5px;}
 body, td {font:12px/1.5 "sans serif",tahoma,verdana,helvetica;}
@@ -96,3 +97,9 @@ img.ke-anchor {
 </style>
 
  <?= $data['desc'] ?>
+
+ <script type="text/javascript">
+ $(document).on('click',function(){
+        window.parent.document.getElementById('sell-pop').style.display = "none";
+        })
+ </script>
