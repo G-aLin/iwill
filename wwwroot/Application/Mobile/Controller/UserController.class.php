@@ -61,10 +61,19 @@ class UserController extends HomeController {
 
 	/* 注册页面 */
 	public function register($username = '', $password = '', $repassword = '', $email = '', $verify = ''){
+            if( session('user_auth')['uid']){
+              $url = U('User/index');
+              header("Location: $url");
+              exit;
+        }
 		if(IS_POST){ //注册用户
                                      /* 检测 */
                                         if(empty($username)){
                                             $this->error('Account name is empty');
+                                        }
+                                           $mode = '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/';
+                                          if(!preg_match($mode,$username)){
+                                            $this->error('Please enter the correct email address');
                                         }
                                           if(empty($password)){
                                             $this->error('password is empty');
@@ -96,10 +105,19 @@ class UserController extends HomeController {
 
 	/* 登录页面 */
 	public function login($username = '', $password = '', $verify = ''){
+            if( session('user_auth')['uid']){
+              $url = U('User/index');
+              header("Location: $url");
+              exit;
+        }
 		if(IS_POST){ //登录验证
 			/* 检测验证码 */
 			  if(empty($username)){
                                             $this->error('Account name is empty');
+                                        }
+                                           $mode = '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/';
+                                          if(!preg_match($mode,$username)){
+                                            $this->error('Please enter the correct email address');
                                         }
                                           if(empty($password)){
                                             $this->error('password is empty');

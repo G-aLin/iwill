@@ -40,7 +40,7 @@
                       $<?= $value['total']?>
                     </td>
                     <td class="operating">
-                      <a href="{:U('User/inquirydetail?id='.$value['id'])}">See details</a>
+                      <a href="{:U('User/inquirydetail?id='.$value['id'])}">See details</a><?php if (get_unread_msg($value['id'])): ?><i class="icon-global bg-22"></i><?php endif ?>
                     </td>
                   </tr>
                  <?php endforeach ?>

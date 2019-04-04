@@ -45,6 +45,18 @@
                 <dd><input type="text" name="state" maxlength="100" value="<?= $user['state']?>"></dd>
               </dl>
             </div>
+
+              <div class="two-col clearfix">
+              <dl>
+                <dt>Phone Number<em>*</em></dt>
+                <dd><input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>"></dd>
+              </dl>
+              <dl>
+                <dt>Email<em>*</em></dt>
+                <dd><input type="text" name="email" maxlength="100" value="<?= session('user_auth')['username'] ?>"></dd>
+              </dl>
+            </div>
+
             <dl>
               <dt>Address Line1<em>*</em></dt>
               <dd><input type="text" name="address_line1" maxlength="500" value="<?= $user['address_line1']?>"></dd>
@@ -52,10 +64,6 @@
             <dl>
               <dt>Address Line2<em>*</em></dt>
               <dd><input type="text" name="address_line2" maxlength="500" value="<?= $user['address_line2']?>"></dd>
-            </dl>
-            <dl>
-              <dt>Phone Number<em>*</em></dt>
-              <dd><input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>"></dd>
             </dl>
             <dl>
               <dt>leave comments</dt>

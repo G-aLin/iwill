@@ -314,6 +314,7 @@ class NewsController extends AdminController {
         $news = M("news");
         $Sqldata =[
                 'title'=>$data['title'],
+                'list_title'=>$data['list_title'],
                 'content'=>$data['content'],
                 'digest'=>$data['digest'],
                 'status'=>$data['status'],

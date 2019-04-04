@@ -15,7 +15,7 @@
         <div class="item" data-aos="fade-up" data-aos-delay="<?= $key*100 ?>">
           <div class="info">
             <div class="time"><i class="icon-global bg-18"></i><?= $value['month'] ?> <?= $value['day'] ?>,<?= $value['year'] ?></div>
-            <div class="title"><a href="{:U('News/detail?id='.$value['id'])}"><?= $value['title'] ?></a></div>
+            <div class="title"><a href="{:U('News/detail?id='.$value['id'])}"><?= $value['list_title'] ?>&nbsp;</a></div>
             <div class="describe"><?= $value['digest'] ?> [....]</div>
             <a class="read" href="{:U('News/detail?id='.$value['id'])}">Read More</a>
           </div>

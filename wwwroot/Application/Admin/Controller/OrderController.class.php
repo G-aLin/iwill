@@ -69,14 +69,8 @@ class OrderController extends AdminController {
     public function edit($id = 0){
         empty($id) && $this->error('参数错误！');
         $info = M('order')->field(true)->find($id);
-        $userInfo = M('ucenter_member')->where(['id'=>$info['uid']])->find();
-        $info['username']    =   $userInfo['username'];
-        $info['email']    =   $userInfo['email'];
         //回复记录
-        $list = M('order_message')->where(['order_id'=>$id])->select();
-        foreach ($list as $key => $value) {
-            $list[$key]['admin_name'] = M('ucenter_member')->where(['id'=>$value['uid']])->getField('username');
-        }
+        $list = M('order_message')->where(['order_id'=>$id])->order('id desc')->select();
         $this->assign('info', $info);
         $this->assign('list', $list);
         $this->display();
@@ -141,21 +135,33 @@ class OrderController extends AdminController {
 
     public function send_message(){
         $data = I('post.');
-        empty($data['content']) && $this->error('请输入回复内容！');
-        $mail = new \Think\Mail();
-        $res =  $mail->SendMail($data['email'],$data['item'],$data['content'],'我是发件人');
-        if($res){
-            $Sqldata =[
-                'uid'=>session('user_auth.uid'),
+        if(empty($data['content']) && empty($data['web_content'])) $this->error('请输入回复内容！');
+        $Sqldata =[
+                'uid'=>$data['uid'],
                 'order_id'=>$data['order_id'],
-                'content'=>$data['content'],
+                'status'=>1,
+                'is_read'=>0,
                 'create_time'=>date('Y-m-d H:s:',time())
             ];
-            M('order_message')->data($Sqldata)->add();
-            $this->success('提交成功', Cookie('__forward__'));
-        }else {
-             $this->error('网络异常，提交失败');
+        if($data['web_content']){
+                 $Sqldata['type'] = 1;
+                 $Sqldata['content'] = $data['web_content'];
+                 M('order_message')->data($Sqldata)->add();
         }
+        if($data['content']){
+                $info = M('config_email')->where('id=1')->find();
+                $mail = new \Think\Mail();
+                $res =  $mail->SendMailByInfo($data['email'],$data['item'],$data['content'],$info,$info['send_name']);
+                if($res){
+                    $Sqldata['type'] = 2;
+                    $Sqldata['content'] = $data['content'];
+                    $Sqldata['email'] = $data['email'];
+                    M('order_message')->data($Sqldata)->add();
+                }else {
+                     $this->error('网络异常，提交失败');
+                }
+        }
+        $this->success('提交成功', Cookie('__forward__'));
     }
 
 }

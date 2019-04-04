@@ -2,8 +2,7 @@
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/layout.css">
 
-  <div class="header-box"></div>
-
+<div class="header-box"></div>
 
   <div class="layout-two-col">
     <div class="wrapper clearfix">
@@ -57,12 +56,36 @@
               <p>Phone Number: <?= $data['phone']?></p>
               <p>leave comments: <?= $data['comments']?></p>
             </div>
-
-
           </div>
         </div>
       </div>
+
+ <!-- message  start      -->
+ <?php if ($list): ?>
+      <div class="contain">
+        <div class="comment-page">
+          <h4>Message</h4>
+          <div class="list">
+            <table>
+                <tbody>
+<?php foreach ($list as $key => $value): ?>
+                  <tr>
+                    <td class="pro clearfix" style="width:88%">
+                     <?= $value['content'] ?>
+                    </td>
+                    <td class="pro clearfix" style="width:12%">
+                      <?= $value['create_time'] ?>
+                    </td>
+                  </tr>
+<?php endforeach ?>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+   <?php endif ?>
+ <!-- message  end      -->
+
     </div>
   </div>
-
 <include file="Public/footer" />

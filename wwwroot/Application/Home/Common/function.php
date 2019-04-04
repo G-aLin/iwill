@@ -80,3 +80,7 @@ function get_page_info($id){
 function get_order_id(){
     return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
 }
+
+function get_unread_msg($order_id){
+    return M('order_message')->where(['uid'=>session('user_auth')['uid'],'order_id'=>$order_id,'is_read'=>0])->count();
+}

@@ -178,6 +178,7 @@ class ItemController extends HomeController {
                         if(empty($data['address_line1'])) $this->error('Please input Address Line1');
                         if(empty($data['address_line2'])) $this->error('Please input Address Line2');
                         if(empty($data['phone'])) $this->error('Please input Phone Number');
+                        if(empty($data['email'])) $this->error('Please input email');
                         $memberM = M("order");
                         $data['uid'] = $uid ;
                         $data['status'] = 1 ;
@@ -199,7 +200,7 @@ class ItemController extends HomeController {
                         $data['spec'] = rtrim($data['spec'],",");
                         $res = $memberM->data($data)->add();
                          if($res !== false){ //成功
-                                 send_email_tpl(session('user_auth')['username'],2);
+                                 send_email_tpl($data['email'],2);
                                 $this->success('Submit successfully！',U('User/inquiry'));
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));

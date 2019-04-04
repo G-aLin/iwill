@@ -39,7 +39,7 @@
                         <th class="">合计</th>
                         <th class="">下单时间</th>
 
-                        <th class="">操作</th>
+                        <th class="" style="width:13%">操作</th>
 		</tr>
     </thead>
     <tbody>
@@ -60,7 +60,8 @@
 
 			<td>
                                         <!-- <a href="{:U('order/edit?id='.$vo['id'])}">回复</a> -->
-                                        <a href="{:U('order/detail?id='.$vo['id'])}">详情和修改</a>
+                                        <a href="{:U('order/detail?id='.$vo['id'])}">详情</a>
+                                         <a href="{:U('order/edit?id='.$vo['id'])}">回复</a>
 			<a class="confirm ajax-get" href="{:U('order/remove?ids='.$vo['id'])}">删除
             </a>
                 </td>

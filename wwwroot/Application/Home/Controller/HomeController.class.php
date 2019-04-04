@@ -36,6 +36,7 @@ class HomeController extends Controller {
         }
         $this->get_shop_nav();
         $this->get_contact_info();
+        $this->get_unread();
     }
 
 	/* 用户登录检测 */
@@ -62,6 +63,13 @@ class HomeController extends Controller {
        protected function get_contact_info(){
         $contact = M('contact')->find();
         $this->assign('contact',$contact);//
+    }
+
+         protected function get_unread(){
+            if(!empty(session('user_auth')['uid'])){
+                $unreadMsgCount = M('order_message')->where(['uid'=>session('user_auth')['uid'],'is_read'=>0])->count();
+                $this->assign('unreadMsgCount',$unreadMsgCount);//
+            }
     }
 
         protected function get_shop_nav(){
