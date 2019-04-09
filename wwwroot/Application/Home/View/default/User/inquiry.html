@@ -33,14 +33,14 @@
                   <tr>
                     <td class="pro clearfix">
                       <div class="pic"><a href="{:U('Item/detail?id='.$value['item_id'])}"><img src="<?= $value['path']?>"></a></div>
-                      <div class="name" title="<?= $value['name']?>"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= $value['name']?></a></div>
+                      <div class="name <?php if (get_unread_msg($value['id'])): ?>unread<?php endif ?>" title="<?= $value['name']?>"><a href="{:U('Item/detail?id='.$value['item_id'])}"><?= $value['name']?></a></div>
                     </td>
                     <td class="order-id"><a href="{:U('User/inquirydetail?id='.$value['id'])}}">#<?= $value['orderno']?></a></td>
                     <td class="amount">
                       $<?= $value['total']?>
                     </td>
                     <td class="operating">
-                      <a href="{:U('User/inquirydetail?id='.$value['id'])}">See details</a><?php if (get_unread_msg($value['id'])): ?><i class="icon-global bg-22"></i><?php endif ?>
+                      <a href="{:U('User/inquirydetail?id='.$value['id'])}">See details</a>
                     </td>
                   </tr>
                  <?php endforeach ?>
