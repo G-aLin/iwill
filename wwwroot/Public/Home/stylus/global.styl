@@ -300,6 +300,8 @@ textarea
     margin-right 8px
   .bg-2, .bg-17
     margin-right 5px
+  .bg-33
+    margin-right 8px
 
 // 底部
 .footer
@@ -552,3 +554,9 @@ textarea
     background-position 0 -36px
   &:hover.next
     background-position -20px -36px
+
+.unread::before
+  content: '* '
+  color: #ff444d
+  vertical-align: sub
+  line-height: 0
