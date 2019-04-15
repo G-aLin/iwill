@@ -1047,22 +1047,40 @@ function is_mobile(){
 }
 
     //
-     function send_email_tpl($email,$type){
+     function send_email_tpl($email,$type,$replace=''){
         $mode = '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/';
         if(!preg_match($mode,$email)){
             return 0;
         }
         $info = M('config_email')->where('id=1')->find();
+
         if (empty($info)) {
            return 0;
         }
+
         $configM = M('config');
         switch ($type) {
             case '1':
                 $tpl = $configM->where(['id'=>39,'status'=>1])->find();
+                $tpl['value'] = str_replace('[username]', $replace['username'], $tpl['value']);
+                $tpl['value'] = str_replace('[password]', $replace['password'], $tpl['value']);
                 break;
             case '2':
                 $tpl = $configM->where(['id'=>40,'status'=>1])->find();
+                $tpl['value'] = str_replace('[FirstName]', $replace['first_name'], $tpl['value']);
+                $tpl['value'] = str_replace('[LastName]', $replace['last_name'], $tpl['value']);
+                $tpl['value'] = str_replace('[ProductName]', $replace['name'], $tpl['value']);
+                $tpl['value'] = str_replace('[orderNo]', $replace['orderno'], $tpl['value']);
+                $tpl['value'] = str_replace('[Number]', $replace['phone'], $tpl['value']);
+                $tpl['value'] = str_replace('[AddressLine1]', $replace['address_line1'], $tpl['value']);
+                $tpl['value'] = str_replace('[AddressLine2]', $replace['address_line2'], $tpl['value']);
+                $tpl['value'] = str_replace('[Quantity]', $replace['num'], $tpl['value']);
+                $tpl['value'] = str_replace('[Sku]', $replace['sku'], $tpl['value']);
+                $tpl['value'] = str_replace('[UnitPrice]', $replace['unit_price'], $tpl['value']);
+                $tpl['value'] = str_replace('[Subtotal]', $replace['subtotal'], $tpl['value']);
+                $tpl['value'] = str_replace('[Shipping]', $replace['shipping'], $tpl['value']);
+                $tpl['value'] = str_replace('[Taxes]', $replace['taxex'], $tpl['value']);
+                $tpl['value'] = str_replace('[Total]', $replace['total'], $tpl['value']);
                 break;
             case '3':
                 $tpl = $configM->where(['id'=>41,'status'=>1])->find();

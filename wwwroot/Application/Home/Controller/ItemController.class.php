@@ -200,7 +200,7 @@ class ItemController extends HomeController {
                         $data['spec'] = rtrim($data['spec'],",");
                         $res = $memberM->data($data)->add();
                          if($res !== false){ //成功
-                                 send_email_tpl($data['email'],2);
+                                 send_email_tpl($data['email'],2,$data);
                                 $this->success('Submit successfully！',U('User/inquiry'));
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));

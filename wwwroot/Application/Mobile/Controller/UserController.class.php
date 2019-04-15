@@ -91,7 +91,7 @@ class UserController extends HomeController {
                                             $mdata['status'] = 1 ;
                                             M('member')->data($mdata)->add();
                                         }
-                                        send_email_tpl($username,1);          //
+                                        send_email_tpl($username,1,['username'=>$username,'password'=>$password]);
 				$this->success('successfully！',U('index'));
 			} else { //注册失败，显示错误信息
 				$this->error($this->showRegError($uid));
