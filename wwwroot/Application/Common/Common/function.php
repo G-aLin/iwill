@@ -1074,6 +1074,10 @@ function is_mobile(){
                 $tpl['value'] = str_replace('[Number]', $replace['phone'], $tpl['value']);
                 $tpl['value'] = str_replace('[AddressLine1]', $replace['address_line1'], $tpl['value']);
                 $tpl['value'] = str_replace('[AddressLine2]', $replace['address_line2'], $tpl['value']);
+                $tpl['value'] = str_replace('[city]', $replace['city'], $tpl['value']);
+                $tpl['value'] = str_replace('[state]', $replace['state'], $tpl['value']);
+                $tpl['value'] = str_replace('[country]', $replace['country'], $tpl['value']);
+                $tpl['value'] = str_replace('[zip_code]', $replace['zip_code'], $tpl['value']);
                 $tpl['value'] = str_replace('[Quantity]', $replace['num'], $tpl['value']);
                 $tpl['value'] = str_replace('[Sku]', $replace['sku'], $tpl['value']);
                 $tpl['value'] = str_replace('[UnitPrice]', $replace['unit_price'], $tpl['value']);

@@ -25,6 +25,38 @@
                 <dd><input type="text" name="last_name" maxlength="100" value="<?= $user['last_name']?>"></dd>
               </dl>
             </div>
+
+           <div class="two-col clearfix">
+              <dl>
+                <dt>Email<em>*</em></dt>
+                <dd><input type="text" name="email" maxlength="100" value="<?= session('user_auth')['username'] ?>"></dd>
+              </dl>
+               <dl>
+                <dt>Phone Number<em>*</em></dt>
+                <dd><input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>"></dd>
+              </dl>
+            </div>
+
+             <dl>
+              <dt>Address Line1<em>*</em></dt>
+              <dd><input type="text" name="address_line1" maxlength="500" value="<?= $user['address_line1']?>"></dd>
+            </dl>
+            <dl>
+              <dt>Address Line2<em>*</em></dt>
+              <dd><input type="text" name="address_line2" maxlength="500" value="<?= $user['address_line2']?>"></dd>
+            </dl>
+
+             <div class="two-col clearfix">
+              <dl>
+                <dt>City<em>*</em></dt>
+                <dd><input type="text" name="city" maxlength="100" value="<?= $user['city']?>"></dd>
+              </dl>
+              <dl>
+                <dt>State/Region<em>*</em></dt>
+                <dd><input type="text" name="state" maxlength="100" value="<?= $user['state']?>"></dd>
+              </dl>
+            </div>
+
             <div class="two-col clearfix">
               <dl>
                 <dt>Country<em>*</em></dt>
@@ -35,38 +67,9 @@
                 <dd><input type="text" name="zip_code" maxlength="100" value="<?= $user['zip_code']?>"></dd>
               </dl>
             </div>
-            <div class="two-col clearfix">
-              <dl>
-                <dt>City<em>*</em></dt>
-                <dd><input type="text" name="city" maxlength="100" value="<?= $user['city']?>"></dd>
-              </dl>
-              <dl>
-                <dt>State/Territory<em>*</em></dt>
-                <dd><input type="text" name="state" maxlength="100" value="<?= $user['state']?>"></dd>
-              </dl>
-            </div>
-
-              <div class="two-col clearfix">
-              <dl>
-                <dt>Phone Number<em>*</em></dt>
-                <dd><input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>"></dd>
-              </dl>
-              <dl>
-                <dt>Email<em>*</em></dt>
-                <dd><input type="text" name="email" maxlength="100" value="<?= session('user_auth')['username'] ?>"></dd>
-              </dl>
-            </div>
 
             <dl>
-              <dt>Address Line1<em>*</em></dt>
-              <dd><input type="text" name="address_line1" maxlength="500" value="<?= $user['address_line1']?>"></dd>
-            </dl>
-            <dl>
-              <dt>Address Line2<em>*</em></dt>
-              <dd><input type="text" name="address_line2" maxlength="500" value="<?= $user['address_line2']?>"></dd>
-            </dl>
-            <dl>
-              <dt>leave comments</dt>
+              <dt>Leave Comments</dt>
               <dd><textarea name="comments" maxlength="2000"></textarea></dd>
             </dl>
             <input type="hidden" name="orderno" value="<?= $data['orderNo']?>">

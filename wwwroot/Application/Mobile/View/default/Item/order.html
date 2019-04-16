@@ -31,6 +31,30 @@
             <h6>Last Name<em>*</em></h6>
             <input type="text" name="last_name" maxlength="100" value="<?= $user['last_name']?>">
           </div>
+            <div class="item">
+            <h6>Email<em>*</em></h6>
+            <input type="text" name="email" maxlength="100" value="<?= session('user_auth')['username'] ?>">
+          </div>
+            <div class="item">
+            <h6>Phone Number<em>*</em></h6>
+            <input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>">
+          </div>
+           <div class="item">
+            <h6>Address Line1<em>*</em></h6>
+            <input type="text" name="address_line1" maxlength="500" value="<?= $user['address_line1']?>">
+          </div>
+          <div class="item">
+            <h6>Address Line2</h6>
+            <input type="text" name="address_line2" maxlength="500" value="<?= $user['address_line2']?>">
+          </div>
+           <div class="item">
+            <h6>City<em>*</em></h6>
+           <input type="text" name="city" maxlength="100" value="<?= $user['city']?>">
+          </div>
+            <div class="item">
+            <h6>State/Region<em>*</em></h6>
+           <input type="text" name="state" maxlength="100" value="<?= $user['state']?>">
+          </div>
           <div class="item">
             <h6>Country<em>*</em></h6>
             <input type="text" name="country" maxlength="50" value="<?= $user['country']?>">
@@ -40,27 +64,7 @@
            <input type="text" name="zip_code" maxlength="100" value="<?= $user['zip_code']?>">
           </div>
           <div class="item">
-            <h6>City<em>*</em></h6>
-           <input type="text" name="city" maxlength="100" value="<?= $user['city']?>">
-          </div>
-          <div class="item">
-            <h6>State/Territory<em>*</em></h6>
-           <input type="text" name="state" maxlength="100" value="<?= $user['state']?>">
-          </div>
-          <div class="item">
-            <h6>Address Line1<em>*</em></h6>
-            <input type="text" name="address_line1" maxlength="500" value="<?= $user['address_line1']?>">
-          </div>
-          <div class="item">
-            <h6>Address Line2</h6>
-            <input type="text" name="address_line2" maxlength="500" value="<?= $user['address_line2']?>">
-          </div>
-          <div class="item">
-            <h6>Phone Number<em>*</em></h6>
-            <input type="text" name="phone" maxlength="20" value="<?= $user['phone']?>">
-          </div>
-          <div class="item">
-            <h6>leave comments</h6>
+            <h6>Leave Comments</h6>
            <textarea name="comments" maxlength="2000"></textarea>
           </div>
         </div>

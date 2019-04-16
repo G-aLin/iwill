@@ -161,6 +161,7 @@ class ItemController extends HomeController {
                         if(empty($orderInfo)) $this->error('Network error');
                         if(empty($data['first_name'])) $this->error('Please input First Name');
                         if(empty($data['last_name'])) $this->error('Please input Last Name');
+                        if(empty($data['email'])) $this->error('Please input email');
                         if(empty($data['country'])) $this->error('Please input Country');
                         if(empty($data['zip_code'])) $this->error('Please input Zip Code');
                         if(empty($data['city'])) $this->error('Please input City');
@@ -189,7 +190,7 @@ class ItemController extends HomeController {
                         $data['spec'] = rtrim($data['spec'],",");
                         $res = $memberM->data($data)->add();
                          if($res !== false){ //成功
-                             send_email_tpl(session('user_auth')['username'],2,$data);
+                             send_email_tpl($data['email'],2,$data);
                                 $this->success('Submit successfully！',U('User/inquiry'));
                             } else { //注册失败，显示错误信息
                                 $this->error($this->showRegError($uid));
