@@ -5,33 +5,81 @@
       <p style="margin: 0;padding: 0;">Thank you for purchasing [ProductName] products from www.iwillcreatepro.com</p>
     </div>
     <div class="order-info">
-      <div class="order">Order No: [orderNo]</div>
+      <div class="order"><span  style="font-weight: bold">Order No:</span> [orderNo]</div>
       <p style="margin: 0;padding: 0;">We have successfully received your order information, the specific information is as follows, please check carefully.</p>
       <table style="border: 1px solid #ddd;border-collapse:collapse;border-spacing:0;width: 100%;word-wrap: break-word;text-align: left;margin-top: 10px;">
-          <tr>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Buyer name:</th>
-            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">[FirstName][LastName]</td>
-          </tr>
-          <tr>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Contact number:</th>
-            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">[Number]</td>
-          </tr>
-          <tr>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Shipping address1:</th>
-            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">[AddressLine1]</td>
-          </tr>
-          <tr>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Shipping address2:</th>
-            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">[AddressLine2]</td>
-          </tr>
+         <tr>
+          <th style="font-weight:normal;width:22%">
+            Buyer name:
+          </th>
+          <td style="font-weight:normal;width:78%">
+            [FirstName][LastName]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            Contact number:
+          </th>
+          <td style="font-weight:normal;">
+            [Number]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            Shipping address1:
+          </th>
+          <td style="font-weight:normal;">
+            [AddressLine1]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            Shipping address2:
+          </th>
+          <td style="font-weight:normal;">
+            [AddressLine2]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            City:
+          </th>
+          <td style="font-weight:normal;">
+            [city]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            State/Territory:
+          </th>
+          <td style="font-weight:normal;">
+            [state]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            Country:
+          </th>
+          <td style="font-weight:normal;">
+            [country]
+          </td>
+        </tr>
+        <tr>
+          <th style="font-weight:normal;">
+            Zip Code:
+          </th>
+          <td style="font-weight:normal;">
+            [zip_code]
+          </td>
+        </tr>
       </table>
       <table style="border: 1px solid #ddd;border-collapse:collapse;border-spacing:0;width: 100%;word-wrap: break-word;text-align: left;margin-top: 10px;">
         <thead>
           <tr>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Order Quantity</th>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Product Detail</th>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Unit Price</th>
-            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">OrderTotals</th>
+            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;width:20%;text-align: center;">Quantity </th>
+            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;width:40%">Product Description</th>
+            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;width:20%;text-align: center;">Unit Price</th>
+            <th style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;width:20%;text-align: center;">OrderTotals</th>
           </tr>
         </thead>
         <tbody>
@@ -39,17 +87,18 @@
             <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;text-align: center;">[Quantity]</td>
             <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">[ProductName]<br>SKU:[Sku] </td>
             <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;text-align: center">[UnitPrice]</td>
-            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;">Subtotal: [Subtotal]<br>Shipping: [Shipping]<br>Taxes: [Taxes]</td>
+            <td style="padding: 5px;font-weight: normal;border-top: 1px solid #ddd;border-left: 1px solid #ddd;;text-align: center;">Subtotal: [Subtotal]</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div style="text-align: right;margin: 20">Grand Total: $[Total]</div>
-    <div class="footer" style="font-size:12px;margin: 20;padding: 0;">
+    <div style="text-align: right;margin: 20">Exclude shipping cost and tax: $[Exclude]</div>
+    <div class="footer" style="margin: 20;padding: 0;">
       <p style="margin: 0;padding: 0;">Please let me know if the order information is incorrect,  so that we can correct and send the right version to you again.</p>
       <p style="margin: 0;padding: 0;">If the order information is correct, please send the confirmation reply directly. after receving your confirmation mail, we will send you a formal purchase order contract for signing and continue our next business step.</p>
-      <p style="margin: 0;padding: 0;">Thanks again!</p>
-      <p style="text-align: right;margin: 0;padding: 0;">Iwill CREATE PRO</p>
+      <p style="margin: 0;padding: 0;">Thanks very much and Best Regards!</p>
+      <p style="text-align: right;margin: 0;padding: 0;">Iwill Create Pro</p>
       <p style="text-align: right;margin: 0;padding: 0;" >www.iwillcreatepro.com</p>
     </div>
   </div>

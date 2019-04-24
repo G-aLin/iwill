@@ -1067,6 +1067,7 @@ function is_mobile(){
                 break;
             case '2':
                 $tpl = $configM->where(['id'=>40,'status'=>1])->find();
+                $Exclude = $replace['shipping'] + $replace['taxex'];
                 $tpl['value'] = str_replace('[FirstName]', $replace['first_name'], $tpl['value']);
                 $tpl['value'] = str_replace('[LastName]', $replace['last_name'], $tpl['value']);
                 $tpl['value'] = str_replace('[ProductName]', $replace['name'], $tpl['value']);
@@ -1082,8 +1083,7 @@ function is_mobile(){
                 $tpl['value'] = str_replace('[Sku]', $replace['sku'], $tpl['value']);
                 $tpl['value'] = str_replace('[UnitPrice]', $replace['unit_price'], $tpl['value']);
                 $tpl['value'] = str_replace('[Subtotal]', $replace['subtotal'], $tpl['value']);
-                $tpl['value'] = str_replace('[Shipping]', $replace['shipping'], $tpl['value']);
-                $tpl['value'] = str_replace('[Taxes]', $replace['taxex'], $tpl['value']);
+                $tpl['value'] = str_replace('[Exclude]', $Exclude, $tpl['value']);
                 $tpl['value'] = str_replace('[Total]', $replace['total'], $tpl['value']);
                 break;
             case '3':
