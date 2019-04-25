@@ -248,6 +248,8 @@ class ItemController extends HomeController {
                                 S($data['orderNo'],$data,86400);
                                 $user  =M('member')->where(['uid'=>session('user_auth')['uid']])->find();
                                 $this->assign('user',$user);//
+                                $country  =M('country')->where(['status'=>1])->order('level desc')->select();
+                                $this->assign('country',$country);//
                                 $this->display();
                         }
 

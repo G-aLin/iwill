@@ -57,7 +57,11 @@
           </div>
           <div class="item">
             <h6>Country<em>*</em></h6>
-            <input type="text" name="country" maxlength="50" value="<?= $user['country']?>">
+               <select name="country">
+                    <?php foreach ($country as $key => $value): ?>
+                         <option value="<?= $value['name']?>" <?php if ($value['name'] == $user['country'] ): ?>selected<?php endif ?>><?= $value['name']?></option>
+                    <?php endforeach ?>
+                  </select>
           </div>
           <div class="item">
             <h6>Zip Code<em>*</em></h6>

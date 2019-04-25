@@ -60,7 +60,14 @@
             <div class="two-col clearfix">
               <dl>
                 <dt>Country<em>*</em></dt>
-                <dd><input type="text" name="country" maxlength="50" value="<?= $user['country']?>"></dd>
+                <dd>
+                <!-- <input type="text" name="country" maxlength="50" value="<?= $user['country']?>"> -->
+                <select name="country">
+                    <?php foreach ($country as $key => $value): ?>
+                         <option value="<?= $value['name']?>" <?php if ($value['name'] == $user['country'] ): ?>selected<?php endif ?>><?= $value['name']?></option>
+                    <?php endforeach ?>
+                  </select>
+                </dd>
               </dl>
               <dl>
                 <dt>Zip Code<em>*</em></dt>
