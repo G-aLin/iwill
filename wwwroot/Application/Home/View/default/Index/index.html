@@ -4,7 +4,9 @@
  {$article.create_time|date='Y-m-d H:i',###} -->
 <include file="Public/head" title="{$info.title}" keywords="{$info.keywords}" description="{$info.description}"/>
 <link rel="stylesheet" href="__CSS__/index.css">
-
+<style type="text/css">
+.about-us p {font-size: 15px;color: #555;line-height: 30px; text-align: center;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;}
+</style>
   <!-- banner -->
   <div class="banner">
     <div class="hd">
@@ -124,6 +126,18 @@
         <h4 data-aos="zoom-in">About Us</h4>
        <?= $data['content'] ?>
     </div>
+    <a class="loadmore" href="{:U('About/us')}" data-id="16" style="
+    display: block;
+    margin: 40px auto 0;
+    width: 258px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border: 1px solid #489e87;
+    font-size: 18px;
+    color: #86b3a7;
+    transition: all .15s linear;
+">MORE+</a>
   </div>
 
 <include file="Public/footer" />
