@@ -86,6 +86,9 @@ class UserController extends HomeController {
                                             $mdata['uid'] = $uid ;
                                             $mdata['nickname'] = $username ;
                                             $mdata['status'] = 1 ;
+                                            $mdata['login'] = 1 ;
+                                            $mdata['last_login_time'] = time() ;
+                                            $mdata['last_login_ip'] = get_client_ip(1) ;
                                             M('member')->data($mdata)->add();
                                         }
                                         send_email_tpl($username,1,['username'=>$username,'password'=>$password]);

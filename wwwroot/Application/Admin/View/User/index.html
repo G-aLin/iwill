@@ -50,6 +50,7 @@
 			<td><span>{:long2ip($vo['last_login_ip'])}</span></td>
 			<td>{$vo.status_text}</td>
 			<td><eq name="vo.status" value="1">
+            <a href="{:U('User/detail?uid='.$vo['uid'])}" class="authorize">查看详情</a>
 				<a href="{:U('User/changeStatus?method=forbidUser&id='.$vo['uid'])}" class="ajax-get">禁用</a>
 				<else/>
 				<a href="{:U('User/changeStatus?method=resumeUser&id='.$vo['uid'])}" class="ajax-get">启用</a>

@@ -40,6 +40,15 @@ class UserController extends AdminController {
         $this->display();
     }
 
+        public function detail(){
+                $uid = I('get.uid');
+                $data  =M('member')->where(['uid'=>$uid])->find();
+                $this->assign('data',$data);//
+                $this->display();
+
+    }
+
+
     /**
      * 修改昵称初始化
      * @author huajie <banhuajie@163.com>
