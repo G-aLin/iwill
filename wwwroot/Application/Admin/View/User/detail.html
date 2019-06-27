@@ -1,0 +1,127 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>用户详情</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">用户名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.nickname}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Gender<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="<?= $data['sex'] == 1 ? 'male' : 'female' ?>" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Phone Number<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.phone}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Date of birth<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.birthday}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Country<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.country}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">First Name<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.first_name}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Last Name<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.last_name}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+         <div class="form-item">
+            <label class="item-label">Zip Code<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.zip_code}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+           <div class="form-item">
+            <label class="item-label">City<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.city}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+           <div class="form-item">
+            <label class="item-label">State/Territory<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.state}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+           <div class="form-item">
+            <label class="item-label">Address Line1<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.address_line1}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+           <div class="form-item">
+            <label class="item-label">Address Line2<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$data.address_line2}" disabled style=" border: 1px solid #DDD;
+    background-color: #F5F5F5;
+    color:#ACA899;">
+            </div>
+        </div>
+
+     <!--    <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div> -->
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('User/index')}');
+    </script>
+</block>
