@@ -25,11 +25,14 @@ class Mail{
 		return($mail->Send());
 	}
 
-	function SendMailByInfo($address,$title,$message,$info,$fromname='NONE'){
+	function SendMailByInfo($address,$title,$message,$info,$fromname='NONE',$cc=0){
 		$mail = new PHPMailer\PHPMailer;
 		$mail->IsSMTP();
 		$mail->CharSet=C('MAIL_CHARSET');
 		$mail->AddAddress($address);
+		if($cc == 40){
+			$mail->addCC('sales@iwillcreatepro.com');
+		}
 		$mail->Body=$message;
 		$mail->From= $info['address'];
 		$mail->FromName=$fromname;

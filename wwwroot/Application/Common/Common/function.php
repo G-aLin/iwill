@@ -1094,6 +1094,6 @@ function is_mobile(){
                 break;
         }
         $mail = new \Think\Mail();
-        $res =  $mail->SendMailByInfo($email,$tpl['title'],$tpl['value'],$info,$info['send_name']);
+        $res =  $mail->SendMailByInfo($email,$tpl['title'],$tpl['value'],$info,$info['send_name'],$tpl['id']);
         return $res ? 1 : 0 ;
     }
